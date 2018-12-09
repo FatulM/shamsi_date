@@ -1,0 +1,18 @@
+name: shamsi_date
+description: Jalali (Shamsi) and Georgian date conversion library
+version: 0.1.0
+homepage: https://www.github.com/FatulM/shamsi_date
+author: Amirreza Madani <madani_amirreza@yahoo.com>
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
