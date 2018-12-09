@@ -1,7 +1,7 @@
 name: shamsi_date
 description: Jalali (Shamsi) and Georgian date conversion library
 version: 0.1.0
-homepage: https://www.github.com/FatulM/shamsi_date
+homepage: https://github.com/FatulM/shamsi_date
 author: Amirreza Madani <madani_amirreza@yahoo.com>
 
 environment:
