@@ -8,7 +8,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.1.2
+    shamsi_date: ^0.1.3
 ```
 
 Import and use it:
