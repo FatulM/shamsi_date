@@ -2,19 +2,19 @@ library shamsi_date;
 
 import 'package:meta/meta.dart';
 
+/// Jalali (Shamsi or Persian) Date class
 @immutable
 class Jalali {
+  /// Jalali year (1 to 3100)
   final int year;
+
+  /// Jalali month (1 to 12)
   final int month;
+
+  /// Jalali day (1 to 29/31)
   final int day;
 
-  /*
-    Converts a date of the Jalali calendar to the Julian Day number.
-    @param jy Jalali year (1 to 3100)
-    @param jm Jalali month (1 to 12)
-    @param jd Jalali day (1 to 29/31)
-    @return Julian Day number
-  */
+  /// Converts a date of the Jalali calendar to the Julian Day number.
   int get julianDayNumber {
     final r = _JalaliCalculation.calculate(year);
 
@@ -27,14 +27,7 @@ class Jalali {
 
   Jalali({this.year, this.month, this.day});
 
-  /*
-    Converts the Julian Day number to a date in the Jalali calendar.
-    @param jdn Julian Day number
-    @return
-      jy: Jalali year (1 to 3100)
-      jm: Jalali month (1 to 12)
-      jd: Jalali day (1 to 29/31)
-  */
+  /// Converts the Julian Day number to a date in the Jalali calendar.
   static Jalali fromJulianDayNumber(julianDayNumber) {
     // Calculate Gregorian year (gy).
     int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
@@ -68,16 +61,12 @@ class Jalali {
     return Jalali(year: jy, month: jm, day: jd);
   }
 
-  /*
-    Converts a Jalali date to Gregorian.
-  */
+  /// Converts a Jalali date to Gregorian.
   Gregorian toGregorian() {
     return Gregorian.fromJulianDayNumber(julianDayNumber);
   }
 
-  /*
-    Checks whether a Jalali date is valid or not.
-  */
+  /// Checks whether a Jalali date is valid or not.
   bool isValid() {
     return year >= -61 &&
         year <= 3177 &&
@@ -87,16 +76,12 @@ class Jalali {
         day <= monthLength(year: year, month: month);
   }
 
-  /*
-    Is this a leap year or not?
-  */
+  /// Checks if a year is a leap year or not.
   static bool isLeapYear(int year) {
     return _JalaliCalculation.calculate(year).leap == 0;
   }
 
-  /*
-    Number of days in a given month in a Jalali year.
-  */
+  /// Computes number of days in a given month in a Jalali year.
   static int monthLength({int year, int month}) {
     if (month <= 6) return 31;
     if (month <= 11) return 30;
@@ -104,29 +89,31 @@ class Jalali {
     return 29;
   }
 
+  /// Default string representation: `YYYY/MM/DD`
   @override
   String toString() {
     return '$year/$month/$day';
   }
 }
 
+/// Gregorian date class
 @immutable
 class Gregorian {
+  /// Gregorian year (years BC numbered 0, -1, -2, ...)
   final int year;
+
+  /// Gregorian month (1 to 12)
   final int month;
+
+  /// Gregorian day of the month (1 to 28/29/30/31)
   final int day;
 
-  /*
-    Calculates the Julian Day number from Gregorian or Julian
-    calendar dates. This integer number corresponds to the noon of
-    the date (i.e. 12 hours of Universal Time).
-    The procedure was tested to be good since 1 March, -100100 (of both
-    calendars) up to a few million years into the future.
-    @param gy Calendar year (years BC numbered 0, -1, -2, ...)
-    @param gm Calendar month (1 to 12)
-    @param gd Calendar day of the month (1 to 28/29/30/31)
-    @return Julian Day number
-  */
+  /// Calculates the Julian Day number from Gregorian or Julian
+  /// calendar dates. This integer number corresponds to the noon of
+  /// the date (i.e. 12 hours of Universal Time).
+  ///
+  /// The procedure was tested to be good since 1 March, -100100 (of both
+  /// calendars) up to a few million years into the future.
   int get julianDayNumber {
     int d = _div((year + _div(month - 8, 6) + 100100) * 1461, 4) +
         _div(153 * _mod(month + 9, 12) + 2, 5) +
@@ -139,16 +126,9 @@ class Gregorian {
 
   Gregorian({this.year, this.month, this.day});
 
-  /*
-    Calculates Gregorian and Julian calendar dates from the Julian Day number
-    (jdn) for the period since jdn=-34839655 (i.e. the year -100100 of both
-    calendars) to some millions years ahead of the present.
-    @param jdn Julian Day number
-    @return
-      gy: Calendar year (years BC numbered 0, -1, -2, ...)
-      gm: Calendar month (1 to 12)
-      gd: Calendar day of the month M (1 to 28/29/30/31)
-  */
+  /// Calculates Gregorian and Julian calendar dates from the Julian Day number
+  /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
+  /// calendars) to some millions years ahead of the present.
   static Gregorian fromJulianDayNumber(int julianDayNumber) {
     int j, i, gd, gm, gy;
 
@@ -164,40 +144,40 @@ class Gregorian {
     return Gregorian(year: gy, month: gm, day: gd);
   }
 
-  /*
-    Converts a Gregorian date to Jalali.
-  */
+  /// Converts a Gregorian date to Jalali.
   Jalali toJalali() {
     return Jalali.fromJulianDayNumber(julianDayNumber);
   }
 
+  /// Default string representation: `YYYY/MM/DD`
   @override
   String toString() {
     return '$year/$month/$day';
   }
 }
 
+/// Internal class
 @immutable
 class _JalaliCalculation {
+  /// Number of years since the last leap year (0 to 4)
   final int leap;
+
+  /// Gregorian year of the beginning of Jalali year
   final int gy;
+
+  /// The March day of Farvardin the 1st (1st day of jy)
   final int march;
 
   _JalaliCalculation({this.leap, this.gy, this.march});
 
-  /*
-    This determines if the Jalali (Persian) year is
-    leap (366-day long) or is the common year (365 days), and
-    finds the day in March (Gregorian calendar) of the first
-    day of the Jalali year (jy).
-    @param jy Jalali calendar year (-61 to 3177)
-    @return
-      leap: number of years since the last leap year (0 to 4)
-      gy: Gregorian year of the beginning of Jalali year
-      march: the March day of Farvardin the 1st (1st day of jy)
-    @see: http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm
-    @see: http://www.fourmilab.ch/documents/calendar/
-  */
+  /// This determines if the Jalali (Persian) year is
+  /// leap (366-day long) or is the common year (365 days), and
+  /// finds the day in March (Gregorian calendar) of the first
+  /// day of the Jalali year (jy).
+  ///
+  /// [1. see here](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
+  ///
+  /// [2. see here](http://www.fourmilab.ch/documents/calendar/)
   static _JalaliCalculation calculate(int jy) {
     // Jalali years starting the 33-year rule.
     final breaks = [
@@ -269,14 +249,12 @@ class _JalaliCalculation {
   }
 }
 
-/*
-  Utility helper functions.
-*/
-
+/// Utility helper int div function.
 int _div(int a, int b) {
   return a ~/ b;
 }
 
+/// Utility helper int mod function.
 int _mod(int a, int b) {
   return a % b;
 }
