@@ -25,7 +25,7 @@ class Jalali {
   Jalali(this.year, [this.month = 1, this.day = 1]);
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
-  static Jalali fromJulianDayNumber(julianDayNumber) {
+  factory Jalali.fromJulianDayNumber(julianDayNumber) {
     // Calculate Gregorian year (gy).
     int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
     int jy = gy - 621;
@@ -70,19 +70,19 @@ class Jalali {
         month >= 1 &&
         month <= 12 &&
         day >= 1 &&
-        day <= monthLength(year, month);
+        day <= monthLength();
   }
 
   /// Checks if a year is a leap year or not.
-  static bool isLeapYear(int year) {
+  bool isLeapYear() {
     return _JalaliCalculation.calculate(year).leap == 0;
   }
 
   /// Computes number of days in a given month in a Jalali year.
-  static int monthLength(int year, int month) {
+  int monthLength() {
     if (month <= 6) return 31;
     if (month <= 11) return 30;
-    if (isLeapYear(year)) return 30;
+    if (isLeapYear()) return 30;
     return 29;
   }
 
@@ -125,7 +125,7 @@ class Gregorian {
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
   /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
   /// calendars) to some millions years ahead of the present.
-  static Gregorian fromJulianDayNumber(int julianDayNumber) {
+  factory Gregorian.fromJulianDayNumber(int julianDayNumber) {
     int j, i, gd, gm, gy;
 
     j = 4 * julianDayNumber + 139361631;
@@ -173,7 +173,7 @@ class _JalaliCalculation {
   /// [1. see here](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
   ///
   /// [2. see here](http://www.fourmilab.ch/documents/calendar/)
-  static _JalaliCalculation calculate(int jy) {
+  factory _JalaliCalculation.calculate(int jy) {
     // Jalali years starting the 33-year rule.
     final breaks = [
       -61,

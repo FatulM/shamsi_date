@@ -23,12 +23,12 @@ void main() {
   });
 
   test('isLeapYear should check if a Jalali year is leap or common', () {
-    expect(Jalali.isLeapYear(1395), true);
-    expect(Jalali.isLeapYear(1396), false);
+    expect(Jalali(1395).isLeapYear(), true);
+    expect(Jalali(1396).isLeapYear(), false);
   });
 
   test('monthLength test should return month length', () {
-    expect(Jalali.monthLength(1393, 1), 31);
-    expect(Jalali.monthLength(1394, 12), 29);
+    expect(Jalali(1393, 1).monthLength(), 31);
+    expect(Jalali(1394, 12).monthLength(), 29);
   });
 }
