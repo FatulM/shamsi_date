@@ -15,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static final now = DateTime.now();
-  static final g = Gregorian(year: now.year, month: now.month, day: now.day);
+  static final g = Gregorian(now.year, now.month, now.day);
 
   @override
   Widget build(BuildContext context) {
