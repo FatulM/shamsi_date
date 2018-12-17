@@ -70,7 +70,7 @@ class Jalali {
         month >= 1 &&
         month <= 12 &&
         day >= 1 &&
-        day <= monthLength();
+        day <= monthLength;
   }
 
   /// Checks if a year is a leap year or not.
@@ -79,7 +79,7 @@ class Jalali {
   }
 
   /// Computes number of days in a given month in a Jalali year.
-  int monthLength() {
+  int get monthLength {
     if (month <= 6) return 31;
     if (month <= 11) return 30;
     if (isLeapYear()) return 30;

@@ -28,7 +28,7 @@ void main() {
   });
 
   test('monthLength test should return month length', () {
-    expect(Jalali(1393, 1).monthLength(), 31);
-    expect(Jalali(1394, 12).monthLength(), 29);
+    expect(Jalali(1393, 1).monthLength, 31);
+    expect(Jalali(1394, 12).monthLength, 29);
   });
 }

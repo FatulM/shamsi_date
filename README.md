@@ -24,5 +24,14 @@ main() {
   final j2 = Jalali(1391, 10, 21);
   final g2 = j1.toGregorian();
   print('$j2 in Jalali is $g2  in Gregorian');
+
+  // check validity
+  print('$j1 is valid? ${j1.isValid()}');
+
+  // check leap year
+  print('1390 is leap year? ${Jalali(1390).isLeapYear()}');
+
+  // find month length
+  print('1390/12 month length? ${Jalali(1390, 12).monthLength}');
 }
 ```

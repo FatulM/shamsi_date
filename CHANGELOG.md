@@ -9,3 +9,4 @@
 ## 0.2.1
 
 - CHANGED static methods
+- CHANGED monthLength to getter
