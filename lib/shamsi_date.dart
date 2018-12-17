@@ -1,9 +1,6 @@
 library shamsi_date;
 
-import 'package:meta/meta.dart';
-
 /// Jalali (Shamsi or Persian) Date class
-@immutable
 class Jalali {
   /// Jalali year (1 to 3100)
   final int year;
@@ -18,14 +15,14 @@ class Jalali {
   int get julianDayNumber {
     final r = _JalaliCalculation.calculate(year);
 
-    return Gregorian(year: r.gy, month: 3, day: r.march).julianDayNumber +
+    return Gregorian(r.gy, 3, r.march).julianDayNumber +
         (month - 1) * 31 -
         _div(month, 7) * (month - 7) +
         day -
         1;
   }
 
-  Jalali({this.year, this.month, this.day});
+  Jalali(this.year, [this.month = 1, this.day = 1]);
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
   static Jalali fromJulianDayNumber(julianDayNumber) {
@@ -33,7 +30,7 @@ class Jalali {
     int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
     int jy = gy - 621;
     final r = _JalaliCalculation.calculate(jy);
-    int jdn1f = Gregorian(year: gy, month: 3, day: r.march).julianDayNumber;
+    int jdn1f = Gregorian(gy, 3, r.march).julianDayNumber;
     int jd, jm, k;
 
     // Find number of days that passed since 1 Farvardin.
@@ -44,7 +41,7 @@ class Jalali {
         jm = 1 + _div(k, 31);
         jd = _mod(k, 31) + 1;
 
-        return Jalali(year: jy, month: jm, day: jd);
+        return Jalali(jy, jm, jd);
       } else {
         // The remaining months.
         k -= 186;
@@ -58,7 +55,7 @@ class Jalali {
     jm = 7 + _div(k, 30);
     jd = _mod(k, 30) + 1;
 
-    return Jalali(year: jy, month: jm, day: jd);
+    return Jalali(jy, jm, jd);
   }
 
   /// Converts a Jalali date to Gregorian.
@@ -73,7 +70,7 @@ class Jalali {
         month >= 1 &&
         month <= 12 &&
         day >= 1 &&
-        day <= monthLength(year: year, month: month);
+        day <= monthLength(year, month);
   }
 
   /// Checks if a year is a leap year or not.
@@ -82,7 +79,7 @@ class Jalali {
   }
 
   /// Computes number of days in a given month in a Jalali year.
-  static int monthLength({int year, int month}) {
+  static int monthLength(int year, int month) {
     if (month <= 6) return 31;
     if (month <= 11) return 30;
     if (isLeapYear(year)) return 30;
@@ -97,7 +94,6 @@ class Jalali {
 }
 
 /// Gregorian date class
-@immutable
 class Gregorian {
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
   final int year;
@@ -124,7 +120,7 @@ class Gregorian {
     return d;
   }
 
-  Gregorian({this.year, this.month, this.day});
+  Gregorian(this.year, [this.month = 1, this.day = 1]);
 
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
   /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
@@ -141,7 +137,7 @@ class Gregorian {
     gm = _mod(_div(i, 153), 12) + 1;
     gy = _div(j, 1461) - 100100 + _div(8 - gm, 6);
 
-    return Gregorian(year: gy, month: gm, day: gd);
+    return Gregorian(gy, gm, gd);
   }
 
   /// Converts a Gregorian date to Jalali.
@@ -157,7 +153,6 @@ class Gregorian {
 }
 
 /// Internal class
-@immutable
 class _JalaliCalculation {
   /// Number of years since the last leap year (0 to 4)
   final int leap;
