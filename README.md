@@ -1,6 +1,8 @@
 # A Flutter package for using Jalali (Shamsi, Solar or Persian) date. You can convert Jalali and Georgian dates to each other.
 
-Converted from Javascript library hosted on: [jalaali-js](https://github.com/jalaali/jalaali-js)
+Converted from the popular Javascript library [jalaali-js](https://github.com/jalaali/jalaali-js).
+
+Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowski](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm) and has a very good performance.
 
 ## Usage
 
@@ -8,10 +10,30 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.2.1
+    shamsi_date: ^0.3.0
 ```
 
-Import and use it:
+`Jalali` class is used for Shamsi (Jalali or Persian) date and `Gregorian` class is used for Gregorian date.
+They can be instantiated by using their constructor:
+```
+Jalali(year, month, day)
+Gregorian(year, month, day)
+```
+`month` and `day` default to 1
+
+You can convert `Jalali` date to `Gregorian` by using `toGregorian()` method and convert `Gregorian` to `Jalali` date by using `toJalali()` method.
+
+You can check `Jalali` date validity by `isValid()` method.
+And find month length by `monthLength` getter.
+And check if the year is a leap year by `isLeapYear()` method.
+
+You can also convert `DateTime` object directly to `Jalali` or `Gregorian` date by using
+```
+Jalali.fromDate(dateTime)
+Gregorian.fromDate(dateTime)
+```
+
+Here is an example:
 
 ```dart
 import 'package:shamsi_date/shamsi_date.dart';
@@ -33,5 +55,9 @@ main() {
 
   // find month length
   print('1390/12 month length? ${Jalali(1390, 12).monthLength}');
+  
+  final now = DateTime.now();
+  print('now is ${Gregorian.fromDate(now)} in Gregorian');
+  print('now is ${Jalali.fromDate(now)} in Jalali');
 }
 ```

@@ -10,3 +10,7 @@
 
 - CHANGED static methods
 - CHANGED monthLength to getter
+
+## 0.3.0
+
+- ADDED fromDate constructor

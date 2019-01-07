@@ -22,6 +22,8 @@ class Jalali {
         1;
   }
 
+  /// Create a Jalali date by using year, month and day
+  /// year and month default to 1
   Jalali(this.year, [this.month = 1, this.day = 1]);
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
@@ -56,6 +58,11 @@ class Jalali {
     jd = _mod(k, 30) + 1;
 
     return Jalali(jy, jm, jd);
+  }
+
+  /// Create a Jalali date by using [DateTime] object
+  factory Jalali.fromDate(DateTime dateTime) {
+    return Gregorian.fromDate(dateTime).toJalali();
   }
 
   /// Converts a Jalali date to Gregorian.
@@ -120,6 +127,8 @@ class Gregorian {
     return d;
   }
 
+  /// Create a Gregorian date by using year, month and day
+  /// year and month default to 1
   Gregorian(this.year, [this.month = 1, this.day = 1]);
 
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
@@ -139,6 +148,10 @@ class Gregorian {
 
     return Gregorian(gy, gm, gd);
   }
+
+  /// Create a Gregorian date by using [DateTime] object
+  Gregorian.fromDate(DateTime dateTime)
+      : this(dateTime.year, dateTime.month, dateTime.day);
 
   /// Converts a Gregorian date to Jalali.
   Jalali toJalali() {
