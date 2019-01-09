@@ -1,44 +1,45 @@
 # An Example for shamsi date package
 
 ```dart
-import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
-void main() {
-  runApp(MaterialApp(
-    title: 'Example for shamsi_date package',
-    home: MyHomePage(),
-  ));
-}
+main() {
+  // Gregorian to Jalali conversion
+  final g1 = Gregorian(2013, 1, 10);
+  final j1 = g1.toJalali();
+  print('$g1 in Gregorian is $j1 in Jalali');
+  // prints: 2013/1/10 in Gregorian is 1391/10/21 in Jalali
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+  // Jalali to Gregorian conversion
+  final j2 = Jalali(1391, 10, 21);
+  final g2 = j1.toGregorian();
+  print('$j2 in Jalali is $g2  in Gregorian');
+  // prints: 1391/10/21 in Jalali is 2013/1/10  in Gregorian
 
-class _MyHomePageState extends State<MyHomePage> {
-  Gregorian get g {
-    final now = DateTime.now();
-    return Gregorian(now.year, now.month, now.day);
-  }
+  // check validity
+  print('$j1 is valid? ${j1.isValid()}');
+  // -> true
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Example for shamsi_date package'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              '$g in Gregorian is ${g.toJalali()} in Jalali',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // check leap year
+  print('1390 is leap year? ${Jalali(1390).isLeapYear()}');
+  // -> false
+
+  // find month length
+  print('1390/12 month length? ${Jalali(1390, 12).monthLength}');
+  // -> 29
+
+  // convert DateTime object to Jalali and Gregorian
+  final dateTime = DateTime.now();
+  print('now is $dateTime');
+  print('now is ${Gregorian.fromDateTime(dateTime)} in Gregorian');
+  print('now is ${Jalali.fromDateTime(dateTime)} in Jalali');
+
+  // convert Jalali and Gregorian to DateTime
+  print('$j1 as DateTime is ${j1.toDateTime()}');
+  print('$g1 as DateTime is ${g1.toDateTime()}');
+
+  // now() factory method
+  print('now is ${Gregorian.now()} in Gregorian');
+  print('now is ${Jalali.now()} in Jalali');
 }
 ```

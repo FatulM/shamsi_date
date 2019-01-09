@@ -14,11 +14,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Gregorian get g {
-    final now = DateTime.now();
-    return Gregorian(now.year, now.month, now.day);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +25,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '$g in Gregorian is ${g.toJalali()} in Jalali',
+              'now is ${Jalali.now()} in Jalali',
+            ),
+            Text(
+              'now is ${Gregorian.now()} in Gregorian',
             ),
           ],
         ),
