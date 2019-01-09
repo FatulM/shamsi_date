@@ -61,8 +61,18 @@ class Jalali {
   }
 
   /// Create a Jalali date by using [DateTime] object
-  factory Jalali.fromDate(DateTime dateTime) {
-    return Gregorian.fromDate(dateTime).toJalali();
+  factory Jalali.fromDateTime(DateTime dateTime) {
+    return Gregorian.fromDateTime(dateTime).toJalali();
+  }
+
+  /// Get Jalali date for now
+  factory Jalali.now() {
+    return Jalali.fromDateTime(DateTime.now());
+  }
+
+  /// Converts Jalali date to [DateTime] object
+  DateTime toDateTime() {
+    return toGregorian().toDateTime();
   }
 
   /// Converts a Jalali date to Gregorian.
@@ -150,8 +160,18 @@ class Gregorian {
   }
 
   /// Create a Gregorian date by using [DateTime] object
-  Gregorian.fromDate(DateTime dateTime)
+  Gregorian.fromDateTime(DateTime dateTime)
       : this(dateTime.year, dateTime.month, dateTime.day);
+
+  /// Get Gregorian date for now
+  factory Gregorian.now() {
+    return Gregorian.fromDateTime(DateTime.now());
+  }
+
+  /// Converts Gregorian date to [DateTime] object
+  DateTime toDateTime() {
+    return DateTime(year, month, day);
+  }
 
   /// Converts a Gregorian date to Jalali.
   Jalali toJalali() {

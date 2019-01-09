@@ -14,3 +14,9 @@
 ## 0.3.0
 
 - ADDED fromDate constructor
+
+## 0.3.1
+
+- ADDED toDateTime
+- CHANGED fromDate name to fromDateTime
+- ADDED now factory
