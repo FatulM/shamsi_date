@@ -1,17 +1,36 @@
 library shamsi_date;
 
+/// Super interface of Jalali and Georgian classes
+abstract class Date {
+  /// Year
+  int get year;
+
+  /// Month
+  int get month;
+
+  /// Day
+  int get day;
+
+  /// Julian Day Number
+  int get julianDayNumber;
+}
+
 /// Jalali (Shamsi or Persian) Date class
-class Jalali {
+class Jalali implements Date {
   /// Jalali year (1 to 3100)
+  @override
   final int year;
 
   /// Jalali month (1 to 12)
+  @override
   final int month;
 
   /// Jalali day (1 to 29/31)
+  @override
   final int day;
 
   /// Converts a date of the Jalali calendar to the Julian Day number.
+  @override
   int get julianDayNumber {
     final r = _JalaliCalculation.calculate(year);
 
@@ -111,14 +130,17 @@ class Jalali {
 }
 
 /// Gregorian date class
-class Gregorian {
+class Gregorian implements Date {
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
+  @override
   final int year;
 
   /// Gregorian month (1 to 12)
+  @override
   final int month;
 
   /// Gregorian day of the month (1 to 28/29/30/31)
+  @override
   final int day;
 
   /// Calculates the Julian Day number from Gregorian or Julian
@@ -127,6 +149,7 @@ class Gregorian {
   ///
   /// The procedure was tested to be good since 1 March, -100100 (of both
   /// calendars) up to a few million years into the future.
+  @override
   int get julianDayNumber {
     int d = _div((year + _div(month - 8, 6) + 100100) * 1461, 4) +
         _div(153 * _mod(month + 9, 12) + 2, 5) +

@@ -20,3 +20,7 @@
 - ADDED toDateTime
 - CHANGED fromDate name to fromDateTime
 - ADDED now factory
+
+## 0.4.0
+
+- ADDED Date as super interface
