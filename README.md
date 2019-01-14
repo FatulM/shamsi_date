@@ -10,7 +10,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.3.1
+    shamsi_date: ^0.4.1
 ```
 
 `Jalali` class is used for Shamsi (Jalali or Persian) date and `Gregorian` class is used for Gregorian date.
@@ -34,6 +34,8 @@ Gregorian.fromDateTime(dateTime)
 ```
 And convert Jalali and Gregorian to DateTime by using `toDateTime()` method. 
 And you can get Jalali and Gregorian dates for now by using `now()` factory.
+
+You can get weekDay of Jalali and Gregorian by using corresponding getters.
 
 Here is an example:
 
@@ -78,5 +80,9 @@ main() {
   // now() factory method
   print('now is ${Gregorian.now()} in Gregorian');
   print('now is ${Jalali.now()} in Jalali');
+  
+  // find weekDay
+  print('${j1}.weekDay = ${j1.weekDay}');
+  print('${g1}.weekDay = ${g1.weekDay}');
 }
 ```

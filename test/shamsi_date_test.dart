@@ -31,4 +31,17 @@ void main() {
     expect(Jalali(1393, 1).monthLength, 31);
     expect(Jalali(1394, 12).monthLength, 29);
   });
+
+  test('Gregorian weekDay should retrun week day number', () {
+    expect(Gregorian(1969, 7, 20).weekDay, 7);
+    expect(Gregorian(2019, 1, 14).weekDay, 1);
+    expect(Gregorian(2019, 1, 10).weekDay, 4);
+  });
+
+  test('Gregorian weekDay should retrun week day number', () {
+    expect(Jalali(1397, 10, 24).weekDay, 3);
+    expect(Jalali(1397, 10, 11).weekDay, 4);
+    expect(Jalali(1305, 1, 5).weekDay, 7);
+    expect(Jalali(1305, 1, 6).weekDay, 1);
+  });
 }

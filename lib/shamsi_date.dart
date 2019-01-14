@@ -13,6 +13,9 @@ abstract class Date {
 
   /// Julian Day Number
   int get julianDayNumber;
+
+  /// Week day number
+  int get weekDay;
 }
 
 /// Jalali (Shamsi or Persian) Date class
@@ -40,6 +43,13 @@ class Jalali implements Date {
         day -
         1;
   }
+
+  @override
+
+  /// Week day number
+  /// [Shanbe] = 1
+  /// [Jomee]  = 7
+  int get weekDay => (julianDayNumber + 2) % 7 + 1;
 
   /// Create a Jalali date by using year, month and day
   /// year and month default to 1
@@ -159,6 +169,12 @@ class Gregorian implements Date {
 
     return d;
   }
+
+  /// Week day number
+  /// [monday] = 1
+  /// [sunday] = 7
+  @override
+  int get weekDay => julianDayNumber % 7 + 1;
 
   /// Create a Gregorian date by using year, month and day
   /// year and month default to 1

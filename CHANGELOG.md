@@ -24,3 +24,7 @@
 ## 0.4.0
 
 - ADDED Date as super interface
+
+## 0.4.1
+
+- ADDED weekDay
