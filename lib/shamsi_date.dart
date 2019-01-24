@@ -39,7 +39,7 @@ class Jalali implements Date {
 
     return Gregorian(r.gy, 3, r.march).julianDayNumber +
         (month - 1) * 31 -
-        _div(month, 7) * (month - 7) +
+        (month ~/ 7) * (month - 7) +
         day -
         1;
   }
@@ -69,7 +69,7 @@ class Jalali implements Date {
     if (k >= 0) {
       if (k <= 185) {
         // The first 6 months.
-        jm = 1 + _div(k, 31);
+        jm = 1 + (k ~/ 31);
         jd = (k % 31) + 1;
 
         return Jalali(jy, jm, jd);
@@ -83,7 +83,7 @@ class Jalali implements Date {
       k += 179;
       if (r.leap == 1) k += 1;
     }
-    jm = 7 + _div(k, 30);
+    jm = 7 + (k ~/ 30);
     jd = (k % 30) + 1;
 
     return Jalali(jy, jm, jd);
@@ -161,11 +161,11 @@ class Gregorian implements Date {
   /// calendars) up to a few million years into the future.
   @override
   int get julianDayNumber {
-    int d = _div((year + _div(month - 8, 6) + 100100) * 1461, 4) +
-        _div(153 * ((month + 9) % 12) + 2, 5) +
+    int d = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
+        ((153 * ((month + 9) % 12) + 2) ~/ 5) +
         day -
         34840408;
-    d = d - _div(_div(year + 100100 + _div(month - 8, 6), 100) * 3, 4) + 752;
+    d = d - ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) + 752;
 
     return d;
   }
@@ -188,12 +188,12 @@ class Gregorian implements Date {
 
     j = 4 * julianDayNumber + 139361631;
     j = j +
-        _div(_div(4 * julianDayNumber + 183187720, 146097) * 3, 4) * 4 -
+        ((((4 * julianDayNumber + 183187720) ~/ 146097) * 3) ~/ 4) * 4 -
         3908;
-    i = _div((j % 1461), 4) * 5 + 308;
-    gd = _div((i % 153), 5) + 1;
-    gm = (_div(i, 153) % 12) + 1;
-    gy = _div(j, 1461) - 100100 + _div(8 - gm, 6);
+    i = (((j % 1461)) ~/ 4) * 5 + 308;
+    gd = (((i % 153)) ~/ 5) + 1;
+    gm = (((i) ~/ 153) % 12) + 1;
+    gy = ((j) ~/ 1461) - 100100 + ((8 - gm) ~/ 6);
 
     return Gregorian(gy, gm, gd);
   }
@@ -247,7 +247,7 @@ class _JalaliCalculation {
   /// [2. see here](http://www.fourmilab.ch/documents/calendar/)
   factory _JalaliCalculation.calculate(int jy) {
     // Jalali years starting the 33-year rule.
-    final breaks = [
+    final List<int> breaks = [
       -61,
       9,
       38,
@@ -282,31 +282,39 @@ class _JalaliCalculation {
         n,
         i;
 
-    if (jy < jp || jy >= breaks[bl - 1]) throw 'Invalid Jalali year $jy';
+    if (jy < jp || jy >= breaks[bl - 1]) {
+      throw 'Invalid Jalali year $jy';
+    }
 
     // Find the limiting years for the Jalali year jy.
     for (i = 1; i < bl; i += 1) {
       jm = breaks[i];
       jump = jm - jp;
-      if (jy < jm) break;
-      leapJ = leapJ + _div(jump, 33) * 8 + _div((jump % 33), 4);
+      if (jy < jm) {
+        break;
+      }
+      leapJ = leapJ + (jump ~/ 33) * 8 + (((jump % 33)) ~/ 4);
       jp = jm;
     }
     n = jy - jp;
 
     // Find the number of leap years from AD 621 to the beginning
     // of the current Jalali year in the Persian calendar.
-    leapJ = leapJ + _div(n, 33) * 8 + _div((n % 33) + 3, 4);
-    if ((jump % 33) == 4 && jump - n == 4) leapJ += 1;
+    leapJ = leapJ + ((n) ~/ 33) * 8 + (((n % 33) + 3) ~/ 4);
+    if ((jump % 33) == 4 && jump - n == 4) {
+      leapJ += 1;
+    }
 
     // And the same in the Gregorian calendar (until the year gy).
-    leapG = _div(gy, 4) - _div((_div(gy, 100) + 1) * 3, 4) - 150;
+    leapG = ((gy) ~/ 4) - (((((gy) ~/ 100) + 1) * 3) ~/ 4) - 150;
 
     // Determine the Gregorian date of Farvardin the 1st.
     march = 20 + leapJ - leapG;
 
     // Find how many years have passed since the last leap year.
-    if (jump - n < 6) n = n - jump + _div(jump + 4, 33) * 33;
+    if (jump - n < 6) {
+      n = n - jump + ((jump + 4) ~/ 33) * 33;
+    }
     leap = ((((n + 1) % 33) - 1) % 4);
     if (leap == -1) {
       leap = 4;
@@ -314,9 +322,4 @@ class _JalaliCalculation {
 
     return _JalaliCalculation(leap: leap, gy: gy, march: march);
   }
-}
-
-/// Utility helper int div function.
-int _div(int a, int b) {
-  return a ~/ b;
 }
