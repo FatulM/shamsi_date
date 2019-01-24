@@ -70,7 +70,7 @@ class Jalali implements Date {
       if (k <= 185) {
         // The first 6 months.
         jm = 1 + _div(k, 31);
-        jd = _mod(k, 31) + 1;
+        jd = (k % 31) + 1;
 
         return Jalali(jy, jm, jd);
       } else {
@@ -84,7 +84,7 @@ class Jalali implements Date {
       if (r.leap == 1) k += 1;
     }
     jm = 7 + _div(k, 30);
-    jd = _mod(k, 30) + 1;
+    jd = (k % 30) + 1;
 
     return Jalali(jy, jm, jd);
   }
@@ -162,7 +162,7 @@ class Gregorian implements Date {
   @override
   int get julianDayNumber {
     int d = _div((year + _div(month - 8, 6) + 100100) * 1461, 4) +
-        _div(153 * _mod(month + 9, 12) + 2, 5) +
+        _div(153 * ((month + 9) % 12) + 2, 5) +
         day -
         34840408;
     d = d - _div(_div(year + 100100 + _div(month - 8, 6), 100) * 3, 4) + 752;
@@ -190,9 +190,9 @@ class Gregorian implements Date {
     j = j +
         _div(_div(4 * julianDayNumber + 183187720, 146097) * 3, 4) * 4 -
         3908;
-    i = _div(_mod(j, 1461), 4) * 5 + 308;
-    gd = _div(_mod(i, 153), 5) + 1;
-    gm = _mod(_div(i, 153), 12) + 1;
+    i = _div((j % 1461), 4) * 5 + 308;
+    gd = _div((i % 153), 5) + 1;
+    gm = (_div(i, 153) % 12) + 1;
     gy = _div(j, 1461) - 100100 + _div(8 - gm, 6);
 
     return Gregorian(gy, gm, gd);
@@ -289,15 +289,15 @@ class _JalaliCalculation {
       jm = breaks[i];
       jump = jm - jp;
       if (jy < jm) break;
-      leapJ = leapJ + _div(jump, 33) * 8 + _div(_mod(jump, 33), 4);
+      leapJ = leapJ + _div(jump, 33) * 8 + _div((jump % 33), 4);
       jp = jm;
     }
     n = jy - jp;
 
     // Find the number of leap years from AD 621 to the beginning
     // of the current Jalali year in the Persian calendar.
-    leapJ = leapJ + _div(n, 33) * 8 + _div(_mod(n, 33) + 3, 4);
-    if (_mod(jump, 33) == 4 && jump - n == 4) leapJ += 1;
+    leapJ = leapJ + _div(n, 33) * 8 + _div((n % 33) + 3, 4);
+    if ((jump % 33) == 4 && jump - n == 4) leapJ += 1;
 
     // And the same in the Gregorian calendar (until the year gy).
     leapG = _div(gy, 4) - _div((_div(gy, 100) + 1) * 3, 4) - 150;
@@ -307,7 +307,7 @@ class _JalaliCalculation {
 
     // Find how many years have passed since the last leap year.
     if (jump - n < 6) n = n - jump + _div(jump + 4, 33) * 33;
-    leap = _mod(_mod(n + 1, 33) - 1, 4);
+    leap = ((((n + 1) % 33) - 1) % 4);
     if (leap == -1) {
       leap = 4;
     }
@@ -319,9 +319,4 @@ class _JalaliCalculation {
 /// Utility helper int div function.
 int _div(int a, int b) {
   return a ~/ b;
-}
-
-/// Utility helper int mod function.
-int _mod(int a, int b) {
-  return a % b;
 }
