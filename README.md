@@ -19,15 +19,15 @@ They can be instantiated by using their constructor:
 Jalali(year, month, day)
 Gregorian(year, month, day)
 ```
-`month` and `day` default to 1
+month and day default to 1
 
-You can convert `Jalali` date to `Gregorian` by using `toGregorian()` method and convert `Gregorian` to `Jalali` date by using `toJalali()` method.
+You can convert Jalali date to Gregorian by using `toGregorian()` method and convert Gregorian to Jalali date by using `toJalali()` method.
 
-You can check `Jalali` date validity by `isValid()` method.
+You can check Jalali date validity by `isValid()` method.
 And find month length by `monthLength` getter.
 And check if the year is a leap year by `isLeapYear()` method.
 
-You can also convert `DateTime` object directly to `Jalali` or `Gregorian` date by using:
+You can also convert `DateTime` object directly to Jalali or Gregorian date by using:
 ```
 Jalali.fromDateTime(dateTime)
 Gregorian.fromDateTime(dateTime)
@@ -35,7 +35,9 @@ Gregorian.fromDateTime(dateTime)
 And convert Jalali and Gregorian to DateTime by using `toDateTime()` method. 
 And you can get Jalali and Gregorian dates for now by using `now()` factory.
 
-You can get weekDay of Jalali and Gregorian by using corresponding getters.
+You can get week day number of Jalali and Gregorian by using `weekDay` getter.
+Week days range from 1 to 7.
+Jalali week starts with shanbe and  Gregorian week starts with monday.
 
 Here is an example:
 
@@ -82,7 +84,7 @@ main() {
   print('now is ${Jalali.now()} in Jalali');
   
   // find weekDay
-  print('${j1}.weekDay = ${j1.weekDay}');
-  print('${g1}.weekDay = ${g1.weekDay}');
+  print('${j1}.weekDay = ${j1.weekDay}'); // -> 6
+  print('${g1}.weekDay = ${g1.weekDay}'); // -> 4
 }
 ```
