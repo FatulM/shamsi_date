@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  shamsi_date: ^0.3.1
+  shamsi_date: ^0.4.1
 
 dev_dependencies:
   flutter_test:
