@@ -28,3 +28,8 @@
 ## 0.4.1
 
 - ADDED weekDay
+
+## 0.4.2
+
+- ADDED more test cases
+- Refactored code and docs
