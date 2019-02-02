@@ -33,3 +33,7 @@
 
 - ADDED more test cases
 - Refactored code and docs
+
+# 0.4.3
+
+- CHANGED internal package structure
