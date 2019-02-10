@@ -4,13 +4,19 @@ Converted from the popular Javascript library [jalaali-js](https://github.com/ja
 
 Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowski](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm) and has a very good performance.
 
+## Changes
+Added date formatter for custom printing of date objects.
+
+## Issues and feature request
+Please make an issue on Github so I can see your request.
+
 ## Usage
 
 Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.4.3
+    shamsi_date: ^0.5.0
 ```
 
 `Jalali` class is used for Shamsi (Jalali or Persian) date and `Gregorian` class is used for Gregorian date.
@@ -37,9 +43,44 @@ And you can get Jalali and Gregorian dates for now by using `now()` factory.
 
 You can get week day number of Jalali and Gregorian by using `weekDay` getter.
 Week days range from 1 to 7.
-Jalali week starts with shanbe and  Gregorian week starts with monday.
+Jalali week starts with shanbe and Gregorian week starts with monday.
 
-Here is an example:
+Date formatting is easy. At first you should make a function for you custom formatting:
+Say you want to format as `WeekDayName Day MonthName TwoDigitYear`, call your function `format1`
+```dart
+String format1(Date d) {
+  final f = d.formatter;
+
+  return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
+}
+```
+Then pass your Jalali or Gregorian dates to this function.
+Or another example:
+Say you want to format as `TwoDigitDay/TwoDigitMonth/FourDigitYear` or `DD/MM/YYYY`, call your function `format2`
+```dart
+String format2(Date d) {
+  final f = d.formatter;
+
+  return '${f.dd}/${f.mm}/${f.yyyy}';
+}
+```
+And use it like before.
+
+`DateFormatter` has these getters:
+- y: year (whatever length it has)
+- yy: two digit year
+- yyyy: four digit year
+- m: month (whatever length it has)
+- mm: two digit month
+- mN: month name
+- d: day (whatever length it has)
+- dd: two digit day
+- wN: week day name
+You can get Date formatter by using `formatter` getter on Jalali and Gregorian date objects.
+Simply cash this formatter in a final value and then use string interpolation (as we have shown in examples) for making your desired output.
+This way of formatting is more powerful (and arguably easier) than using templates.
+
+Here is a complete example:
 
 ```dart
 import 'package:shamsi_date/shamsi_date.dart';
@@ -82,9 +123,33 @@ main() {
   // now() factory method
   print('now is ${Gregorian.now()} in Gregorian');
   print('now is ${Jalali.now()} in Jalali');
-  
+
   // find weekDay
   print('${j1}.weekDay = ${j1.weekDay}'); // -> 6
   print('${g1}.weekDay = ${g1.weekDay}'); // -> 4
+
+  // formatting examples:
+
+  // example one:
+  String format1(Date d) {
+    final f = d.formatter;
+
+    return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
+  }
+  print(format1(j1));
+  // prints: پنج شنبه 21 دی 91
+  print(format1(g1));
+  // prints: Thursday 10 January 13
+
+  // example one:
+  String format2(Date d) {
+    final f = d.formatter;
+
+    return '${f.dd}/${f.mm}/${f.yyyy}';
+  }
+  print(format2(j1));
+  // 21/10/1391
+  print(format2(g1));
+  // prints: 10/01/2013
 }
 ```
