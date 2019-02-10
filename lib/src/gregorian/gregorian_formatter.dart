@@ -32,13 +32,11 @@ class GregorianFormatter extends DateFormatter {
     'Sunday',
   ];
 
-  @override
-
   /// Gregorian month name
+  @override
   String get mN => _monthNames[date.month - 1];
 
-  @override
-
   /// Gregorian week day name
+  @override
   String get wN => _weekDayNames[date.month - 1];
 }

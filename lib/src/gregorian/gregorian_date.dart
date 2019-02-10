@@ -1,6 +1,7 @@
 library gregorian_date;
 
 import 'package:shamsi_date/src/date.dart';
+import 'package:shamsi_date/src/gregorian/gregorian_formatter.dart';
 import 'package:shamsi_date/src/jalali/jalali_date.dart';
 
 /// Gregorian date class
@@ -39,6 +40,10 @@ class Gregorian implements Date {
   /// [sunday] = 7
   @override
   int get weekDay => julianDayNumber % 7 + 1;
+
+  /// Formatter for this date object
+  @override
+  GregorianFormatter get formatter => GregorianFormatter(this);
 
   /// Create a Gregorian date by using year, month and day
   /// year and month default to 1

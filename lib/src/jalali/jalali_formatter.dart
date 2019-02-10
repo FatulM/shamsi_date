@@ -32,13 +32,11 @@ class JalaliFormatter extends DateFormatter {
     'جمعه',
   ];
 
-  @override
-
   /// Jalali month name
+  @override
   String get mN => _monthNames[date.month - 1];
 
-  @override
-
   /// Jalali week day name
+  @override
   String get wN => _weekDayNames[date.month - 1];
 }

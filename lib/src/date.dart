@@ -1,5 +1,7 @@
 library date;
 
+import 'package:shamsi_date/src/date_formatter.dart';
+
 /// Super interface of Jalali and Georgian classes
 abstract class Date {
   /// Year
@@ -16,4 +18,7 @@ abstract class Date {
 
   /// Week day number
   int get weekDay;
+
+  /// Formatter for this date object
+  DateFormatter get formatter;
 }

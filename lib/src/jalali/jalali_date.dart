@@ -2,6 +2,7 @@ library jalali_date;
 
 import 'package:shamsi_date/src/date.dart';
 import 'package:shamsi_date/src/gregorian/gregorian_date.dart';
+import 'package:shamsi_date/src/jalali/jalali_formatter.dart';
 
 /// Jalali (Shamsi or Persian) Date class
 class Jalali implements Date {
@@ -29,12 +30,15 @@ class Jalali implements Date {
         1;
   }
 
-  @override
-
   /// Week day number
   /// [Shanbe] = 1
   /// [Jomee]  = 7
+  @override
   int get weekDay => (julianDayNumber + 2) % 7 + 1;
+
+  /// Formatter for this date object
+  @override
+  JalaliFormatter get formatter => JalaliFormatter(this);
 
   /// Create a Jalali date by using year, month and day
   /// year and month default to 1
