@@ -3,6 +3,7 @@ library jalali_formatter;
 import 'package:shamsi_date/src/date_formatter.dart';
 import 'package:shamsi_date/src/jalali/jalali_date.dart';
 
+/// Jalali date formatter class
 class JalaliFormatter extends DateFormatter {
   JalaliFormatter(Jalali date) : super(date);
 

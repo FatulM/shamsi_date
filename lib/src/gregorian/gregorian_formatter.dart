@@ -3,6 +3,7 @@ library gregorian_formatter;
 import 'package:shamsi_date/src/date_formatter.dart';
 import 'package:shamsi_date/src/gregorian/gregorian_date.dart';
 
+/// Gregorian date formatter class
 class GregorianFormatter extends DateFormatter {
   GregorianFormatter(Gregorian date) : super(date);
 
