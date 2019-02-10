@@ -37,3 +37,7 @@
 # 0.4.3
 
 - CHANGED internal package structure
+
+# 0.5.0
+
+- ADDED date formatter
