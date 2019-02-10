@@ -3,7 +3,7 @@ library gregorian_formatter;
 import 'package:shamsi_date/src/date_formatter.dart';
 import 'package:shamsi_date/src/gregorian/gregorian_date.dart';
 
-class GregorianFormatter extends DateFormatter<Gregorian> {
+class GregorianFormatter extends DateFormatter {
   GregorianFormatter(Gregorian date) : super(date);
 
   static const List<String> _monthNames = [

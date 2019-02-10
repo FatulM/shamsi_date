@@ -3,9 +3,9 @@ library date_formatter;
 import 'package:shamsi_date/src/date.dart';
 
 /// Super interface for Jalali and Gregorian Date formatter
-abstract class DateFormatter<T extends Date> {
+abstract class DateFormatter {
   /// Stored date
-  final T date;
+  final Date date;
 
   /// Make a formatter for a date object
   DateFormatter(this.date);

@@ -3,7 +3,7 @@ library jalali_formatter;
 import 'package:shamsi_date/src/date_formatter.dart';
 import 'package:shamsi_date/src/jalali/jalali_date.dart';
 
-class JalaliFormatter extends DateFormatter<Jalali> {
+class JalaliFormatter extends DateFormatter {
   JalaliFormatter(Jalali date) : super(date);
 
   static const List<String> _monthNames = [
