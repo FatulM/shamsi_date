@@ -76,6 +76,7 @@ And use it like before.
 - d: day (whatever length it has)
 - dd: two digit day
 - wN: week day name
+
 You can get Date formatter by using `formatter` getter on Jalali and Gregorian date objects.
 Simply cash this formatter in a final value and then use string interpolation (as we have shown in examples) for making your desired output.
 This way of formatting is more powerful (and arguably easier) than using templates.
