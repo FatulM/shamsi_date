@@ -14,6 +14,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _format(Date d) {
+    final f = d.formatter;
+
+    return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'now is ${Jalali.now()} in Jalali',
-            ),
-            Text(
-              'now is ${Gregorian.now()} in Gregorian',
-            ),
+            Text(_format(Jalali.now())),
+            Text(_format(Gregorian.now())),
           ],
         ),
       ),
