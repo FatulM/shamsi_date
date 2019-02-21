@@ -16,7 +16,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.5.0
+    shamsi_date: ^0.5.1
 ```
 
 `Jalali` class is used for Shamsi (Jalali or Persian) date and `Gregorian` class is used for Gregorian date.
@@ -80,6 +80,8 @@ And use it like before.
 You can get Date formatter by using `formatter` getter on Jalali and Gregorian date objects.
 Simply cash this formatter in a final value and then use string interpolation (as we have shown in examples) for making your desired output.
 This way of formatting is more powerful (and arguably easier) than using templates.
+
+Jalali and Gregorian classes are `Comparable` so you can compare them using `compareTo` method.
 
 Here is a complete example:
 

@@ -41,3 +41,7 @@
 # 0.5.0
 
 - ADDED date formatter
+
+# 0.5.1
+
+- ADDED Comparable to Jalali and Gregorian

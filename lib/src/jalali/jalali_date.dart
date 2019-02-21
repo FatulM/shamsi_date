@@ -5,7 +5,7 @@ import 'package:shamsi_date/src/gregorian/gregorian_date.dart';
 import 'package:shamsi_date/src/jalali/jalali_formatter.dart';
 
 /// Jalali (Shamsi or Persian) Date class
-class Jalali implements Date {
+class Jalali implements Date, Comparable<Jalali> {
   /// Jalali year (1 to 3100)
   @override
   final int year;
@@ -125,6 +125,24 @@ class Jalali implements Date {
   @override
   String toString() {
     return '$year/$month/$day';
+  }
+
+  /// Compare dates
+  @override
+  int compareTo(Jalali other) {
+    if (year != other.year) {
+      return year > other.year ? 1 : -1;
+    }
+
+    if (month != other.month) {
+      return month > other.month ? 1 : -1;
+    }
+
+    if (day != other.day) {
+      return day > other.day ? 1 : -1;
+    }
+
+    return 0;
   }
 }
 

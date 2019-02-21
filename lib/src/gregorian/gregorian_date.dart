@@ -5,7 +5,7 @@ import 'package:shamsi_date/src/gregorian/gregorian_formatter.dart';
 import 'package:shamsi_date/src/jalali/jalali_date.dart';
 
 /// Gregorian date class
-class Gregorian implements Date {
+class Gregorian implements Date, Comparable<Gregorian> {
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
   @override
   final int year;
@@ -90,5 +90,23 @@ class Gregorian implements Date {
   @override
   String toString() {
     return '$year/$month/$day';
+  }
+
+  /// Compare dates
+  @override
+  int compareTo(Gregorian other) {
+    if (year != other.year) {
+      return year > other.year ? 1 : -1;
+    }
+
+    if (month != other.month) {
+      return month > other.month ? 1 : -1;
+    }
+
+    if (day != other.day) {
+      return day > other.day ? 1 : -1;
+    }
+
+    return 0;
   }
 }
