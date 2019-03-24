@@ -109,4 +109,20 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
     return 0;
   }
+
+  bool operator >(Gregorian other) {
+    return compareTo(other) > 0;
+  }
+
+  bool operator >=(Gregorian other) {
+    return compareTo(other) >= 0;
+  }
+
+  bool operator <(Gregorian other) {
+    return compareTo(other) < 0;
+  }
+
+  bool operator <=(Gregorian other) {
+    return compareTo(other) <= 0;
+  }
 }

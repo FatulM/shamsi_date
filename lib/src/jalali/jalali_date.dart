@@ -144,6 +144,22 @@ class Jalali implements Date, Comparable<Jalali> {
 
     return 0;
   }
+
+  bool operator >(Jalali other) {
+    return compareTo(other) > 0;
+  }
+
+  bool operator >=(Jalali other) {
+    return compareTo(other) >= 0;
+  }
+
+  bool operator <(Jalali other) {
+    return compareTo(other) < 0;
+  }
+
+  bool operator <=(Jalali other) {
+    return compareTo(other) <= 0;
+  }
 }
 
 /// Internal class

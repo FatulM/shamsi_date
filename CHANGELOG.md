@@ -45,3 +45,7 @@
 # 0.5.1
 
 - ADDED Comparable to Jalali and Gregorian
+
+# 0.5.2
+
+- ADDED comparison operators
