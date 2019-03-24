@@ -82,6 +82,7 @@ Simply cash this formatter in a final value and then use string interpolation (a
 This way of formatting is more powerful (and arguably easier) than using templates.
 
 Jalali and Gregorian classes are `Comparable` so you can compare them using `compareTo` method.
+You can also use comparison operators to compare them.
 
 Here is a complete example:
 
@@ -154,5 +155,11 @@ main() {
   // 21/10/1391
   print(format2(g1));
   // prints: 10/01/2013
+
+  // comparing dates
+  print(j1 > j2); // -> false
+  print(j1 <= j2); // -> true
+  print(g1 >= g2); // -> true
+  print(g1.compareTo(g2)); // -> 0
 }
 ```
