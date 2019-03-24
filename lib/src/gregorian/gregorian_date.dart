@@ -110,19 +110,40 @@ class Gregorian implements Date, Comparable<Gregorian> {
     return 0;
   }
 
+  /// bigger than operator
   bool operator >(Gregorian other) {
     return compareTo(other) > 0;
   }
 
+  /// bigger than or equal operator
   bool operator >=(Gregorian other) {
     return compareTo(other) >= 0;
   }
 
+  /// less than operator
   bool operator <(Gregorian other) {
     return compareTo(other) < 0;
   }
 
+  /// less than or equal operator
   bool operator <=(Gregorian other) {
     return compareTo(other) <= 0;
+  }
+
+  /// equals operator
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is Gregorian &&
+            runtimeType == other.runtimeType &&
+            year == other.year &&
+            month == other.month &&
+            day == other.day;
+  }
+
+  /// hashcode operator
+  @override
+  int get hashCode {
+    return year.hashCode ^ month.hashCode ^ day.hashCode;
   }
 }
