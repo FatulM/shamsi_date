@@ -83,6 +83,7 @@ This way of formatting is more powerful (and arguably easier) than using templat
 
 Jalali and Gregorian classes are `Comparable` so you can compare them using `compareTo` method.
 You can also use comparison operators to compare them.
+They also support `equals` and `hashCode` functions.
 
 Here is a complete example:
 
@@ -161,5 +162,7 @@ main() {
   print(j1 <= j2); // -> true
   print(g1 >= g2); // -> true
   print(g1.compareTo(g2)); // -> 0
+  print(g1 == g2); // -> true
+  print(g1 != g1); // -> false
 }
 ```

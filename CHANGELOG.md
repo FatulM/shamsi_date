@@ -49,3 +49,4 @@
 # 0.5.2
 
 - ADDED comparison operators
+- ADDED equals and hashCode
