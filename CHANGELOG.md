@@ -50,3 +50,8 @@
 
 - ADDED comparison operators
 - ADDED equals and hashCode
+
+# 0.5.3
+
+- ADDED more tests
+- ADDED fromJalali and fromGregorian methods

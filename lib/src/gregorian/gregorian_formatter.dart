@@ -5,8 +5,10 @@ import 'package:shamsi_date/src/gregorian/gregorian_date.dart';
 
 /// Gregorian date formatter class
 class GregorianFormatter extends DateFormatter {
+  /// make a [GregorianFormatter] from [Gregorian] date
   GregorianFormatter(Gregorian date) : super(date);
 
+  /// Gregorian month names
   static const List<String> _monthNames = [
     'January',
     'February',
@@ -22,6 +24,7 @@ class GregorianFormatter extends DateFormatter {
     'December',
   ];
 
+  /// Gregorian week day names
   static const List<String> _weekDayNames = [
     'Monday',
     'Tuesday',

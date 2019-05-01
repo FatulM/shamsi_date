@@ -83,6 +83,11 @@ class Jalali implements Date, Comparable<Jalali> {
     return Gregorian.fromDateTime(dateTime).toJalali();
   }
 
+  /// Create a Jalali date from Gregorian date
+  factory Jalali.fromGregorian(Gregorian date) {
+    return Jalali.fromJulianDayNumber(date.julianDayNumber);
+  }
+
   /// Get Jalali date for now
   factory Jalali.now() {
     return Jalali.fromDateTime(DateTime.now());

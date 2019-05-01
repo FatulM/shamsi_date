@@ -71,6 +71,11 @@ class Gregorian implements Date, Comparable<Gregorian> {
   Gregorian.fromDateTime(DateTime dateTime)
       : this(dateTime.year, dateTime.month, dateTime.day);
 
+  /// Create a Gregorian date from Jalali date
+  factory Gregorian.fromJalali(Jalali date) {
+    return Gregorian.fromJulianDayNumber(date.julianDayNumber);
+  }
+
   /// Get Gregorian date for now
   factory Gregorian.now() {
     return Gregorian.fromDateTime(DateTime.now());
