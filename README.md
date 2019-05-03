@@ -60,6 +60,7 @@ String format1(Date d) {
 ```
 Then pass your Jalali or Gregorian dates to this function.
 [Date][] is super interface of Jalali and Gregorian classes.
+
 Or another example:
 Say you want to format as `TwoDigitDay/TwoDigitMonth/FourDigitYear` or `DD/MM/YYYY`, call your function `format2`
 ```dart
