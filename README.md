@@ -1,5 +1,7 @@
 # A Flutter package for using Jalali (Shamsi, Solar or Persian) date. You can convert Jalali and Georgian dates to each other.
 
+[![pub package](https://img.shields.io/pub/v/shamsi_date.svg)](https://pub.dartlang.org/packages/shamsi_date)
+
 Converted from the popular Javascript library [jalaali-js](https://github.com/jalaali/jalaali-js).
 
 Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowski](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm) and has a very good performance.
@@ -16,10 +18,10 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.5.3
+    shamsi_date: ^0.5.4
 ```
 
-`Jalali` class is used for Shamsi (Jalali or Persian) date and `Gregorian` class is used for Gregorian date.
+[Jalali][] class is used for Shamsi (Jalali or Persian) date and [Gregorian][] class is used for Gregorian date.
 They can be instantiated by using their constructor:
 ```
 Jalali(year, month, day)
@@ -35,7 +37,7 @@ You can check Jalali date validity by `isValid()` method.
 And find month length by `monthLength` getter.
 And check if the year is a leap year by `isLeapYear()` method.
 
-You can also convert `DateTime` object directly to Jalali or Gregorian date by using:
+You can also convert [DateTime][] object directly to Jalali or Gregorian date by using:
 ```
 Jalali.fromDateTime(dateTime)
 Gregorian.fromDateTime(dateTime)
@@ -57,6 +59,7 @@ String format1(Date d) {
 }
 ```
 Then pass your Jalali or Gregorian dates to this function.
+[Date][] is super interface of Jalali and Gregorian classes.
 Or another example:
 Say you want to format as `TwoDigitDay/TwoDigitMonth/FourDigitYear` or `DD/MM/YYYY`, call your function `format2`
 ```dart
@@ -68,7 +71,7 @@ String format2(Date d) {
 ```
 And use it like before.
 
-`DateFormatter` has these getters:
+[DateFormatter][] has these getters:
 - y: year (whatever length it has)
 - yy: two digit year
 - yyyy: four digit year
@@ -83,7 +86,7 @@ You can get Date formatter by using `formatter` getter on Jalali and Gregorian d
 Simply cash this formatter in a final value and then use string interpolation (as we have shown in examples) for making your desired output.
 This way of formatting is more powerful (and arguably easier) than using templates.
 
-Jalali and Gregorian classes are `Comparable` so you can compare them using `compareTo` method.
+Jalali and Gregorian classes are [Comparable][] so you can compare them using `compareTo` method.
 You can also use comparison operators to compare them.
 They also support `equals` and `hashCode` functions.
 
@@ -170,3 +173,10 @@ main() {
   print(g1 != g1); // -> false
 }
 ```
+
+[Jalali]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/Jalali-class.html
+[Gregorian]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/Gregorian-class.html
+[DateTime]: https://docs.flutter.io/flutter/dart-core/DateTime-class.html
+[Date]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/Date-class.html
+[DateFormatter]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/DateFormatter-class.html
+[Comparable]: https://docs.flutter.io/flutter/dart-core/Comparable-class.html

@@ -55,3 +55,7 @@
 
 - ADDED more tests
 - ADDED fromJalali and fromGregorian methods
+
+# 0.5.4
+
+- Better documentation
