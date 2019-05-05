@@ -59,3 +59,7 @@
 # 0.5.4
 
 - Better documentation
+
+# 0.5.5
+
+- ADDED copy method

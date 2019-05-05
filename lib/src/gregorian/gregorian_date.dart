@@ -81,6 +81,15 @@ class Gregorian implements Date, Comparable<Gregorian> {
     return Gregorian.fromDateTime(DateTime.now());
   }
 
+  /// Copy this date object with some fields changed
+  Gregorian copy({int year, int month, int day}) {
+    if (year == null && month == null && day == null) {
+      return this;
+    } else {
+      return Gregorian(year ?? this.year, month ?? this.month, day ?? this.day);
+    }
+  }
+
   /// Converts Gregorian date to [DateTime] object
   DateTime toDateTime() {
     return DateTime(year, month, day);

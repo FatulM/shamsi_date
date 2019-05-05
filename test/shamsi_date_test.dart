@@ -196,4 +196,22 @@ void main() {
     expect(f2.dd, '28');
     expect(f2.d, '28');
   });
+
+  test('Jalali copy method should copy dates correctly', () {
+    expect(Jalali(1395, 10, 21).copy().toString(), "1395/10/21");
+
+    expect(Jalali(1395, 10, 21).copy(year: 1390, day: 10).toString(),
+        "1390/10/10");
+
+    expect(Jalali(1395, 10, 21).copy(month: 5).toString(), "1395/5/21");
+  });
+
+  test('Gregorian copy method should copy dates correctly', () {
+    expect(Gregorian(2018, 10, 21).copy().toString(), "2018/10/21");
+
+    expect(Gregorian(2018, 10, 21).copy(year: 2000, day: 10).toString(),
+        "2000/10/10");
+
+    expect(Gregorian(2018, 10, 21).copy(month: 5).toString(), "2018/5/21");
+  });
 }

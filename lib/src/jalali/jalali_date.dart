@@ -88,6 +88,15 @@ class Jalali implements Date, Comparable<Jalali> {
     return Jalali.fromJulianDayNumber(date.julianDayNumber);
   }
 
+  /// Copy this date object with some fields changed
+  Jalali copy({int year, int month, int day}) {
+    if (year == null && month == null && day == null) {
+      return this;
+    } else {
+      return Jalali(year ?? this.year, month ?? this.month, day ?? this.day);
+    }
+  }
+
   /// Get Jalali date for now
   factory Jalali.now() {
     return Jalali.fromDateTime(DateTime.now());
