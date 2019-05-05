@@ -49,6 +49,8 @@ You can get week day number of Jalali and Gregorian by using `weekDay` getter.
 Week days range from 1 to 7.
 Jalali week starts with shanbe and Gregorian week starts with monday.
 
+If you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method on an existing object.
+
 Date formatting is easy. At first you should make a function for you custom formatting:
 Say you want to format as `WeekDayName Day MonthName TwoDigitYear`, call your function `format1`
 ```dart
@@ -103,7 +105,7 @@ main() {
   print('$g1 in Gregorian is $j1 in Jalali');
   // prints: 2013/1/10 in Gregorian is 1391/10/21 in Jalali
   // you can write Jalali.fromGregorian(g1) instead of g1.toJalali()
-  
+
   // Jalali to Gregorian conversion
   final j2 = Jalali(1391, 10, 21);
   final g2 = j1.toGregorian();
@@ -141,6 +143,12 @@ main() {
   print('${j1}.weekDay = ${j1.weekDay}'); // -> 6
   print('${g1}.weekDay = ${g1.weekDay}'); // -> 4
 
+  // copy method
+  print('$j1 with year = 1300 is ${j1.copy(year: 1300)}');
+  // prints: 1391/10/21 with year = 1300 is 1300/10/21
+  print('$g1 with month = 1 and day = 2 is ${g1.copy(month: 1, day: 2)}');
+  // prints: 2013/1/10 with month = 1 and day = 2 is 2013/1/2
+
   // formatting examples:
 
   // example one:
@@ -149,6 +157,7 @@ main() {
 
     return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
   }
+
   print(format1(j1));
   // prints: پنج شنبه 21 دی 91
   print(format1(g1));
@@ -160,6 +169,7 @@ main() {
 
     return '${f.dd}/${f.mm}/${f.yyyy}';
   }
+
   print(format2(j1));
   // 21/10/1391
   print(format2(g1));
