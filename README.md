@@ -1,16 +1,22 @@
-# A Flutter package for using Jalali (Shamsi, Solar or Persian) date. You can convert Jalali and Georgian dates to each other.
+# A Flutter package for using Jalali (Shamsi, Solar or Persian) date. You can convert and format Jalali and Georgian dates.
 
-[![pub package](https://img.shields.io/pub/v/shamsi_date.svg)](https://pub.dartlang.org/packages/shamsi_date)
+![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)
 
 Converted from the popular Javascript library [jalaali-js](https://github.com/jalaali/jalaali-js).
 
 Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowski](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm) and has a very good performance.
 
-## Changes
-Added date formatter for custom printing of date objects.
+## Key Features
+- Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
+- Format Jalali and Georgian dates with an easy and powerful syntax using [DateFormatter][].
+- Access weekday, julian day number, month length and ...
+- Check if you have a valid Jalali date or if the year is a leap year.
+- Immutable date object with copy methods for easy manipulation.
+- Compare Dates easily with comparison operators or by using [Comparable][].
 
 ## Issues and feature request
-Please make an issue on Github so I can see your request.
+If you want a feature or you found an issue,
+please make an issue on Github so I can see your request.
 
 ## Usage
 
@@ -18,7 +24,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.5.5
+    shamsi_date: ^0.6.0
 ```
 
 [Jalali][] class is used for Shamsi (Jalali or Persian) date and [Gregorian][] class is used for Gregorian date.

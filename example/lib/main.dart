@@ -1,11 +1,23 @@
+// Copyright 2018 - 2019, Amirreza Madani. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
-void main() {
-  runApp(MaterialApp(
-    title: 'Example for shamsi_date package',
-    home: MyHomePage(),
-  ));
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'shamsi_date example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -30,8 +42,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(_format(Jalali.now())),
-            Text(_format(Gregorian.now())),
+            Text(
+              _format(Jalali.now()),
+              style: TextStyle(
+                fontSize: 26,
+              ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              _format(Gregorian.now()),
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
           ],
         ),
       ),

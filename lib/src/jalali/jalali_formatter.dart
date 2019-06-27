@@ -1,3 +1,7 @@
+// Copyright 2018 - 2019, Amirreza Madani. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 library jalali_formatter;
 
 import 'package:shamsi_date/src/date_formatter.dart';
