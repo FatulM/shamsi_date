@@ -67,3 +67,8 @@
 # [0.6.0]
 
 - UPDATED project
+
+# [0.6.1]
+
+- IMPROVED examples
+- IMPROVED docs
