@@ -82,7 +82,7 @@ method on an existing object, for example for getting date at start of this mont
 final j1 = Jalali.now().copy(day: 1); // correct way
 
 // DON NOT do it like this:
-final j2 = Jalali(Jalali.now().year, Jalali.now().month, 1); // INCORRECT, DO NOT USE THIS
+final j2 = Jalali(Jalali.now().year, Jalali.now().month, 1); // INCORRECT
 ```
 or you want to get last day of the last month of this Jalali year:
 ```dart
@@ -227,7 +227,7 @@ main() {
   // for example for getting date at start of this month in Jalali:
   print(Jalali.now().copy(day: 1));
   // DON NOT do it like this:
-  print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT, DO NOT USE THIS
+  print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT
   // for example if you want to get last day of the last month of this Jalali year:
   final tmp = Jalali.now().copy(month: 12, day: 1);
   // since we can be in a leap year we use monthLength:
@@ -259,13 +259,14 @@ main() {
   print(format2(g1));
   // prints: 10/01/2013
 
-  // DO NOT use formatter for accessing year, month or other properties of date objects
-  // they are available as getters on date objects
-  // INCORRECT EXAMPLE:
-  final int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT, DO NOT USE THIS
+  // DO NOT use formatter for accessing year, month or other properties
+  // of date objects they are available as getters on date objects
+  // INCORRECT EXAMPLE, DO NOT USE THIS:
+  final int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT
   // use this:
   final int ty2 = Jalali.now().year; // correct
-  // also using toString() for showing dates on UI is not recommended, use custom formatter.
+  // also using toString() for showing dates on UI is not recommended,
+  // use custom formatter.
 
   // comparing dates
   print(j1 > j2); // -> false
@@ -275,7 +276,8 @@ main() {
   print(g1 == g2); // -> true
   print(g1 != g1); // -> false
 
-  // if you want to compare Jalali with Georgian you can convert one type to another, for example:
+  // if you want to compare Jalali with Georgian you can convert one type to another,
+  // for example:
   print(j1.toGregorian() == g1); // -> true
   // but if you don't want to convert them you can use julianDayNumber
   // (this approach is not recommended) 
