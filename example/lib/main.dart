@@ -20,12 +20,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
+  // this is a formatter function for Jalali or Georgian dates
+  // which are subclass of Date
   String _format(Date d) {
     final f = d.formatter;
 
@@ -43,17 +40,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
+              // Here we format today in jalali
               _format(Jalali.now()),
-              style: TextStyle(
-                fontSize: 26,
-              ),
+              style: TextStyle(fontSize: 26),
             ),
             SizedBox(height: 16),
             Text(
+              // Here we format today in Georgian
               _format(Gregorian.now()),
-              style: TextStyle(
-                fontSize: 22,
-              ),
+              style: TextStyle(fontSize: 22),
             ),
           ],
         ),
