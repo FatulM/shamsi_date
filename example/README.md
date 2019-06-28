@@ -17,12 +17,25 @@ main() {
   // prints: 2013/1/10 in Gregorian is 1391/10/21 in Jalali
   // you can write Jalali.fromGregorian(g1) instead of g1.toJalali()
 
+  // access year, month and day through getters
+  // for Jalali:
+  final int g1y = g1.year; // g1y = 2013
+  final int g1m = g1.month; // g1m = 1
+  final int g1d = g1.day; // g1d = 10
+  // and for Gregorian:
+  final int j1y = j1.year; // j1y = 1391 
+  final int j1m = j1.month; // j1m = 10
+  final int j1d = j1.day; // j1d = 21
+
   // Jalali to Gregorian conversion
   final j2 = Jalali(1391, 10, 21);
   final g2 = j1.toGregorian();
   print('$j2 in Jalali is $g2  in Gregorian');
   // prints: 1391/10/21 in Jalali is 2013/1/10  in Gregorian
   // you can write Gregorian.fromJalali(j1) instead of j1.toGregorian()
+
+  // find out which jalali year is this year:
+  final int thisYear = Jalali.now().year;
 
   // check validity
   print('$j1 is valid? ${j1.isValid()}');
@@ -60,6 +73,15 @@ main() {
   print('$g1 with month = 1 and day = 2 is ${g1.copy(month: 1, day: 2)}');
   // prints: 2013/1/10 with month = 1 and day = 2 is 2013/1/2
 
+  // for example for getting date at start of this month in Jalali:
+  print(Jalali.now().copy(day: 1));
+  // DON NOT do it like this:
+  print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT, DO NOT USE THIS
+  // for example if you want to get last day of the last month of this Jalali year:
+  final tmp = Jalali.now().copy(month: 12, day: 1);
+  // since we can be in a leap year we use monthLength:
+  print(tmp.copy(day: tmp.monthLength));
+
   // formatting examples:
 
   // example one:
@@ -86,6 +108,14 @@ main() {
   print(format2(g1));
   // prints: 10/01/2013
 
+  // DO NOT use formatter for accessing year, month or other properties of date objects
+  // they are available as getters on date objects
+  // INCORRECT EXAMPLE:
+  final int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT, DO NOT USE THIS
+  // use this:
+  final int ty2 = Jalali.now().year; // correct
+  // also using toString() for showing dates on UI is not recommended, use custom formatter.
+
   // comparing dates
   print(j1 > j2); // -> false
   print(j1 <= j2); // -> true
@@ -93,5 +123,13 @@ main() {
   print(g1.compareTo(g2)); // -> 0
   print(g1 == g2); // -> true
   print(g1 != g1); // -> false
+
+  // if you want to compare Jalali with Georgian you can convert one type to another, for example:
+  print(j1.toGregorian() == g1); // -> true
+  // but if you don't want to convert them you can use julianDayNumber
+  // (this approach is not recommended) 
+  print(j1.julianDayNumber == g1.julianDayNumber); // -> true 
+  // this means that they are equal
+  // you can also use other comparison operators
 }
 ``` 
