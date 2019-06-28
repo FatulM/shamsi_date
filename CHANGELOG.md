@@ -72,3 +72,7 @@
 
 - IMPROVED examples
 - IMPROVED docs
+
+# [0.6.2]
+
+- FIX a little issue with docs

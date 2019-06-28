@@ -30,7 +30,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.6.1
+    shamsi_date: ^0.6.2
 ```
 
 [Jalali][] class is used for Shamsi (Jalali or Persian) date and [Gregorian][] class is used for Gregorian date.
@@ -132,8 +132,8 @@ It is recommended that you use toString() of Jalali and Georgian dates only for 
 like for debugging, logging or ...
 You should use custom formatter for showing dates on UI.
 
-*Note* also that you do not need for example to use ```int.parse()``` on formatter output of
-```Jalali.now().formatter.m``` for accessing it's month, simply use ```Jalali.now().month```.
+*Note* also that you do not need for example to use `int.parse()` on formatter output of
+`Jalali.now().formatter.m` for accessing it's month, simply use `Jalali.now().month`.
 
 [DateFormatter][] has these getters:
 - y: year (whatever length it has)
