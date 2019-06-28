@@ -8,8 +8,8 @@ Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowsk
 
 The package has a lot of unit tests for ensuring it's correctness. 
 
-There is a date time picker [persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker)
-for flutter based on this library which you can use it if you want.
+If you want a persian datetime picker there is one based on this library
+[persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker).
 
 ## Key Features
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
