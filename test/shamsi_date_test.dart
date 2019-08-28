@@ -202,4 +202,55 @@ void main() {
 
     expect(Gregorian(2018, 10, 21).copy(month: 5).toString(), "2018/5/21");
   });
+
+  test('Jalali.now() should return today', () {
+    final dt = DateTime.now();
+    final g = Jalali.now().toGregorian();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+  });
+
+  test('Jalali toDateTime method should work as expected', () {
+    final j = Jalali(1398, 6, 6);
+    final dt = j.toDateTime();
+    final g = j.toGregorian();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+  });
+
+  test('Gregorian.now() should return today', () {
+    final dt = DateTime.now();
+    final g = Gregorian.now();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+  });
+
+  test('Gregorian toDateTime method should work as expected', () {
+    final g = Gregorian(2019, 8, 28);
+    final dt = g.toDateTime();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+  });
+
+  test('Jalali hashCode should be as expected', () {
+    final j1 = Jalali(1398, 6, 6);
+    final j2 = Jalali(1398, 6, 6);
+    expect(j2.hashCode, j1.hashCode);
+    expect(j1.copy(year: 1397).hashCode != j1.hashCode, true);
+    expect(j1.copy(month: 5).hashCode != j1.hashCode, true);
+    expect(j1.copy(day: 7).hashCode != j1.hashCode, true);
+  });
+
+  test('Gregorian hashCode should be as expected', () {
+    final g1 = Gregorian(2019, 8, 28);
+    final g2 = Gregorian(2019, 8, 28);
+    expect(g2.hashCode, g1.hashCode);
+    expect(g1.copy(year: 2018).hashCode != g1.hashCode, true);
+    expect(g1.copy(month: 7).hashCode != g1.hashCode, true);
+    expect(g1.copy(day: 1).hashCode != g1.hashCode, true);
+  });
 }

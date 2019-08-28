@@ -1,6 +1,3 @@
-language: dart
-dart:
-  - stable
 os:
   - linux
 sudo: false
