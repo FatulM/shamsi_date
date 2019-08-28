@@ -1,6 +1,6 @@
 # A Flutter package for using Jalali (Shamsi, Solar or Persian) date. You can convert and format Jalali and Georgian dates.
 
-[![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)](https://pub.dev/packages/shamsi_date)
+[![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)](https://pub.dev/packages/shamsi_date) [![Build Status](https://travis-ci.org/FatulM/shamsi_date.svg?branch=master)](https://travis-ci.org/FatulM/shamsi_date)
 
 Converted from the popular Javascript library [jalaali-js](https://github.com/jalaali/jalaali-js).
 
@@ -30,7 +30,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.6.2
+    shamsi_date: ^0.6.3
 ```
 
 [Jalali][] class is used for Shamsi (Jalali or Persian) date and [Gregorian][] class is used for Gregorian date.

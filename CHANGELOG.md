@@ -76,3 +76,8 @@
 # [0.6.2]
 
 - FIX a little issue with docs
+
+# [0.6.3]
+
+- ADDED Travis CI to project
+- FIXED docs
