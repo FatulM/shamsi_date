@@ -1,3 +1,6 @@
+language: dart
+dart:
+  - stable
 os:
   - linux
 sudo: false
@@ -9,7 +12,7 @@ addons:
       - libstdc++6
       - fonts-droid-fallback
 before_script:
-  - git clone https://github.com/flutter/flutter.git -b master --depth 1
+  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
   - ./flutter/bin/flutter doctor
 script:
   - ./flutter/bin/cache/dart-sdk/bin/dartfmt -n --set-exit-if-changed ./lib ./test || travis_terminate 1
