@@ -80,4 +80,5 @@
 # [0.6.3]
 
 - ADDED Travis CI to project
+- ADDED Codecov code coverage to project
 - FIXED docs

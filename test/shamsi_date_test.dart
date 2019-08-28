@@ -3,27 +3,15 @@ import 'package:shamsi_date/shamsi_date.dart';
 
 void main() {
   test('Jalali.fromJulianDayNumber should work correctly', () {
-    expect(Jalali
-        .fromJulianDayNumber(2400000)
-        .julianDayNumber, 2400000);
-    expect(Jalali
-        .fromJulianDayNumber(2458605)
-        .julianDayNumber, 2458605);
-    expect(Jalali
-        .fromJulianDayNumber(2500000)
-        .julianDayNumber, 2500000);
+    expect(Jalali.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
+    expect(Jalali.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
+    expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
   });
 
   test('Gregorian.fromJulianDayNumber should work correctly', () {
-    expect(Gregorian
-        .fromJulianDayNumber(2400000)
-        .julianDayNumber, 2400000);
-    expect(Gregorian
-        .fromJulianDayNumber(2458605)
-        .julianDayNumber, 2458605);
-    expect(Gregorian
-        .fromJulianDayNumber(2500000)
-        .julianDayNumber, 2500000);
+    expect(Gregorian.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
+    expect(Gregorian.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
+    expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
   });
 
   test('toJalali should convert Date object to Jalali', () {
