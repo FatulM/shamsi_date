@@ -183,6 +183,35 @@ class Jalali implements Date, Comparable<Jalali> {
     return compareTo(other) <= 0;
   }
 
+  /// add [days]
+  Jalali operator +(int days) {
+    if (days == 0) {
+      return this;
+    } else {
+      return Jalali.fromJulianDayNumber(julianDayNumber + days);
+    }
+  }
+
+  /// subtract [days]
+  Jalali operator -(int days) {
+    if (days == 0) {
+      return this;
+    } else {
+      return Jalali.fromJulianDayNumber(julianDayNumber - days);
+    }
+  }
+
+  /// add [days], [months] and [years] separately
+  /// note: it does not make any conversion, it simply adds to each field value
+  /// for subtracting simple add negative value
+  Jalali add({int years = 0, int months = 0, int days = 0}) {
+    if (years == 0 && months == 0 && days == 0) {
+      return this;
+    } else {
+      return Jalali(year + years, month + months, day + days);
+    }
+  }
+
   /// equals operator
   @override
   bool operator ==(Object other) {

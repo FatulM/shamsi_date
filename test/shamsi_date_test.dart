@@ -253,4 +253,29 @@ void main() {
     expect(g1.copy(month: 7).hashCode != g1.hashCode, true);
     expect(g1.copy(day: 1).hashCode != g1.hashCode, true);
   });
+
+  test('Jalali add operator test', () {
+    expect(Jalali(1300, 2, 10) + 0, Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 10) + 5, Jalali(1300, 2, 15));
+    expect(Jalali(1300, 1, 31) + 36, Jalali(1300, 3, 5));
+    expect(Jalali(1400, 1, 1) + 365, Jalali(1401, 1, 1));
+  });
+
+  test('Jalali subtract operator test', () {
+    expect(Jalali(1300, 2, 10) - 0, Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 15) - 5, Jalali(1300, 2, 10));
+    expect(Jalali(1300, 3, 5) - 36, Jalali(1300, 1, 31));
+    expect(Jalali(1401, 1, 1) - 365, Jalali(1400, 1, 1));
+  });
+
+  test('Jalali add method operator test', () {
+    expect(Jalali(1300, 2, 10).add(years: 10, months: 3, days: 8),
+        Jalali(1310, 5, 18));
+    expect(Jalali(1300, 5, 10).add(years: -10, months: -3, days: -8),
+        Jalali(1290, 2, 2));
+    expect(Jalali(1300, 2, 10).add(), Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 10).add(years: 1), Jalali(1301, 2, 10));
+    expect(Jalali(1300, 2, 10).add(months: 1), Jalali(1300, 3, 10));
+    expect(Jalali(1300, 2, 10).add(days: 1), Jalali(1300, 2, 11));
+  });
 }
