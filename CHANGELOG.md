@@ -82,3 +82,8 @@
 - ADDED Travis CI to project
 - ADDED Codecov code coverage to project
 - FIXED docs
+
+# [0.7.0]
+
+- ADDED addition and subtraction operators for Jalali
+- ADDED add method for Jalali
