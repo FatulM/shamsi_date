@@ -40,6 +40,20 @@ class Jalali implements Date, Comparable<Jalali> {
   @override
   int get weekDay => (julianDayNumber + 2) % 7 + 1;
 
+  /// Computes number of days in a given month in a Jalali year.
+  @override
+  int get monthLength {
+    if (month <= 6) {
+      return 31;
+    } else if (month <= 11) {
+      return 30;
+    } else if (month == 12) {
+      return isLeapYear() ? 30 : 29;
+    } else {
+      throw 'month not valid';
+    }
+  }
+
   /// Formatter for this date object
   @override
   JalaliFormatter get formatter => JalaliFormatter(this);
@@ -116,7 +130,14 @@ class Jalali implements Date, Comparable<Jalali> {
     return Gregorian.fromJulianDayNumber(julianDayNumber);
   }
 
+  /// Checks if a year is a leap year or not.
+  @override
+  bool isLeapYear() {
+    return _JalaliCalculation.calculate(year).leap == 0;
+  }
+
   /// Checks whether a Jalali date is valid or not.
+  @override
   bool isValid() {
     return year >= -61 &&
         year <= 3177 &&
@@ -124,24 +145,6 @@ class Jalali implements Date, Comparable<Jalali> {
         month <= 12 &&
         day >= 1 &&
         day <= monthLength;
-  }
-
-  /// Checks if a year is a leap year or not.
-  bool isLeapYear() {
-    return _JalaliCalculation.calculate(year).leap == 0;
-  }
-
-  /// Computes number of days in a given month in a Jalali year.
-  int get monthLength {
-    if (month <= 6) {
-      return 31;
-    } else if (month <= 11) {
-      return 30;
-    } else if (month == 12) {
-      return isLeapYear() ? 30 : 29;
-    } else {
-      throw 'month not valid';
-    }
   }
 
   /// Default string representation: `YYYY/MM/DD`

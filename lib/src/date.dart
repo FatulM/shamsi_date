@@ -8,21 +8,30 @@ import 'package:shamsi_date/src/date_formatter.dart';
 
 /// Super interface of Jalali and Georgian classes
 abstract class Date {
-  /// Year
+  /// year
   int get year;
 
-  /// Month
+  /// month
   int get month;
 
-  /// Day
+  /// day
   int get day;
 
-  /// Julian Day Number
+  /// julian day number
   int get julianDayNumber;
 
-  /// Week day number
+  /// week day number
   int get weekDay;
+
+  /// month length
+  int get monthLength;
 
   /// Formatter for this date object
   DateFormatter get formatter;
+
+  /// checks if this year is a leap year
+  bool isLeapYear();
+
+  /// checks if is valid
+  bool isValid();
 }
