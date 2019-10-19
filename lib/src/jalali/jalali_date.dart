@@ -133,10 +133,15 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Computes number of days in a given month in a Jalali year.
   int get monthLength {
-    if (month <= 6) return 31;
-    if (month <= 11) return 30;
-    if (isLeapYear()) return 30;
-    return 29;
+    if (month <= 6) {
+      return 31;
+    } else if (month <= 11) {
+      return 30;
+    } else if (month == 12) {
+      return isLeapYear() ? 30 : 29;
+    } else {
+      throw 'month not valid';
+    }
   }
 
   /// Default string representation: `YYYY/MM/DD`

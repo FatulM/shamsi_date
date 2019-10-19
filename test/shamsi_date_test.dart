@@ -63,7 +63,7 @@ void main() {
     expect(Jalali(1396).isLeapYear(), false);
   });
 
-  test('monthLength test should return month length', () {
+  test('monthLength test should return month length of Jalali date', () {
     expect(Jalali(1393, 1).monthLength, 31);
     expect(Jalali(1393, 4).monthLength, 31);
     expect(Jalali(1393, 6).monthLength, 31);
@@ -277,5 +277,61 @@ void main() {
     expect(Jalali(1300, 2, 10).add(years: 1), Jalali(1301, 2, 10));
     expect(Jalali(1300, 2, 10).add(months: 1), Jalali(1300, 3, 10));
     expect(Jalali(1300, 2, 10).add(days: 1), Jalali(1300, 2, 11));
+  });
+
+  test('isLeapYear should check if a Gregorian year is leap year', () {
+    expect(Gregorian(1, 1, 1).isLeapYear(), false);
+    expect(Gregorian(4, 1, 1).isLeapYear(), true);
+    expect(Gregorian(40, 1, 1).isLeapYear(), true);
+    expect(Gregorian(100, 1, 1).isLeapYear(), false);
+    expect(Gregorian(200, 1, 1).isLeapYear(), false);
+    expect(Gregorian(300, 1, 1).isLeapYear(), false);
+    expect(Gregorian(204, 1, 1).isLeapYear(), true);
+    expect(Gregorian(400, 1, 1).isLeapYear(), true);
+  });
+
+  test('monthLength test should return month length of Gregorian date', () {
+    expect(Gregorian(1, 1, 1).monthLength, 31);
+    expect(Gregorian(1, 2, 1).monthLength, 28);
+    expect(Gregorian(2001, 2, 1).monthLength, 28);
+    expect(Gregorian(4, 2, 1).monthLength, 29);
+    expect(Gregorian(100, 2, 1).monthLength, 28);
+    expect(Gregorian(1, 3, 1).monthLength, 31);
+    expect(Gregorian(1, 4, 1).monthLength, 30);
+    expect(Gregorian(1, 5, 1).monthLength, 31);
+    expect(Gregorian(1, 6, 1).monthLength, 30);
+    expect(Gregorian(1, 7, 1).monthLength, 31);
+    expect(Gregorian(1, 8, 1).monthLength, 31);
+    expect(Gregorian(1, 9, 1).monthLength, 30);
+    expect(Gregorian(1, 10, 1).monthLength, 31);
+    expect(Gregorian(1, 11, 1).monthLength, 30);
+    expect(Gregorian(1, 12, 1).monthLength, 31);
+  });
+
+  test('isValid should check validity of a Gregorian date', () {
+    expect(Gregorian(-100101, 1, 1).isValid(), false);
+    expect(Gregorian(-100100, 1, 1).isValid(), true);
+    expect(Gregorian(1000000, 1, 1).isValid(), true);
+    expect(Gregorian(100000000, 1, 1).isValid(), false);
+    expect(Gregorian(2000, 1, 1).isValid(), true);
+    expect(Gregorian(2000, 0, 1).isValid(), false);
+    expect(Gregorian(2000, -1, 1).isValid(), false);
+    expect(Gregorian(2000, 13, 1).isValid(), false);
+    expect(Gregorian(2000, 5, 1).isValid(), true);
+    expect(Gregorian(2000, 1, 0).isValid(), false);
+    expect(Gregorian(2000, 1, -1).isValid(), false);
+    expect(Gregorian(2000, 1, 10).isValid(), true);
+    expect(Gregorian(2000, 1, 32).isValid(), false);
+    expect(Gregorian(2000, 12, 32).isValid(), false);
+    expect(Gregorian(2000, 12, 31).isValid(), true);
+    expect(Gregorian(2000, 1, 32).isValid(), false);
+    expect(Gregorian(2004, 1, 29).isValid(), true);
+    expect(Gregorian(1, 1, 1).isValid(), true);
+    expect(Gregorian(2000, 2, 29).isValid(), true);
+    expect(Gregorian(2000, 2, 30).isValid(), false);
+    expect(Gregorian(2001, 2, 28).isValid(), true);
+    expect(Gregorian(2001, 2, 29).isValid(), false);
+    expect(Gregorian(2004, 2, 29).isValid(), true);
+    expect(Gregorian(2004, 2, 30).isValid(), false);
   });
 }

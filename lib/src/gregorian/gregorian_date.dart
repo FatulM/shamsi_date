@@ -104,6 +104,52 @@ class Gregorian implements Date, Comparable<Gregorian> {
     return Jalali.fromJulianDayNumber(julianDayNumber);
   }
 
+  /// Checks whether a Gregorian date is valid or not.
+  bool isValid() {
+    return year >= -100100 &&
+        year <= 10000000 &&
+        month >= 1 &&
+        month <= 12 &&
+        day >= 1 &&
+        day <= monthLength;
+  }
+
+  /// Checks if a year is a leap year or not.
+  bool isLeapYear() {
+    if (year % 4 == 0) {
+      if (year % 100 == 0) {
+        return year % 400 == 0;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  /// Computes number of days in a given month in a Gregorian year.
+  int get monthLength {
+    switch (month) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        return 31;
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        return 30;
+      case 2:
+        return isLeapYear() ? 29 : 28;
+      default:
+        throw 'month not valid';
+    }
+  }
+
   /// Default string representation: `YYYY/MM/DD`
   @override
   String toString() {
