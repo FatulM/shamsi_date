@@ -257,12 +257,14 @@ void main() {
   test('Jalali add operator test', () {
     expect(Jalali(1300, 2, 10) + 0, Jalali(1300, 2, 10));
     expect(Jalali(1300, 2, 10) + 5, Jalali(1300, 2, 15));
+    expect(Jalali(1300, 2, 10) + (-10), Jalali(1300, 1, 31));
     expect(Jalali(1300, 1, 31) + 36, Jalali(1300, 3, 5));
     expect(Jalali(1400, 1, 1) + 365, Jalali(1401, 1, 1));
   });
 
   test('Jalali subtract operator test', () {
     expect(Jalali(1300, 2, 10) - 0, Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 10) - (-22), Jalali(1300, 3, 1));
     expect(Jalali(1300, 2, 15) - 5, Jalali(1300, 2, 10));
     expect(Jalali(1300, 3, 5) - 36, Jalali(1300, 1, 31));
     expect(Jalali(1401, 1, 1) - 365, Jalali(1400, 1, 1));
