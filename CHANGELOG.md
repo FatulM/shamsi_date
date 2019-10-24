@@ -88,3 +88,6 @@
 - ADDED addition and subtraction operators for Jalali
 - ADDED add method for Jalali
 - ADDED isValid, isLeapYear and monthLength methods to Gregorian
+- ADDED addition and subtraction operators for Gregorian
+- ADDED add method for Gregorian
+- REFACTORED and ADDED more tests
