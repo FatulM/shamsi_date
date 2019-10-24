@@ -2,13 +2,33 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
 void main() {
-  test('Jalali.fromJulianDayNumber should work correctly', () {
+  test('Jalali.==', () {
+    expect(Jalali(1000, 1, 1) == Jalali(1000, 1, 1), true);
+    expect(Jalali(1001, 1, 1) == Jalali(1000, 1, 1), false);
+    expect(Jalali(1000, 1, 1) == Jalali(1001, 1, 1), false);
+    expect(Jalali(1000, 2, 1) == Jalali(1000, 1, 1), false);
+    expect(Jalali(1000, 1, 1) == Jalali(1000, 2, 1), false);
+    expect(Jalali(1000, 1, 2) == Jalali(1000, 1, 1), false);
+    expect(Jalali(1000, 1, 1) == Jalali(1000, 1, 2), false);
+  });
+
+  test('Gregorian.==', () {
+    expect(Gregorian(1000, 1, 1) == Gregorian(1000, 1, 1), true);
+    expect(Gregorian(1001, 1, 1) == Gregorian(1000, 1, 1), false);
+    expect(Gregorian(1000, 1, 1) == Gregorian(1001, 1, 1), false);
+    expect(Gregorian(1000, 2, 1) == Gregorian(1000, 1, 1), false);
+    expect(Gregorian(1000, 1, 1) == Gregorian(1000, 2, 1), false);
+    expect(Gregorian(1000, 1, 2) == Gregorian(1000, 1, 1), false);
+    expect(Gregorian(1000, 1, 1) == Gregorian(1000, 1, 2), false);
+  });
+
+  test('Jalali.fromJulianDayNumber and Jalali.julianDayNumber', () {
     expect(Jalali.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
     expect(Jalali.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
     expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
   });
 
-  test('Gregorian.fromJulianDayNumber should work correctly', () {
+  test('Gregorian.fromJulianDayNumber and Gregorian.julianDayNumber', () {
     expect(Gregorian.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
     expect(Gregorian.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
     expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
@@ -45,8 +65,10 @@ void main() {
     expect(Jalali(3178, 1, 1).isValid(), false);
     expect(Jalali(3177, 12, 29).isValid(), true);
     expect(Jalali(1393, 0, 1).isValid(), false);
+    expect(Jalali(1393, -1, 1).isValid(), false);
     expect(Jalali(1393, 13, 1).isValid(), false);
     expect(Jalali(1393, 1, 0).isValid(), false);
+    expect(Jalali(1393, 1, -1).isValid(), false);
     expect(Jalali(1393, 1, 32).isValid(), false);
     expect(Jalali(1393, 1, 31).isValid(), true);
     expect(Jalali(1393, 11, 31).isValid(), false);
@@ -335,5 +357,18 @@ void main() {
     expect(Gregorian(2001, 2, 29).isValid(), false);
     expect(Gregorian(2004, 2, 29).isValid(), true);
     expect(Gregorian(2004, 2, 30).isValid(), false);
+  });
+
+  test('Jalali.toString', () {
+    expect(Jalali(1398, 1, 10).toString(), '1398/1/10');
+    expect(Jalali(1398, 11, 1).toString(), '1398/11/1');
+    expect(Jalali(500, 1, 1).toString(), '500/1/1');
+  });
+
+  test('Gregorian.toString', () {
+    expect(Gregorian(2000, 1, 10).toString(), '2000/1/10');
+    expect(Gregorian(2000, 11, 1).toString(), '2000/11/1');
+    expect(Gregorian(500, 1, 1).toString(), '500/1/1');
+    expect(Gregorian(0, 1, 1).toString(), '0/1/1');
   });
 }
