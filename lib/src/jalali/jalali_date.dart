@@ -117,7 +117,7 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Get Jalali date for now
   factory Jalali.now() {
-    return Jalali.fromDateTime(DateTime.now());
+    return Gregorian.now().toJalali();
   }
 
   /// Converts Jalali date to [DateTime] object
