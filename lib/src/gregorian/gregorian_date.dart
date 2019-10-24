@@ -197,6 +197,35 @@ class Gregorian implements Date, Comparable<Gregorian> {
     return compareTo(other) <= 0;
   }
 
+  /// add [days]
+  Gregorian operator +(int days) {
+    if (days == 0) {
+      return this;
+    } else {
+      return Gregorian.fromJulianDayNumber(julianDayNumber + days);
+    }
+  }
+
+  /// subtract [days]
+  Gregorian operator -(int days) {
+    if (days == 0) {
+      return this;
+    } else {
+      return Gregorian.fromJulianDayNumber(julianDayNumber - days);
+    }
+  }
+
+  /// add [days], [months] and [years] separately
+  /// note: it does not make any conversion, it simply adds to each field value
+  /// for subtracting simple add negative value
+  Gregorian add({int years = 0, int months = 0, int days = 0}) {
+    if (years == 0 && months == 0 && days == 0) {
+      return this;
+    } else {
+      return Gregorian(year + years, month + months, day + days);
+    }
+  }
+
   /// equals operator
   @override
   bool operator ==(Object other) {

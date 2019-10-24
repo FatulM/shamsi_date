@@ -359,7 +359,13 @@ void main() {
     expect(Jalali(1400, 1, 1) + 365, Jalali(1401, 1, 1));
   });
 
-  // todo Gregorian.+
+  test('Gregorian.+', () {
+    expect(Gregorian(2000, 2, 10) + 0, Gregorian(2000, 2, 10));
+    expect(Gregorian(2000, 2, 10) + 5, Gregorian(2000, 2, 15));
+    expect(Gregorian(2000, 2, 10) + (-10), Gregorian(2000, 1, 31));
+    expect(Gregorian(2000, 1, 31) + 34, Gregorian(2000, 3, 5));
+    expect(Gregorian(2000, 1, 1) + 366, Gregorian(2001, 1, 1));
+  });
 
   test('Jalali.-', () {
     expect(Jalali(1300, 2, 10) - 0, Jalali(1300, 2, 10));
@@ -369,7 +375,13 @@ void main() {
     expect(Jalali(1401, 1, 1) - 365, Jalali(1400, 1, 1));
   });
 
-  // todo Gregorian.-
+  test('Gregorian.-', () {
+    expect(Gregorian(2000, 2, 10) - 0, Gregorian(2000, 2, 10));
+    expect(Gregorian(2000, 2, 15) - 5, Gregorian(2000, 2, 10));
+    expect(Gregorian(2000, 1, 31) - (-10), Gregorian(2000, 2, 10));
+    expect(Gregorian(2000, 3, 5) - 34, Gregorian(2000, 1, 31));
+    expect(Gregorian(2001, 1, 1) - 366, Gregorian(2000, 1, 1));
+  });
 
   test('Jalali.add', () {
     expect(Jalali(1300, 2, 10).add(), Jalali(1300, 2, 10));
@@ -382,5 +394,14 @@ void main() {
         Jalali(1290, 2, 2));
   });
 
-  // todo Gregorian.add
+  test('Gregorian.add', () {
+    expect(Gregorian(2000, 2, 10).add(), Gregorian(2000, 2, 10));
+    expect(Gregorian(2000, 2, 10).add(years: 1), Gregorian(2001, 2, 10));
+    expect(Gregorian(2000, 2, 10).add(months: 1), Gregorian(2000, 3, 10));
+    expect(Gregorian(2000, 2, 10).add(days: 1), Gregorian(2000, 2, 11));
+    expect(Gregorian(2000, 2, 10).add(years: 10, months: 3, days: 8),
+        Gregorian(2010, 5, 18));
+    expect(Gregorian(2000, 5, 10).add(years: -10, months: -3, days: -8),
+        Gregorian(1990, 2, 2));
+  });
 }
