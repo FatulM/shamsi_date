@@ -147,10 +147,11 @@ class Jalali implements Date, Comparable<Jalali> {
         day <= monthLength;
   }
 
-  /// Default string representation: `YYYY/MM/DD`
+  /// Default string representation: `Jalali(YYYY,MM,DD)`.
+  /// use formatter for custom formatting.
   @override
   String toString() {
-    return '$year/$month/$day';
+    return 'Jalali($year,$month,$day)';
   }
 
   /// Compare dates
