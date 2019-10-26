@@ -174,6 +174,9 @@ String format1(Date d) {
 
   return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
 }
+
+// example output for Jalali: "پنج شنبه 21 دی 91"
+// example output for Gregorian: "Thursday 10 January 13"
 ```
 Then pass your Jalali or Gregorian dates to this function.
 [Date][] is super interface of Jalali and Gregorian classes.
@@ -188,6 +191,8 @@ String format2(Date d) {
 }
 ```
 And use it like before.
+
+Note that formatter formats digits in English so if you want Persian digits you can use fonts with Persian digits or apply a simple mapping to formatter output to change English digits to Persian.
 
 Jalali and Georgian dates support `toString()` method, and it is semantically equivalent to use
 a formatter as `Y/M/D` which means:
@@ -231,7 +236,19 @@ This way of formatting is more powerful (and arguably easier) than using templat
 
 Jalali and Gregorian classes are [Comparable][] so you can compare them using `compareTo` method.
 You can also use comparison operators to compare them.
-They also support `equals` and `hashCode` functions.
+They also support `equals` and `hashCode` functions. So you can safely use Sets and Maps of Jalali and Gregorian dates.
+```dart
+final j1 = Jalali(1397, 1, 1);
+final j2 = Jalali(1397, 2, 1);
+
+bool b1 = j1 < j2; // b1 = true
+bool b2 = j1 >= j2; // b2 = false
+// using Comparable's compareTo
+bool b3 = j1.compareTo(j2) > 0; // b3 = false (means j1 > j2 is false)
+bool b4 = j1.compareTo(j2) <= 0; // b4 = true (means j1 <= j2 is true)
+bool b5 = j1 == j2; // b5 = false
+bool b6 = j1 != j2; // b6 = true
+```
 
 Here is a complete example:
 
