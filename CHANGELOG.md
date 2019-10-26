@@ -91,3 +91,5 @@
 - ADDED addition and subtraction operators for Gregorian
 - ADDED add method for Gregorian
 - REFACTORED and ADDED more tests
+- CHANGED toString() implementation
+- REFACTORED and ADDED docs
