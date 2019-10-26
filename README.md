@@ -2,18 +2,18 @@
 
 [![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)](https://pub.dev/packages/shamsi_date) [![Build Status](https://travis-ci.org/FatulM/shamsi_date.svg?branch=master)](https://travis-ci.org/FatulM/shamsi_date) [![codecov](https://codecov.io/gh/FatulM/shamsi_date/branch/master/graph/badge.svg)](https://codecov.io/gh/FatulM/shamsi_date)
 
-Converted from the popular Javascript library [jalaali-js](https://github.com/jalaali/jalaali-js).
+Converted from the popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js).
 
 Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowski](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm) and has a very good performance.
 
 The package has a lot of unit tests for ensuring it's correctness. 
 
-If you want a persian datetime picker there is one based on this library
+If you want a Persian datetime picker there is one based on this library
 [persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker).
 
 ## Key Features
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
-- Access year, month, day, weekday, julian day number, month length and ... through getters.
+- Access year, month, day, weekday, Julian day number, month length and ... through getters.
 - Format Jalali and Georgian dates with an easy and powerful syntax using [DateFormatter][].
 - Check if you have a valid Jalali date or if the year is a leap year.
 - Immutable date object with copy methods for easy manipulation.
@@ -22,7 +22,7 @@ If you want a persian datetime picker there is one based on this library
 
 ## Issues and feature request
 If you want a feature or you found an issue,
-please make an issue on Github so I can see your request.
+please make an issue on GitHub so I can see your request.
 
 ## Usage
 
@@ -52,7 +52,7 @@ final j = Jalali(1397, 5, 6);
 int jy = j.year; // jy = 1397
 int jm = j.month; // jm = 5
 int jd = j.day; // jd = 6
-``` 
+```
 
 You can convert Jalali date to Gregorian by using `toGregorian()` method and convert Gregorian to Jalali date by using `toJalali()` method.
 
