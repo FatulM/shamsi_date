@@ -93,3 +93,7 @@
 - REFACTORED and ADDED more tests
 - CHANGED toString() implementation
 - REFACTORED and ADDED docs
+
+# [0.7.1]
+
+- FIXED docs
