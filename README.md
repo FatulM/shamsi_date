@@ -194,16 +194,17 @@ And use it like before.
 
 Note that formatter formats digits in English so if you want Persian digits you can use fonts with Persian digits or apply a simple mapping to formatter output to change English digits to Persian.
 
-Jalali and Georgian dates support `toString()` method, and it is semantically equivalent to use
-a formatter as `Y/M/D` which means:
+Jalali and Georgian dates support `toString()` method. For Jalali it is semantically equivalent to use
+a formatter as `Jalali(Y,M,D)` which means:
 
 ```dart
-String toStringFormatter(Date d) {
+String toStringFormatter(Jalali d) {
   final f = d.formatter;
 
-  return '${f.y}/${f.m}/${f.d}';
+  return 'Jalali(${f.y},${f.m},${f.d})';
 }
 ```
+And for Georgian, toString() is equivalent to using a formatter as `Georgian(Y,M,D)`
 Note: in the following code toString() is called implicitly:
 ```dart
 main() {
@@ -211,9 +212,8 @@ main() {
     final str = 'today is: ${Georgian.now()}';
 }
 ```
-It is recommended that you use toString() of Jalali and Georgian dates only for development purpose,
-like for debugging, logging or ...
-You should use custom formatter for showing dates on UI.
+Use toString() of Jalali and Georgian dates only for development purpose, like for debugging, logging or ...
+*You should* use custom formatter for showing dates on UI.
 
 *Note* also that you do not need for example to use `int.parse()` on formatter output of
 `Jalali.now().formatter.m` for accessing it's month, simply use `Jalali.now().month`.
