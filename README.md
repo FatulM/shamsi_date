@@ -213,9 +213,9 @@ main() {
 }
 ```
 Use toString() of Jalali and Georgian dates only for development purpose, like for debugging, logging or ...
-*You should* use custom formatter for showing dates on UI.
+**You should** use custom formatter for showing dates on UI.
 
-*Note* also that you do not need for example to use `int.parse()` on formatter output of
+**Note** also that you do not need for example to use `int.parse()` on formatter output of
 `Jalali.now().formatter.m` for accessing it's month, simply use `Jalali.now().month`.
 
 [DateFormatter][] has these getters:
