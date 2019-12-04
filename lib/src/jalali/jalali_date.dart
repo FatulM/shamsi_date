@@ -60,10 +60,15 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Create a Jalali date by using year, month and day
   /// year and month default to 1
-  Jalali(this.year, [this.month = 1, this.day = 1]);
+  /// [year], [month] and [day] can not be null
+  Jalali(this.year, [this.month = 1, this.day = 1]) {
+    ArgumentError.checkNotNull(year, 'year');
+    ArgumentError.checkNotNull(month, 'month');
+    ArgumentError.checkNotNull(day, 'day');
+  }
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
-  factory Jalali.fromJulianDayNumber(julianDayNumber) {
+  factory Jalali.fromJulianDayNumber(int julianDayNumber) {
     // Calculate Gregorian year (gy).
     int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
     int jy = gy - 621;
@@ -213,11 +218,58 @@ class Jalali implements Date, Comparable<Jalali> {
   /// add [days], [months] and [years] separately
   /// note: it does not make any conversion, it simply adds to each field value
   /// for subtracting simple add negative value
+  /// UNSAFE
   Jalali add({int years = 0, int months = 0, int days = 0}) {
     if (years == 0 && months == 0 && days == 0) {
       return this;
     } else {
       return Jalali(year + years, month + months, day + days);
+    }
+  }
+
+  /// add [years] to this date
+  /// throws if [years] is null
+  Jalali addYears(int years) {
+    ArgumentError.checkNotNull(years, 'years');
+
+    if (years == 0) {
+      return this;
+    } else {
+      return Jalali(year + years, month, day);
+    }
+  }
+
+  /// add [months] to this date
+  /// this Method is safe
+  /// throws if [months] is null
+  Jalali addMonths(int months) {
+    ArgumentError.checkNotNull(months, 'months');
+
+    if (months == 0) {
+      return this;
+    } else {
+      // this is fast enough, no need for further optimization
+      final int sum = month + months - 1;
+      final int mod = sum % 12;
+      // can not use "sum ~/ 12" directly
+      final int deltaYear = (sum - mod) ~/ 12;
+
+      // todo what to do on leap crash ?
+      return Jalali(year + deltaYear, mod + 1, day);
+    }
+  }
+
+  /// add [days] to this date
+  /// this Method is safe
+  /// throws if [days] is null
+  Jalali addDays(int days) {
+    ArgumentError.checkNotNull(days, 'days');
+
+    if (days == 0) {
+      return this;
+    } else {
+      // todo can be simplified ?
+      return Jalali.fromJulianDayNumber(julianDayNumber + days);
     }
   }
 
@@ -232,7 +284,7 @@ class Jalali implements Date, Comparable<Jalali> {
             day == other.day;
   }
 
-  /// hashcode operator
+  /// hashCode operator
   @override
   int get hashCode {
     return year.hashCode ^ month.hashCode ^ day.hashCode;

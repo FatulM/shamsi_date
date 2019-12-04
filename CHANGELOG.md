@@ -97,3 +97,8 @@
 # [0.7.1]
 
 - FIXED docs
+
+# [0.8.0]
+
+- ADDED addYears, addMonths and addDays methods to Jalali and Georgian
+- ADDED null checking for primary constructor

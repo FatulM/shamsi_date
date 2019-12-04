@@ -2,6 +2,42 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
 void main() {
+  test('Jalali(year, month, day).{year, month, day}', () {
+    final j = Jalali(1300, 1, 2);
+
+    expect(j.year, 1300);
+    expect(j.month, 1);
+    expect(j.day, 2);
+
+    expect(() {
+      Jalali(null, 1, 2);
+    }, throwsArgumentError);
+    expect(() {
+      Jalali(1300, null, 2);
+    }, throwsArgumentError);
+    expect(() {
+      Jalali(1300, 1, null);
+    }, throwsArgumentError);
+  });
+
+  test('Gregorian(year, month, day).{year, month, day}', () {
+    final j = Gregorian(2000, 1, 2);
+
+    expect(j.year, 2000);
+    expect(j.month, 1);
+    expect(j.day, 2);
+
+    expect(() {
+      Gregorian(null, 1, 2);
+    }, throwsArgumentError);
+    expect(() {
+      Gregorian(2000, null, 2);
+    }, throwsArgumentError);
+    expect(() {
+      Gregorian(2000, 1, null);
+    }, throwsArgumentError);
+  });
+
   test('Jalali.==', () {
     expect(Jalali(1000, 1, 1) == Jalali(1000, 1, 1), true);
     expect(Jalali(1000, 1, 1) != Jalali(1000, 1, 1), false);
@@ -403,5 +439,79 @@ void main() {
         Gregorian(2010, 5, 18));
     expect(Gregorian(2000, 5, 10).add(years: -10, months: -3, days: -8),
         Gregorian(1990, 2, 2));
+  });
+
+  test('Jalali.addYears', () {
+    expect(Jalali(1300, 2, 10).addYears(0), Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 10).addYears(10), Jalali(1310, 2, 10));
+    expect(Jalali(1300, 2, 10).addYears(-10), Jalali(1290, 2, 10));
+
+    expect(() {
+      Jalali(1300, 2, 10).addYears(null);
+    }, throwsArgumentError);
+  });
+
+  test('Gregorian.addYears', () {
+    expect(Gregorian(1300, 2, 10).addYears(0), Gregorian(1300, 2, 10));
+    expect(Gregorian(1300, 2, 10).addYears(10), Gregorian(1310, 2, 10));
+    expect(Gregorian(1300, 2, 10).addYears(-10), Gregorian(1290, 2, 10));
+
+    expect(() {
+      Gregorian(1300, 2, 10).addYears(null);
+    }, throwsArgumentError);
+  });
+
+  test('Jalali.addMonths', () {
+    expect(Jalali(1300, 2, 10).addMonths(0), Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 10).addMonths(1), Jalali(1300, 3, 10));
+    expect(Jalali(1300, 2, 10).addMonths(12), Jalali(1301, 2, 10));
+    expect(Jalali(1300, 2, 10).addMonths(14), Jalali(1301, 4, 10));
+    expect(Jalali(1300, 2, 10).addMonths(10), Jalali(1300, 12, 10));
+    expect(Jalali(1300, 2, 10).addMonths(-1), Jalali(1300, 1, 10));
+    expect(Jalali(1300, 2, 10).addMonths(-2), Jalali(1299, 12, 10));
+    expect(Jalali(1300, 2, 10).addMonths(-25), Jalali(1298, 1, 10));
+
+    expect(() {
+      Jalali(1300, 2, 10).addMonths(null);
+    }, throwsArgumentError);
+  });
+
+  test('Gregorian.addMonths', () {
+    expect(Gregorian(1300, 2, 10).addMonths(0), Gregorian(1300, 2, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(1), Gregorian(1300, 3, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(12), Gregorian(1301, 2, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(14), Gregorian(1301, 4, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(10), Gregorian(1300, 12, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(-1), Gregorian(1300, 1, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(-2), Gregorian(1299, 12, 10));
+    expect(Gregorian(1300, 2, 10).addMonths(-25), Gregorian(1298, 1, 10));
+
+    expect(() {
+      Gregorian(1300, 2, 10).addMonths(null);
+    }, throwsArgumentError);
+  });
+
+  test('Jalali.addDays', () {
+    expect(Jalali(1300, 2, 10).addDays(0), Jalali(1300, 2, 10));
+    expect(Jalali(1300, 2, 10).addDays(5), Jalali(1300, 2, 15));
+    expect(Jalali(1300, 2, 10).addDays(-10), Jalali(1300, 1, 31));
+    expect(Jalali(1300, 1, 31).addDays(36), Jalali(1300, 3, 5));
+    expect(Jalali(1400, 1, 1).addDays(365), Jalali(1401, 1, 1));
+
+    expect(() {
+      Jalali(1300, 2, 10).addDays(null);
+    }, throwsArgumentError);
+  });
+
+  test('Gregorian.addDays', () {
+    expect(Gregorian(2000, 2, 10).addDays(0), Gregorian(2000, 2, 10));
+    expect(Gregorian(2000, 2, 10).addDays(5), Gregorian(2000, 2, 15));
+    expect(Gregorian(2000, 2, 10).addDays(-10), Gregorian(2000, 1, 31));
+    expect(Gregorian(2000, 1, 31).addDays(34), Gregorian(2000, 3, 5));
+    expect(Gregorian(2000, 1, 1).addDays(366), Gregorian(2001, 1, 1));
+
+    expect(() {
+      Gregorian(1300, 2, 10).addDays(null);
+    }, throwsArgumentError);
   });
 }
