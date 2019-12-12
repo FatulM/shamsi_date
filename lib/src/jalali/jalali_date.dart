@@ -269,6 +269,42 @@ class Jalali implements Date, Comparable<Jalali> {
     }
   }
 
+  /// changes [year]
+  /// throws if [year] is null
+  Jalali withYear(int year) {
+    ArgumentError.checkNotNull(year, "year");
+
+    if (year == this.year) {
+      return this;
+    } else {
+      return Jalali(year, month, day);
+    }
+  }
+
+  /// changes [month]
+  /// throws if [month] is null
+  Jalali withMonth(int month) {
+    ArgumentError.checkNotNull(month, "month");
+
+    if (month == this.month) {
+      return this;
+    } else {
+      return Jalali(year, month, day);
+    }
+  }
+
+  /// changes [day]
+  /// throws if [day] is null
+  Jalali withDay(int day) {
+    ArgumentError.checkNotNull(day, "day");
+
+    if (day == this.day) {
+      return this;
+    } else {
+      return Jalali(year, month, day);
+    }
+  }
+
   /// equals operator
   @override
   bool operator ==(Object other) {

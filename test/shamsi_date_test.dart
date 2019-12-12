@@ -526,4 +526,34 @@ void main() {
       Gregorian(1300, 2, 10).addDays(null);
     }, throwsArgumentError);
   });
+
+  test('Jalali.withYear', () {
+    expect(Jalali(1398, 10, 20).withYear(1398), Jalali(1398, 10, 20));
+    expect(Jalali(1398, 10, 20).withYear(1300), Jalali(1300, 10, 20));
+    expect(Jalali(1398, 10, 20).withYear(1400), Jalali(1400, 10, 20));
+
+    expect(() {
+      Jalali(1398, 10, 20).withYear(null);
+    }, throwsArgumentError);
+  });
+
+  test('Jalali.withMonth', () {
+    expect(Jalali(1398, 10, 20).withMonth(10), Jalali(1398, 10, 20));
+    expect(Jalali(1398, 10, 20).withMonth(1), Jalali(1398, 1, 20));
+    expect(Jalali(1398, 10, 20).withMonth(12), Jalali(1398, 12, 20));
+
+    expect(() {
+      Jalali(1398, 10, 20).withMonth(null);
+    }, throwsArgumentError);
+  });
+
+  test('Jalali.withDay', () {
+    expect(Jalali(1398, 10, 20).withDay(20), Jalali(1398, 10, 20));
+    expect(Jalali(1398, 10, 20).withDay(15), Jalali(1398, 10, 15));
+    expect(Jalali(1398, 10, 20).withDay(25), Jalali(1398, 10, 25));
+
+    expect(() {
+      Jalali(1398, 10, 20).withDay(null);
+    }, throwsArgumentError);
+  });
 }
