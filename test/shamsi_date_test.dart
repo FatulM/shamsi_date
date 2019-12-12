@@ -85,13 +85,25 @@ void main() {
     expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
   });
 
-  // todo Jalali.fromJulianDayNumber
+  test('Jalali.fromJulianDayNumber', () {
+    expect(Jalali.fromJulianDayNumber(2458819), Jalali(1398, 9, 10));
+    // todo not complete
+  });
 
-  // todo Gregorian.fromJulianDayNumber
+  test('Gregorian.fromJulianDayNumber', () {
+    expect(Gregorian.fromJulianDayNumber(2458819), Gregorian(2019, 12, 1));
+    // todo not complete
+  });
 
-  // todo Jalali.julianDayNumber
+  test('Jalali.julianDayNumber', () {
+    expect(Jalali(1398, 9, 10).julianDayNumber, 2458819);
+    // todo not complete
+  });
 
-  // todo Gregorian.julianDayNumber
+  test('Gregorian.julianDayNumber', () {
+    expect(Gregorian(2019, 12, 1).julianDayNumber, 2458819);
+    // todo not complete
+  });
 
   test('Jalali.toGregorian', () {
     expect(Jalali(1360, 5, 26).toGregorian(), Gregorian(1981, 8, 17));
