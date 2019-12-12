@@ -100,5 +100,7 @@
 
 # [0.8.0]
 
-- ADDED addYears, addMonths and addDays methods to Jalali and Georgian
 - ADDED null checking for primary constructor
+- ADDED addYears, addMonths and addDays methods for Jalali and Georgian
+- ADDED withYear, withMonth and withDay methods for Jalali and Georgian
+- ADDED more tests 
