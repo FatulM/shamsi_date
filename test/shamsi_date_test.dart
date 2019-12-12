@@ -537,6 +537,16 @@ void main() {
     }, throwsArgumentError);
   });
 
+  test('Gregorian.withYear', () {
+    expect(Gregorian(2020, 10, 20).withYear(2020), Gregorian(2020, 10, 20));
+    expect(Gregorian(2020, 10, 20).withYear(2010), Gregorian(2010, 10, 20));
+    expect(Gregorian(2030, 10, 20).withYear(2030), Gregorian(2030, 10, 20));
+
+    expect(() {
+      Gregorian(2020, 10, 20).withYear(null);
+    }, throwsArgumentError);
+  });
+
   test('Jalali.withMonth', () {
     expect(Jalali(1398, 10, 20).withMonth(10), Jalali(1398, 10, 20));
     expect(Jalali(1398, 10, 20).withMonth(1), Jalali(1398, 1, 20));
@@ -547,6 +557,16 @@ void main() {
     }, throwsArgumentError);
   });
 
+  test('Gregorian.withMonth', () {
+    expect(Gregorian(2020, 10, 20).withMonth(10), Gregorian(2020, 10, 20));
+    expect(Gregorian(2020, 10, 20).withMonth(1), Gregorian(2020, 1, 20));
+    expect(Gregorian(2020, 10, 20).withMonth(12), Gregorian(2020, 12, 20));
+
+    expect(() {
+      Gregorian(2020, 10, 20).withMonth(null);
+    }, throwsArgumentError);
+  });
+
   test('Jalali.withDay', () {
     expect(Jalali(1398, 10, 20).withDay(20), Jalali(1398, 10, 20));
     expect(Jalali(1398, 10, 20).withDay(15), Jalali(1398, 10, 15));
@@ -554,6 +574,16 @@ void main() {
 
     expect(() {
       Jalali(1398, 10, 20).withDay(null);
+    }, throwsArgumentError);
+  });
+
+  test('Gregorian.withDay', () {
+    expect(Gregorian(2020, 10, 20).withDay(20), Gregorian(2020, 10, 20));
+    expect(Gregorian(2020, 10, 20).withDay(15), Gregorian(2020, 10, 15));
+    expect(Gregorian(2020, 10, 20).withDay(25), Gregorian(2020, 10, 25));
+
+    expect(() {
+      Gregorian(2020, 10, 20).withDay(null);
     }, throwsArgumentError);
   });
 }

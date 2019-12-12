@@ -275,6 +275,42 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
+  /// changes [year]
+  /// throws if [year] is null
+  Gregorian withYear(int year) {
+    ArgumentError.checkNotNull(year, "year");
+
+    if (year == this.year) {
+      return this;
+    } else {
+      return Gregorian(year, month, day);
+    }
+  }
+
+  /// changes [month]
+  /// throws if [month] is null
+  Gregorian withMonth(int month) {
+    ArgumentError.checkNotNull(month, "month");
+
+    if (month == this.month) {
+      return this;
+    } else {
+      return Gregorian(year, month, day);
+    }
+  }
+
+  /// changes [day]
+  /// throws if [day] is null
+  Gregorian withDay(int day) {
+    ArgumentError.checkNotNull(day, "day");
+
+    if (day == this.day) {
+      return this;
+    } else {
+      return Gregorian(year, month, day);
+    }
+  }
+
   /// equals operator
   @override
   bool operator ==(Object other) {
