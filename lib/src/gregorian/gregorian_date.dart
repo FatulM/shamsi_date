@@ -204,21 +204,17 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// add [days]
+  /// this Method is safe
+  /// throws if [days] is null
   Gregorian operator +(int days) {
-    if (days == 0) {
-      return this;
-    } else {
-      return Gregorian.fromJulianDayNumber(julianDayNumber + days);
-    }
+    return addDays(days);
   }
 
   /// subtract [days]
+  /// this Method is safe
+  /// throws if [days] is null
   Gregorian operator -(int days) {
-    if (days == 0) {
-      return this;
-    } else {
-      return Gregorian.fromJulianDayNumber(julianDayNumber - days);
-    }
+    return addDays(-days);
   }
 
   /// add [days], [months] and [years] separately

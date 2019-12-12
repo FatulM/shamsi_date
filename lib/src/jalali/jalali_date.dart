@@ -198,21 +198,17 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// add [days]
+  /// this Method is safe
+  ///  throws if [days] is null
   Jalali operator +(int days) {
-    if (days == 0) {
-      return this;
-    } else {
-      return Jalali.fromJulianDayNumber(julianDayNumber + days);
-    }
+    return addDays(days);
   }
 
   /// subtract [days]
+  /// this Method is safe
+  /// throws if [days] is null
   Jalali operator -(int days) {
-    if (days == 0) {
-      return this;
-    } else {
-      return Jalali.fromJulianDayNumber(julianDayNumber - days);
-    }
+    return addDays(-days);
   }
 
   /// add [days], [months] and [years] separately
@@ -313,6 +309,8 @@ class _JalaliCalculation {
   ///
   /// [2. see here](http://www.fourmilab.ch/documents/calendar/)
   factory _JalaliCalculation.calculate(int jy) {
+    ArgumentError.checkNotNull(jy, "jy");
+
     // Jalali years starting the 33-year rule.
     final List<int> breaks = [
       -61,
