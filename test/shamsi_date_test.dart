@@ -74,15 +74,27 @@ void main() {
   });
 
   test('Jalali.{ fromJulianDayNumber , julianDayNumber }', () {
-    expect(Jalali.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
-    expect(Jalali.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
-    expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
+    expect(Jalali
+        .fromJulianDayNumber(2400000)
+        .julianDayNumber, 2400000);
+    expect(Jalali
+        .fromJulianDayNumber(2458605)
+        .julianDayNumber, 2458605);
+    expect(Jalali
+        .fromJulianDayNumber(2500000)
+        .julianDayNumber, 2500000);
   });
 
   test('Gregorian.{ fromJulianDayNumber , julianDayNumber }', () {
-    expect(Gregorian.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
-    expect(Gregorian.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
-    expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
+    expect(Gregorian
+        .fromJulianDayNumber(2400000)
+        .julianDayNumber, 2400000);
+    expect(Gregorian
+        .fromJulianDayNumber(2458605)
+        .julianDayNumber, 2458605);
+    expect(Gregorian
+        .fromJulianDayNumber(2500000)
+        .julianDayNumber, 2500000);
   });
 
   test('Jalali.fromJulianDayNumber', () {
@@ -284,6 +296,48 @@ void main() {
     expect(g1 < g3, true);
   });
 
+  test('JalaliFormatter(date)', () {
+    expect(() {
+      JalaliFormatter(null);
+    }, throwsArgumentError);
+  });
+
+  test('GregorianFormatter(date)', () {
+    expect(() {
+      GregorianFormatter(null);
+    }, throwsArgumentError);
+  });
+
+  test('JalaliFormatter.yyyy', () {
+    expect(Jalali(0).formatter.yyyy, '0000');
+    expect(Jalali(1).formatter.yyyy, '0001');
+    expect(Jalali(12).formatter.yyyy, '0012');
+    expect(Jalali(123).formatter.yyyy, '0123');
+    expect(Jalali(1234).formatter.yyyy, '1234');
+    expect(Jalali(9999).formatter.yyyy, '9999');
+    expect(() {
+      Jalali(-1).formatter.yyyy;
+    }, throwsStateError);
+    expect(() {
+      Jalali(10000).formatter.yyyy;
+    }, throwsStateError);
+  });
+
+  test('GregorianFormatter.yyyy', () {
+    expect(Gregorian(0).formatter.yyyy, '0000');
+    expect(Gregorian(1).formatter.yyyy, '0001');
+    expect(Gregorian(12).formatter.yyyy, '0012');
+    expect(Gregorian(123).formatter.yyyy, '0123');
+    expect(Gregorian(1234).formatter.yyyy, '1234');
+    expect(Gregorian(9999).formatter.yyyy, '9999');
+    expect(() {
+      Gregorian(-1).formatter.yyyy;
+    }, throwsStateError);
+    expect(() {
+      Gregorian(10000).formatter.yyyy;
+    }, throwsStateError);
+  });
+
   test('Jalali.formatter', () {
     final j1 = Jalali(1397, 1, 3);
     final f1 = j1.formatter;
@@ -385,18 +439,30 @@ void main() {
     final j1 = Jalali(1398, 6, 6);
     final j2 = Jalali(1398, 6, 6);
     expect(j2.hashCode, j1.hashCode);
-    expect(j1.copy(year: 1397).hashCode != j1.hashCode, true);
-    expect(j1.copy(month: 5).hashCode != j1.hashCode, true);
-    expect(j1.copy(day: 7).hashCode != j1.hashCode, true);
+    expect(j1
+        .copy(year: 1397)
+        .hashCode != j1.hashCode, true);
+    expect(j1
+        .copy(month: 5)
+        .hashCode != j1.hashCode, true);
+    expect(j1
+        .copy(day: 7)
+        .hashCode != j1.hashCode, true);
   });
 
   test('Gregorian.hashCode', () {
     final g1 = Gregorian(2019, 8, 28);
     final g2 = Gregorian(2019, 8, 28);
     expect(g2.hashCode, g1.hashCode);
-    expect(g1.copy(year: 2018).hashCode != g1.hashCode, true);
-    expect(g1.copy(month: 7).hashCode != g1.hashCode, true);
-    expect(g1.copy(day: 1).hashCode != g1.hashCode, true);
+    expect(g1
+        .copy(year: 2018)
+        .hashCode != g1.hashCode, true);
+    expect(g1
+        .copy(month: 7)
+        .hashCode != g1.hashCode, true);
+    expect(g1
+        .copy(day: 1)
+        .hashCode != g1.hashCode, true);
   });
 
   test('Jalali.+', () {
