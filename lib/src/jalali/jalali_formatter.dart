@@ -41,9 +41,13 @@ class JalaliFormatter extends DateFormatter {
 
   /// Jalali month name
   @override
-  String get mN => _monthNames[date.month - 1];
+  String get mN {
+    return _monthNames[date.month - 1];
+  }
 
   /// Jalali week day name
   @override
-  String get wN => _weekDayNames[date.weekDay - 1];
+  String get wN {
+    return _weekDayNames[date.weekDay - 1];
+  }
 }

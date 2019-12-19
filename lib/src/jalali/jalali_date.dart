@@ -38,7 +38,9 @@ class Jalali implements Date, Comparable<Jalali> {
   /// [Shanbe] = 1
   /// [Jomee]  = 7
   @override
-  int get weekDay => (julianDayNumber + 2) % 7 + 1;
+  int get weekDay {
+    return (julianDayNumber + 2) % 7 + 1;
+  }
 
   /// Computes number of days in a given month in a Jalali year.
   @override
@@ -56,7 +58,9 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Formatter for this date object
   @override
-  JalaliFormatter get formatter => JalaliFormatter(this);
+  JalaliFormatter get formatter {
+    return JalaliFormatter(this);
+  }
 
   /// Create a Jalali date by using year, month and day
   /// year and month default to 1

@@ -43,7 +43,9 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// [monday] = 1
   /// [sunday] = 7
   @override
-  int get weekDay => julianDayNumber % 7 + 1;
+  int get weekDay {
+    return julianDayNumber % 7 + 1;
+  }
 
   /// Computes number of days in a given month in a Gregorian year.
   @override
@@ -71,7 +73,9 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// Formatter for this date object
   @override
-  GregorianFormatter get formatter => GregorianFormatter(this);
+  GregorianFormatter get formatter {
+    return GregorianFormatter(this);
+  }
 
   /// Create a Gregorian date by using year, month and day
   /// year and month default to 1

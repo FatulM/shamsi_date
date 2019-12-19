@@ -15,7 +15,9 @@ abstract class DateFormatter {
   DateFormatter(this.date);
 
   /// Year number string whatever length it has
-  String get y => '${date.year}';
+  String get y {
+    return '${date.year}';
+  }
 
   /// Year number string ensured to have length of 4
   String get yyyy {
@@ -31,7 +33,9 @@ abstract class DateFormatter {
   }
 
   /// Month number string whatever length it has
-  String get m => '${date.month}';
+  String get m {
+    return '${date.month}';
+  }
 
   /// Month number string ensured to have length of 2
   String get mm {
@@ -43,7 +47,9 @@ abstract class DateFormatter {
   String get mN;
 
   /// Day number string whatever length it has
-  String get d => '${date.day}';
+  String get d {
+    return '${date.day}';
+  }
 
   /// Day number string ensured to have length of 2
   String get dd {
