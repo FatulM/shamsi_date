@@ -74,27 +74,15 @@ void main() {
   });
 
   test('Jalali.{ fromJulianDayNumber , julianDayNumber }', () {
-    expect(Jalali
-        .fromJulianDayNumber(2400000)
-        .julianDayNumber, 2400000);
-    expect(Jalali
-        .fromJulianDayNumber(2458605)
-        .julianDayNumber, 2458605);
-    expect(Jalali
-        .fromJulianDayNumber(2500000)
-        .julianDayNumber, 2500000);
+    expect(Jalali.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
+    expect(Jalali.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
+    expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
   });
 
   test('Gregorian.{ fromJulianDayNumber , julianDayNumber }', () {
-    expect(Gregorian
-        .fromJulianDayNumber(2400000)
-        .julianDayNumber, 2400000);
-    expect(Gregorian
-        .fromJulianDayNumber(2458605)
-        .julianDayNumber, 2458605);
-    expect(Gregorian
-        .fromJulianDayNumber(2500000)
-        .julianDayNumber, 2500000);
+    expect(Gregorian.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
+    expect(Gregorian.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
+    expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
   });
 
   test('Jalali.fromJulianDayNumber', () {
@@ -439,30 +427,18 @@ void main() {
     final j1 = Jalali(1398, 6, 6);
     final j2 = Jalali(1398, 6, 6);
     expect(j2.hashCode, j1.hashCode);
-    expect(j1
-        .copy(year: 1397)
-        .hashCode != j1.hashCode, true);
-    expect(j1
-        .copy(month: 5)
-        .hashCode != j1.hashCode, true);
-    expect(j1
-        .copy(day: 7)
-        .hashCode != j1.hashCode, true);
+    expect(j1.copy(year: 1397).hashCode != j1.hashCode, true);
+    expect(j1.copy(month: 5).hashCode != j1.hashCode, true);
+    expect(j1.copy(day: 7).hashCode != j1.hashCode, true);
   });
 
   test('Gregorian.hashCode', () {
     final g1 = Gregorian(2019, 8, 28);
     final g2 = Gregorian(2019, 8, 28);
     expect(g2.hashCode, g1.hashCode);
-    expect(g1
-        .copy(year: 2018)
-        .hashCode != g1.hashCode, true);
-    expect(g1
-        .copy(month: 7)
-        .hashCode != g1.hashCode, true);
-    expect(g1
-        .copy(day: 1)
-        .hashCode != g1.hashCode, true);
+    expect(g1.copy(year: 2018).hashCode != g1.hashCode, true);
+    expect(g1.copy(month: 7).hashCode != g1.hashCode, true);
+    expect(g1.copy(day: 1).hashCode != g1.hashCode, true);
   });
 
   test('Jalali.+', () {
