@@ -398,6 +398,20 @@ void main() {
         Gregorian(2000, 5, 10));
   });
 
+  test('Jalali.fromDateTime', () {
+    final dt = DateTime(2019, 12, 25);
+    final j1 = Jalali.fromDateTime(dt);
+    final j2 = Jalali(1398, 10, 4);
+    expect(j1, j2);
+  });
+
+  test('Gregorian.fromDateTime', () {
+    final dt = DateTime(2000, 10, 5);
+    final g1 = Gregorian.fromDateTime(dt);
+    final g2 = Gregorian(2000, 10, 5);
+    expect(g1, g2);
+  });
+
   test('Jalali.now', () {
     final dt = DateTime.now();
     final g = Jalali.now().toGregorian();
