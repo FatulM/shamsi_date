@@ -115,6 +115,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// Create a Gregorian date from Jalali date
   factory Gregorian.fromJalali(Jalali date) {
+    ArgumentError.checkNotNull(date, 'date');
+
     return Gregorian.fromJulianDayNumber(date.julianDayNumber);
   }
 

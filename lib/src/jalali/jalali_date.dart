@@ -116,6 +116,8 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Create a Jalali date from Gregorian date
   factory Jalali.fromGregorian(Gregorian date) {
+    ArgumentError.checkNotNull(date, 'date');
+
     return Jalali.fromJulianDayNumber(date.julianDayNumber);
   }
 

@@ -127,10 +127,18 @@ void main() {
 
   test('Jalali.fromGregorian', () {
     expect(Jalali.fromGregorian(Gregorian(1981, 8, 17)), Jalali(1360, 5, 26));
+
+    expect(() {
+      Jalali.fromGregorian(null);
+    }, throwsArgumentError);
   });
 
   test('Gregorian.fromJalali', () {
     expect(Gregorian.fromJalali(Jalali(1360, 5, 26)), Gregorian(1981, 8, 17));
+
+    expect(() {
+      Gregorian.fromJalali(null);
+    }, throwsArgumentError);
   });
 
   test('Jalali.isValid', () {
