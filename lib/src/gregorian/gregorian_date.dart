@@ -90,6 +90,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
   /// calendars) to some millions years ahead of the present.
   factory Gregorian.fromJulianDayNumber(int julianDayNumber) {
+    ArgumentError.checkNotNull(julianDayNumber, 'julianDayNumber');
+
     int j, i, gd, gm, gy;
 
     j = 4 * julianDayNumber + 139361631;

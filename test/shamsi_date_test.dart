@@ -77,12 +77,20 @@ void main() {
     expect(Jalali.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
     expect(Jalali.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
     expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
+
+    expect(() {
+      Jalali.fromJulianDayNumber(null);
+    }, throwsArgumentError);
   });
 
   test('Gregorian.{ fromJulianDayNumber , julianDayNumber }', () {
     expect(Gregorian.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
     expect(Gregorian.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
     expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
+
+    expect(() {
+      Gregorian.fromJulianDayNumber(null);
+    }, throwsArgumentError);
   });
 
   test('Jalali.fromJulianDayNumber', () {

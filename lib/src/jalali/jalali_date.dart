@@ -73,6 +73,8 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
   factory Jalali.fromJulianDayNumber(int julianDayNumber) {
+    ArgumentError.checkNotNull(julianDayNumber, 'julianDayNumber');
+
     // Calculate Gregorian year (gy).
     int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
     int jy = gy - 621;
