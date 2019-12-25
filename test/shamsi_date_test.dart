@@ -403,6 +403,10 @@ void main() {
     final j1 = Jalali.fromDateTime(dt);
     final j2 = Jalali(1398, 10, 4);
     expect(j1, j2);
+
+    expect(() {
+      Jalali.fromDateTime(null);
+    }, throwsArgumentError);
   });
 
   test('Gregorian.fromDateTime', () {
@@ -410,6 +414,10 @@ void main() {
     final g1 = Gregorian.fromDateTime(dt);
     final g2 = Gregorian(2000, 10, 5);
     expect(g1, g2);
+
+    expect(() {
+      Gregorian.fromDateTime(null);
+    }, throwsArgumentError);
   });
 
   test('Jalali.now', () {

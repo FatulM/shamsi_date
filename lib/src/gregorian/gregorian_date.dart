@@ -108,6 +108,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// Create a Gregorian date by using [DateTime] object
   factory Gregorian.fromDateTime(DateTime dateTime) {
+    ArgumentError.checkNotNull(dateTime, 'dateTime');
+
     return Gregorian(dateTime.year, dateTime.month, dateTime.day);
   }
 

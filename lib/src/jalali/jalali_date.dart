@@ -109,6 +109,8 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Create a Jalali date by using [DateTime] object
   factory Jalali.fromDateTime(DateTime dateTime) {
+    ArgumentError.checkNotNull(dateTime, 'dateTime');
+
     return Gregorian.fromDateTime(dateTime).toJalali();
   }
 
