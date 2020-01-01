@@ -517,6 +517,10 @@ void main() {
     expect(Jalali(1300, 2, 10) + (-10), Jalali(1300, 1, 31));
     expect(Jalali(1300, 1, 31) + 36, Jalali(1300, 3, 5));
     expect(Jalali(1400, 1, 1) + 365, Jalali(1401, 1, 1));
+
+    expect(() {
+      return Jalali.now() + null;
+    }, throwsArgumentError);
   });
 
   test('Gregorian.+', () {
@@ -525,6 +529,10 @@ void main() {
     expect(Gregorian(2000, 2, 10) + (-10), Gregorian(2000, 1, 31));
     expect(Gregorian(2000, 1, 31) + 34, Gregorian(2000, 3, 5));
     expect(Gregorian(2000, 1, 1) + 366, Gregorian(2001, 1, 1));
+
+    expect(() {
+      return Gregorian.now() + null;
+    }, throwsArgumentError);
   });
 
   test('Jalali.-', () {
@@ -533,6 +541,10 @@ void main() {
     expect(Jalali(1300, 2, 15) - 5, Jalali(1300, 2, 10));
     expect(Jalali(1300, 3, 5) - 36, Jalali(1300, 1, 31));
     expect(Jalali(1401, 1, 1) - 365, Jalali(1400, 1, 1));
+
+    expect(() {
+      return Jalali.now() - null;
+    }, throwsArgumentError);
   });
 
   test('Gregorian.-', () {
@@ -541,6 +553,10 @@ void main() {
     expect(Gregorian(2000, 1, 31) - (-10), Gregorian(2000, 2, 10));
     expect(Gregorian(2000, 3, 5) - 34, Gregorian(2000, 1, 31));
     expect(Gregorian(2001, 1, 1) - 366, Gregorian(2000, 1, 1));
+
+    expect(() {
+      return Gregorian.now() - null;
+    }, throwsArgumentError);
   });
 
   test('Jalali.add', () {

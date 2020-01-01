@@ -221,6 +221,8 @@ class Jalali implements Date, Comparable<Jalali> {
   /// this Method is safe
   ///  throws if [days] is null
   Jalali operator +(int days) {
+    ArgumentError.checkNotNull(days, 'days');
+
     return addDays(days);
   }
 
@@ -228,6 +230,8 @@ class Jalali implements Date, Comparable<Jalali> {
   /// this Method is safe
   /// throws if [days] is null
   Jalali operator -(int days) {
+    ArgumentError.checkNotNull(days, 'days');
+
     return addDays(-days);
   }
 

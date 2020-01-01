@@ -228,6 +228,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// this Method is safe
   /// throws if [days] is null
   Gregorian operator +(int days) {
+    ArgumentError.checkNotNull(days, 'days');
+
     return addDays(days);
   }
 
@@ -235,6 +237,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// this Method is safe
   /// throws if [days] is null
   Gregorian operator -(int days) {
+    ArgumentError.checkNotNull(days, 'days');
+
     return addDays(-days);
   }
 
