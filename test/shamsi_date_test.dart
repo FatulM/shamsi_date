@@ -314,6 +314,22 @@ void main() {
     expect(g3 < g1, false);
     expect(g3 <= g1, false);
     expect(g1 < g3, true);
+
+    expect(() {
+      return g1.compareTo(null);
+    }, throwsArgumentError);
+    expect(() {
+      return g1 > null;
+    }, throwsArgumentError);
+    expect(() {
+      return g1 >= null;
+    }, throwsArgumentError);
+    expect(() {
+      return g1 < null;
+    }, throwsArgumentError);
+    expect(() {
+      return g1 <= null;
+    }, throwsArgumentError);
   });
 
   test('JalaliFormatter(date)', () {
