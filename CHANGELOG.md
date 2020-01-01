@@ -100,7 +100,8 @@
 
 # [0.8.0]
 
-- ADDED null checking for primary constructor
+- ADDED null checking for constructors and factories
+- ADDED null checking for most of the methods
 - ADDED addYears, addMonths and addDays methods for Jalali and Georgian
 - ADDED withYear, withMonth and withDay methods for Jalali and Georgian
 - ADDED more tests
