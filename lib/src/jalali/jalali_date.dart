@@ -448,12 +448,18 @@ class Jalali implements Date, Comparable<Jalali> {
 /// Internal class
 class _JalaliCalculation {
   /// Number of years since the last leap year (0 to 4)
+  ///
+  /// non-null
   final int leap;
 
   /// Gregorian year of the beginning of Jalali year
+  ///
+  /// non-null
   final int gy;
 
   /// The March day of Farvardin the 1st (1st day of jy)
+  ///
+  /// non-null
   final int march;
 
   _JalaliCalculation({this.leap, this.gy, this.march});
@@ -466,6 +472,10 @@ class _JalaliCalculation {
   /// [1. see here](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
   ///
   /// [2. see here](http://www.fourmilab.ch/documents/calendar/)
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory _JalaliCalculation.calculate(int jy) {
     ArgumentError.checkNotNull(jy, "jy");
 
