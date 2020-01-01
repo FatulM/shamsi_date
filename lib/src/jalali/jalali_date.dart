@@ -172,6 +172,8 @@ class Jalali implements Date, Comparable<Jalali> {
   /// Compare dates
   @override
   int compareTo(Jalali other) {
+    ArgumentError.checkNotNull(other, 'other');
+
     if (year != other.year) {
       return year > other.year ? 1 : -1;
     }
@@ -189,21 +191,29 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// bigger than operator
   bool operator >(Jalali other) {
+    ArgumentError.checkNotNull(other, 'other');
+
     return compareTo(other) > 0;
   }
 
   /// bigger than or equal operator
   bool operator >=(Jalali other) {
+    ArgumentError.checkNotNull(other, 'other');
+
     return compareTo(other) >= 0;
   }
 
   /// less than operator
   bool operator <(Jalali other) {
+    ArgumentError.checkNotNull(other, 'other');
+
     return compareTo(other) < 0;
   }
 
   /// less than or equal operator
   bool operator <=(Jalali other) {
+    ArgumentError.checkNotNull(other, 'other');
+
     return compareTo(other) <= 0;
   }
 

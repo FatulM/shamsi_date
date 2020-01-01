@@ -272,6 +272,22 @@ void main() {
     expect(j3 < j1, false);
     expect(j3 <= j1, false);
     expect(j1 < j3, true);
+
+    expect(() {
+      return j1.compareTo(null);
+    }, throwsArgumentError);
+    expect(() {
+      return j1 > null;
+    }, throwsArgumentError);
+    expect(() {
+      return j1 >= null;
+    }, throwsArgumentError);
+    expect(() {
+      return j1 < null;
+    }, throwsArgumentError);
+    expect(() {
+      return j1 <= null;
+    }, throwsArgumentError);
   });
 
   test('Gregorian.{ compareTo , > , >= , == ,  <= , < }', () {
