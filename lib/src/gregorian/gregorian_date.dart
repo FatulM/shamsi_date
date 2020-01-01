@@ -11,14 +11,20 @@ import 'package:shamsi_date/src/jalali/jalali_date.dart';
 /// Gregorian date class
 class Gregorian implements Date, Comparable<Gregorian> {
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
+  ///
+  /// non-null
   @override
   final int year;
 
   /// Gregorian month (1 to 12)
+  ///
+  /// non-null
   @override
   final int month;
 
   /// Gregorian day of the month (1 to 28/29/30/31)
+  ///
+  /// non-null
   @override
   final int day;
 
@@ -28,6 +34,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   ///
   /// The procedure was tested to be good since 1 March, -100100 (of both
   /// calendars) up to a few million years into the future.
+  ///
+  /// non-null
   @override
   int get julianDayNumber {
     int d = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
@@ -42,12 +50,16 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Week day number
   /// [monday] = 1
   /// [sunday] = 7
+  ///
+  /// non-null
   @override
   int get weekDay {
     return julianDayNumber % 7 + 1;
   }
 
   /// Computes number of days in a given month in a Gregorian year.
+  ///
+  /// non-null
   @override
   int get monthLength {
     switch (month) {
@@ -72,6 +84,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Formatter for this date object
+  ///
+  /// non-null
   @override
   GregorianFormatter get formatter {
     return GregorianFormatter(this);
@@ -80,6 +94,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Create a Gregorian date by using year, month and day
   /// year and month default to 1
   /// [year], [month] and [day] can not be null
+  ///
+  /// throws on null arguments
+  ///
+  /// non-null
   Gregorian(this.year, [this.month = 1, this.day = 1]) {
     ArgumentError.checkNotNull(year, 'year');
     ArgumentError.checkNotNull(month, 'month');
@@ -89,6 +107,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
   /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
   /// calendars) to some millions years ahead of the present.
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory Gregorian.fromJulianDayNumber(int julianDayNumber) {
     ArgumentError.checkNotNull(julianDayNumber, 'julianDayNumber');
 
@@ -107,6 +129,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Create a Gregorian date by using [DateTime] object
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory Gregorian.fromDateTime(DateTime dateTime) {
     ArgumentError.checkNotNull(dateTime, 'dateTime');
 
@@ -114,6 +140,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Create a Gregorian date from Jalali date
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory Gregorian.fromJalali(Jalali date) {
     ArgumentError.checkNotNull(date, 'date');
 
@@ -121,11 +151,15 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Get Gregorian date for now
+  ///
+  /// non-null
   factory Gregorian.now() {
     return Gregorian.fromDateTime(DateTime.now());
   }
 
   /// Copy this date object with some fields changed
+  ///
+  /// non-null
   Gregorian copy({int year, int month, int day}) {
     if (year == null && month == null && day == null) {
       return this;
@@ -135,16 +169,22 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Converts Gregorian date to [DateTime] object
+  ///
+  /// non-null
   DateTime toDateTime() {
     return DateTime(year, month, day);
   }
 
   /// Converts a Gregorian date to Jalali.
+  ///
+  /// non-null
   Jalali toJalali() {
     return Jalali.fromJulianDayNumber(julianDayNumber);
   }
 
   /// Checks if a year is a leap year or not.
+  ///
+  /// non-null
   @override
   bool isLeapYear() {
     if (year % 4 == 0) {
@@ -159,6 +199,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Checks whether a Gregorian date is valid or not.
+  ///
+  /// non-null
   @override
   bool isValid() {
     return year >= -100100 &&
@@ -171,12 +213,18 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// Default string representation: `Gregorian(YYYY,MM,DD)`.
   /// use formatter for custom formatting.
+  ///
+  /// non-null
   @override
   String toString() {
     return 'Gregorian($year,$month,$day)';
   }
 
   /// Compare dates
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   @override
   int compareTo(Gregorian other) {
     ArgumentError.checkNotNull(other, 'other');
@@ -197,6 +245,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// bigger than operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator >(Gregorian other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -204,6 +256,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// bigger than or equal operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator >=(Gregorian other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -211,6 +267,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// less than operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator <(Gregorian other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -218,6 +278,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// less than or equal operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator <=(Gregorian other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -226,7 +290,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// add [days]
   /// this Method is safe
-  /// throws if [days] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian operator +(int days) {
     ArgumentError.checkNotNull(days, 'days');
 
@@ -235,7 +302,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// subtract [days]
   /// this Method is safe
-  /// throws if [days] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian operator -(int days) {
     ArgumentError.checkNotNull(days, 'days');
 
@@ -245,8 +315,12 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// add [days], [months] and [years] separately
   /// note: it does not make any conversion, it simply adds to each field value
   /// for subtracting simple add negative value
+  ///
   /// UNSAFE
+  ///
   /// throws on null arguments
+  ///
+  /// non-null
   Gregorian add({int years = 0, int months = 0, int days = 0}) {
     ArgumentError.checkNotNull(years, 'years');
     ArgumentError.checkNotNull(months, 'months');
@@ -260,7 +334,11 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// add [years] to this date
-  /// throws if [years] is null
+  ///
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian addYears(int years) {
     ArgumentError.checkNotNull(years, 'years');
 
@@ -273,7 +351,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// add [months] to this date
   /// this Method is safe
-  /// throws if [months] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian addMonths(int months) {
     ArgumentError.checkNotNull(months, 'months');
 
@@ -293,7 +374,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// add [days] to this date
   /// this Method is safe
-  /// throws if [days] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian addDays(int days) {
     ArgumentError.checkNotNull(days, 'days');
 
@@ -306,7 +390,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// changes [year]
-  /// throws if [year] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian withYear(int year) {
     ArgumentError.checkNotNull(year, "year");
 
@@ -318,7 +405,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// changes [month]
-  /// throws if [month] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian withMonth(int month) {
     ArgumentError.checkNotNull(month, "month");
 
@@ -330,7 +420,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// changes [day]
-  /// throws if [day] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Gregorian withDay(int day) {
     ArgumentError.checkNotNull(day, "day");
 
@@ -342,6 +435,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// equals operator
+  ///
+  /// non-null
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
@@ -353,6 +448,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// hashcode operator
+  ///
+  /// non-null
   @override
   int get hashCode {
     return year.hashCode ^ month.hashCode ^ day.hashCode;

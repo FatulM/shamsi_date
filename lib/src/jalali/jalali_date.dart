@@ -11,18 +11,26 @@ import 'package:shamsi_date/src/jalali/jalali_formatter.dart';
 /// Jalali (Shamsi or Persian) Date class
 class Jalali implements Date, Comparable<Jalali> {
   /// Jalali year (1 to 3100)
+  ///
+  /// non-null
   @override
   final int year;
 
   /// Jalali month (1 to 12)
+  ///
+  /// non-null
   @override
   final int month;
 
   /// Jalali day (1 to 29/31)
+  ///
+  /// non-null
   @override
   final int day;
 
   /// Converts a date of the Jalali calendar to the Julian Day number.
+  ///
+  /// non-null
   @override
   int get julianDayNumber {
     final r = _JalaliCalculation.calculate(year);
@@ -37,12 +45,16 @@ class Jalali implements Date, Comparable<Jalali> {
   /// Week day number
   /// [Shanbe] = 1
   /// [Jomee]  = 7
+  ///
+  /// non-null
   @override
   int get weekDay {
     return (julianDayNumber + 2) % 7 + 1;
   }
 
   /// Computes number of days in a given month in a Jalali year.
+  ///
+  /// non-null
   @override
   int get monthLength {
     if (month <= 6) {
@@ -57,6 +69,8 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Formatter for this date object
+  ///
+  /// non-null
   @override
   JalaliFormatter get formatter {
     return JalaliFormatter(this);
@@ -65,6 +79,10 @@ class Jalali implements Date, Comparable<Jalali> {
   /// Create a Jalali date by using year, month and day
   /// year and month default to 1
   /// [year], [month] and [day] can not be null
+  ///
+  /// throws on null arguments
+  ///
+  /// non-null
   Jalali(this.year, [this.month = 1, this.day = 1]) {
     ArgumentError.checkNotNull(year, 'year');
     ArgumentError.checkNotNull(month, 'month');
@@ -72,6 +90,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory Jalali.fromJulianDayNumber(int julianDayNumber) {
     ArgumentError.checkNotNull(julianDayNumber, 'julianDayNumber');
 
@@ -108,6 +130,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Create a Jalali date by using [DateTime] object
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory Jalali.fromDateTime(DateTime dateTime) {
     ArgumentError.checkNotNull(dateTime, 'dateTime');
 
@@ -115,6 +141,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Create a Jalali date from Gregorian date
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   factory Jalali.fromGregorian(Gregorian date) {
     ArgumentError.checkNotNull(date, 'date');
 
@@ -122,6 +152,8 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Copy this date object with some fields changed
+  ///
+  /// non-null
   Jalali copy({int year, int month, int day}) {
     if (year == null && month == null && day == null) {
       return this;
@@ -131,27 +163,37 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Get Jalali date for now
+  ///
+  /// non-null
   factory Jalali.now() {
     return Gregorian.now().toJalali();
   }
 
   /// Converts Jalali date to [DateTime] object
+  ///
+  /// non-null
   DateTime toDateTime() {
     return toGregorian().toDateTime();
   }
 
   /// Converts a Jalali date to Gregorian.
+  ///
+  /// non-null
   Gregorian toGregorian() {
     return Gregorian.fromJulianDayNumber(julianDayNumber);
   }
 
   /// Checks if a year is a leap year or not.
+  ///
+  /// non-null
   @override
   bool isLeapYear() {
     return _JalaliCalculation.calculate(year).leap == 0;
   }
 
   /// Checks whether a Jalali date is valid or not.
+  ///
+  /// non-null
   @override
   bool isValid() {
     return year >= -61 &&
@@ -164,12 +206,18 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// Default string representation: `Jalali(YYYY,MM,DD)`.
   /// use formatter for custom formatting.
+  ///
+  /// non-null
   @override
   String toString() {
     return 'Jalali($year,$month,$day)';
   }
 
   /// Compare dates
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   @override
   int compareTo(Jalali other) {
     ArgumentError.checkNotNull(other, 'other');
@@ -190,6 +238,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// bigger than operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator >(Jalali other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -197,6 +249,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// bigger than or equal operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator >=(Jalali other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -204,6 +260,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// less than operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator <(Jalali other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -211,6 +271,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// less than or equal operator
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   bool operator <=(Jalali other) {
     ArgumentError.checkNotNull(other, 'other');
 
@@ -219,7 +283,10 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// add [days]
   /// this Method is safe
-  ///  throws if [days] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali operator +(int days) {
     ArgumentError.checkNotNull(days, 'days');
 
@@ -228,7 +295,10 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// subtract [days]
   /// this Method is safe
-  /// throws if [days] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali operator -(int days) {
     ArgumentError.checkNotNull(days, 'days');
 
@@ -238,8 +308,12 @@ class Jalali implements Date, Comparable<Jalali> {
   /// add [days], [months] and [years] separately
   /// note: it does not make any conversion, it simply adds to each field value
   /// for subtracting simple add negative value
+  ///
   /// UNSAFE
+  ///
   /// throws on null arguments
+  ///
+  /// non-null
   Jalali add({int years = 0, int months = 0, int days = 0}) {
     ArgumentError.checkNotNull(years, 'years');
     ArgumentError.checkNotNull(months, 'months');
@@ -253,7 +327,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// add [years] to this date
-  /// throws if [years] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali addYears(int years) {
     ArgumentError.checkNotNull(years, 'years');
 
@@ -266,7 +343,10 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// add [months] to this date
   /// this Method is safe
-  /// throws if [months] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali addMonths(int months) {
     ArgumentError.checkNotNull(months, 'months');
 
@@ -286,7 +366,10 @@ class Jalali implements Date, Comparable<Jalali> {
 
   /// add [days] to this date
   /// this Method is safe
-  /// throws if [days] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali addDays(int days) {
     ArgumentError.checkNotNull(days, 'days');
 
@@ -311,7 +394,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// changes [month]
-  /// throws if [month] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali withMonth(int month) {
     ArgumentError.checkNotNull(month, "month");
 
@@ -323,7 +409,10 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// changes [day]
-  /// throws if [day] is null
+  ///
+  /// throws on null argument
+  ///
+  /// non-null
   Jalali withDay(int day) {
     ArgumentError.checkNotNull(day, "day");
 
@@ -335,6 +424,8 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// equals operator
+  ///
+  /// non-null
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
@@ -346,6 +437,8 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// hashCode operator
+  ///
+  /// non-null
   @override
   int get hashCode {
     return year.hashCode ^ month.hashCode ^ day.hashCode;
