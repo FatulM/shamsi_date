@@ -568,6 +568,16 @@ void main() {
         Jalali(1310, 5, 18));
     expect(Jalali(1300, 5, 10).add(years: -10, months: -3, days: -8),
         Jalali(1290, 2, 2));
+
+    expect(() {
+      Jalali.now().add(years: null);
+    }, throwsArgumentError);
+    expect(() {
+      Jalali.now().add(months: null);
+    }, throwsArgumentError);
+    expect(() {
+      Jalali.now().add(days: null);
+    }, throwsArgumentError);
   });
 
   test('Gregorian.add', () {
@@ -579,6 +589,16 @@ void main() {
         Gregorian(2010, 5, 18));
     expect(Gregorian(2000, 5, 10).add(years: -10, months: -3, days: -8),
         Gregorian(1990, 2, 2));
+
+    expect(() {
+      Gregorian.now().add(years: null);
+    }, throwsArgumentError);
+    expect(() {
+      Gregorian.now().add(months: null);
+    }, throwsArgumentError);
+    expect(() {
+      Gregorian.now().add(days: null);
+    }, throwsArgumentError);
   });
 
   test('Jalali.addYears', () {

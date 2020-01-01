@@ -239,7 +239,12 @@ class Jalali implements Date, Comparable<Jalali> {
   /// note: it does not make any conversion, it simply adds to each field value
   /// for subtracting simple add negative value
   /// UNSAFE
+  /// throws on null arguments
   Jalali add({int years = 0, int months = 0, int days = 0}) {
+    ArgumentError.checkNotNull(years, 'years');
+    ArgumentError.checkNotNull(months, 'months');
+    ArgumentError.checkNotNull(days, 'days');
+
     if (years == 0 && months == 0 && days == 0) {
       return this;
     } else {
