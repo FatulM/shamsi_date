@@ -9,15 +9,9 @@ void main() {
     expect(j.month, 1);
     expect(j.day, 2);
 
-    expect(() {
-      Jalali(null, 1, 2);
-    }, throwsArgumentError);
-    expect(() {
-      Jalali(1300, null, 2);
-    }, throwsArgumentError);
-    expect(() {
-      Jalali(1300, 1, null);
-    }, throwsArgumentError);
+    expect(() => Jalali(null, 1, 2), throwsArgumentError);
+    expect(() => Jalali(1300, null, 2), throwsArgumentError);
+    expect(() => Jalali(1300, 1, null), throwsArgumentError);
   });
 
   test('Gregorian(year, month, day).{year, month, day}', () {
@@ -27,15 +21,9 @@ void main() {
     expect(j.month, 1);
     expect(j.day, 2);
 
-    expect(() {
-      Gregorian(null, 1, 2);
-    }, throwsArgumentError);
-    expect(() {
-      Gregorian(2000, null, 2);
-    }, throwsArgumentError);
-    expect(() {
-      Gregorian(2000, 1, null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(null, 1, 2), throwsArgumentError);
+    expect(() => Gregorian(2000, null, 2), throwsArgumentError);
+    expect(() => Gregorian(2000, 1, null), throwsArgumentError);
   });
 
   test('Jalali.==', () {
@@ -78,9 +66,7 @@ void main() {
     expect(Jalali.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
     expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
 
-    expect(() {
-      Jalali.fromJulianDayNumber(null);
-    }, throwsArgumentError);
+    expect(() => Jalali.fromJulianDayNumber(null), throwsArgumentError);
   });
 
   test('Gregorian.{ fromJulianDayNumber , julianDayNumber }', () {
@@ -88,9 +74,7 @@ void main() {
     expect(Gregorian.fromJulianDayNumber(2458605).julianDayNumber, 2458605);
     expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
 
-    expect(() {
-      Gregorian.fromJulianDayNumber(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian.fromJulianDayNumber(null), throwsArgumentError);
   });
 
   test('Jalali.fromJulianDayNumber', () {
@@ -128,17 +112,13 @@ void main() {
   test('Jalali.fromGregorian', () {
     expect(Jalali.fromGregorian(Gregorian(1981, 8, 17)), Jalali(1360, 5, 26));
 
-    expect(() {
-      Jalali.fromGregorian(null);
-    }, throwsArgumentError);
+    expect(() => Jalali.fromGregorian(null), throwsArgumentError);
   });
 
   test('Gregorian.fromJalali', () {
     expect(Gregorian.fromJalali(Jalali(1360, 5, 26)), Gregorian(1981, 8, 17));
 
-    expect(() {
-      Gregorian.fromJalali(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian.fromJalali(null), throwsArgumentError);
   });
 
   test('Jalali.isValid', () {
@@ -273,21 +253,11 @@ void main() {
     expect(j3 <= j1, false);
     expect(j1 < j3, true);
 
-    expect(() {
-      return j1.compareTo(null);
-    }, throwsArgumentError);
-    expect(() {
-      return j1 > null;
-    }, throwsArgumentError);
-    expect(() {
-      return j1 >= null;
-    }, throwsArgumentError);
-    expect(() {
-      return j1 < null;
-    }, throwsArgumentError);
-    expect(() {
-      return j1 <= null;
-    }, throwsArgumentError);
+    expect(() => j1.compareTo(null), throwsArgumentError);
+    expect(() => j1 > null, throwsArgumentError);
+    expect(() => j1 >= null, throwsArgumentError);
+    expect(() => j1 < null, throwsArgumentError);
+    expect(() => j1 <= null, throwsArgumentError);
   });
 
   test('Gregorian.{ compareTo , > , >= , == ,  <= , < }', () {
@@ -315,21 +285,11 @@ void main() {
     expect(g3 <= g1, false);
     expect(g1 < g3, true);
 
-    expect(() {
-      return g1.compareTo(null);
-    }, throwsArgumentError);
-    expect(() {
-      return g1 > null;
-    }, throwsArgumentError);
-    expect(() {
-      return g1 >= null;
-    }, throwsArgumentError);
-    expect(() {
-      return g1 < null;
-    }, throwsArgumentError);
-    expect(() {
-      return g1 <= null;
-    }, throwsArgumentError);
+    expect(() => g1.compareTo(null), throwsArgumentError);
+    expect(() => g1 > null, throwsArgumentError);
+    expect(() => g1 >= null, throwsArgumentError);
+    expect(() => g1 < null, throwsArgumentError);
+    expect(() => g1 <= null, throwsArgumentError);
   });
 
   test('JalaliFormatter(date)', () {
@@ -337,9 +297,7 @@ void main() {
     expect(j.formatter.date, j);
     expect(JalaliFormatter(j).date, j);
 
-    expect(() {
-      JalaliFormatter(null);
-    }, throwsArgumentError);
+    expect(() => JalaliFormatter(null), throwsArgumentError);
   });
 
   test('GregorianFormatter(date)', () {
@@ -347,9 +305,7 @@ void main() {
     expect(g.formatter.date, g);
     expect(GregorianFormatter(g).date, g);
 
-    expect(() {
-      GregorianFormatter(null);
-    }, throwsArgumentError);
+    expect(() => GregorianFormatter(null), throwsArgumentError);
   });
 
   test('JalaliFormatter.yyyy', () {
@@ -359,12 +315,9 @@ void main() {
     expect(Jalali(123).formatter.yyyy, '0123');
     expect(Jalali(1234).formatter.yyyy, '1234');
     expect(Jalali(9999).formatter.yyyy, '9999');
-    expect(() {
-      Jalali(-1).formatter.yyyy;
-    }, throwsStateError);
-    expect(() {
-      Jalali(10000).formatter.yyyy;
-    }, throwsStateError);
+
+    expect(() => Jalali(-1).formatter.yyyy, throwsStateError);
+    expect(() => Jalali(10000).formatter.yyyy, throwsStateError);
   });
 
   test('GregorianFormatter.yyyy', () {
@@ -374,12 +327,9 @@ void main() {
     expect(Gregorian(123).formatter.yyyy, '0123');
     expect(Gregorian(1234).formatter.yyyy, '1234');
     expect(Gregorian(9999).formatter.yyyy, '9999');
-    expect(() {
-      Gregorian(-1).formatter.yyyy;
-    }, throwsStateError);
-    expect(() {
-      Gregorian(10000).formatter.yyyy;
-    }, throwsStateError);
+
+    expect(() => Gregorian(-1).formatter.yyyy, throwsStateError);
+    expect(() => Gregorian(10000).formatter.yyyy, throwsStateError);
   });
 
   test('JalaliFormatter.yy', () {
@@ -388,6 +338,7 @@ void main() {
     expect(Jalali(3505).formatter.yy, '05');
     expect(Jalali(3512).formatter.yy, '12');
     expect(Jalali(9999).formatter.yy, '99');
+
     expect(() => Jalali(999).formatter.yy, throwsStateError);
     expect(() => Jalali(10000).formatter.yy, throwsStateError);
     expect(() => Jalali(-1111).formatter.yy, throwsStateError);
@@ -399,6 +350,7 @@ void main() {
     expect(Gregorian(3505).formatter.yy, '05');
     expect(Gregorian(3512).formatter.yy, '12');
     expect(Gregorian(9999).formatter.yy, '99');
+
     expect(() => Gregorian(999).formatter.yy, throwsStateError);
     expect(() => Gregorian(10000).formatter.yy, throwsStateError);
     expect(() => Gregorian(-1111).formatter.yy, throwsStateError);
@@ -474,9 +426,7 @@ void main() {
     final j2 = Jalali(1398, 10, 4);
     expect(j1, j2);
 
-    expect(() {
-      Jalali.fromDateTime(null);
-    }, throwsArgumentError);
+    expect(() => Jalali.fromDateTime(null), throwsArgumentError);
   });
 
   test('Gregorian.fromDateTime', () {
@@ -485,9 +435,7 @@ void main() {
     final g2 = Gregorian(2000, 10, 5);
     expect(g1, g2);
 
-    expect(() {
-      Gregorian.fromDateTime(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian.fromDateTime(null), throwsArgumentError);
   });
 
   test('Jalali.now', () {
@@ -548,9 +496,7 @@ void main() {
     expect(Jalali(1300, 1, 31) + 36, Jalali(1300, 3, 5));
     expect(Jalali(1400, 1, 1) + 365, Jalali(1401, 1, 1));
 
-    expect(() {
-      return Jalali.now() + null;
-    }, throwsArgumentError);
+    expect(() => Jalali.now() + null, throwsArgumentError);
   });
 
   test('Gregorian.+', () {
@@ -560,9 +506,7 @@ void main() {
     expect(Gregorian(2000, 1, 31) + 34, Gregorian(2000, 3, 5));
     expect(Gregorian(2000, 1, 1) + 366, Gregorian(2001, 1, 1));
 
-    expect(() {
-      return Gregorian.now() + null;
-    }, throwsArgumentError);
+    expect(() => Gregorian.now() + null, throwsArgumentError);
   });
 
   test('Jalali.-', () {
@@ -572,9 +516,7 @@ void main() {
     expect(Jalali(1300, 3, 5) - 36, Jalali(1300, 1, 31));
     expect(Jalali(1401, 1, 1) - 365, Jalali(1400, 1, 1));
 
-    expect(() {
-      return Jalali.now() - null;
-    }, throwsArgumentError);
+    expect(() => Jalali.now() - null, throwsArgumentError);
   });
 
   test('Gregorian.-', () {
@@ -584,9 +526,7 @@ void main() {
     expect(Gregorian(2000, 3, 5) - 34, Gregorian(2000, 1, 31));
     expect(Gregorian(2001, 1, 1) - 366, Gregorian(2000, 1, 1));
 
-    expect(() {
-      return Gregorian.now() - null;
-    }, throwsArgumentError);
+    expect(() => Gregorian.now() - null, throwsArgumentError);
   });
 
   test('Jalali.add', () {
@@ -599,15 +539,9 @@ void main() {
     expect(Jalali(1300, 5, 10).add(years: -10, months: -3, days: -8),
         Jalali(1290, 2, 2));
 
-    expect(() {
-      Jalali.now().add(years: null);
-    }, throwsArgumentError);
-    expect(() {
-      Jalali.now().add(months: null);
-    }, throwsArgumentError);
-    expect(() {
-      Jalali.now().add(days: null);
-    }, throwsArgumentError);
+    expect(() => Jalali.now().add(years: null), throwsArgumentError);
+    expect(() => Jalali.now().add(months: null), throwsArgumentError);
+    expect(() => Jalali.now().add(days: null), throwsArgumentError);
   });
 
   test('Gregorian.add', () {
@@ -620,15 +554,9 @@ void main() {
     expect(Gregorian(2000, 5, 10).add(years: -10, months: -3, days: -8),
         Gregorian(1990, 2, 2));
 
-    expect(() {
-      Gregorian.now().add(years: null);
-    }, throwsArgumentError);
-    expect(() {
-      Gregorian.now().add(months: null);
-    }, throwsArgumentError);
-    expect(() {
-      Gregorian.now().add(days: null);
-    }, throwsArgumentError);
+    expect(() => Gregorian.now().add(years: null), throwsArgumentError);
+    expect(() => Gregorian.now().add(months: null), throwsArgumentError);
+    expect(() => Gregorian.now().add(days: null), throwsArgumentError);
   });
 
   test('Jalali.addYears', () {
@@ -636,9 +564,7 @@ void main() {
     expect(Jalali(1300, 2, 10).addYears(10), Jalali(1310, 2, 10));
     expect(Jalali(1300, 2, 10).addYears(-10), Jalali(1290, 2, 10));
 
-    expect(() {
-      Jalali(1300, 2, 10).addYears(null);
-    }, throwsArgumentError);
+    expect(() => Jalali(1300, 2, 10).addYears(null), throwsArgumentError);
   });
 
   test('Gregorian.addYears', () {
@@ -646,9 +572,7 @@ void main() {
     expect(Gregorian(1300, 2, 10).addYears(10), Gregorian(1310, 2, 10));
     expect(Gregorian(1300, 2, 10).addYears(-10), Gregorian(1290, 2, 10));
 
-    expect(() {
-      Gregorian(1300, 2, 10).addYears(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(1300, 2, 10).addYears(null), throwsArgumentError);
   });
 
   test('Jalali.addMonths', () {
@@ -661,9 +585,7 @@ void main() {
     expect(Jalali(1300, 2, 10).addMonths(-2), Jalali(1299, 12, 10));
     expect(Jalali(1300, 2, 10).addMonths(-25), Jalali(1298, 1, 10));
 
-    expect(() {
-      Jalali(1300, 2, 10).addMonths(null);
-    }, throwsArgumentError);
+    expect(() => Jalali(1300, 2, 10).addMonths(null), throwsArgumentError);
   });
 
   test('Gregorian.addMonths', () {
@@ -676,9 +598,7 @@ void main() {
     expect(Gregorian(1300, 2, 10).addMonths(-2), Gregorian(1299, 12, 10));
     expect(Gregorian(1300, 2, 10).addMonths(-25), Gregorian(1298, 1, 10));
 
-    expect(() {
-      Gregorian(1300, 2, 10).addMonths(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(1300, 2, 10).addMonths(null), throwsArgumentError);
   });
 
   test('Jalali.addDays', () {
@@ -688,9 +608,7 @@ void main() {
     expect(Jalali(1300, 1, 31).addDays(36), Jalali(1300, 3, 5));
     expect(Jalali(1400, 1, 1).addDays(365), Jalali(1401, 1, 1));
 
-    expect(() {
-      Jalali(1300, 2, 10).addDays(null);
-    }, throwsArgumentError);
+    expect(() => Jalali(1300, 2, 10).addDays(null), throwsArgumentError);
   });
 
   test('Gregorian.addDays', () {
@@ -700,9 +618,7 @@ void main() {
     expect(Gregorian(2000, 1, 31).addDays(34), Gregorian(2000, 3, 5));
     expect(Gregorian(2000, 1, 1).addDays(366), Gregorian(2001, 1, 1));
 
-    expect(() {
-      Gregorian(1300, 2, 10).addDays(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(1300, 2, 10).addDays(null), throwsArgumentError);
   });
 
   test('Jalali.withYear', () {
@@ -710,9 +626,7 @@ void main() {
     expect(Jalali(1398, 10, 20).withYear(1300), Jalali(1300, 10, 20));
     expect(Jalali(1398, 10, 20).withYear(1400), Jalali(1400, 10, 20));
 
-    expect(() {
-      Jalali(1398, 10, 20).withYear(null);
-    }, throwsArgumentError);
+    expect(() => Jalali(1398, 10, 20).withYear(null), throwsArgumentError);
   });
 
   test('Gregorian.withYear', () {
@@ -720,9 +634,7 @@ void main() {
     expect(Gregorian(2020, 10, 20).withYear(2010), Gregorian(2010, 10, 20));
     expect(Gregorian(2030, 10, 20).withYear(2030), Gregorian(2030, 10, 20));
 
-    expect(() {
-      Gregorian(2020, 10, 20).withYear(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(2020, 10, 20).withYear(null), throwsArgumentError);
   });
 
   test('Jalali.withMonth', () {
@@ -730,9 +642,7 @@ void main() {
     expect(Jalali(1398, 10, 20).withMonth(1), Jalali(1398, 1, 20));
     expect(Jalali(1398, 10, 20).withMonth(12), Jalali(1398, 12, 20));
 
-    expect(() {
-      Jalali(1398, 10, 20).withMonth(null);
-    }, throwsArgumentError);
+    expect(() => Jalali(1398, 10, 20).withMonth(null), throwsArgumentError);
   });
 
   test('Gregorian.withMonth', () {
@@ -740,9 +650,7 @@ void main() {
     expect(Gregorian(2020, 10, 20).withMonth(1), Gregorian(2020, 1, 20));
     expect(Gregorian(2020, 10, 20).withMonth(12), Gregorian(2020, 12, 20));
 
-    expect(() {
-      Gregorian(2020, 10, 20).withMonth(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(2020, 10, 20).withMonth(null), throwsArgumentError);
   });
 
   test('Jalali.withDay', () {
@@ -750,9 +658,7 @@ void main() {
     expect(Jalali(1398, 10, 20).withDay(15), Jalali(1398, 10, 15));
     expect(Jalali(1398, 10, 20).withDay(25), Jalali(1398, 10, 25));
 
-    expect(() {
-      Jalali(1398, 10, 20).withDay(null);
-    }, throwsArgumentError);
+    expect(() => Jalali(1398, 10, 20).withDay(null), throwsArgumentError);
   });
 
   test('Gregorian.withDay', () {
@@ -760,8 +666,6 @@ void main() {
     expect(Gregorian(2020, 10, 20).withDay(15), Gregorian(2020, 10, 15));
     expect(Gregorian(2020, 10, 20).withDay(25), Gregorian(2020, 10, 25));
 
-    expect(() {
-      Gregorian(2020, 10, 20).withDay(null);
-    }, throwsArgumentError);
+    expect(() => Gregorian(2020, 10, 20).withDay(null), throwsArgumentError);
   });
 }
