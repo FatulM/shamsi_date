@@ -333,12 +333,20 @@ void main() {
   });
 
   test('JalaliFormatter(date)', () {
+    final j = Jalali.now();
+    expect(j.formatter.date, j);
+    expect(JalaliFormatter(j).date, j);
+
     expect(() {
       JalaliFormatter(null);
     }, throwsArgumentError);
   });
 
   test('GregorianFormatter(date)', () {
+    final g = Gregorian.now();
+    expect(g.formatter.date, g);
+    expect(GregorianFormatter(g).date, g);
+
     expect(() {
       GregorianFormatter(null);
     }, throwsArgumentError);
