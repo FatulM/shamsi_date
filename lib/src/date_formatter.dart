@@ -51,8 +51,19 @@ abstract class DateFormatter {
   }
 
   /// year number string ensured to have length of 2
+  /// [date.year] should be between 1000 and 9999 or exception is thrown
   String get yy {
-    final str = '${date.year % 100}';
+    final year = date.year;
+
+    if(year < 1000) {
+      throw StateError("date.year = $year < 1000");
+    }
+
+    if (year > 9999) {
+      throw StateError("date.year = $year > 9999");
+    }
+
+    final str = '${year % 100}';
     return str.length == 1 ? '0' + str : str;
   }
 

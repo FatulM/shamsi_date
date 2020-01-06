@@ -382,6 +382,28 @@ void main() {
     }, throwsStateError);
   });
 
+  test('JalaliFormatter.yy', () {
+    expect(Jalali(1000).formatter.yy, '00');
+    expect(Jalali(2100).formatter.yy, '00');
+    expect(Jalali(3505).formatter.yy, '05');
+    expect(Jalali(3512).formatter.yy, '12');
+    expect(Jalali(9999).formatter.yy, '99');
+    expect(() => Jalali(999).formatter.yy, throwsStateError);
+    expect(() => Jalali(10000).formatter.yy, throwsStateError);
+    expect(() => Jalali(-1111).formatter.yy, throwsStateError);
+  });
+
+  test('GregorianFormatter.yy', () {
+    expect(Gregorian(1000).formatter.yy, '00');
+    expect(Gregorian(2100).formatter.yy, '00');
+    expect(Gregorian(3505).formatter.yy, '05');
+    expect(Gregorian(3512).formatter.yy, '12');
+    expect(Gregorian(9999).formatter.yy, '99');
+    expect(() => Gregorian(999).formatter.yy, throwsStateError);
+    expect(() => Gregorian(10000).formatter.yy, throwsStateError);
+    expect(() => Gregorian(-1111).formatter.yy, throwsStateError);
+  });
+
   test('Jalali.formatter', () {
     final j1 = Jalali(1397, 1, 3);
     final f1 = j1.formatter;
