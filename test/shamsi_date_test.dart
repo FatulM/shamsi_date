@@ -356,6 +356,24 @@ void main() {
     expect(() => Gregorian(-1111).formatter.yy, throwsStateError);
   });
 
+  test('JalaliFormatter.y', () {
+    expect(Jalali(0).formatter.y, '0');
+    expect(Jalali(1).formatter.y, '1');
+    expect(Jalali(15).formatter.y, '15');
+    expect(Jalali(15425).formatter.y, '15425');
+
+    expect(() => Gregorian(-1).formatter.y, throwsStateError);
+  });
+
+  test('GregorianFormatter.y', () {
+    expect(Gregorian(0).formatter.y, '0');
+    expect(Gregorian(1).formatter.y, '1');
+    expect(Gregorian(15).formatter.y, '15');
+    expect(Gregorian(15425).formatter.y, '15425');
+
+    expect(() => Gregorian(-1).formatter.y, throwsStateError);
+  });
+
   test('Jalali.formatter', () {
     final j1 = Jalali(1397, 1, 3);
     final f1 = j1.formatter;

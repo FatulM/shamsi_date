@@ -17,8 +17,15 @@ abstract class DateFormatter {
   }
 
   /// year number string whatever length it has
+  /// [date.year] should be greater or equal 0 or exception will be thrown
   String get y {
-    return '${date.year}';
+    final year = date.year;
+
+    if (year < 0) {
+      throw StateError('date.year = $year < 0');
+    }
+
+    return '$year';
   }
 
   /// year number string ensured to have length of 4
@@ -55,7 +62,7 @@ abstract class DateFormatter {
   String get yy {
     final year = date.year;
 
-    if(year < 1000) {
+    if (year < 1000) {
       throw StateError("date.year = $year < 1000");
     }
 
