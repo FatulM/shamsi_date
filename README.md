@@ -2,14 +2,9 @@
 
 [![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)](https://pub.dev/packages/shamsi_date) [![Build Status](https://travis-ci.org/FatulM/shamsi_date.svg?branch=master)](https://travis-ci.org/FatulM/shamsi_date) [![codecov](https://codecov.io/gh/FatulM/shamsi_date/branch/master/graph/badge.svg)](https://codecov.io/gh/FatulM/shamsi_date)
 
-Converted from the popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js).
+Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
 
-Calendar conversion is based on the [algorithm provided by Kazimierz M. Borkowski](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm) and has a very good performance.
-
-The package has a lot of unit tests for ensuring it's correctness. 
-
-If you want a Persian datetime picker there is one based on this library
-[persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker).
+This package has a lot of unit tests with high test coverage for ensuring it's correctness.
 
 ## Key Features
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
