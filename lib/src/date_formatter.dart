@@ -9,6 +9,8 @@ import 'package:shamsi_date/src/date.dart';
 /// super interface for Jalali and Gregorian Date formatter
 abstract class DateFormatter {
   /// stored date
+  ///
+  /// Non-Null
   final Date date;
 
   /// make a formatter for a date object
@@ -17,7 +19,10 @@ abstract class DateFormatter {
   }
 
   /// year number string whatever length it has
+  ///
   /// [date.year] should be greater or equal 0 or exception will be thrown
+  ///
+  /// Non-Null
   String get y {
     final int year = date.year;
 
@@ -29,7 +34,10 @@ abstract class DateFormatter {
   }
 
   /// year number string ensured to have length of 4
+  ///
   /// [date.year] should be between 0 and 9999 or exception will be thrown
+  ///
+  /// Non-Null
   String get yyyy {
     final int year = date.year;
 
@@ -58,7 +66,10 @@ abstract class DateFormatter {
   }
 
   /// year number string ensured to have length of 2
+  ///
   /// [date.year] should be between 1000 and 9999 or exception is thrown
+  ///
+  /// Non-Null
   String get yy {
     final int year = date.year;
 
@@ -75,30 +86,42 @@ abstract class DateFormatter {
   }
 
   /// month number string whatever length it has
+  ///
+  /// Non-Null
   String get m {
     return date.month.toString();
   }
 
   /// month number string ensured to have length of 2
+  ///
+  /// Non-Null
   String get mm {
     final String str = m;
     return str.length == 1 ? '0' + str : str;
   }
 
   /// month name
+  ///
+  /// Non-Null
   String get mN;
 
   /// day number string whatever length it has
+  ///
+  /// Non-Null
   String get d {
     return date.day.toString();
   }
 
   /// day number string ensured to have length of 2
+  ///
+  /// Non-Null
   String get dd {
     final String str = d;
     return str.length == 1 ? '0' + str : str;
   }
 
   /// week day name
+  ///
+  /// Non-Null
   String get wN;
 }
