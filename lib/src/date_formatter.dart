@@ -6,14 +6,16 @@ library date_formatter;
 
 import 'package:shamsi_date/src/date.dart';
 
-/// super interface for Jalali and Gregorian Date formatter
+/// super class for Jalali and Gregorian Date formatter
 abstract class DateFormatter {
   /// stored date
   ///
   /// Non-Null
   final Date date;
 
-  /// make a formatter for a date object
+  /// make a [DateFormatter] for a [Date] object
+  ///
+  /// argument should not be null
   DateFormatter(this.date) {
     ArgumentError.checkNotNull(date, 'date');
   }

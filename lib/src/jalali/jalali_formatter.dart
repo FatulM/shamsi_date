@@ -10,6 +10,8 @@ import 'package:shamsi_date/src/jalali/jalali_date.dart';
 /// Jalali date formatter class
 class JalaliFormatter extends DateFormatter {
   /// make a [JalaliFormatter] from [Jalali] date
+  ///
+  /// argument should not be null
   JalaliFormatter(Jalali date) : super(date);
 
   /// Jalali month names
@@ -40,12 +42,16 @@ class JalaliFormatter extends DateFormatter {
   ];
 
   /// Jalali month name
+  ///
+  /// Non-Null
   @override
   String get mN {
     return _monthNames[date.month - 1];
   }
 
   /// Jalali week day name
+  ///
+  /// Non-Null
   @override
   String get wN {
     return _weekDayNames[date.weekDay - 1];
