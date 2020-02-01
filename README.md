@@ -57,7 +57,7 @@ Constructor arguments should be non-null or exception will be thrown immediately
 
 Jalali and Gregorian objects are immutable. So using operators and methods will give you  new object and does not manipulate the object in place, like String objects. Almost all other objects in shamsi_date library are immutable too.
 
-You can access `year`, `month`, `day` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. You can check Jalali date validity by `isValid()` method and check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
+You can access `year`, `month`, `day` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. You can check Jalali date validity by `isValid()` method. Validity check is based on year, month and day being in their bounds for example month should not be more than month length. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
 
 ```dart
 Jalali j = Jalali(1397, 5, 6);
@@ -274,32 +274,34 @@ import 'package:shamsi_date/shamsi_date.dart';
 
 main() {
   // Gregorian to Jalali conversion
-  final Gregorian g1 = Gregorian(2013, 1, 10);
-  final Jalali j1 = g1.toJalali();
+  Gregorian g1 = Gregorian(2013, 1, 10);
+  Jalali j1 = g1.toJalali();
   print('$g1 == $j1');
   // prints: Gregorian(2013,1,10) == Jalali(1391,10,21)
   // you can write Jalali.fromGregorian(g1) instead of g1.toJalali()
 
   // access year, month and day through getters
   // for Jalali:
-  final int j1y = j1.year; // j1y = 1391
-  final int j1m = j1.month; // j1m = 10
-  final int j1d = j1.day; // j1d = 21
+  int j1y = j1.year; // j1y = 1391
+  int j1m = j1.month; // j1m = 10
+  int j1d = j1.day; // j1d = 21
   // and for Gregorian:
-  final int g1y = g1.year; // g1y = 2013
-  final int g1m = g1.month; // g1m = 1
-  final int g1d = g1.day; // g1d = 10
+  int g1y = g1.year; // g1y = 2013
+  int g1m = g1.month; // g1m = 1
+  int g1d = g1.day; // g1d = 10
 
   // Jalali to Gregorian conversion
-  final Jalali j2 = Jalali(1391, 10, 21);
-  final Gregorian g2 = j1.toGregorian();
+  Jalali j2 = Jalali(1391, 10, 21);
+  Gregorian g2 = j1.toGregorian();
   print('$j2 == $g2');
   // prints: Jalali(1391,10,21) == Gregorian(2013,1,10)
   // also can use Gregorian.fromJalali(j1) instead of j1.toGregorian()
 
   // find weekDay
   print('$j1 has weekDay ${j1.weekDay}'); // -> 6
+  // 6 means "پنج شنیه"
   print('$g1 has weekDay ${g1.weekDay}'); // -> 4
+  // 4 means "Thursday"
 
   // find month length
   print('Jalali 1390/12 month length? '
@@ -316,13 +318,13 @@ main() {
   // check validity
   print('$j1 is valid? ${j1.isValid()}'); // -> true
   print('$g1 is valid? ${g1.isValid()}'); // -> true
-  final jv = Jalali(1398, 13, 1); // not valid!
+  Jalali jv = Jalali(1398, 13, 1); // not valid!
   print('$jv is valid? ${jv.isValid()}'); // -> false
-  final gv = Gregorian(2000, 1, -10); // not valid!
+  Gregorian gv = Gregorian(2000, 1, -10); // not valid!
   print('$gv is valid? ${gv.isValid()}'); // -> false
 
   // convert DateTime object to Jalali and Gregorian
-  final dateTime = DateTime.now();
+  DateTime dateTime = DateTime.now();
   print('now is $dateTime');
   print('now is ${Gregorian.fromDateTime(dateTime)} in Gregorian');
   print('now is ${Jalali.fromDateTime(dateTime)} in Jalali');
@@ -338,12 +340,20 @@ main() {
   print('now is ${Gregorian.now()} in Gregorian');
   print('now is ${Jalali.now()} in Jalali');
   // find out which jalali year is this year:
-  final int thisYear = Jalali.now().year;
+  int thisJalaliYear = Jalali.now().year;
 
   // copy method
   print('$j1 with year = 1300 is ${j1.copy(year: 1300)}');
   // prints: 1391/10/21 with year = 1300 is 1300/10/21
   print('$g1 with month = 1 and day = 2 is ${g1.copy(month: 1, day: 2)}');
+  // prints: 2013/1/10 with month = 1 and day = 2 is 2013/1/2
+
+  // withYear, withMonth and withDay methods:
+  // these methods can be chained
+  // it is recommended to use these methods over copy method
+  print('$j1 with year = 1300 is ${j1.withYear(1300)}');
+  // prints: 1391/10/21 with year = 1300 is 1300/10/21
+  print('$g1 with month = 1 and day = 2 is ${g1.withDay(2).withMonth(1)}');
   // prints: 2013/1/10 with month = 1 and day = 2 is 2013/1/2
 
   // for example for getting date at start of this month in Jalali:
@@ -353,12 +363,12 @@ main() {
   // DON NOT do it like this:
   print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT
   // for example if you want to get last day of the last month of this Jalali year:
-  final tmp = Jalali.now().copy(month: 12, day: 1);
+  Jalali tmp = Jalali.now().copy(month: 12, day: 1);
   // since we can be in a leap year we use monthLength:
   print(tmp.copy(day: tmp.monthLength));
 
   // add and subtract days
-  final d1 = Jalali(1398, 8, 4);
+  Jalali d1 = Jalali(1398, 8, 4);
   // add days
   print(d1 + 3); // -> 1398/8/7
   // result will be manipulated to become valid:
@@ -375,6 +385,17 @@ main() {
   // if you want to subtract you can add negative value:
   print(d1.add(years: -1)); // 1397/8/3
   // and also for Gregorian
+
+  // or you can use addYears, addMonths and addDays method
+  // it is recommended to use these methods over add method
+  // these methods are bound valid which means result will be
+  //  manipulated to become valid, but add method is not
+  print(d1.addDays(30)); // -> 1398/9/4
+  print(d1.addDays(365)); // -> 1399/8/4
+  print(d1.addYears(1).addMonths(2).addDays(3)); // 1399/10/7
+  print(d1.addYears(1).addDays(3)); // 1399/8/7
+  print(d1.addMonths(2)); // 1398/10/3
+  print(d1.addYears(-1)); // 1397/8/3
 
   // formatting examples:
 
@@ -401,9 +422,9 @@ main() {
   // DO NOT use formatter for accessing year, month or other properties
   // of date objects they are available as getters on date objects
   // INCORRECT EXAMPLE, DO NOT USE THIS:
-  final int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT
+  int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT
   // use this:
-  final int ty2 = Jalali.now().year; // correct
+  int ty2 = Jalali.now().year; // correct
   // also using toString() for showing dates on UI is not recommended,
   // use custom formatter.
 
