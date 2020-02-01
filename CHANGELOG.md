@@ -6,6 +6,7 @@
 - ADDED withYear, withMonth and withDay methods for Jalali and Georgian
 - ADDED more tests
 - IMPROVED date formatter
+- UPDATED documentation
 
 ## [0.7.1]
 
