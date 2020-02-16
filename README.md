@@ -6,6 +6,8 @@ Algorithm is based on popular JavaScript library [jalaali-js](https://github.com
 
 This package has a lot of unit tests with high test coverage for ensuring it's correctness.
 
+If you want a Persian datetime picker there is one based on this library [persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker).
+
 ## Key Features
 
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
