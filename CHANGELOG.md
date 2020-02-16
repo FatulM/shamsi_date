@@ -1,3 +1,7 @@
+## [0.8.1]
+
+- FIXED docs
+
 ## [0.8.0]
 
 - ADDED null checking for constructors and factories
