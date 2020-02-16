@@ -119,12 +119,12 @@ Jalali and Georgian dates are immutable so you can not change their properties i
 for example for getting date at start of this month in Jalali: (copy method makes another object instance and leaves the original one unchanged)
 
 ```dart
-final j1 = Jalali.now().withDay(1); // correct way
+Jalali j1 = Jalali.now().withDay(1); // correct way
 // or by using copy method:
-final j2 = Jalali.now().copy(day: 1); // also correct
+Jalali j2 = Jalali.now().copy(day: 1); // also correct
 
 // DON NOT do it like this:
-final j3 = Jalali(Jalali.now().year, Jalali.now().month, 1); // INCORRECT
+Jalali j3 = Jalali(Jalali.now().year, Jalali.now().month, 1); // INCORRECT
 ```
 Or if you want to get last day of the last month of this Jalali year:
 ```dart
@@ -157,31 +157,31 @@ You can add years, months or days to  Jalali and Gregorian using `addYears`, `ad
 If you want you can add a combination of days, months or years to a date object with `add` method. **note** that `add` method does not manipulate result to become bound valid, it is your responsibility. **It is recommended** to use addYear, addMonth and addDay methods over add method.
 
 ```dart
-final j1 = Jalali(1398, 8, 4);
+Jalali j1 = Jalali(1398, 8, 4);
 // add days
-final j2 = j1 + 3; // -> 1398/8/7
+Jalali j2 = j1 + 3; // -> 1398/8/7
 // result will be manipulated to become valid:
-final j3 = j1 + 30; // -> 1398/9/4
-final j4 = j1 + 365; // -> 1399/8/4
+Jalali j3 = j1 + 30; // -> 1398/9/4
+Jalali j4 = j1 + 365; // -> 1399/8/4
 // subtract days
-final j5 = j1 - 2; // -> 1398/8/2
+Jalali j5 = j1 - 2; // -> 1398/8/2
 
 // add years, months and days:
-final j6 = j1.addYears(1).addMonths(2).addDays(3); // 1399/10/7
+Jalali j6 = j1.addYears(1).addMonths(2).addDays(3); // 1399/10/7
 // or:
-final j60 = j1.add(years: 1, months: 2, days: 3); // 1399/10/7
+Jalali j60 = j1.add(years: 1, months: 2, days: 3); // 1399/10/7
 // add years and days only:
-final j7 = j1.addYears(1).addDays(3); // 1399/8/7
+Jalali j7 = j1.addYears(1).addDays(3); // 1399/8/7
 // or:
-final j70 = j1.add(years: 1, days: 3); // 1399/8/7
+Jalali j70 = j1.add(years: 1, days: 3); // 1399/8/7
 // add months only:
-final j8 = j1.addMonths(2); // 1398/10/3
+Jalali j8 = j1.addMonths(2); // 1398/10/3
 // or:
-final j80 = j1.add(months: 2); // 1398/10/3
+Jalali j80 = j1.add(months: 2); // 1398/10/3
 // if you want to subtract you can add negative value:
-final j9 = j1.addYears(-1); // 1397/8/3
+Jalali j9 = j1.addYears(-1); // 1397/8/3
 // or:
-final j90 = j1.add(years: -1); // 1397/8/3
+Jalali j90 = j1.add(years: -1); // 1397/8/3
 
 // addYears, addMonths and addDays methods are bound safe
 // add(...) method is NOT bound safe
@@ -248,13 +248,13 @@ Use toString() of Jalali and Georgian dates only for development purpose, like f
 - dd: two digit day.
 - wN: week day name.
 
-You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a final value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
+You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a Jalali value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
 
 Jalali and Gregorian classes are [Comparable][] so you can compare them using `compareTo` method. You can also use comparison operators to compare them. They also support `equals` and `hashCode` functions. So you can safely use Sets and Maps of Jalali and Gregorian dates.
 
 ```dart
-final j1 = Jalali(1397, 1, 1);
-final j2 = Jalali(1397, 2, 1);
+Jalali j1 = Jalali(1397, 1, 1);
+Jalali j2 = Jalali(1397, 2, 1);
 
 bool b1 = j1 < j2; // b1 = true
 bool b2 = j1 >= j2; // b2 = false
