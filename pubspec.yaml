@@ -2,7 +2,7 @@ name: shamsi_date
 description: >
   A Flutter package for using Jalali (Shamsi, Solar or Persian) date.
   You can convert, format and manipulate Jalali and Georgian dates.
-version: 0.8.1
+version: 0.9.0
 homepage: https://github.com/FatulM/shamsi_date
 
 environment:

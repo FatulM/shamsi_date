@@ -1,3 +1,7 @@
+## [0.9.0]
+
+- ... state validation ...
+
 ## [0.8.1]
 
 - FIXED docs

@@ -42,7 +42,7 @@ If you want a feature or you found an issue, please make an issue on GitHub so I
 Add it to your pubspec.yaml file:
 ```yaml
 dependencies:
-    shamsi_date: ^0.8.1
+    shamsi_date: ^0.9.0
 ```
 
 [Jalali][] class is used for **Shamsi (Jalali, Persian, شمسی or خورشیدی)** date and [Gregorian][] class is used for **Gregorian (Miladi or میلادی)** date. Jalali and Gregorian classes are the subclasses of [Date][].
