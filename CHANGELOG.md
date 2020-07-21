@@ -1,5 +1,6 @@
 ## [0.9.0]
 
+- ADDED exception types
 - ... state validation ...
 
 ## [0.8.1]
