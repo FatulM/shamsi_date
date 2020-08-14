@@ -1,36 +1,19 @@
-/// date exception
-class DateException {
-  /// prevent creating instances
-  DateException();
+// Copyright 2018 - 2020, Amirreza Madani. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-  /// exception message
-  ///
-  /// non-null
-  @override
-  String toString();
-}
+library exceptions;
+
+/// date exception
+/// super class of all date exceptions
+abstract class DateException implements Exception {}
 
 /// date out of computable range exception
-class DateOutOfComputableRangeException extends DateException {
-  /// prevent creating instances
-  DateOutOfComputableRangeException();
-
-  /// exception message
-  ///
-  /// non-null
-  @override
-  String toString();
-}
+/// super class of all date exceptions
+abstract class DateOutOfComputableRangeException extends DateException {}
 
 /// date not valid exception
-class DateNotValidException extends DateException {
-  /// prevent creating instances
-  DateNotValidException();
-
-  /// exception message
-  @override
-  String toString();
-}
+abstract class DateNotValidException extends DateException {}
 
 /// Jalali out of computable range exception
 class JalaliOutOfComputableRangeException
