@@ -4,9 +4,10 @@
 
 library jalali_date;
 
-import 'package:shamsi_date/src/date.dart';
-import 'package:shamsi_date/src/gregorian/gregorian_date.dart';
-import 'package:shamsi_date/src/jalali/jalali_formatter.dart';
+import '../date.dart';
+import '../date_exception.dart';
+import '../gregorian/gregorian_date.dart';
+import '../jalali/jalali_formatter.dart';
 
 /// Jalali (Shamsi or Persian) Date class
 class Jalali implements Date, Comparable<Jalali> {
@@ -516,7 +517,7 @@ class _JalaliCalculation {
         i;
 
     if (jy < jp || jy >= breaks[bl - 1]) {
-      throw 'Invalid Jalali year $jy';
+      throw DateException('Jalali out of computable range, year=$jy');
     }
 
     // Find the limiting years for the Jalali year jy.

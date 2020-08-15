@@ -4,7 +4,7 @@
 
 library date;
 
-import 'package:shamsi_date/src/date_formatter.dart';
+import 'date_formatter.dart';
 
 /// Super interface of Jalali and Georgian classes
 abstract class Date {

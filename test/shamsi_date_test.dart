@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
 void main() {
+  final Matcher throwsDateException = throwsA(isA<DateException>());
+
   test('Jalali(year, month, day).{year, month, day}', () {
     final j = Jalali(1300, 1, 2);
 
@@ -689,5 +691,20 @@ void main() {
     expect(Gregorian(2020, 10, 20).withDay(25), Gregorian(2020, 10, 25));
 
     expect(() => Gregorian(2020, 10, 20).withDay(null), throwsArgumentError);
+  });
+
+  test('DateException(message)', () {
+    final exception = DateException('I am a message');
+
+    expect(exception, isA<DateException>());
+    expect(() => throw exception, throwsDateException);
+    expect(exception.toString(), 'DateException: I am a message');
+
+    expect(() => DateException(null), throwsArgumentError);
+  });
+
+  test('Jalali.julianDayNumber, out of computable range', () {
+    expect(() => Jalali(-100).julianDayNumber, throwsDateException);
+    expect(() => Jalali(4000).julianDayNumber, throwsDateException);
   });
 }
