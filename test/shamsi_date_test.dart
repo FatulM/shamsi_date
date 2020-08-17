@@ -390,6 +390,8 @@ void main() {
     expect(() => Jalali(5).formatter.yy, throwsStateError);
     expect(() => Jalali(-5).formatter.yy, throwsStateError);
     expect(() => Jalali(-15).formatter.yy, throwsStateError);
+
+    expect(() => _MockJalali(12345).formatter.yy, throwsStateError);
   });
 
   test('GregorianFormatter.yy', () {
@@ -408,6 +410,8 @@ void main() {
     expect(() => _MockGregorian(5).formatter.yy, throwsStateError);
     expect(() => _MockGregorian(-5).formatter.yy, throwsStateError);
     expect(() => _MockGregorian(-15).formatter.yy, throwsStateError);
+
+    expect(() => _MockGregorian(12345).formatter.yy, throwsStateError);
   });
 
   test('JalaliFormatter.y', () {
