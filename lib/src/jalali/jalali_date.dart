@@ -11,6 +11,20 @@ import '../jalali/jalali_formatter.dart';
 
 /// Jalali (Shamsi or Persian) Date class
 class Jalali implements Date, Comparable<Jalali> {
+  /// Minimum computable Jalali date
+  ///
+  /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
+  /// and julian day number of 1925675
+  // ignore: non_constant_identifier_names
+  static final Jalali MIN = Jalali(-61, 1, 1);
+
+  /// Maximum computable Jalali date
+  ///
+  /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
+  /// and julian day number of 3108616
+  // ignore: non_constant_identifier_names
+  static final Jalali MAX = Jalali(3177, 10, 11);
+
   /// Jalali year (1 to 3100)
   ///
   /// non-null
@@ -62,10 +76,9 @@ class Jalali implements Date, Comparable<Jalali> {
       return 31;
     } else if (month <= 11) {
       return 30;
-    } else if (month == 12) {
-      return isLeapYear() ? 30 : 29;
     } else {
-      throw 'month not valid';
+      // month == 12
+      return isLeapYear() ? 30 : 29;
     }
   }
 
@@ -84,10 +97,36 @@ class Jalali implements Date, Comparable<Jalali> {
   /// throws on null arguments
   ///
   /// non-null
-  Jalali(this.year, [this.month = 1, this.day = 1]) {
+  Jalali(int year, [int month = 1, int day = 1])
+      : year = year,
+        month = month,
+        day = day {
     ArgumentError.checkNotNull(year, 'year');
     ArgumentError.checkNotNull(month, 'month');
     ArgumentError.checkNotNull(day, 'day');
+
+    // should be between: Jalali(-61, 1, 1) and Jalali(3177, 10, 11)
+    if (year < -61 || year > 3177) {
+      throw DateException('Jalali is out of computable range.');
+    }
+
+    if (month < 1 || month > 12) {
+      throw DateException('Jalali month is out of valid range.');
+    }
+
+    // todo very bad !!!!
+    final ml = monthLength;
+
+    if (day < 1 || day > ml) {
+      throw DateException('Jalali day is out of valid range.');
+    }
+
+    // no need for further analysis for MIN, but for MAX being in year 3177:
+    if (year == 3177) {
+      if (month > 10 || (month == 10 && day > 11)) {
+        throw DateException('Jalali is out of computable range.');
+      }
+    }
   }
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
@@ -97,6 +136,10 @@ class Jalali implements Date, Comparable<Jalali> {
   /// non-null
   factory Jalali.fromJulianDayNumber(int julianDayNumber) {
     ArgumentError.checkNotNull(julianDayNumber, 'julianDayNumber');
+
+    if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
+      throw DateException('Julian day number is out of computable range.');
+    }
 
     // Calculate Gregorian year (gy).
     int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
@@ -190,19 +233,6 @@ class Jalali implements Date, Comparable<Jalali> {
   @override
   bool isLeapYear() {
     return _JalaliCalculation.calculate(year).leap == 0;
-  }
-
-  /// Checks whether a Jalali date is valid or not.
-  ///
-  /// non-null
-  @override
-  bool isValid() {
-    return year >= -61 &&
-        year <= 3177 &&
-        month >= 1 &&
-        month <= 12 &&
-        day >= 1 &&
-        day <= monthLength;
   }
 
   /// Default string representation: `Jalali(YYYY,MM,DD)`.
@@ -516,8 +546,9 @@ class _JalaliCalculation {
         n,
         i;
 
-    if (jy < jp || jy >= breaks[bl - 1]) {
-      throw DateException('Jalali out of computable range, year=$jy');
+    // should not happen
+    if (jy < -61 || jy >= 3178) {
+      throw StateError('should not happen');
     }
 
     // Find the limiting years for the Jalali year jy.

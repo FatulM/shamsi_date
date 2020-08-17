@@ -5,11 +5,44 @@
 library gregorian_date;
 
 import '../date.dart';
+import '../date_exception.dart';
 import '../gregorian/gregorian_formatter.dart';
 import '../jalali/jalali_date.dart';
 
 /// Gregorian date class
 class Gregorian implements Date, Comparable<Gregorian> {
+  /// Gregorian month lengths
+  ///
+  /// For month 2 (index 1) should check leap year
+  static const List<int> _MONTH_LENGTHS = <int>[
+    31,
+    0, // should check leap year
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+  ];
+
+  /// Minimum computable Gregorian date
+  ///
+  /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
+  /// and julian day number of 1925675
+  // ignore: non_constant_identifier_names
+  static final Gregorian MIN = Gregorian(560, 3, 20);
+
+  /// Maximum computable Gregorian date
+  ///
+  /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
+  /// and julian day number of 3108616
+  // ignore: non_constant_identifier_names
+  static final Gregorian MAX = Gregorian(3798, 12, 31);
+
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
   ///
   /// non-null
@@ -62,24 +95,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// non-null
   @override
   int get monthLength {
-    switch (month) {
-      case 1:
-      case 3:
-      case 5:
-      case 7:
-      case 8:
-      case 10:
-      case 12:
-        return 31;
-      case 4:
-      case 6:
-      case 9:
-      case 11:
-        return 30;
-      case 2:
-        return isLeapYear() ? 29 : 28;
-      default:
-        throw 'month not valid';
+    if (month == 2) {
+      return isLeapYear() ? 29 : 28;
+    } else {
+      return _MONTH_LENGTHS[month - 1];
     }
   }
 
@@ -98,10 +117,36 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// throws on null arguments
   ///
   /// non-null
-  Gregorian(this.year, [this.month = 1, this.day = 1]) {
+  Gregorian(int year, [int month = 1, int day = 1])
+      : year = year,
+        month = month,
+        day = day {
     ArgumentError.checkNotNull(year, 'year');
     ArgumentError.checkNotNull(month, 'month');
     ArgumentError.checkNotNull(day, 'day');
+
+    // should be between: Gregorian(560,3,20) and Gregorian(3798,12,31)
+    if (year < 560 || year > 3798) {
+      throw DateException('Gregorian is out of computable range.');
+    }
+
+    if (month < 1 || month > 12) {
+      throw DateException('Gregorian month is out of valid range.');
+    }
+
+    // todo very bad !!!!
+    final ml = monthLength;
+
+    if (day < 1 || day > ml) {
+      throw DateException('Gregorian day is out of valid range.');
+    }
+
+    // no need for further analysis for MAX, but for MIN being in year 560:
+    if (year == 560) {
+      if (month < 3 || (month == 3 && day < 20)) {
+        throw DateException('Jalali is out of computable range.');
+      }
+    }
   }
 
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
@@ -113,6 +158,10 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// non-null
   factory Gregorian.fromJulianDayNumber(int julianDayNumber) {
     ArgumentError.checkNotNull(julianDayNumber, 'julianDayNumber');
+
+    if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
+      throw DateException('Julian day number is out of computable range.');
+    }
 
     int j, i, gd, gm, gy;
 
@@ -196,19 +245,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
     } else {
       return false;
     }
-  }
-
-  /// Checks whether a Gregorian date is valid or not.
-  ///
-  /// non-null
-  @override
-  bool isValid() {
-    return year >= -100100 &&
-        year <= 10000000 &&
-        month >= 1 &&
-        month <= 12 &&
-        day >= 1 &&
-        day <= monthLength;
   }
 
   /// Default string representation: `Gregorian(YYYY,MM,DD)`.
