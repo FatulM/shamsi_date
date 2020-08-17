@@ -773,6 +773,12 @@ void main() {
     expect(Gregorian.fromJulianDayNumber(Date.MAX_JULIAN_DAY_NUMBER),
         Gregorian.MAX);
   });
+
+  test('_JalaliCalculation.calculate', () {
+    // check a 'should not happen' condition
+    expect(() => _MockJalali(-62).isLeapYear(), throwsStateError);
+    expect(() => _MockJalali(3178).isLeapYear(), throwsStateError);
+  });
 }
 
 /// Mock Gregorian fixed at Gregorian(2000)
