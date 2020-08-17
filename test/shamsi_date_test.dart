@@ -778,6 +778,10 @@ void main() {
     // check a 'should not happen' condition
     expect(() => _MockJalali(-62).isLeapYear(), throwsStateError);
     expect(() => _MockJalali(3178).isLeapYear(), throwsStateError);
+
+    // check 'leapJ += 1;'
+    expect(Jalali(1177).isLeapYear(), false);
+    expect(Jalali(1177, 1, 1).toGregorian(), Gregorian(1798, 3, 21));
   });
 }
 
