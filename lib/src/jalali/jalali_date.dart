@@ -408,7 +408,6 @@ class Jalali implements Date, Comparable<Jalali> {
     if (days == 0) {
       return this;
     } else {
-      // todo can be simplified ?
       return Jalali.fromJulianDayNumber(julianDayNumber + days);
     }
   }

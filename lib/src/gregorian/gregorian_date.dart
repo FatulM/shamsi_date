@@ -421,7 +421,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
     if (days == 0) {
       return this;
     } else {
-      // todo can be simplified ?
       return Gregorian.fromJulianDayNumber(julianDayNumber + days);
     }
   }
