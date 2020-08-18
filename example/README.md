@@ -52,13 +52,19 @@ main() {
   print('2000 Gregorian is leap year? '
       '${Gregorian(2000).isLeapYear()}'); // -> true
 
-  // check validity
-  print('$j1 is valid? ${j1.isValid()}'); // -> true
-  print('$g1 is valid? ${g1.isValid()}'); // -> true
-  Jalali jv = Jalali(1398, 13, 1); // not valid!
-  print('$jv is valid? ${jv.isValid()}'); // -> false
-  Gregorian gv = Gregorian(2000, 1, -10); // not valid!
-  print('$gv is valid? ${gv.isValid()}'); // -> false
+  // validity:
+  // ALL created instances are considered VALID
+  // if you think a date might invalid, use try-catch:
+  try {
+    Jalali jv = Jalali(1398, 13, 1); // not valid!
+  } on DateException catch (e) {
+    // prints: DateException: Jalali month is out of valid range.
+    print(e);
+  }
+  // making leap crash will also throw exception:
+  // for ex: Jalali(1394, 12, 30) will crash, since
+  //  1394 is not leap year
+  // creating dates out of computable range also throws DateException.
 
   // convert DateTime object to Jalali and Gregorian
   DateTime dateTime = DateTime.now();
