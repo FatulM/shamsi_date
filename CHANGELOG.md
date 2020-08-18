@@ -1,10 +1,12 @@
 ## 0.9.0
 
-* CHANGED state validation
+* CHANGED validation process
 * ADDED DateException
-* REMOVED isValid method from Jalali and Gregorian
+* REMOVED isValid method from Date
 * ADDED MIN and MAX static constants to Jalali and Gregorian
-* ... state validation ...
+* UPDATED documentation
+* ADDED and IMPROVED tests
+* CHANGED library URI references
 
 ## 0.8.1
 

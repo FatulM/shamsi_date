@@ -13,7 +13,7 @@ If you want a Persian datetime picker there is one based on this library [persia
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
 - Access year, month, day, weekday, Julian day number, month length and ... through getters.
 - Format Jalali and Georgian dates with an easy and powerful syntax using [DateFormatter][].
-- Check Jalali or Gregorian date validity.
+- Ensure Jalali and Georgian dates validity.
 - Check if a Jalali or Gregorian year is leap.
 - Immutable date objects with copy methods for easy manipulation.
 - Compare Dates easily with comparison operators or by using [Comparable][].
@@ -22,6 +22,10 @@ If you want a Persian datetime picker there is one based on this library [persia
 - High code coverage with a lot of unit tests.
 
 ## Recent Changes
+
+**BREAKING CHANGE:** As of version `0.9.0`, isValid function is removed from Jalali and Georgian dates. Now **ALL** created date instances are valid. When you are creating a new date instance if think it can be invalid or become out of computable range you should surround code block with try-catch and capture [DateException][].
+
+Jalali and Gregorian classes both have static constants `MIN` and `MAX` which corresponds to minimum and maximum computable date.
 
 **BREAKING CHANGE:** As of version `0.8.0`, most of the methods, constructors and factories throw `ArgumentError` with `null` arguments. This ensures partial validity of state and `non-null` getter and method outputs. Details are provided in dart docs. If you have any concerns file an issue on GitHub.
 
@@ -57,9 +61,22 @@ Month and day has default value of `1` if you don't specify them, so `Jalali(yea
 
 Constructor arguments should be non-null or exception will be thrown immediately. This ensures objects being in valid state when created. So year, month and day are always non-null. Almost all methods, operators, constructors and factories should have non-null arguments and they will return non-null objects. For example year, month and day getters will return non-null results. The only exception for methods which can accept null arguments are methods with optional arguments like `add(...)` and `copy(...)`.
 
+All created date instances are valid. When creating a date instance either by using constructors and factories or by using methods and operators on an existing date instance, if the new date is invalid (by it's month or day being out of range) or it is out of computable range, a [DateException][] exception is thrown. So if you think the new date instance can become invalid or out of range you should soround it with try-catch and catching `DateException`. Minimum computable date is `Gregorian(560,3,20)` or equivalently `Jalali(-61,1,1)` and Maximum computable date is `Gregorian(3798,12,31)` or equivalently `Jalali(3177,10,11)`. For example:
+
+```dart
+main() {
+  try {
+    Jalali jv = Jalali(1398, 13, 1); // not valid!
+  } on DateException catch (e) {
+    // prints: DateException: Jalali month is out of valid range.
+    print(e);
+  }
+}
+```
+
 Jalali and Gregorian objects are immutable. So using operators and methods will give you  new object and does not manipulate the object in place, like String objects. Almost all other objects in shamsi_date library are immutable too.
 
-You can access `year`, `month`, `day` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. You can check Jalali date validity by `isValid()` method. Validity check is based on year, month and day being in their bounds for example month should not be more than month length. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
+You can access `year`, `month`, `day` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
 
 ```dart
 Jalali j = Jalali(1397, 5, 6);
@@ -77,9 +94,6 @@ int ml = j.monthLength; // ml = 31
 // check if 1397 is a leap year
 // note: month and day values are not important for isLeapYear() method
 bool ly = j.isLeapYear(); // ly = false (1397 is not leap year)
-
-// check date validity of 1397/5/6
-bool v = j.isValid(); // v = true (1397/5/6 is valid)
 
 // and equivalently for Gregorian date objects ...
 ```
@@ -317,13 +331,19 @@ main() {
   print('2000 Gregorian is leap year? '
       '${Gregorian(2000).isLeapYear()}'); // -> true
 
-  // check validity
-  print('$j1 is valid? ${j1.isValid()}'); // -> true
-  print('$g1 is valid? ${g1.isValid()}'); // -> true
-  Jalali jv = Jalali(1398, 13, 1); // not valid!
-  print('$jv is valid? ${jv.isValid()}'); // -> false
-  Gregorian gv = Gregorian(2000, 1, -10); // not valid!
-  print('$gv is valid? ${gv.isValid()}'); // -> false
+  // validity:
+  // ALL created instances are considered VALID
+  // if you think a date might invalid, use try-catch:
+  try {
+    Jalali jv = Jalali(1398, 13, 1); // not valid!
+  } on DateException catch (e) {
+    // prints: DateException: Jalali month is out of valid range.
+    print(e);
+  }
+  // making leap crash will also throw exception:
+  // for ex: Jalali(1394, 12, 30) will crash, since
+  //  1394 is not leap year
+  // creating dates out of computable range also throws DateException.
 
   // convert DateTime object to Jalali and Gregorian
   DateTime dateTime = DateTime.now();
@@ -451,9 +471,10 @@ main() {
 }
 ```
 
-[Jalali]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/Jalali-class.html
-[Gregorian]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/Gregorian-class.html
-[DateTime]: https://docs.flutter.io/flutter/dart-core/DateTime-class.html
-[Date]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/Date-class.html
-[DateFormatter]: https://pub.dartlang.org/documentation/shamsi_date/latest/shamsi_date/DateFormatter-class.html
-[Comparable]: https://docs.flutter.io/flutter/dart-core/Comparable-class.html
+[Jalali]: https://pub.dev/documentation/shamsi_date/latest/shamsi_date/Jalali-class.html
+[Gregorian]: https://pub.dev/documentation/shamsi_date/latest/shamsi_date/Gregorian-class.html
+[DateTime]: https://api.flutter.dev/flutter/dart-core/DateTime-class.html
+[Date]: https://pub.dev/documentation/shamsi_date/latest/shamsi_date/Date-class.html
+[DateFormatter]: https://pub.dev/documentation/shamsi_date/latest/shamsi_date/DateFormatter-class.html
+[Comparable]: https://api.flutter.dev/flutter/dart-core/Comparable-class.html
+[DateException]: https://pub.dev/documentation/shamsi_date/latest/shamsi_date/DateException-class.html
