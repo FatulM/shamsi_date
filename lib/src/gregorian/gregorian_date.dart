@@ -127,7 +127,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
     // should be between: Gregorian(560,3,20) and Gregorian(3798,12,31)
     if (year < 560 || year > 3798) {
-      throw DateException('Gregorian is out of computable range.');
+      throw DateException('Gregorian date is out of computable range.');
     }
 
     if (month < 1 || month > 12) {
@@ -144,7 +144,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
     // no need for further analysis for MAX, but for MIN being in year 560:
     if (year == 560) {
       if (month < 3 || (month == 3 && day < 20)) {
-        throw DateException('Jalali is out of computable range.');
+        throw DateException('Gregorian date is out of computable range.');
       }
     }
   }

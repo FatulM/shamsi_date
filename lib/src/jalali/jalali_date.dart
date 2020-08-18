@@ -107,7 +107,7 @@ class Jalali implements Date, Comparable<Jalali> {
 
     // should be between: Jalali(-61, 1, 1) and Jalali(3177, 10, 11)
     if (year < -61 || year > 3177) {
-      throw DateException('Jalali is out of computable range.');
+      throw DateException('Jalali date is out of computable range.');
     }
 
     if (month < 1 || month > 12) {
@@ -124,7 +124,7 @@ class Jalali implements Date, Comparable<Jalali> {
     // no need for further analysis for MIN, but for MAX being in year 3177:
     if (year == 3177) {
       if (month > 10 || (month == 10 && day > 11)) {
-        throw DateException('Jalali is out of computable range.');
+        throw DateException('Jalali date is out of computable range.');
       }
     }
   }
