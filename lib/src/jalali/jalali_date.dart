@@ -114,11 +114,28 @@ class Jalali implements Date, Comparable<Jalali> {
       throw DateException('Jalali month is out of valid range.');
     }
 
-    // todo very bad !!!!
-    final ml = monthLength;
+    // monthLength is very cheap
+    // but isLeapYear is not cheap
+    // if month is 12, monthLength will use isLeapYear
+    // month 12 will always have 29 days or 30 days
+    // so if we are at 30 of month 12 we should use isLeapYear to check validity
+    // and it is more than 30 we should throw immediately
+    // but if is less than 30 it is always ok if it is more than 0
+    if (month != 12 || day == 30) {
+      // month != 12 || (month == 12 && day == 30)
+      final ml = monthLength;
 
-    if (day < 1 || day > ml) {
-      throw DateException('Jalali day is out of valid range.');
+      if (day < 1 || day > ml) {
+        throw DateException('Jalali day is out of valid range.');
+      }
+    } else {
+      // month == 12 && day != 30
+      // from 1 to 29 is valid
+      // 30 has been handled
+      // more than 30 or less than 1 is invalid
+      if (day < 1 || day > 30) {
+        throw DateException('Jalali day is out of valid range.');
+      }
     }
 
     // no need for further analysis for MIN, but for MAX being in year 3177:

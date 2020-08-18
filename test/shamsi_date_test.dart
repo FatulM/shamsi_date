@@ -174,6 +174,36 @@ void main() {
     expect(() => Jalali(1393, 12, 30), throwsDateException);
     Jalali(1393, 12, 29);
     Jalali(1395, 12, 30);
+
+    // check corner cases an issue fixed due to performance problems:
+    // 1399 is leap
+    Jalali(1399, 11, 1);
+    Jalali(1399, 11, 29);
+    Jalali(1399, 11, 30);
+    expect(() => Jalali(1399, 11, -1), throwsDateException);
+    expect(() => Jalali(1399, 11, 0), throwsDateException);
+    expect(() => Jalali(1399, 11, 31), throwsDateException);
+    Jalali(1399, 12, 1);
+    Jalali(1399, 12, 10);
+    Jalali(1399, 12, 29);
+    Jalali(1399, 12, 30);
+    expect(() => Jalali(1399, 12, -1), throwsDateException);
+    expect(() => Jalali(1399, 12, 0), throwsDateException);
+    expect(() => Jalali(1399, 12, 31), throwsDateException);
+    // 1398 is not leap
+    Jalali(1398, 11, 1);
+    Jalali(1398, 11, 29);
+    Jalali(1398, 11, 30);
+    expect(() => Jalali(1398, 11, -1), throwsDateException);
+    expect(() => Jalali(1398, 11, 0), throwsDateException);
+    expect(() => Jalali(1398, 11, 31), throwsDateException);
+    Jalali(1398, 12, 1);
+    Jalali(1398, 12, 10);
+    Jalali(1398, 12, 29);
+    expect(() => Jalali(1398, 12, -1), throwsDateException);
+    expect(() => Jalali(1398, 12, 0), throwsDateException);
+    expect(() => Jalali(1398, 12, 30), throwsDateException);
+    expect(() => Jalali(1398, 12, 31), throwsDateException);
   });
 
   test('Gregorian(year, month, day) validation', () {
