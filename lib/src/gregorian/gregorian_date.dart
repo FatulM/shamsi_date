@@ -386,7 +386,9 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// add [months] to this date
-  /// this Method is safe
+  /// this Method is safe for month and year bounds
+  ///
+  /// throws DateException on month length or leap crash
   ///
   /// throws on null argument
   ///
@@ -403,7 +405,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
       // can not use "sum ~/ 12" directly
       final int deltaYear = (sum - mod) ~/ 12;
 
-      // todo what to do on leap crash ?
       return Gregorian(year + deltaYear, mod + 1, day);
     }
   }

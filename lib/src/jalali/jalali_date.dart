@@ -373,7 +373,9 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// add [months] to this date
-  /// this Method is safe
+  /// this Method is safe for month and year bounds
+  ///
+  /// throws DateException on month length or leap crash
   ///
   /// throws on null argument
   ///
@@ -390,7 +392,6 @@ class Jalali implements Date, Comparable<Jalali> {
       // can not use "sum ~/ 12" directly
       final int deltaYear = (sum - mod) ~/ 12;
 
-      // todo what to do on leap crash ?
       return Jalali(year + deltaYear, mod + 1, day);
     }
   }
