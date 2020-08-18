@@ -134,7 +134,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
       throw DateException('Gregorian month is out of valid range.');
     }
 
-    // todo very bad !!!!
+    // monthLength is very cheap
+    // isLeapYear is also very cheap
     final ml = monthLength;
 
     if (day < 1 || day > ml) {
