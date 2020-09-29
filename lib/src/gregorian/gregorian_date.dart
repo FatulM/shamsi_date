@@ -254,7 +254,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// non-null
   @override
   String toString() {
-    return 'Gregorian($year,$month,$day)';
+    return 'Gregorian($year, $month, $day)';
   }
 
   /// Compare dates

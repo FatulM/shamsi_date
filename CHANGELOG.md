@@ -1,3 +1,7 @@
+## 0.9.1
+
+* FIXED Jalali and Gregorian toString
+
 ## 0.9.0
 
 * CHANGED validation process
