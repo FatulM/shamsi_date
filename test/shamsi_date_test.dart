@@ -55,15 +55,15 @@ void main() {
   });
 
   test('Jalali.toString', () {
-    expect(Jalali(1398, 1, 10).toString(), 'Jalali(1398,1,10)');
-    expect(Jalali(1398, 11, 1).toString(), 'Jalali(1398,11,1)');
-    expect(Jalali(500, 1, 1).toString(), 'Jalali(500,1,1)');
+    expect(Jalali(1398, 1, 10).toString(), 'Jalali(1398, 1, 10)');
+    expect(Jalali(1398, 11, 1).toString(), 'Jalali(1398, 11, 1)');
+    expect(Jalali(500, 1, 1).toString(), 'Jalali(500, 1, 1)');
   });
 
   test('Gregorian.toString', () {
-    expect(Gregorian(2000, 1, 10).toString(), 'Gregorian(2000,1,10)');
-    expect(Gregorian(2000, 11, 1).toString(), 'Gregorian(2000,11,1)');
-    expect(Gregorian(600, 1, 1).toString(), 'Gregorian(600,1,1)');
+    expect(Gregorian(2000, 1, 10).toString(), 'Gregorian(2000, 1, 10)');
+    expect(Gregorian(2000, 11, 1).toString(), 'Gregorian(2000, 11, 1)');
+    expect(Gregorian(600, 1, 1).toString(), 'Gregorian(600, 1, 1)');
   });
 
   test('Jalali.{ fromJulianDayNumber , julianDayNumber }', () {
