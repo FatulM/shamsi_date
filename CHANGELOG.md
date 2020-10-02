@@ -1,6 +1,7 @@
 ## 0.9.1
 
 * FIXED Jalali and Gregorian toString
+* UPDATE example application
 
 ## 0.9.0
 
