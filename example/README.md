@@ -1,8 +1,6 @@
 # shamsi_date example
 
-There is a complete example flutter application for shamsi_date package,
-which shows today in both Jalali and Georgian.
-Clone Github repository if you want to play with it.
+There is a complete example flutter application for shamsi_date package, which shows today in both Jalali and Georgian. Clone Github repository if you want to play with it.
 
 Here is a quick start guide for shamsi_date package:
 

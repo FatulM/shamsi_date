@@ -1,19 +1,16 @@
 name: example
-description: An example for shamsi_date package
+description: An example for shamsi_date package.
 version: 1.0.0+1
+publish_to: 'none'
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   shamsi_date:
     path: ../
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
 flutter:
   uses-material-design: true

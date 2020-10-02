@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'shamsi_date example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
     );
@@ -23,10 +24,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  // this is a formatter function for Jalali or Georgian dates
-  // which are subclass of Date
-  String _format(Date d) {
-    final f = d.formatter;
+  String _format(Date date) {
+    final f = date.formatter;
 
     return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
   }
@@ -35,22 +34,19 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Example for shamsi_date package'),
+        title: Text('shamsi_date example'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              // Here we format today in jalali
-              _format(Jalali.now()),
-              style: TextStyle(fontSize: 26),
-            ),
-            SizedBox(height: 16),
-            Text(
-              // Here we format today in Georgian
               _format(Gregorian.now()),
-              style: TextStyle(fontSize: 22),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Text(
+              _format(Jalali.now()),
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
