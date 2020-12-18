@@ -24,7 +24,7 @@ If you want a Persian datetime picker there is one based on this library [persia
 
 ## Recent Changes
 
-**BREAKING CHANGE:** As of version `0.10.0-nullsafety`, `shamsi_date` supports `nullsafety`. Currently you should use flutter beta channel to use nullsafety feature.
+**BREAKING CHANGE:** As of version `0.10.0-nullsafety.0`, `shamsi_date` supports `nullsafety`. Currently you should use flutter beta channel to use nullsafety feature.
 
 **BREAKING CHANGE:** As of version `0.9.0`, isValid function is removed from Jalali and Georgian dates. Now **ALL** created date instances are valid. When you are creating a new date instance if think it can be invalid or become out of computable range you should surround code block with try-catch and capture [DateException][].
 
@@ -51,7 +51,7 @@ Add it to your pubspec.yaml file:
 If you want to use `nullsafety` feature:
 ```yaml
 dependencies:
-    shamsi_date: ^0.10.0-nullsafety
+    shamsi_date: ^0.10.0-nullsafety.0
 ```
 And for legacy non-nullsafe projects:
 ```yaml
