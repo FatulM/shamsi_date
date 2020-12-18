@@ -2,7 +2,7 @@
 
 [![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)](https://pub.dev/packages/shamsi_date) [![Build Status](https://travis-ci.org/FatulM/shamsi_date.svg?branch=master)](https://travis-ci.org/FatulM/shamsi_date) [![codecov](https://codecov.io/gh/FatulM/shamsi_date/branch/master/graph/badge.svg)](https://codecov.io/gh/FatulM/shamsi_date)
 
-Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
+This is a pure dart package and Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
 
 This package has a lot of unit tests with high test coverage for ensuring it's correctness.
 
@@ -20,8 +20,11 @@ If you want a Persian datetime picker there is one based on this library [persia
 - Add or subtract days with + and - operators.
 - Add years, months and days separately or as a combination with methods.
 - High code coverage with a lot of unit tests.
+- Null-Safe API
 
 ## Recent Changes
+
+**BREAKING CHANGE:** As of version `0.10.0-nullsafety`, `shamsi_date` supports `nullsafety`. Currently you should use flutter beta channel to use nullsafety feature.
 
 **BREAKING CHANGE:** As of version `0.9.0`, isValid function is removed from Jalali and Georgian dates. Now **ALL** created date instances are valid. When you are creating a new date instance if think it can be invalid or become out of computable range you should surround code block with try-catch and capture [DateException][].
 
@@ -44,6 +47,13 @@ If you want a feature or you found an issue, please make an issue on GitHub so I
 ## Usage
 
 Add it to your pubspec.yaml file:
+
+If you want to use `nullsafety` feature:
+```yaml
+dependencies:
+    shamsi_date: ^0.10.0-nullsafety
+```
+And for legacy non-nullsafe projects:
 ```yaml
 dependencies:
     shamsi_date: ^0.9.1
@@ -59,7 +69,7 @@ Gregorian g = Gregorian(year, month, day);
 ```
 Month and day has default value of `1` if you don't specify them, so `Jalali(year, month)` is equivalent to `Jalali(year, month, 1)` and `Gregorian(year)` is equivalent to `Gregorian(year, 1, 1)`.
 
-Constructor arguments should be non-null or exception will be thrown immediately. This ensures objects being in valid state when created. So year, month and day are always non-null. Almost all methods, operators, constructors and factories should have non-null arguments and they will return non-null objects. For example year, month and day getters will return non-null results. The only exception for methods which can accept null arguments are methods with optional arguments like `add(...)` and `copy(...)`.
+Constructor arguments should be non-null or exception will be thrown immediately. This ensures objects being in valid state when created. So year, month and day are always non-null. Almost all methods, operators, constructors and factories should have non-null arguments and they will return non-null objects. For example year, month and day getters will return non-null results. The only exception for methods which can accept null arguments are methods with optional arguments like `add(...)` and `copy(...)`. **in nullsafe version:** nullable and non-nullable argument and return types are checked statically.
 
 All created date instances are valid. When creating a date instance either by using constructors and factories or by using methods and operators on an existing date instance, if the new date is invalid (by it's month or day being out of range) or it is out of computable range, a [DateException][] exception is thrown. So if you think the new date instance can become invalid or out of range you should soround it with try-catch and catching `DateException`. Minimum computable date is `Gregorian(560,3,20)` or equivalently `Jalali(-61,1,1)` and Maximum computable date is `Gregorian(3798,12,31)` or equivalently `Jalali(3177,10,11)`. For example:
 

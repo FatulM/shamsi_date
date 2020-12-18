@@ -1,3 +1,8 @@
+## 0.10.0-nullsafety
+
+* ADDED nullsafety support
+* UPDATED docs
+
 ## 0.9.1
 
 * FIXED Jalali and Gregorian toString
