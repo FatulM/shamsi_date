@@ -32,9 +32,7 @@ class _DateExceptionImpl implements DateException {
   /// throws on null arguments
   ///
   /// non-null
-  _DateExceptionImpl(this.message) {
-    ArgumentError.checkNotNull(message, 'message');
-  }
+  _DateExceptionImpl(this.message);
 
   /// exception description
   ///

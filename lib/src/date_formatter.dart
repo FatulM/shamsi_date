@@ -16,9 +16,7 @@ abstract class DateFormatter {
   /// make a [DateFormatter] for a [Date] object
   ///
   /// argument should not be null
-  DateFormatter(this.date) {
-    ArgumentError.checkNotNull(date, 'date');
-  }
+  DateFormatter(this.date);
 
   /// year number string whatever length it has
   ///
