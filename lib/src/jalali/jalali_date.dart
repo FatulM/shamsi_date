@@ -9,7 +9,7 @@ import '../date_exception.dart';
 import '../gregorian/gregorian_date.dart';
 import '../jalali/jalali_formatter.dart';
 
-/// Jalali (Shamsi or Persian) Date class
+/// Jalali (Jalaali, Shamsi or Persian) Date class
 class Jalali implements Date, Comparable<Jalali> {
   /// Minimum computable Jalali date
   ///
@@ -77,7 +77,7 @@ class Jalali implements Date, Comparable<Jalali> {
   /// Create a Gregorian date by using [year], [month] and [day]
   ///
   /// year and month default to 1
-  Jalali(int year, [int month = 1, int day = 1])
+  Jalali(final int year, [final int month = 1, final int day = 1])
       : year = year,
         month = month,
         day = day {
@@ -123,25 +123,23 @@ class Jalali implements Date, Comparable<Jalali> {
   }
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
-  factory Jalali.fromJulianDayNumber(int julianDayNumber) {
+  factory Jalali.fromJulianDayNumber(final int julianDayNumber) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
       throw DateException('Julian day number is out of computable range.');
     }
 
     // Calculate Gregorian year (gy).
-    int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
+    final int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
     int jy = gy - 621;
     final r = _JalaliCalculation.calculate(jy);
-    int jdn1f = Gregorian(gy, 3, r.march).julianDayNumber;
-    int jd, jm, k;
-
+    final int jdn1f = Gregorian(gy, 3, r.march).julianDayNumber;
+    int k = julianDayNumber - jdn1f;
     // Find number of days that passed since 1 Farvardin.
-    k = julianDayNumber - jdn1f;
     if (k >= 0) {
       if (k <= 185) {
         // The first 6 months.
-        jm = 1 + (k ~/ 31);
-        jd = (k % 31) + 1;
+        final int jm = 1 + (k ~/ 31);
+        final int jd = (k % 31) + 1;
 
         return Jalali(jy, jm, jd);
       } else {
@@ -154,8 +152,8 @@ class Jalali implements Date, Comparable<Jalali> {
       k += 179;
       if (r.leap == 1) k += 1;
     }
-    jm = 7 + (k ~/ 30);
-    jd = (k % 30) + 1;
+    final int jm = 7 + (k ~/ 30);
+    final int jd = (k % 30) + 1;
 
     return Jalali(jy, jm, jd);
   }
@@ -175,7 +173,11 @@ class Jalali implements Date, Comparable<Jalali> {
     if (year == null && month == null && day == null) {
       return this;
     } else {
-      return Jalali(year ?? this.year, month ?? this.month, day ?? this.day);
+      return Jalali(
+        year ?? this.year,
+        month ?? this.month,
+        day ?? this.day,
+      );
     }
   }
 
@@ -268,7 +270,11 @@ class Jalali implements Date, Comparable<Jalali> {
     if (years == 0 && months == 0 && days == 0) {
       return this;
     } else {
-      return Jalali(year + years, month + months, day + days);
+      return Jalali(
+        year + years,
+        month + months,
+        day + days,
+      );
     }
   }
 
@@ -406,20 +412,14 @@ class _JalaliCalculation {
       2324,
       2394,
       2456,
-      3178
+      3178,
     ];
 
-    int bl = breaks.length,
-        gy = jy + 621,
-        leapJ = -14,
-        jp = breaks[0],
-        jm,
-        jump = 0,
-        leap,
-        leapG,
-        march,
-        n,
-        i;
+    final int bl = breaks.length;
+    final int gy = jy + 621;
+    int leapJ = -14;
+    int jp = breaks[0];
+    int jump = 0;
 
     // should not happen
     if (jy < -61 || jy >= 3178) {
@@ -427,8 +427,8 @@ class _JalaliCalculation {
     }
 
     // Find the limiting years for the Jalali year jy.
-    for (i = 1; i < bl; i += 1) {
-      jm = breaks[i];
+    for (int i = 1; i < bl; i += 1) {
+      final int jm = breaks[i];
       jump = jm - jp;
       if (jy < jm) {
         break;
@@ -436,7 +436,7 @@ class _JalaliCalculation {
       leapJ = leapJ + (jump ~/ 33) * 8 + (((jump % 33)) ~/ 4);
       jp = jm;
     }
-    n = jy - jp;
+    int n = jy - jp;
 
     // Find the number of leap years from AD 621 to the beginning
     // of the current Jalali year in the Persian calendar.
@@ -446,16 +446,16 @@ class _JalaliCalculation {
     }
 
     // And the same in the Gregorian calendar (until the year gy).
-    leapG = ((gy) ~/ 4) - (((((gy) ~/ 100) + 1) * 3) ~/ 4) - 150;
+    final int leapG = ((gy) ~/ 4) - (((((gy) ~/ 100) + 1) * 3) ~/ 4) - 150;
 
     // Determine the Gregorian date of Farvardin the 1st.
-    march = 20 + leapJ - leapG;
+    final int march = 20 + leapJ - leapG;
 
     // Find how many years have passed since the last leap year.
     if (jump - n < 6) {
       n = n - jump + ((jump + 4) ~/ 33) * 33;
     }
-    leap = ((((n + 1) % 33) - 1) % 4);
+    int leap = ((((n + 1) % 33) - 1) % 4);
     if (leap == -1) {
       leap = 4;
     }

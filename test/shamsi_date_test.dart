@@ -724,10 +724,14 @@ void main() {
   });
 
   test('Gregorian.{MIN, MAX}', () {
-    expect(Gregorian.fromJulianDayNumber(Date.minJulianDayNumber),
-        Gregorian.min);
-    expect(Gregorian.fromJulianDayNumber(Date.maxJulianDayNumber),
-        Gregorian.max);
+    expect(
+      Gregorian.fromJulianDayNumber(Date.minJulianDayNumber),
+      Gregorian.min,
+    );
+    expect(
+      Gregorian.fromJulianDayNumber(Date.maxJulianDayNumber),
+      Gregorian.max,
+    );
   });
 
   test('_JalaliCalculation.calculate', () {

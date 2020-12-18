@@ -9,7 +9,7 @@ import '../date_exception.dart';
 import '../gregorian/gregorian_formatter.dart';
 import '../jalali/jalali_date.dart';
 
-/// Gregorian date class
+/// Gregorian (Miladi or Milaadi) date class
 class Gregorian implements Date, Comparable<Gregorian> {
   /// Gregorian month lengths
   ///
@@ -26,7 +26,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
     30,
     31,
     30,
-    31
+    31,
   ];
 
   /// Minimum computable Gregorian date
@@ -61,13 +61,12 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// calendars) up to a few million years into the future.
   @override
   int get julianDayNumber {
-    int d = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
+    return (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
         ((153 * ((month + 9) % 12) + 2) ~/ 5) +
         day -
-        34840408;
-    d = d - ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) + 752;
-
-    return d;
+        34840408 -
+        ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) +
+        752;
   }
 
   /// Week day number
@@ -97,7 +96,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Create a Gregorian date by using [year], [month] and [day]
   ///
   /// year and month default to 1
-  Gregorian(int year, [int month = 1, int day = 1])
+  Gregorian(final int year, [final int month = 1, final int day = 1])
       : year = year,
         month = month,
         day = day {
@@ -127,23 +126,22 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
-  /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
-  /// calendars) to some millions years ahead of the present.
-  factory Gregorian.fromJulianDayNumber(int julianDayNumber) {
+  /// [julianDayNumber] for the period since jdn=-34839655
+  /// (i.e. the year -100100 of both calendars)
+  /// to some millions years ahead of the present.
+  factory Gregorian.fromJulianDayNumber(final int julianDayNumber) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
       throw DateException('Julian day number is out of computable range.');
     }
 
-    int j, i, gd, gm, gy;
-
-    j = 4 * julianDayNumber + 139361631;
-    j = j +
+    final int j = 4 * julianDayNumber +
+        139361631 +
         ((((4 * julianDayNumber + 183187720) ~/ 146097) * 3) ~/ 4) * 4 -
         3908;
-    i = (((j % 1461)) ~/ 4) * 5 + 308;
-    gd = (((i % 153)) ~/ 5) + 1;
-    gm = (((i) ~/ 153) % 12) + 1;
-    gy = ((j) ~/ 1461) - 100100 + ((8 - gm) ~/ 6);
+    final int i = (((j % 1461)) ~/ 4) * 5 + 308;
+    final int gd = (((i % 153)) ~/ 5) + 1;
+    final int gm = (((i) ~/ 153) % 12) + 1;
+    final int gy = ((j) ~/ 1461) - 100100 + ((8 - gm) ~/ 6);
 
     return Gregorian(gy, gm, gd);
   }
@@ -168,7 +166,11 @@ class Gregorian implements Date, Comparable<Gregorian> {
     if (year == null && month == null && day == null) {
       return this;
     } else {
-      return Gregorian(year ?? this.year, month ?? this.month, day ?? this.day);
+      return Gregorian(
+        year ?? this.year,
+        month ?? this.month,
+        day ?? this.day,
+      );
     }
   }
 
@@ -264,7 +266,11 @@ class Gregorian implements Date, Comparable<Gregorian> {
     if (years == 0 && months == 0 && days == 0) {
       return this;
     } else {
-      return Gregorian(year + years, month + months, day + days);
+      return Gregorian(
+        year + years,
+        month + months,
+        day + days,
+      );
     }
   }
 
