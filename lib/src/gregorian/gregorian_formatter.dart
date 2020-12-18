@@ -10,8 +10,6 @@ import '../gregorian/gregorian_date.dart';
 /// Gregorian date formatter class
 class GregorianFormatter extends DateFormatter {
   /// make a [GregorianFormatter] from [Gregorian] date
-  ///
-  /// argument should not be null
   GregorianFormatter(Gregorian date) : super(date);
 
   /// Gregorian month names
@@ -42,16 +40,12 @@ class GregorianFormatter extends DateFormatter {
   ];
 
   /// Gregorian month name
-  ///
-  /// Non-Null
   @override
   String get mN {
     return _monthNames[date.month - 1];
   }
 
   /// Gregorian week day name
-  ///
-  /// Non-Null
   @override
   String get wN {
     return _weekDayNames[date.weekDay - 1];

@@ -21,42 +21,26 @@ abstract class Date {
   static const int MAX_JULIAN_DAY_NUMBER = 3108616;
 
   /// year
-  ///
-  /// non-null
   int get year;
 
   /// month
-  ///
-  /// non-null
   int get month;
 
   /// day
-  ///
-  /// non-null
   int get day;
 
   /// julian day number
-  ///
-  /// non-null
   int get julianDayNumber;
 
   /// week day number
-  ///
-  /// non-null
   int get weekDay;
 
   /// month length
-  ///
-  /// non-null
   int get monthLength;
 
   /// Formatter for this date object
-  ///
-  /// non-null
   DateFormatter get formatter;
 
   /// checks if this year is a leap year
-  ///
-  /// non-null
   bool isLeapYear();
 }

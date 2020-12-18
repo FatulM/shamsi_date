@@ -44,20 +44,14 @@ class Gregorian implements Date, Comparable<Gregorian> {
   static final Gregorian MAX = Gregorian(3798, 12, 31);
 
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
-  ///
-  /// non-null
   @override
   final int year;
 
   /// Gregorian month (1 to 12)
-  ///
-  /// non-null
   @override
   final int month;
 
   /// Gregorian day of the month (1 to 28/29/30/31)
-  ///
-  /// non-null
   @override
   final int day;
 
@@ -67,8 +61,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
   ///
   /// The procedure was tested to be good since 1 March, -100100 (of both
   /// calendars) up to a few million years into the future.
-  ///
-  /// non-null
   @override
   int get julianDayNumber {
     int d = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
@@ -83,16 +75,12 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Week day number
   /// [monday] = 1
   /// [sunday] = 7
-  ///
-  /// non-null
   @override
   int get weekDay {
     return julianDayNumber % 7 + 1;
   }
 
   /// Computes number of days in a given month in a Gregorian year.
-  ///
-  /// non-null
   @override
   int get monthLength {
     if (month == 2) {
@@ -103,20 +91,14 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Formatter for this date object
-  ///
-  /// non-null
   @override
   GregorianFormatter get formatter {
     return GregorianFormatter(this);
   }
 
-  /// Create a Gregorian date by using year, month and day
+  /// Create a Gregorian date by using [year], [month] and [day]
+  ///
   /// year and month default to 1
-  /// [year], [month] and [day] can not be null
-  ///
-  /// throws on null arguments
-  ///
-  /// non-null
   Gregorian(int year, [int month = 1, int day = 1])
       : year = year,
         month = month,
@@ -149,10 +131,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
   /// [julianDayNumber] for the period since jdn=-34839655 (i.e. the year -100100 of both
   /// calendars) to some millions years ahead of the present.
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   factory Gregorian.fromJulianDayNumber(int julianDayNumber) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
       throw DateException('Julian day number is out of computable range.');
@@ -173,33 +151,21 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Create a Gregorian date by using [DateTime] object
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   factory Gregorian.fromDateTime(DateTime dateTime) {
     return Gregorian(dateTime.year, dateTime.month, dateTime.day);
   }
 
   /// Create a Gregorian date from Jalali date
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   factory Gregorian.fromJalali(Jalali date) {
     return Gregorian.fromJulianDayNumber(date.julianDayNumber);
   }
 
   /// Get Gregorian date for now
-  ///
-  /// non-null
   factory Gregorian.now() {
     return Gregorian.fromDateTime(DateTime.now());
   }
 
   /// Copy this date object with some fields changed
-  ///
-  /// non-null
   Gregorian copy({int? year, int? month, int? day}) {
     if (year == null && month == null && day == null) {
       return this;
@@ -209,22 +175,16 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Converts Gregorian date to [DateTime] object
-  ///
-  /// non-null
   DateTime toDateTime() {
     return DateTime(year, month, day);
   }
 
   /// Converts a Gregorian date to Jalali.
-  ///
-  /// non-null
   Jalali toJalali() {
     return Jalali.fromJulianDayNumber(julianDayNumber);
   }
 
   /// Checks if a year is a leap year or not.
-  ///
-  /// non-null
   @override
   bool isLeapYear() {
     if (year % 4 == 0) {
@@ -240,18 +200,12 @@ class Gregorian implements Date, Comparable<Gregorian> {
 
   /// Default string representation: `Gregorian(YYYY,MM,DD)`.
   /// use formatter for custom formatting.
-  ///
-  /// non-null
   @override
   String toString() {
     return 'Gregorian($year, $month, $day)';
   }
 
   /// Compare dates
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   @override
   int compareTo(Gregorian other) {
     if (year != other.year) {
@@ -270,70 +224,44 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// bigger than operator
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   bool operator >(Gregorian other) {
     return compareTo(other) > 0;
   }
 
   /// bigger than or equal operator
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   bool operator >=(Gregorian other) {
     return compareTo(other) >= 0;
   }
 
   /// less than operator
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   bool operator <(Gregorian other) {
     return compareTo(other) < 0;
   }
 
   /// less than or equal operator
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   bool operator <=(Gregorian other) {
     return compareTo(other) <= 0;
   }
 
   /// add [days]
   /// this Method is safe
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   Gregorian operator +(int days) {
     return addDays(days);
   }
 
   /// subtract [days]
   /// this Method is safe
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   Gregorian operator -(int days) {
     return addDays(-days);
   }
 
+  /// makes a new date instance and
   /// add [days], [months] and [years] separately
+  ///
   /// note: it does not make any conversion, it simply adds to each field value
   /// for subtracting simple add negative value
   ///
   /// UNSAFE
-  ///
-  /// throws on null arguments
-  ///
-  /// non-null
   Gregorian add({int years = 0, int months = 0, int days = 0}) {
     if (years == 0 && months == 0 && days == 0) {
       return this;
@@ -342,12 +270,9 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
+  /// makes a new date instance and
   /// add [years] to this date
   ///
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   Gregorian addYears(int years) {
     if (years == 0) {
       return this;
@@ -356,14 +281,12 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
+  /// makes a new date instance and
   /// add [months] to this date
+  ///
   /// this Method is safe for month and year bounds
   ///
   /// throws DateException on month length or leap crash
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   Gregorian addMonths(int months) {
     if (months == 0) {
       return this;
@@ -378,12 +301,9 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
+  /// makes a new date instance and
   /// add [days] to this date
   /// this Method is safe
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
   Gregorian addDays(int days) {
     if (days == 0) {
       return this;
@@ -392,11 +312,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// changes [year]
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
+  /// make a new date instance with changed [year]
   Gregorian withYear(int year) {
     if (year == this.year) {
       return this;
@@ -405,11 +321,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// changes [month]
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
+  /// make a new date instance with changed [month]
   Gregorian withMonth(int month) {
     if (month == this.month) {
       return this;
@@ -418,11 +330,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// changes [day]
-  ///
-  /// throws on null argument
-  ///
-  /// non-null
+  /// make a new date instance with changed [day]
   Gregorian withDay(int day) {
     if (day == this.day) {
       return this;
@@ -432,8 +340,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// equals operator
-  ///
-  /// non-null
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
@@ -445,8 +351,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// hashcode operator
-  ///
-  /// non-null
   @override
   int get hashCode {
     return year.hashCode ^ month.hashCode ^ day.hashCode;

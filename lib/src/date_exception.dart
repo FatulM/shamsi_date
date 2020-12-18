@@ -11,10 +11,6 @@ library date_exception;
 /// super class of all date exceptions
 abstract class DateException implements Exception {
   /// Create a [DateException] with message
-  ///
-  /// throws on null arguments
-  ///
-  /// non-null
   factory DateException(String message) {
     return _DateExceptionImpl(message);
   }
@@ -23,20 +19,12 @@ abstract class DateException implements Exception {
 /// implementation of [DateException] with message
 class _DateExceptionImpl implements DateException {
   /// message
-  ///
-  /// non-null
   final String message;
 
   /// Create a [DateException] with message
-  ///
-  /// throws on null arguments
-  ///
-  /// non-null
   _DateExceptionImpl(this.message);
 
   /// exception description
-  ///
-  /// non-null
   @override
   String toString() {
     return 'DateException: $message';
