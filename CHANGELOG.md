@@ -2,6 +2,7 @@
 
 * ADDED nullsafety support
 * UPDATED docs
+* RENAMED static min and max constants
 
 ## 0.9.1
 

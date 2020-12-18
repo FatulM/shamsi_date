@@ -719,15 +719,15 @@ void main() {
   });
 
   test('Jalali.{MIN, MAX}', () {
-    expect(Jalali.fromJulianDayNumber(Date.MIN_JULIAN_DAY_NUMBER), Jalali.MIN);
-    expect(Jalali.fromJulianDayNumber(Date.MAX_JULIAN_DAY_NUMBER), Jalali.MAX);
+    expect(Jalali.fromJulianDayNumber(Date.minJulianDayNumber), Jalali.min);
+    expect(Jalali.fromJulianDayNumber(Date.maxJulianDayNumber), Jalali.max);
   });
 
   test('Gregorian.{MIN, MAX}', () {
-    expect(Gregorian.fromJulianDayNumber(Date.MIN_JULIAN_DAY_NUMBER),
-        Gregorian.MIN);
-    expect(Gregorian.fromJulianDayNumber(Date.MAX_JULIAN_DAY_NUMBER),
-        Gregorian.MAX);
+    expect(Gregorian.fromJulianDayNumber(Date.minJulianDayNumber),
+        Gregorian.min);
+    expect(Gregorian.fromJulianDayNumber(Date.maxJulianDayNumber),
+        Gregorian.max);
   });
 
   test('_JalaliCalculation.calculate', () {

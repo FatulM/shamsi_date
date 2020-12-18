@@ -33,15 +33,13 @@ class Gregorian implements Date, Comparable<Gregorian> {
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
   /// and julian day number of 1925675
-  // ignore: non_constant_identifier_names
-  static final Gregorian MIN = Gregorian(560, 3, 20);
+  static final Gregorian min = Gregorian(560, 3, 20);
 
   /// Maximum computable Gregorian date
   ///
   /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
-  // ignore: non_constant_identifier_names
-  static final Gregorian MAX = Gregorian(3798, 12, 31);
+  static final Gregorian max = Gregorian(3798, 12, 31);
 
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
   @override

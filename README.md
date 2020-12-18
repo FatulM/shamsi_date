@@ -26,6 +26,8 @@ If you want a Persian datetime picker there is one based on this library [persia
 
 **BREAKING CHANGE:** As of version `0.10.0-nullsafety.0`, `shamsi_date` supports `nullsafety`. Currently you should use flutter beta channel to use nullsafety feature.
 
+**BREAKING CHANGE:** As of version `0.10.0-nullsafety.0`, min and max static constants are renamed according to camelCase.
+
 **BREAKING CHANGE:** As of version `0.9.0`, isValid function is removed from Jalali and Georgian dates. Now **ALL** created date instances are valid. When you are creating a new date instance if think it can be invalid or become out of computable range you should surround code block with try-catch and capture [DateException][].
 
 Jalali and Gregorian classes both have static constants `MIN` and `MAX` which corresponds to minimum and maximum computable date.

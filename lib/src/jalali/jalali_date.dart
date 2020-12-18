@@ -15,15 +15,13 @@ class Jalali implements Date, Comparable<Jalali> {
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
   /// and julian day number of 1925675
-  // ignore: non_constant_identifier_names
-  static final Jalali MIN = Jalali(-61, 1, 1);
+  static final Jalali min = Jalali(-61, 1, 1);
 
   /// Maximum computable Jalali date
   ///
   /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
-  // ignore: non_constant_identifier_names
-  static final Jalali MAX = Jalali(3177, 10, 11);
+  static final Jalali max = Jalali(3177, 10, 11);
 
   /// Jalali year (1 to 3100)
   @override
