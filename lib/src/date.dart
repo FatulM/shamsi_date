@@ -45,4 +45,7 @@ abstract class Date {
   bool isLeapYear();
   
   Date addMonths(int months);
+  
+  
+  Date addDays(int days);
 }
