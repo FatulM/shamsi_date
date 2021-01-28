@@ -43,4 +43,6 @@ abstract class Date {
 
   /// checks if this year is a leap year
   bool isLeapYear();
+  
+  Date addMonths(int months);
 }
