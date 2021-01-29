@@ -48,4 +48,7 @@ abstract class Date {
   
   
   Date addDays(int days);
+  
+  DateTime toDateTime();
+  
 }
