@@ -44,11 +44,19 @@ abstract class Date {
   /// checks if this year is a leap year
   bool isLeapYear();
   
+  Date add({int years = 0, int months = 0, int days = 0});
+  
   Date addYears(int years);
 
   Date addMonths(int months);
   
   Date addDays(int days);
+  
+  Date withYear(int year);
+  
+  Date withMonth(int month);
+  
+  Date withDay(int day);
   
   DateTime toDateTime();
   
