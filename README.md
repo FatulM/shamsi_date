@@ -145,7 +145,7 @@ Jalali jNow = Jalali.now();
 Gregorian gNow = Gregorian.now();
 ```
 
-Jalali and Georgian dates are immutable so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. This methods can be chained. **It is recommended** to use withYear, withMonth and withDay methods over copy method. **note** that It is your responsibility to avoid month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important. copy method order is not guarantied.
+Jalali and Georgian dates are immutable so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. This methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
 
 for example for getting date at start of this month in Jalali: (copy method makes another object instance and leaves the original one unchanged)
 
@@ -185,7 +185,7 @@ You can add and subtract days to Jalali and Gregorian using `+` and `-` operator
 
 You can add years, months or days to  Jalali and Gregorian using `addYears`, `addMonths` and `addDays`. This methods can be chained and they will not have range crash. `addDays` can change month and year. `addMonths` can change year. **note** that it is your responsibility to avoid leap crash.
 
-If you want you can add a combination of days, months or years to a date object with `add` method. **note** that `add` method does not manipulate result to become bound valid, it is your responsibility. **It is recommended** to use addYear, addMonth and addDay methods over add method.
+If you want you can add a combination of days, months or years to a date object with `add` method. **note** that `add` method is not safe and does not manipulate result to become bound valid, it is your responsibility. **It is recommended** to use addYear, addMonth and addDay methods over add method. **note** By using addYears, addMonth and addDay you can put day out of month length bounds. addMonth is safe for month overflow.
 
 ```dart
 Jalali j1 = Jalali(1398, 8, 4);
