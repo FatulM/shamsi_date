@@ -10,6 +10,17 @@ import '../gregorian/gregorian_formatter.dart';
 import '../jalali/jalali_date.dart';
 
 /// Gregorian (Miladi or Milaadi) date class
+///
+/// Date objects are required to be immutable
+///
+/// Dates should be uniquely specified by year, month and day
+/// Or by using julian day number
+///
+/// Date objects are valid dates once constructed,
+/// It should throw exception when there is a validity or calculation problem
+///
+/// For example constructing date with day being out of month length
+/// or date being out of computable region throws DateException
 class Gregorian implements Date, Comparable<Gregorian> {
   /// Gregorian month lengths
   ///
@@ -162,6 +173,20 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Copy this date object with some fields changed
+  ///
+  /// Original date object remains unchanged
+  ///
+  /// You can leave out items for not changing them
+  ///
+  /// This method is NOT safe
+  ///
+  /// This method does change all fields at once,
+  /// Not individually in a order
+  ///
+  /// Throws DateException on problems
+  ///
+  /// Note: For ordering use with*() methods
+  @override
   Gregorian copy({int? year, int? month, int? day}) {
     if (year == null && month == null && day == null) {
       return this;
@@ -198,7 +223,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// Default string representation: `Gregorian(YYYY,MM,DD)`.
+  /// Default string representation: `Gregorian(YYYY, MM, DD)`.
   /// use formatter for custom formatting.
   @override
   String toString() {
@@ -243,14 +268,26 @@ class Gregorian implements Date, Comparable<Gregorian> {
     return compareTo(other) <= 0;
   }
 
-  /// add [days]
-  /// this Method is safe
+  /// Add [days]
+  ///
+  /// Original date object remains unchanged
+  ///
+  /// This Method is safe
+  ///
+  /// Note: This is same as addDays(days)
+  @override
   Gregorian operator +(int days) {
     return addDays(days);
   }
 
-  /// subtract [days]
-  /// this Method is safe
+  /// Subtract [days]
+  ///
+  /// Original date object remains unchanged
+  ///
+  /// This Method is safe
+  ///
+  /// Note: This is same as addDays(-days)
+  @override
   Gregorian operator -(int days) {
     return addDays(-days);
   }
@@ -258,10 +295,15 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// makes a new date instance and
   /// add [days], [months] and [years] separately
   ///
-  /// note: it does not make any conversion, it simply adds to each field value
-  /// for subtracting simple add negative value
+  /// Original date object remains unchanged
   ///
-  /// UNSAFE
+  /// Note: It does not make any conversion,
+  /// it simply adds to each field value and changes ALL at once
+  ///
+  /// This Method is NOT safe for month and day bounds
+  ///
+  /// Recommended: Use separate add*() methods
+  @override
   Gregorian add({int years = 0, int months = 0, int days = 0}) {
     if (years == 0 && months == 0 && days == 0) {
       return this;
@@ -274,9 +316,13 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// makes a new date instance and
-  /// add [years] to this date
+  /// Makes a new date object with
+  /// added [years] to this date
   ///
+  /// Original date object remains unchanged
+  ///
+  /// This method is safe
+  @override
   Gregorian addYears(int years) {
     if (years == 0) {
       return this;
@@ -285,12 +331,16 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// makes a new date instance and
-  /// add [months] to this date
+  /// Makes a new date object with
+  /// added [months] to this date
   ///
-  /// this Method is safe for month and year bounds
+  /// Original date object remains unchanged
   ///
-  /// throws DateException on month length or leap crash
+  /// This method is NOT safe for day being out of month length,
+  /// But is safe for month overflow
+  ///
+  /// Throws DateException on problems
+  @override
   Gregorian addMonths(int months) {
     if (months == 0) {
       return this;
@@ -305,9 +355,13 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// makes a new date instance and
-  /// add [days] to this date
+  /// makes a new date object with
+  /// added [days] to this date
+  ///
+  /// Original date object remains unchanged
+  ///
   /// this Method is safe
+  @override
   Gregorian addDays(int days) {
     if (days == 0) {
       return this;
@@ -316,7 +370,18 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// make a new date instance with changed [year]
+  /// Make a new date object with changed [year]
+  ///
+  /// Original date object remains unchanged
+  ///
+  /// This method is NOT safe
+  ///
+  /// Throws DateException on problems
+  ///
+  /// Note: For changing at once use copy() methods
+  ///
+  /// Note: You can chain methods
+  @override
   Gregorian withYear(int year) {
     if (year == this.year) {
       return this;
@@ -325,7 +390,18 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// make a new date instance with changed [month]
+  /// Make a new date object with changed [month]
+  ///
+  /// Original date object remains unchanged
+  ///
+  /// This method is NOT safe
+  ///
+  /// Throws DateException on problems
+  ///
+  /// Note: For changing at once use copy() methods
+  ///
+  /// Note: You can chain methods
+  @override
   Gregorian withMonth(int month) {
     if (month == this.month) {
       return this;
@@ -334,7 +410,18 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
-  /// make a new date instance with changed [day]
+  /// Make a new date object with changed [day]
+  ///
+  /// Original date object remains unchanged
+  ///
+  /// This method is NOT safe
+  ///
+  /// Throws DateException on problems
+  ///
+  /// Note: For changing at once use copy() methods
+  ///
+  /// Note: You can chain methods
+  @override
   Gregorian withDay(int day) {
     if (day == this.day) {
       return this;
