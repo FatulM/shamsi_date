@@ -24,7 +24,7 @@ If you want a Persian datetime picker there is one based on this library [persia
 
 ## Recent Changes
 
-**IMPORTANT CHANGE:** As of version `0.11.0`, most common methods in Jalali and Gregorian are factored out on Date. This is change is non breaking.
+**IMPORTANT CHANGE:** As of version `0.11.0-nullsafety.0`, most common methods in Jalali and Gregorian are factored out on Date. This is change is non breaking.
 
 **BREAKING CHANGE:** As of version `0.10.0-nullsafety.0`, `shamsi_date` supports `nullsafety`. Currently you should use flutter beta channel to use nullsafety feature.
 
@@ -55,7 +55,7 @@ Add it to your pubspec.yaml file:
 If you want to use `nullsafety` feature:
 ```yaml
 dependencies:
-    shamsi_date: ^0.11.0
+    shamsi_date: ^0.11.0-nullsafety.0
 ```
 And for legacy non-nullsafe projects:
 ```yaml
