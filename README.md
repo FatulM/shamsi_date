@@ -55,7 +55,7 @@ Add it to your pubspec.yaml file:
 If you want to use `nullsafety` feature:
 ```yaml
 dependencies:
-    shamsi_date: ^0.11.0-nullsafety.0
+    shamsi_date: ^0.12.0
 ```
 And for legacy non-nullsafe projects:
 ```yaml

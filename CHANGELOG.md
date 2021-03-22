@@ -1,3 +1,7 @@
+## 0.12.0
+
+* MIGRATED to flutter 2 and dart 2.12
+
 ## 0.11.0-nullsafety.0
 
 * REFACTOR factored out common methods on Date
