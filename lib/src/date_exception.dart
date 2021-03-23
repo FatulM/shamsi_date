@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-library date_exception;
-
 /// date exception
 ///
 /// this can happen by creating invalid dates or going out of computable range

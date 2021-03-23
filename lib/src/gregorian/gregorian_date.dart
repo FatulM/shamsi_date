@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-library gregorian_date;
-
 import '../date.dart';
 import '../date_exception.dart';
 import '../gregorian/gregorian_formatter.dart';
