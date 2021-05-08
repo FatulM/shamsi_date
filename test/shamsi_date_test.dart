@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:shamsi_date/shamsi_date.dart';
+import 'package:shamsi_date/extensions.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -512,9 +513,23 @@ void main() {
     expect(j1, j2);
   });
 
+  test('DateTime.toJalali', () {
+    final dt = DateTime(2019, 12, 25);
+    final j1 = dt.toJalali();
+    final j2 = Jalali(1398, 10, 4);
+    expect(j1, j2);
+  });
+
   test('Gregorian.fromDateTime', () {
     final dt = DateTime(2000, 10, 5);
     final g1 = Gregorian.fromDateTime(dt);
+    final g2 = Gregorian(2000, 10, 5);
+    expect(g1, g2);
+  });
+
+  test('DateTime.toGregorian', () {
+    final dt = DateTime(2000, 10, 5);
+    final g1 = dt.toGregorian();
     final g2 = Gregorian(2000, 10, 5);
     expect(g1, g2);
   });

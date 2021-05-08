@@ -1,3 +1,7 @@
+## 0.14.0
+
+* ADDED extension methods for DateTime
+
 ## 0.13.0
 
 * REMOVED dependency to Flutter

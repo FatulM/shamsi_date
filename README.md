@@ -24,6 +24,8 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
+As of version `0.14.0`, there are extension methods `toJalali()` and `toGregorian()` for `DateTime` if you import `shamsi_date/extensions.dart`.
+
 **IMPORTANT CHANGE:** As of version `0.13.0`, shamsi_date is a pure Dart package and does not depend on Flutter. 
 
 ## Issues and feature requests
@@ -36,7 +38,19 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.13.0
+    shamsi_date: ^0.14.0
+```
+
+Then depend on it:
+
+```dart
+import 'package:shamsi_date/shamsi_date.dart';
+```
+
+If you want extension methods, also depend on extensions:
+
+```dart
+import 'package:shamsi_date/extensions.dart';
 ```
 
 [Jalali][] class is used for **Shamsi (Jalali, Persian, شمسی or خورشیدی)** date and [Gregorian][] class is used for **Gregorian (Miladi or میلادی)** date. Jalali and Gregorian classes are the subclasses of [Date][].
@@ -118,6 +132,14 @@ DateTime g2dt = g.toDateTime();
 // get now
 Jalali jNow = Jalali.now();
 Gregorian gNow = Gregorian.now();
+```
+
+For converting [DateTime][] you can also use extension methods.
+
+```dart
+DateTime dt = DateTime.now();
+Jalali j = dt.toJalali();
+Gregorian g = dt.toGregorian();
 ```
 
 Jalali and Georgian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
@@ -277,6 +299,7 @@ Here is a complete example. If you did not find what you are looking for, you ca
 
 ```dart
 import 'package:shamsi_date/shamsi_date.dart';
+import 'package:shamsi_date/extensions.dart';
 
 void main() {
   // Gregorian to Jalali conversion
@@ -468,6 +491,14 @@ void main() {
   print(j1.julianDayNumber == g1.julianDayNumber); // -> true
   // this means that they are equal
   // you can also use other comparison operators
+
+  // you can use extension methods for DateTime
+  final dtn = DateTime.now();
+  print(dtn);
+  final jn = dtn.toJalali();
+  print(jn);
+  final gn = dtn.toGregorian();
+  print(gn);
 }
 ```
 

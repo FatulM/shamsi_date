@@ -1,4 +1,5 @@
 import 'package:shamsi_date/shamsi_date.dart';
+import 'package:shamsi_date/extensions.dart';
 
 void main() {
   // Gregorian to Jalali conversion
@@ -190,4 +191,12 @@ void main() {
   print(j1.julianDayNumber == g1.julianDayNumber); // -> true
   // this means that they are equal
   // you can also use other comparison operators
+
+  // you can use extension methods for DateTime
+  final dtn = DateTime.now();
+  print(dtn);
+  final jn = dtn.toJalali();
+  print(jn);
+  final gn = dtn.toGregorian();
+  print(gn);
 }
