@@ -38,7 +38,7 @@ Add it to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    shamsi_date: ^0.14.0
+    shamsi_date: ^latest.version
 ```
 
 Then depend on it:
