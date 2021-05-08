@@ -8,8 +8,6 @@ This is a pure dart package and Algorithm is based on popular JavaScript library
 
 This package has a lot of unit tests with high test coverage for ensuring its correctness.
 
-If you want a Persian datetime picker there is one based on this library [persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker).
-
 ## Key Features
 
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
@@ -382,7 +380,8 @@ void main() {
   print(Jalali.now().copy(month: 2, day: 3));
   // DON NOT do it like this:
   print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT
-  // for example if you want to get last day of the last month of this Jalali year:
+  // for example if you want to get
+  // the last day of the last month of this Jalali year:
   Jalali tmp = Jalali.now().copy(month: 12, day: 1);
   // since we can be in a leap year we use monthLength:
   print(tmp.copy(day: tmp.monthLength));
@@ -460,7 +459,8 @@ void main() {
   print(g1 == g2); // -> true
   print(g1 != g1); // -> false
 
-  // if you want to compare Jalali with Georgian you can convert one type to another,
+  // if you want to compare Jalali with Georgian
+  // you can convert one type to another,
   // for example:
   print(j1.toGregorian() == g1); // -> true
   // but if you don't want to convert them you can use julianDayNumber
