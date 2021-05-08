@@ -1,3 +1,7 @@
+## 0.13.0
+
+* REMOVED dependency to Flutter
+
 ## 0.12.0
 
 * MIGRATED to flutter 2 and dart 2.12

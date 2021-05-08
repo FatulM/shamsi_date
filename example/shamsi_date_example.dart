@@ -1,13 +1,6 @@
-# shamsi_date example
-
-There is a complete example flutter application for shamsi_date package, which shows today in both Jalali and Georgian. Clone Github repository if you want to play with it.
-
-Here is a quick start guide for shamsi_date package:
-
-```dart
 import 'package:shamsi_date/shamsi_date.dart';
 
-main() {
+void main() {
   // Gregorian to Jalali conversion
   Gregorian g1 = Gregorian(2013, 1, 10);
   Jalali j1 = g1.toJalali();
@@ -20,10 +13,14 @@ main() {
   int j1y = j1.year; // j1y = 1391
   int j1m = j1.month; // j1m = 10
   int j1d = j1.day; // j1d = 21
+  print('j1 is $j1y-$j1m-$j1d'); // prints: j1 is 1397-10-21
+  // NOTE: use formatters for formatting dates
   // and for Gregorian:
   int g1y = g1.year; // g1y = 2013
   int g1m = g1.month; // g1m = 1
   int g1d = g1.day; // g1d = 10
+  print('g1 is $g1y-$g1m-$g1d'); // prints: g1 is 2013-1-10
+  // NOTE: use formatters for formatting dates
 
   // Jalali to Gregorian conversion
   Jalali j2 = Jalali(1391, 10, 21);
@@ -55,6 +52,7 @@ main() {
   // if you think a date might invalid, use try-catch:
   try {
     Jalali jv = Jalali(1398, 13, 1); // not valid!
+    print(jv); // this line is not reached
   } on DateException catch (e) {
     // prints: DateException: Jalali month is out of valid range.
     print(e);
@@ -82,6 +80,7 @@ main() {
   print('now is ${Jalali.now()} in Jalali');
   // find out which jalali year is this year:
   int thisJalaliYear = Jalali.now().year;
+  print('this Jalali year is $thisJalaliYear');
 
   // copy method
   print('$j1 with year = 1300 is ${j1.copy(year: 1300)}');
@@ -163,9 +162,11 @@ main() {
   // DO NOT use formatter for accessing year, month or other properties
   // of date objects they are available as getters on date objects
   // INCORRECT EXAMPLE, DO NOT USE THIS:
-  int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT
+  int j1y1 = int.parse(j1.formatter.yyyy); // INCORRECT
+  print("j1's year is $j1y1");
   // use this:
-  int ty2 = Jalali.now().year; // correct
+  int j1y2 = j1.year; // correct
+  print("j1's year is $j1y2");
   // also using toString() for showing dates on UI is not recommended,
   // use custom formatter.
 
@@ -188,4 +189,3 @@ main() {
   // this means that they are equal
   // you can also use other comparison operators
 }
-```

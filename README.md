@@ -1,10 +1,12 @@
 # A Flutter package for using Jalali (Shamsi, Solar, Persian, شمسی or خورشیدی) date. You can convert, format and manipulate Jalali and Georgian dates.
 
-[![Pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue)](https://pub.dev/packages/shamsi_date) [![Build Status](https://travis-ci.org/FatulM/shamsi_date.svg?branch=master)](https://travis-ci.org/FatulM/shamsi_date) [![codecov](https://codecov.io/gh/FatulM/shamsi_date/branch/master/graph/badge.svg)](https://codecov.io/gh/FatulM/shamsi_date)
+[![pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue&label=shamsi_date)](https://pub.dev/packages/shamsi_date)
+[![build](https://img.shields.io/github/workflow/status/FatulM/shamsi_date/build?label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
+[![coverage](https://img.shields.io/codecov/c/gh/FatulM/shamsi_date?label=coverage)](https://codecov.io/gh/FatulM/shamsi_date)
 
 This is a pure dart package and Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
 
-This package has a lot of unit tests with high test coverage for ensuring it's correctness.
+This package has a lot of unit tests with high test coverage for ensuring its correctness.
 
 If you want a Persian datetime picker there is one based on this library [persian_datetime_picker](https://pub.dev/packages/persian_datetime_picker).
 
@@ -24,45 +26,20 @@ If you want a Persian datetime picker there is one based on this library [persia
 
 ## Recent Changes
 
-**IMPORTANT CHANGE:** As of version `0.11.0-nullsafety.0`, most common methods in Jalali and Gregorian are factored out on Date. This is change is non breaking.
-
-**BREAKING CHANGE:** As of version `0.10.0-nullsafety.0`, `shamsi_date` supports `nullsafety`. Currently you should use flutter beta channel to use nullsafety feature.
-
-**BREAKING CHANGE:** As of version `0.10.0-nullsafety.0`, min and max static constants are renamed according to camelCase.
-
-**BREAKING CHANGE:** As of version `0.9.0`, isValid function is removed from Jalali and Georgian dates. Now **ALL** created date instances are valid. When you are creating a new date instance if think it can be invalid or become out of computable range you should surround code block with try-catch and capture [DateException][].
-
-Jalali and Gregorian classes both have static constants `MIN` and `MAX` which corresponds to minimum and maximum computable date.
-
-**BREAKING CHANGE:** As of version `0.8.0`, most of the methods, constructors and factories throw `ArgumentError` with `null` arguments. This ensures partial validity of state and `non-null` getter and method outputs. Details are provided in dart docs. If you have any concerns file an issue on GitHub.
-
-Now `DateFormatter` has some enforced limitations on dates which are being formatted. It has also some other enhancements.
-
-`AddYears`, `AddMonths` and `AddDays` methods are introduced for adding years, months or days to dates. This methods are safe.
-
-`withYear`,  `withMonth` and `withDay` methods are introduced for making a copy of a date with changed year, month or day.
-
-**BREAKING CHANGE:** As of version `0.7.0`, `toString()` method output is changed to `Jalali(y,m,d)` for Jalali and `Gregorian(y,m,d)` for Gregorian. **Use** formatter for custom formatting.
+**IMPORTANT CHANGE:** As of version `0.13.0`, shamsi_date is a pure Dart package and does not depend on Flutter. 
 
 ## Issues and feature requests
 
-If you want a feature or you found an issue, please make an issue on GitHub so I can see your request.
+If you want a new feature, or you found an issue, please make an issue on GitHub, so I can see your request.
 
 ## Usage
 
 Add it to your pubspec.yaml file:
 
-If you want to use `nullsafety` feature:
 ```yaml
 dependencies:
-    shamsi_date: ^0.12.0
+    shamsi_date: ^0.13.0
 ```
-And for legacy non-nullsafe projects:
-```yaml
-dependencies:
-    shamsi_date: ^0.9.1
-```
-**ALL** new features will be added only on nullsafe versions.
 
 [Jalali][] class is used for **Shamsi (Jalali, Persian, شمسی or خورشیدی)** date and [Gregorian][] class is used for **Gregorian (Miladi or میلادی)** date. Jalali and Gregorian classes are the subclasses of [Date][].
 
@@ -74,12 +51,12 @@ Gregorian g = Gregorian(year, month, day);
 ```
 Month and day has default value of `1` if you don't specify them, so `Jalali(year, month)` is equivalent to `Jalali(year, month, 1)` and `Gregorian(year)` is equivalent to `Gregorian(year, 1, 1)`.
 
-Constructor arguments should be non-null or exception will be thrown immediately. This ensures objects being in valid state when created. So year, month and day are always non-null. Almost all methods, operators, constructors and factories should have non-null arguments and they will return non-null objects. For example year, month and day getters will return non-null results. The only exception for methods which can accept null arguments are methods with optional arguments like `add(...)` and `copy(...)`. **in nullsafe version:** nullable and non-nullable argument and return types are checked statically.
+Constructor arguments should be non-null or exception will be thrown immediately. This ensures objects being in valid state when created. So year, month and day are always non-null. Almost all methods, operators, constructors and factories should have non-null arguments, and they will return non-null objects. For example year, month and day getters will return non-null results. The only exception for methods which can accept null arguments are methods with optional arguments like `add(...)` and `copy(...)`. **in nullsafe version:** nullable and non-nullable argument and return types are checked statically.
 
-All created date instances are valid. When creating a date instance either by using constructors and factories or by using methods and operators on an existing date instance, if the new date is invalid (by it's month or day being out of range) or it is out of computable range, a [DateException][] exception is thrown. So if you think the new date instance can become invalid or out of range you should soround it with try-catch and catching `DateException`. Minimum computable date is `Gregorian(560,3,20)` or equivalently `Jalali(-61,1,1)` and Maximum computable date is `Gregorian(3798,12,31)` or equivalently `Jalali(3177,10,11)`. For example:
+All created date instances are valid. When creating a date instance either by using constructors and factories or by using methods and operators on an existing date instance, if the new date is invalid (by its month or day being out of range), or it is out of computable range, a [DateException][] exception is thrown. So if you think the new date instance can become invalid or out of range you should surround it with try-catch and catching `DateException`. Minimum computable date is `Gregorian(560,3,20)` or equivalently `Jalali(-61,1,1)` and Maximum computable date is `Gregorian(3798,12,31)` or equivalently `Jalali(3177,10,11)`. For example:
 
 ```dart
-main() {
+void main() {
   try {
     Jalali jv = Jalali(1398, 13, 1); // not valid!
   } on DateException catch (e) {
@@ -113,7 +90,7 @@ bool ly = j.isLeapYear(); // ly = false (1397 is not leap year)
 // and equivalently for Gregorian date objects ...
 ```
 
-You can convert Jalali date to Gregorian by using `toGregorian()` method and convert Gregorian to Jalali date by using `toJalali()` method. There are also factory methods `Jalali.fromGregorian(...)` and `Gregorian.fromJalali(...)` which can be used alternatively.
+You can convert Jalali dates to Gregorian by using `toGregorian()` method and convert Gregorian to Jalali date by using `toJalali()` method. There are also factory methods `Jalali.fromGregorian(...)` and `Gregorian.fromJalali(...)` which can be used alternatively.
 
 ```dart
 Jalali j = Jalali(1397, 5, 6);
@@ -129,7 +106,7 @@ Jalali g2j1 = g.toJalali(); // -> 1398/8/4
 Jalali g2j2 = Jalali.fromGregorian(g);
 ```
 
-You can convert [DateTime][] objects directly to Jalali or Gregorian dates by using `fromDateTime(dateTime)` static methods. And convert Jalali and Gregorian to DateTime by using `toDateTime()` method.  And you can get Jalali and Gregorian dates for now by using `now()` factory.
+You can convert [DateTime][] objects directly to Jalali or Gregorian dates by using `fromDateTime(dateTime)` static methods. Convert Jalali and Gregorian to DateTime by using `toDateTime()` method. Get Jalali and Gregorian dates for now by using `now()` factory.
 
 ```dart
 // convert from DateTime
@@ -145,9 +122,9 @@ Jalali jNow = Jalali.now();
 Gregorian gNow = Gregorian.now();
 ```
 
-Jalali and Georgian dates are immutable so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. This methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
+Jalali and Georgian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
 
-for example for getting date at start of this month in Jalali: (copy method makes another object instance and leaves the original one unchanged)
+For example for getting date at start of this month in Jalali: (copy method makes another object instance and leaves the original one unchanged)
 
 ```dart
 Jalali j1 = Jalali.now().withDay(1); // correct way
@@ -175,15 +152,15 @@ Jalali j = Jalali.now().withDay(3).withMonth(2);
 // or by using copy method:
 Jalali j1 = Jalali.now().copy(month: 2, day: 3);
 ```
-or If you want your Jalali and Gregorian objects to fall back to today if null is provided as their constructor arguments you can use copy method from now factory method, for example for Jalali:
+Or If you want your Jalali and Gregorian objects to fall back to today if null is provided as their constructor arguments you can use copy method from now factory method, for example for Jalali:
 ```dart
 Jalali j = Jalali.now().copy(year: y, month: m, day: d);
 // y, m and d can be null
 ```
 
-You can add and subtract days to Jalali and Gregorian using `+` and `-` operators. It is guaranteed to give you a bound valid date. for example it will go to next month or next year if needed and they won't have leap crash.
+You can add and subtract days to Jalali and Gregorian using `+` and `-` operators. It is guaranteed to give you a bound valid date. for example, it will go to next month or next year if needed, and they won't have leap crash.
 
-You can add years, months or days to  Jalali and Gregorian using `addYears`, `addMonths` and `addDays`. This methods can be chained and they will not have range crash. `addDays` can change month and year. `addMonths` can change year. **note** that it is your responsibility to avoid leap crash.
+You can add years, months or days to  Jalali and Gregorian using `addYears`, `addMonths` and `addDays`. These methods can be chained, and they will not have range crash. `addDays` can change month and year. `addMonths` can change year. **note** that it is your responsibility to avoid leap crash.
 
 If you want you can add a combination of days, months or years to a date object with `add` method. **note** that `add` method is not safe and does not manipulate result to become bound valid, it is your responsibility. **It is recommended** to use addYear, addMonth and addDay methods over add method. **note** By using addYears, addMonth and addDay you can put day out of month length bounds. addMonth is safe for month overflow.
 
@@ -241,12 +218,11 @@ String format2(Date d) {
   return '${f.yyyy}/${f.mm}/${f.dd}';
 }
 ```
-And use it like before.
+Then use it like before.
 
 **Note** that formatter formats digits in English so if you want Persian digits you can use fonts with Persian digits or apply a simple mapping to formatter output to change English digits to Persian.
 
-Jalali and Georgian dates support `toString()` method. For Jalali it is semantically equivalent to use
-a formatter as `Jalali(Y,M,D)` which means:
+Jalali and Georgian dates support `toString()` method. For Jalali, it is semantically equivalent to use a formatter as `Jalali(Y,M,D)` which means:
 
 ```dart
 String toStringFormatter(Jalali d) {
@@ -255,25 +231,26 @@ String toStringFormatter(Jalali d) {
   return 'Jalali(${f.y},${f.m},${f.d})';
 }
 ```
-And for Georgian, toString() is equivalent to using a formatter as `Georgian(Y,M,D)`
+For Georgian, toString() is equivalent to using a formatter as `Georgian(Y,M,D)`.
+
 Note: in the following code toString() is called implicitly:
 
 ```dart
-main() {
+void main() {
     print(Jalali.now());
     final str = 'today is: ${Georgian.now()}';
 }
 ```
-Use toString() of Jalali and Georgian dates only for development purpose, like for debugging, logging or ... **You should** use custom formatter for showing dates on UI.
+Use toString() of Jalali and Georgian dates only for development purpose, like for debugging, logging or ... **You should** use formatters for showing dates on the UI.
 
-**Note** also that you do not need for example to use `int.parse()` on formatter output of `Jalali.now().formatter.m` for accessing it's month, simply use `Jalali.now().month`.
+**Note** also that you do not need for example to use `int.parse()` on formatter output of `Jalali.now().formatter.m` for accessing its month, simply use `Jalali.now().month`.
 
 [DateFormatter][] has these getters:
 - y: year (whatever length it has). year should be positive.
 - yy: two digit year. year should be between 1000 and 9999.
 - yyyy: four digit year. year should be between 0 and 9999.
 - m: month (whatever length it has).
-- mm: two digit month.
+- mm: two-digit month.
 - mN: month name.
 - d: day (whatever length it has).
 - dd: two digit day.
@@ -289,7 +266,7 @@ Jalali j2 = Jalali(1397, 2, 1);
 
 bool b1 = j1 < j2; // b1 = true
 bool b2 = j1 >= j2; // b2 = false
-// using Comparable's compareTo
+// using Comparable compareTo
 bool b3 = j1.compareTo(j2) > 0; // b3 = false (means j1 > j2 is false)
 bool b4 = j1.compareTo(j2) <= 0; // b4 = true (means j1 <= j2 is true)
 bool b5 = j1 == j2; // b5 = false
@@ -303,7 +280,7 @@ Here is a complete example. If you did not find what you are looking for, you ca
 ```dart
 import 'package:shamsi_date/shamsi_date.dart';
 
-main() {
+void main() {
   // Gregorian to Jalali conversion
   Gregorian g1 = Gregorian(2013, 1, 10);
   Jalali j1 = g1.toJalali();
@@ -316,10 +293,14 @@ main() {
   int j1y = j1.year; // j1y = 1391
   int j1m = j1.month; // j1m = 10
   int j1d = j1.day; // j1d = 21
+  print('j1 is $j1y-$j1m-$j1d'); // prints: j1 is 1397-10-21
+  // NOTE: use formatters for formatting dates
   // and for Gregorian:
   int g1y = g1.year; // g1y = 2013
   int g1m = g1.month; // g1m = 1
   int g1d = g1.day; // g1d = 10
+  print('g1 is $g1y-$g1m-$g1d'); // prints: g1 is 2013-1-10
+  // NOTE: use formatters for formatting dates
 
   // Jalali to Gregorian conversion
   Jalali j2 = Jalali(1391, 10, 21);
@@ -351,6 +332,7 @@ main() {
   // if you think a date might invalid, use try-catch:
   try {
     Jalali jv = Jalali(1398, 13, 1); // not valid!
+    print(jv); // this line is not reached
   } on DateException catch (e) {
     // prints: DateException: Jalali month is out of valid range.
     print(e);
@@ -378,6 +360,7 @@ main() {
   print('now is ${Jalali.now()} in Jalali');
   // find out which jalali year is this year:
   int thisJalaliYear = Jalali.now().year;
+  print('this Jalali year is $thisJalaliYear');
 
   // copy method
   print('$j1 with year = 1300 is ${j1.copy(year: 1300)}');
@@ -459,9 +442,11 @@ main() {
   // DO NOT use formatter for accessing year, month or other properties
   // of date objects they are available as getters on date objects
   // INCORRECT EXAMPLE, DO NOT USE THIS:
-  int ty1 = int.parse(Jalali.now().formatter.yyyy); // INCORRECT
+  int j1y1 = int.parse(j1.formatter.yyyy); // INCORRECT
+  print("j1's year is $j1y1");
   // use this:
-  int ty2 = Jalali.now().year; // correct
+  int j1y2 = j1.year; // correct
+  print("j1's year is $j1y2");
   // also using toString() for showing dates on UI is not recommended,
   // use custom formatter.
 

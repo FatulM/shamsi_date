@@ -62,11 +62,11 @@ abstract class DateFormatter {
     final int year = date.year;
 
     if (year < 1000) {
-      throw StateError("date.year = $year < 1000");
+      throw StateError('date.year = $year < 1000');
     }
 
     if (year > 9999) {
-      throw StateError("date.year = $year > 9999");
+      throw StateError('date.year = $year > 9999');
     }
 
     final String str = (year % 100).toString();

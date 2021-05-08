@@ -198,6 +198,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
   }
 
   /// Converts Gregorian date to [DateTime] object
+  @override
   DateTime toDateTime() {
     return DateTime(year, month, day);
   }
