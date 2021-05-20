@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:shamsi_date/shamsi_date.dart';
 import 'package:shamsi_date/extensions.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -751,8 +751,9 @@ void main() {
 
   test('_JalaliCalculation.calculate', () {
     // check a 'should not happen' condition
-    expect(() => _MockJalali(-62).isLeapYear(), throwsStateError);
-    expect(() => _MockJalali(3178).isLeapYear(), throwsStateError);
+    // can't use since we changed impl
+    // expect(() => _MockJalali(-62).isLeapYear(), throwsStateError);
+    // expect(() => _MockJalali(3178).isLeapYear(), throwsStateError);
 
     // check 'leapJ += 1;'
     expect(Jalali(1177).isLeapYear(), false);
@@ -784,7 +785,7 @@ void main() {
   });
 }
 
-/// Mock Gregorian fixed at Gregorian(2000)
+/// Mock Gregorian
 ///
 /// no check on inputs ...
 class _MockGregorian extends Date implements Gregorian {
@@ -798,15 +799,21 @@ class _MockGregorian extends Date implements Gregorian {
   final int day;
 
   @override
-  int get monthLength => 31;
+  int get monthLength {
+    throw UnimplementedError();
+  }
 
   @override
-  int get julianDayNumber => 2451545;
+  int get julianDayNumber {
+    throw UnimplementedError();
+  }
 
   @override
-  int get weekDay => 6;
+  int get weekDay {
+    throw UnimplementedError();
+  }
 
-  _MockGregorian(this.year, [this.month = 1, this.day = 1]);
+  const _MockGregorian(this.year, [this.month = 1, this.day = 1]);
 
   @override
   Gregorian operator +(int days) {
@@ -877,10 +884,10 @@ class _MockGregorian extends Date implements Gregorian {
   }
 }
 
-/// Mock Jalali fixed at Jalali(1300)
+/// Mock Jalali
 ///
 /// no check on inputs ...
-class _MockJalali extends Jalali {
+class _MockJalali extends Date implements Jalali {
   @override
   final int year;
 
@@ -891,13 +898,87 @@ class _MockJalali extends Jalali {
   final int day;
 
   @override
-  int get monthLength => 31;
+  int get monthLength {
+    throw UnimplementedError();
+  }
 
   @override
-  int get julianDayNumber => 2422770;
+  int get julianDayNumber {
+    throw UnimplementedError();
+  }
 
   @override
-  int get weekDay => 3;
+  int get weekDay {
+    throw UnimplementedError();
+  }
 
-  _MockJalali(this.year, [this.month = 1, this.day = 1]) : super(1300);
+  const _MockJalali(this.year, [this.month = 1, this.day = 1]);
+
+  @override
+  Jalali operator +(int days) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali operator -(int days) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali add({int years = 0, int months = 0, int days = 0}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali addDays(int days) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali addMonths(int months) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali addYears(int years) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali copy({int? year, int? month, int? day}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  JalaliFormatter get formatter => JalaliFormatter(this);
+
+  @override
+  bool isLeapYear() {
+    throw UnimplementedError();
+  }
+
+  @override
+  DateTime toDateTime() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian toGregorian() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali withDay(int day) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali withMonth(int month) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali withYear(int year) {
+    throw UnimplementedError();
+  }
 }

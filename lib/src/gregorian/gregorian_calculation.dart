@@ -47,12 +47,12 @@ class _Algo {
     }
   }
 
+  /// create from julian day number
+  ///
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
   /// [julianDayNumber] for the period since jdn=-34839655
   /// (i.e. the year -100100 of both calendars)
   /// to some millions years ahead of the present.
-  ///
-  ///
   static Gregorian createFromJulianDayNumber(int julianDayNumber) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
       throw DateException('Julian day number is out of computable range.');
@@ -70,6 +70,8 @@ class _Algo {
     return Gregorian._raw(julianDayNumber, gy, gm, gd);
   }
 
+  /// create from year, month and day
+  ///
   /// Calculates the Julian Day number from Gregorian or Julian
   /// calendar dates. This integer number corresponds to the noon of
   /// the date (i.e. 12 hours of Universal Time).
@@ -87,7 +89,7 @@ class _Algo {
 
     // monthLength is very cheap
     // isLeapYear is also very cheap
-    final ml = _Algo.getMonthLength(year, month);
+    final ml = getMonthLength(year, month);
 
     if (day < 1 || day > ml) {
       throw DateException('Gregorian day is out of valid range.');
