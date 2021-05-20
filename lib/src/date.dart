@@ -16,7 +16,9 @@ import 'date_formatter.dart';
 ///
 /// For example constructing date with day being out of month length
 /// or date being out of computable region throws DateException
-abstract class Date {
+abstract class Date implements Comparable<Date> {
+  const Date();
+
   /// Minimum computable julian day number
   ///
   /// Equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
@@ -39,6 +41,8 @@ abstract class Date {
   int get day;
 
   /// Julian day number
+  ///
+  /// subclasses should store this with fast access
   int get julianDayNumber;
 
   /// Week day number
@@ -179,11 +183,68 @@ abstract class Date {
   @override
   String toString();
 
-  /// Subclasses should implement equals operator
-  @override
-  bool operator ==(Object other);
+  /// distance between two dates
+  ///
+  /// (we use this operator since we used operator [-]
+  /// for subtracting days)
+  ///
+  /// `d1 ^ d2` is mathematically equivalent to `d1 minus d2`
+  int operator ^(Date other) {
+    return julianDayNumber - other.julianDayNumber;
+  }
 
-  /// Subclasses should implement hashcode operator
+  /// distance between two dates
+  ///
+  /// `d1.distanceTo(d2)` is equivalent to `d2 ^ d1`
+  /// and mathematically equivalent to `d1 minus d2`
+  int distanceTo(Date other) {
+    return other.julianDayNumber - julianDayNumber;
+  }
+
+  /// distance between two dates
+  ///
+  /// `d1.distanceFrom(d2)` is equivalent to `d1 ^ d2`
+  /// and mathematically equivalent to `d1 minus d2`
+  int distanceFrom(Date other) {
+    return julianDayNumber - other.julianDayNumber;
+  }
+
+  /// equals operator
   @override
-  int get hashCode;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is Date && julianDayNumber == other.julianDayNumber;
+  }
+
+  /// hashcode operator
+  @override
+  int get hashCode {
+    return julianDayNumber.hashCode;
+  }
+
+  /// Compare dates
+  @override
+  int compareTo(Date other) {
+    return julianDayNumber - other.julianDayNumber;
+  }
+
+  /// bigger than operator
+  bool operator >(Date other) {
+    return julianDayNumber > other.julianDayNumber;
+  }
+
+  /// bigger than or equal operator
+  bool operator >=(Date other) {
+    return julianDayNumber >= other.julianDayNumber;
+  }
+
+  /// less than operator
+  bool operator <(Date other) {
+    return julianDayNumber < other.julianDayNumber;
+  }
+
+  /// less than or equal operator
+  bool operator <=(Date other) {
+    return julianDayNumber <= other.julianDayNumber;
+  }
 }

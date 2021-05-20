@@ -7,6 +7,8 @@ import '../date_exception.dart';
 import '../gregorian/gregorian_date.dart';
 import '../jalali/jalali_formatter.dart';
 
+part 'jalali_calculation.dart';
+
 /// Jalali (Jalaali, Shamsi or Persian) Date class
 ///
 /// Date objects are required to be immutable
@@ -19,7 +21,7 @@ import '../jalali/jalali_formatter.dart';
 ///
 /// For example constructing date with day being out of month length
 /// or date being out of computable region throws DateException
-class Jalali implements Date, Comparable<Jalali> {
+class Jalali extends Date {
   /// Minimum computable Jalali date
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
@@ -235,44 +237,6 @@ class Jalali implements Date, Comparable<Jalali> {
     return 'Jalali($year, $month, $day)';
   }
 
-  /// Compare dates
-  @override
-  int compareTo(Jalali other) {
-    if (year != other.year) {
-      return year > other.year ? 1 : -1;
-    }
-
-    if (month != other.month) {
-      return month > other.month ? 1 : -1;
-    }
-
-    if (day != other.day) {
-      return day > other.day ? 1 : -1;
-    }
-
-    return 0;
-  }
-
-  /// bigger than operator
-  bool operator >(Jalali other) {
-    return compareTo(other) > 0;
-  }
-
-  /// bigger than or equal operator
-  bool operator >=(Jalali other) {
-    return compareTo(other) >= 0;
-  }
-
-  /// less than operator
-  bool operator <(Jalali other) {
-    return compareTo(other) < 0;
-  }
-
-  /// less than or equal operator
-  bool operator <=(Jalali other) {
-    return compareTo(other) <= 0;
-  }
-
   /// Add [days]
   ///
   /// Original date object remains unchanged
@@ -433,147 +397,5 @@ class Jalali implements Date, Comparable<Jalali> {
     } else {
       return Jalali(year, month, day);
     }
-  }
-
-  /// distance between two dates
-  ///
-  /// (we use this operator since we used operator [-]
-  /// for subtracting days)
-  ///
-  /// `d1 ^ d2` is mathematically equivalent to `d1 minus d2`
-  int operator ^(Jalali other) {
-    return julianDayNumber - other.julianDayNumber;
-  }
-
-  /// distance between two dates
-  ///
-  /// `d1.distanceTo(d2)` is equivalent to `d2 ^ d1`
-  /// and mathematically equivalent to `d1 minus d2`
-  int distanceTo(Jalali other) {
-    return other.julianDayNumber - julianDayNumber;
-  }
-
-  /// distance between two dates
-  ///
-  /// `d1.distanceFrom(d2)` is equivalent to `d1 ^ d2`
-  /// and mathematically equivalent to `d1 minus d2`
-  int distanceFrom(Jalali other) {
-    return julianDayNumber - other.julianDayNumber;
-  }
-
-  /// equals operator
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        other is Jalali &&
-            runtimeType == other.runtimeType &&
-            year == other.year &&
-            month == other.month &&
-            day == other.day;
-  }
-
-  /// hashCode operator
-  @override
-  int get hashCode {
-    return year.hashCode ^ month.hashCode ^ day.hashCode;
-  }
-}
-
-/// Internal class
-class _JalaliCalculation {
-  /// Number of years since the last leap year (0 to 4)
-  final int leap;
-
-  /// Gregorian year of the beginning of Jalali year
-  final int gy;
-
-  /// The March day of Farvardin the 1st (1st day of jy)
-  final int march;
-
-  _JalaliCalculation({
-    required this.leap,
-    required this.gy,
-    required this.march,
-  });
-
-  /// This determines if the Jalali (Persian) year is
-  /// leap (366-day long) or is the common year (365 days), and
-  /// finds the day in March (Gregorian calendar) of the first
-  /// day of the Jalali year (jy).
-  ///
-  /// [1. see here](http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
-  ///
-  /// [2. see here](http://www.fourmilab.ch/documents/calendar/)
-  factory _JalaliCalculation.calculate(int jy) {
-    // Jalali years starting the 33-year rule.
-    final List<int> breaks = [
-      -61,
-      9,
-      38,
-      199,
-      426,
-      686,
-      756,
-      818,
-      1111,
-      1181,
-      1210,
-      1635,
-      2060,
-      2097,
-      2192,
-      2262,
-      2324,
-      2394,
-      2456,
-      3178,
-    ];
-
-    final int bl = breaks.length;
-    final int gy = jy + 621;
-    int leapJ = -14;
-    int jp = breaks[0];
-    int jump = 0;
-
-    // should not happen
-    if (jy < -61 || jy >= 3178) {
-      throw StateError('should not happen');
-    }
-
-    // Find the limiting years for the Jalali year jy.
-    for (int i = 1; i < bl; i += 1) {
-      final int jm = breaks[i];
-      jump = jm - jp;
-      if (jy < jm) {
-        break;
-      }
-      leapJ = leapJ + (jump ~/ 33) * 8 + (((jump % 33)) ~/ 4);
-      jp = jm;
-    }
-    int n = jy - jp;
-
-    // Find the number of leap years from AD 621 to the beginning
-    // of the current Jalali year in the Persian calendar.
-    leapJ = leapJ + ((n) ~/ 33) * 8 + (((n % 33) + 3) ~/ 4);
-    if ((jump % 33) == 4 && jump - n == 4) {
-      leapJ += 1;
-    }
-
-    // And the same in the Gregorian calendar (until the year gy).
-    final int leapG = ((gy) ~/ 4) - (((((gy) ~/ 100) + 1) * 3) ~/ 4) - 150;
-
-    // Determine the Gregorian date of Farvardin the 1st.
-    final int march = 20 + leapJ - leapG;
-
-    // Find how many years have passed since the last leap year.
-    if (jump - n < 6) {
-      n = n - jump + ((jump + 4) ~/ 33) * 33;
-    }
-    int leap = ((((n + 1) % 33) - 1) % 4);
-    if (leap == -1) {
-      leap = 4;
-    }
-
-    return _JalaliCalculation(leap: leap, gy: gy, march: march);
   }
 }

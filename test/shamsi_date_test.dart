@@ -787,7 +787,7 @@ void main() {
 /// Mock Gregorian fixed at Gregorian(2000)
 ///
 /// no check on inputs ...
-class _MockGregorian extends Gregorian {
+class _MockGregorian extends Date implements Gregorian {
   @override
   final int year;
 
@@ -806,7 +806,75 @@ class _MockGregorian extends Gregorian {
   @override
   int get weekDay => 6;
 
-  _MockGregorian(this.year, [this.month = 1, this.day = 1]) : super(2000);
+  _MockGregorian(this.year, [this.month = 1, this.day = 1]);
+
+  @override
+  Gregorian operator +(int days) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian operator -(int days) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian add({int years = 0, int months = 0, int days = 0}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian addDays(int days) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian addMonths(int months) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian addYears(int years) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian copy({int? year, int? month, int? day}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  GregorianFormatter get formatter => GregorianFormatter(this);
+
+  @override
+  bool isLeapYear() {
+    throw UnimplementedError();
+  }
+
+  @override
+  DateTime toDateTime() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Jalali toJalali() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian withDay(int day) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian withMonth(int month) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Gregorian withYear(int year) {
+    throw UnimplementedError();
+  }
 }
 
 /// Mock Jalali fixed at Jalali(1300)

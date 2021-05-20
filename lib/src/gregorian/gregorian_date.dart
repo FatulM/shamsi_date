@@ -7,6 +7,8 @@ import '../date_exception.dart';
 import '../gregorian/gregorian_formatter.dart';
 import '../jalali/jalali_date.dart';
 
+part 'gregorian_calculation.dart';
+
 /// Gregorian (Miladi or Milaadi) date class
 ///
 /// Date objects are required to be immutable
@@ -19,36 +21,22 @@ import '../jalali/jalali_date.dart';
 ///
 /// For example constructing date with day being out of month length
 /// or date being out of computable region throws DateException
-class Gregorian implements Date, Comparable<Gregorian> {
-  /// Gregorian month lengths
-  ///
-  /// For month 2 (index 1) should check leap year
-  static const List<int> _MONTH_LENGTHS = <int>[
-    31,
-    0, // should check leap year
-    31,
-    30,
-    31,
-    30,
-    31,
-    31,
-    30,
-    31,
-    30,
-    31,
-  ];
-
+class Gregorian extends Date {
   /// Minimum computable Gregorian date
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
   /// and julian day number of 1925675
-  static final Gregorian min = Gregorian(560, 3, 20);
+  static const Gregorian min = Gregorian._raw(1925675, 560, 3, 20);
 
   /// Maximum computable Gregorian date
   ///
   /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
-  static final Gregorian max = Gregorian(3798, 12, 31);
+  static const Gregorian max = Gregorian._raw(3108616, 3798, 12, 31);
+
+  /// julian day number
+  @override
+  final int julianDayNumber;
 
   /// Gregorian year (years BC numbered 0, -1, -2, ...)
   @override
@@ -62,21 +50,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   @override
   final int day;
 
-  /// Calculates the Julian Day number from Gregorian or Julian
-  /// calendar dates. This integer number corresponds to the noon of
-  /// the date (i.e. 12 hours of Universal Time).
-  ///
-  /// The procedure was tested to be good since 1 March, -100100 (of both
-  /// calendars) up to a few million years into the future.
-  @override
-  int get julianDayNumber {
-    return (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
-        ((153 * ((month + 9) % 12) + 2) ~/ 5) +
-        day -
-        34840408 -
-        ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) +
-        752;
-  }
+  /// Internal constructor without any checks whatsoever
+  const Gregorian._raw(this.julianDayNumber, this.year, this.month, this.day);
 
   /// Week day number
   /// [monday] = 1
@@ -89,11 +64,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Computes number of days in a given month in a Gregorian year.
   @override
   int get monthLength {
-    if (month == 2) {
-      return isLeapYear() ? 29 : 28;
-    } else {
-      return _MONTH_LENGTHS[month - 1];
-    }
+    return _Algo.getMonthLength(year, month);
   }
 
   /// Formatter for this date object
@@ -105,33 +76,8 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Create a Gregorian date by using [year], [month] and [day]
   ///
   /// year and month default to 1
-  Gregorian(final int year, [final int month = 1, final int day = 1])
-      : year = year,
-        month = month,
-        day = day {
-    // should be between: Gregorian(560,3,20) and Gregorian(3798,12,31)
-    if (year < 560 || year > 3798) {
-      throw DateException('Gregorian date is out of computable range.');
-    }
-
-    if (month < 1 || month > 12) {
-      throw DateException('Gregorian month is out of valid range.');
-    }
-
-    // monthLength is very cheap
-    // isLeapYear is also very cheap
-    final ml = monthLength;
-
-    if (day < 1 || day > ml) {
-      throw DateException('Gregorian day is out of valid range.');
-    }
-
-    // no need for further analysis for MAX, but for MIN being in year 560:
-    if (year == 560) {
-      if (month < 3 || (month == 3 && day < 20)) {
-        throw DateException('Gregorian date is out of computable range.');
-      }
-    }
+  factory Gregorian(final int year, [final int month = 1, final int day = 1]) {
+    return _Algo.createFromYearMonthDay(year, month, day);
   }
 
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
@@ -139,20 +85,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// (i.e. the year -100100 of both calendars)
   /// to some millions years ahead of the present.
   factory Gregorian.fromJulianDayNumber(final int julianDayNumber) {
-    if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
-      throw DateException('Julian day number is out of computable range.');
-    }
-
-    final int j = 4 * julianDayNumber +
-        139361631 +
-        ((((4 * julianDayNumber + 183187720) ~/ 146097) * 3) ~/ 4) * 4 -
-        3908;
-    final int i = (((j % 1461)) ~/ 4) * 5 + 308;
-    final int gd = (((i % 153)) ~/ 5) + 1;
-    final int gm = (((i) ~/ 153) % 12) + 1;
-    final int gy = ((j) ~/ 1461) - 100100 + ((8 - gm) ~/ 6);
-
-    return Gregorian(gy, gm, gd);
+    return _Algo.createFromJulianDayNumber(julianDayNumber);
   }
 
   /// Create a Gregorian date by using [DateTime] object
@@ -211,15 +144,7 @@ class Gregorian implements Date, Comparable<Gregorian> {
   /// Checks if a year is a leap year or not.
   @override
   bool isLeapYear() {
-    if (year % 4 == 0) {
-      if (year % 100 == 0) {
-        return year % 400 == 0;
-      } else {
-        return true;
-      }
-    } else {
-      return false;
-    }
+    return _Algo.isLeapYear(year);
   }
 
   /// Default string representation: `Gregorian(YYYY, MM, DD)`.
@@ -227,44 +152,6 @@ class Gregorian implements Date, Comparable<Gregorian> {
   @override
   String toString() {
     return 'Gregorian($year, $month, $day)';
-  }
-
-  /// Compare dates
-  @override
-  int compareTo(Gregorian other) {
-    if (year != other.year) {
-      return year > other.year ? 1 : -1;
-    }
-
-    if (month != other.month) {
-      return month > other.month ? 1 : -1;
-    }
-
-    if (day != other.day) {
-      return day > other.day ? 1 : -1;
-    }
-
-    return 0;
-  }
-
-  /// bigger than operator
-  bool operator >(Gregorian other) {
-    return compareTo(other) > 0;
-  }
-
-  /// bigger than or equal operator
-  bool operator >=(Gregorian other) {
-    return compareTo(other) >= 0;
-  }
-
-  /// less than operator
-  bool operator <(Gregorian other) {
-    return compareTo(other) < 0;
-  }
-
-  /// less than or equal operator
-  bool operator <=(Gregorian other) {
-    return compareTo(other) <= 0;
   }
 
   /// Add [days]
@@ -427,48 +314,5 @@ class Gregorian implements Date, Comparable<Gregorian> {
     } else {
       return Gregorian(year, month, day);
     }
-  }
-
-  /// distance between two dates
-  ///
-  /// (we use this operator since we used operator [-]
-  /// for subtracting days)
-  ///
-  /// `d1 ^ d2` is mathematically equivalent to `d1 minus d2`
-  int operator ^(Gregorian other) {
-    return julianDayNumber - other.julianDayNumber;
-  }
-
-  /// distance between two dates
-  ///
-  /// `d1.distanceTo(d2)` is equivalent to `d2 ^ d1`
-  /// and mathematically equivalent to `d1 minus d2`
-  int distanceTo(Gregorian other) {
-    return other.julianDayNumber - julianDayNumber;
-  }
-
-  /// distance between two dates
-  ///
-  /// `d1.distanceFrom(d2)` is equivalent to `d1 ^ d2`
-  /// and mathematically equivalent to `d1 minus d2`
-  int distanceFrom(Gregorian other) {
-    return julianDayNumber - other.julianDayNumber;
-  }
-
-  /// equals operator
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        other is Gregorian &&
-            runtimeType == other.runtimeType &&
-            year == other.year &&
-            month == other.month &&
-            day == other.day;
-  }
-
-  /// hashcode operator
-  @override
-  int get hashCode {
-    return year.hashCode ^ month.hashCode ^ day.hashCode;
   }
 }
