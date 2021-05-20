@@ -47,6 +47,11 @@ void main() {
     expect(Gregorian(1000, 1, 1) == Gregorian(1000, 1, 2), false);
   });
 
+  test('Date.==', () {
+    expect(Jalali(1400, 2, 30), equals(Gregorian(2021, 5, 20)));
+    expect(Gregorian(2021, 5, 20), equals(Jalali(1400, 2, 30)));
+  });
+
   test('Jalali.toString', () {
     expect(Jalali(1398, 1, 10).toString(), 'Jalali(1398, 1, 10)');
     expect(Jalali(1398, 11, 1).toString(), 'Jalali(1398, 11, 1)');
