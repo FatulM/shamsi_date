@@ -734,19 +734,39 @@ void main() {
   });
 
   test('Jalali.{MIN, MAX}', () {
-    expect(Jalali.fromJulianDayNumber(Date.minJulianDayNumber), Jalali.min);
-    expect(Jalali.fromJulianDayNumber(Date.maxJulianDayNumber), Jalali.max);
+    final min = Jalali.fromJulianDayNumber(Date.minJulianDayNumber);
+    expect(min, Jalali.min);
+    expect(min.year, Jalali.min.year);
+    expect(min.month, Jalali.min.month);
+    expect(min.day, Jalali.min.day);
+    expect(min.monthLength, Jalali.min.monthLength);
+    expect(min.isLeapYear(), Jalali.min.isLeapYear());
+
+    final max = Jalali.fromJulianDayNumber(Date.maxJulianDayNumber);
+    expect(max, Jalali.max);
+    expect(max.year, Jalali.max.year);
+    expect(max.month, Jalali.max.month);
+    expect(max.day, Jalali.max.day);
+    expect(max.monthLength, Jalali.max.monthLength);
+    expect(max.isLeapYear(), Jalali.max.isLeapYear());
   });
 
   test('Gregorian.{MIN, MAX}', () {
-    expect(
-      Gregorian.fromJulianDayNumber(Date.minJulianDayNumber),
-      Gregorian.min,
-    );
-    expect(
-      Gregorian.fromJulianDayNumber(Date.maxJulianDayNumber),
-      Gregorian.max,
-    );
+    final min = Gregorian.fromJulianDayNumber(Date.minJulianDayNumber);
+    expect(min, Gregorian.min);
+    expect(min.year, Gregorian.min.year);
+    expect(min.month, Gregorian.min.month);
+    expect(min.day, Gregorian.min.day);
+    expect(min.monthLength, Gregorian.min.monthLength);
+    expect(min.isLeapYear(), Gregorian.min.isLeapYear());
+
+    final max = Gregorian.fromJulianDayNumber(Date.maxJulianDayNumber);
+    expect(max, Gregorian.max);
+    expect(max.year, Gregorian.max.year);
+    expect(max.month, Gregorian.max.month);
+    expect(max.day, Gregorian.max.day);
+    expect(max.monthLength, Gregorian.max.monthLength);
+    expect(max.isLeapYear(), Gregorian.max.isLeapYear());
   });
 
   test('_JalaliCalculation.calculate', () {

@@ -98,6 +98,7 @@ class _Algo {
     final int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
     int jy = gy - 621;
     final r = calculate(jy);
+    bool isLeap = r.leap == 0;
     final int jdn1f = Gregorian(gy, 3, r.march).julianDayNumber;
     int k = julianDayNumber - jdn1f;
     // Find number of days that passed since 1 Farvardin.
@@ -107,7 +108,7 @@ class _Algo {
         final int jm = 1 + (k ~/ 31);
         final int jd = (k % 31) + 1;
 
-        return Jalali._raw(julianDayNumber, jy, jm, jd);
+        return Jalali._raw(julianDayNumber, jy, jm, jd, isLeap);
       } else {
         // The remaining months.
         k -= 186;
@@ -117,11 +118,15 @@ class _Algo {
       jy -= 1;
       k += 179;
       if (r.leap == 1) k += 1;
+
+      // since we changed jalali year to previous
+      // we calculated r for next year
+      isLeap = r.leap == 1;
     }
     final int jm = 7 + (k ~/ 30);
     final int jd = (k % 30) + 1;
 
-    return Jalali._raw(julianDayNumber, jy, jm, jd);
+    return Jalali._raw(julianDayNumber, jy, jm, jd, isLeap);
   }
 
   /// create from year, month and day
@@ -131,32 +136,14 @@ class _Algo {
       throw DateException('Jalali date is out of computable range.');
     }
 
+    // check month
     if (month < 1 || month > 12) {
       throw DateException('Jalali month is out of valid range.');
     }
 
-    // monthLength is very cheap
-    // but isLeapYear is not cheap
-    // if month is 12, monthLength will use isLeapYear
-    // month 12 will always have 29 days or 30 days
-    // so if we are at 30 of month 12 we should use isLeapYear to check validity
-    // and it is more than 30 we should throw immediately
-    // but if is less than 30 it is always ok if it is more than 0
-    if (month != 12 || day == 30) {
-      // month != 12 || (month == 12 && day == 30)
-      final ml = getMonthLength(year, month);
-
-      if (day < 1 || day > ml) {
-        throw DateException('Jalali day is out of valid range.');
-      }
-    } else {
-      // month == 12 && day != 30
-      // from 1 to 29 is valid
-      // 30 has been handled
-      // more than 30 or less than 1 is invalid
-      if (day < 1 || day > 30) {
-        throw DateException('Jalali day is out of valid range.');
-      }
+    // check lower bound of day
+    if (day < 1) {
+      throw DateException('Jalali day is out of valid range.');
     }
 
     // no need for further analysis for MIN, but for MAX being in year 3177:
@@ -166,38 +153,33 @@ class _Algo {
       }
     }
 
-    // calculate julian day number
+    // first part of julian day number calculation
     final r = calculate(year);
+    final isLeap = r.leap == 0;
+
+    // calculate month length
+    final int ml = month == 12 ? (isLeap ? 30 : 29) : (month > 6 ? 30 : 31);
+
+    // check upper bound of day
+    if (day > ml) {
+      throw DateException('Jalali day is out of valid range.');
+    }
+
+    // second part of julian day number calculation
     final julianDayNumber = Gregorian(r.gy, 3, r.march).julianDayNumber +
         (month - 1) * 31 -
         (month ~/ 7) * (month - 7) +
         day -
         1;
 
-    return Jalali._raw(julianDayNumber, year, month, day);
-  }
-
-  /// Computes number of days in a given month in a Jalali year.
-  static int getMonthLength(int year, int month) {
-    if (month <= 6) {
-      return 31;
-    } else if (month <= 11) {
-      return 30;
-    } else {
-      // month == 12
-      return isLeapYear(year) ? 30 : 29;
-    }
-  }
-
-  /// Checks if a year is a leap year or not
-  static bool isLeapYear(int year) {
-    return calculate(year).leap == 0;
+    return Jalali._raw(julianDayNumber, year, month, day, isLeap);
   }
 }
 
 /// Internal used for Jalali calculation
 class _JalaliCalculation {
-  /// Number of years since the last leap year (0 to 4)
+  /// Number of years since the last leap year
+  /// (0 (inclusive) to 4 (exclusive))
   final int leap;
 
   /// Gregorian year of the beginning of Jalali year

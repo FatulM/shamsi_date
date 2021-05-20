@@ -35,7 +35,12 @@ class Gregorian extends Date {
   static const Gregorian max = Gregorian._raw(3108616, 3798, 12, 31);
 
   /// Internal constructor without any checks whatsoever
-  const Gregorian._raw(this.julianDayNumber, this.year, this.month, this.day);
+  const Gregorian._raw(
+    this.julianDayNumber,
+    this.year,
+    this.month,
+    this.day,
+  );
 
   /// Julian Day Number
   @override

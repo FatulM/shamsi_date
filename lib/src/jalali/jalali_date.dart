@@ -26,16 +26,22 @@ class Jalali extends Date {
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
   /// and julian day number of 1925675
-  static const Jalali min = Jalali._raw(1925675, -61, 1, 1);
+  static const Jalali min = Jalali._raw(1925675, -61, 1, 1, true);
 
   /// Maximum computable Jalali date
   ///
   /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
-  static const Jalali max = Jalali._raw(3108616, 3177, 10, 11);
+  static const Jalali max = Jalali._raw(3108616, 3177, 10, 11, false);
 
   /// Internal constructor without any checks whatsoever
-  const Jalali._raw(this.julianDayNumber, this.year, this.month, this.day);
+  const Jalali._raw(
+    this.julianDayNumber,
+    this.year,
+    this.month,
+    this.day,
+    this._isLeap,
+  );
 
   /// Julian Day Number
   @override
@@ -53,6 +59,12 @@ class Jalali extends Date {
   @override
   final int day;
 
+  /// Whether is leap year.
+  ///
+  /// It is cached since we always calculate it
+  /// and it has long calculation.
+  final bool _isLeap;
+
   /// Week day number
   /// [Shanbe] = 1
   /// [Jomee]  = 7
@@ -64,7 +76,14 @@ class Jalali extends Date {
   /// Computes number of days in a given month in a Jalali year.
   @override
   int get monthLength {
-    return _Algo.getMonthLength(year, month);
+    if (month <= 6) {
+      return 31;
+    } else if (month <= 11) {
+      return 30;
+    } else {
+      // month == 12
+      return _isLeap ? 30 : 29;
+    }
   }
 
   /// Formatter for this date object
@@ -143,7 +162,7 @@ class Jalali extends Date {
   /// Checks if a year is a leap year or not
   @override
   bool isLeapYear() {
-    return _Algo.isLeapYear(year);
+    return _isLeap;
   }
 
   /// Default string representation: `Jalali(YYYY, MM, DD)`.
