@@ -178,6 +178,18 @@ Jalali j = Jalali.now().copy(year: y, month: m, day: d);
 // y, m and d can be null
 ```
 
+You can find distance between Jalali and Gregorian dates by using `^` operator. Note that `-` operator is for something else. Or you can use `distanceTo` and `distanceFrom` methods.
+```dart
+int distance11 = Jalali.now() ^ Jalali(1395, 10, 1);
+// or
+int distance12 = Jalali.now().distanceFrom(Jalali(1395, 10, 1));
+// or
+int distance13 = Jalali(1395, 10, 1).distanceTo(Jalali.now());
+
+// and similarly for Gregorian
+int distance2 = Gregorian(2021) ^ Gregorian(2020);
+```
+
 You can add and subtract days to Jalali and Gregorian using `+` and `-` operators. It is guaranteed to give you a bound valid date. for example, it will go to next month or next year if needed, and they won't have leap crash.
 
 You can add years, months or days to  Jalali and Gregorian using `addYears`, `addMonths` and `addDays`. These methods can be chained, and they will not have range crash. `addDays` can change month and year. `addMonths` can change year. **note** that it is your responsibility to avoid leap crash.
@@ -427,6 +439,13 @@ void main() {
   // if you want to subtract you can add negative value:
   print(d1.add(years: -1)); // 1397/8/3
   // and also for Gregorian
+
+  // you can find distance between two days with "^" operator
+  int distance11 = Jalali.now() ^ Jalali(1395, 10);
+  int distance12 = Jalali.now().distanceFrom(Jalali(1395, 10));
+  int distance13 = Jalali(1395, 10).distanceTo(Jalali.now());
+  print('distance $distance11 $distance12 $distance13');
+  // and similarly for Gregorian
 
   // or you can use addYears, addMonths and addDays method
   // it is recommended to use these methods over add method

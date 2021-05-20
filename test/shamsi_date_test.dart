@@ -758,6 +758,30 @@ void main() {
     expect(Jalali(1177).isLeapYear(), false);
     expect(Jalali(1177, 1, 1).toGregorian(), Gregorian(1798, 3, 21));
   });
+
+  test('Jalali.^', () {
+    expect(Jalali(1400, 2, 30) ^ Jalali(1375, 8, 3), 8974);
+  });
+
+  test('Gregorian.^', () {
+    expect(Gregorian(2021, 5, 20) ^ Gregorian(1996, 10, 24), 8974);
+  });
+
+  test('Jalali.distanceFrom', () {
+    expect(Jalali(1400, 2, 30).distanceFrom(Jalali(1375, 8, 3)), 8974);
+  });
+
+  test('Gregorian.distanceFrom', () {
+    expect(Gregorian(2021, 5, 20).distanceFrom(Gregorian(1996, 10, 24)), 8974);
+  });
+
+  test('Jalali.distanceFrom', () {
+    expect(Jalali(1400, 2, 30).distanceTo(Jalali(1375, 8, 3)), -8974);
+  });
+
+  test('Gregorian.distanceFrom', () {
+    expect(Gregorian(2021, 5, 20).distanceTo(Gregorian(1996, 10, 24)), -8974);
+  });
 }
 
 /// Mock Gregorian fixed at Gregorian(2000)

@@ -128,6 +128,13 @@ void main() {
   print(d1.add(years: -1)); // 1397/8/3
   // and also for Gregorian
 
+  // you can find distance between two days with "^" operator
+  int distance11 = Jalali.now() ^ Jalali(1395, 10);
+  int distance12 = Jalali.now().distanceFrom(Jalali(1395, 10));
+  int distance13 = Jalali(1395, 10).distanceTo(Jalali.now());
+  print('distance $distance11 $distance12 $distance13');
+  // and similarly for Gregorian
+
   // or you can use addYears, addMonths and addDays method
   // it is recommended to use these methods over add method
   // these methods are bound valid which means result will be

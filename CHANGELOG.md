@@ -1,3 +1,7 @@
+## 0.14.1
+
+* ADDED distance between methods and operator
+
 ## 0.14.0
 
 * ADDED extension methods for DateTime

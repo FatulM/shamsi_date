@@ -429,6 +429,32 @@ class Gregorian implements Date, Comparable<Gregorian> {
     }
   }
 
+  /// distance between two dates
+  ///
+  /// (we use this operator since we used operator [-]
+  /// for subtracting days)
+  ///
+  /// `d1 ^ d2` is mathematically equivalent to `d1 minus d2`
+  int operator ^(Gregorian other) {
+    return julianDayNumber - other.julianDayNumber;
+  }
+
+  /// distance between two dates
+  ///
+  /// `d1.distanceTo(d2)` is equivalent to `d2 ^ d1`
+  /// and mathematically equivalent to `d1 minus d2`
+  int distanceTo(Gregorian other) {
+    return other.julianDayNumber - julianDayNumber;
+  }
+
+  /// distance between two dates
+  ///
+  /// `d1.distanceFrom(d2)` is equivalent to `d1 ^ d2`
+  /// and mathematically equivalent to `d1 minus d2`
+  int distanceFrom(Gregorian other) {
+    return julianDayNumber - other.julianDayNumber;
+  }
+
   /// equals operator
   @override
   bool operator ==(Object other) {
