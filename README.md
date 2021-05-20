@@ -17,7 +17,8 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 - Check if a Jalali or Gregorian year is leap.
 - Immutable date objects with copy methods for easy manipulation.
 - Compare Dates easily with comparison operators or by using [Comparable][].
-- Add or subtract days with + and - operators.
+- Add or subtract days with `+` and `-` operators.
+- Find distance between dates by methods and `^` operator.
 - Add years, months and days separately or as a combination with methods.
 - High code coverage with a lot of unit tests.
 - Null-Safe API
