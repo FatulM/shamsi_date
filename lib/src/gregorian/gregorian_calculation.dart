@@ -3,9 +3,7 @@ part of 'gregorian_date.dart';
 /// Internal class for algorithms
 class _Algo {
   /// no instances
-  _Algo._() {
-    throw AssertionError();
-  }
+  const _Algo._();
 
   /// Gregorian month lengths
   ///

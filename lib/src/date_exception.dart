@@ -20,7 +20,7 @@ class _DateExceptionImpl implements DateException {
   final String message;
 
   /// Create a [DateException] with message
-  _DateExceptionImpl(this.message);
+  const _DateExceptionImpl(this.message);
 
   /// exception description
   @override

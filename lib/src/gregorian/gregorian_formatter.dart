@@ -8,7 +8,7 @@ import '../gregorian/gregorian_date.dart';
 /// Gregorian date formatter class
 class GregorianFormatter extends DateFormatter {
   /// make a [GregorianFormatter] from [Gregorian] date
-  GregorianFormatter(Gregorian date) : super(date);
+  const GregorianFormatter(Gregorian date) : super(date);
 
   /// Gregorian month names
   static const List<String> _monthNames = [

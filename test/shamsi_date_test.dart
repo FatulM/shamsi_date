@@ -788,6 +788,11 @@ void main() {
     expect(Gregorian(2021, 5, 20) ^ Gregorian(1996, 10, 24), 8974);
   });
 
+  test('Date.^', () {
+    expect(Jalali(1400, 2, 30) ^ Gregorian(1996, 10, 24), 8974);
+    expect(Gregorian(2021, 5, 20) ^ Jalali(1375, 8, 3), 8974);
+  });
+
   test('Jalali.distanceFrom', () {
     expect(Jalali(1400, 2, 30).distanceFrom(Jalali(1375, 8, 3)), 8974);
   });

@@ -3,9 +3,7 @@ part of 'jalali_date.dart';
 /// Internal class for algorithms
 class _Algo {
   /// No instances
-  _Algo._() {
-    throw AssertionError();
-  }
+  const _Algo._();
 
   /// This determines if the Jalali (Persian) year is
   /// leap (366-day long) or is the common year (365 days), and

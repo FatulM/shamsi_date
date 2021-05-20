@@ -225,7 +225,7 @@ abstract class Date implements Comparable<Date> {
   /// Compare dates
   @override
   int compareTo(Date other) {
-    return julianDayNumber - other.julianDayNumber;
+    return julianDayNumber.compareTo(other.julianDayNumber);
   }
 
   /// bigger than operator

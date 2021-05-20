@@ -10,7 +10,7 @@ abstract class DateFormatter {
   final Date date;
 
   /// make a [DateFormatter] for a [Date] object
-  DateFormatter(this.date);
+  const DateFormatter(this.date);
 
   /// year number string whatever length it has
   ///
