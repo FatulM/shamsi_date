@@ -1,3 +1,8 @@
+## 0.15.0
+
+* CHANGED all date instances are comparable with each other
+* CHANGED internal state management to cache julian day number
+
 ## 0.14.1
 
 * ADDED distance between methods and operator
