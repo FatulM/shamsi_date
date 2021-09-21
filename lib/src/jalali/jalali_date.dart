@@ -166,6 +166,24 @@ class Jalali extends Date {
     );
   }
 
+  /// Converts Jalali date to [DateTime] object
+  @override
+  DateTime toUTCDateTime([
+    int hour = 0,
+    int minute = 0,
+    int second = 0,
+    int millisecond = 0,
+    int microsecond = 0,
+  ]) {
+    return toGregorian().toUTCDateTime(
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
+  }
+
   /// Converts a Jalali date to Gregorian.
   Gregorian toGregorian() {
     return Gregorian.fromJulianDayNumber(julianDayNumber);

@@ -70,6 +70,15 @@ abstract class Date implements Comparable<Date> {
     int microsecond = 0,
   ]);
 
+  /// Converts date to UTC [DateTime] object
+  DateTime toUTCDateTime([
+    int hour = 0,
+    int minute = 0,
+    int second = 0,
+    int millisecond = 0,
+    int microsecond = 0,
+  ]);
+
   /// Copy this date object with some fields changed
   ///
   /// Original date object remains unchanged

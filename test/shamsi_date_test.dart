@@ -613,6 +613,64 @@ void main() {
     expect(dt.isUtc, isFalse);
   });
 
+  test('Jalali.toUTCDateTime', () {
+    final j = Jalali(1398, 6, 6);
+    final dt = j.toUTCDateTime();
+    final g = j.toGregorian();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+    expect(dt.hour, 0);
+    expect(dt.minute, 0);
+    expect(dt.second, 0);
+    expect(dt.millisecond, 0);
+    expect(dt.microsecond, 0);
+    expect(dt.isUtc, isTrue);
+  });
+
+  test('Jalali.toUTCDateTime(...)', () {
+    final j = Jalali(2019, 8, 28);
+    final dt = j.toUTCDateTime(1, 2, 3, 4, 5);
+    final g = j.toGregorian();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+    expect(dt.hour, 1);
+    expect(dt.minute, 2);
+    expect(dt.second, 3);
+    expect(dt.millisecond, 4);
+    expect(dt.microsecond, 5);
+    expect(dt.isUtc, isTrue);
+  });
+
+  test('Gregorian.toUTCDateTime', () {
+    final g = Gregorian(2019, 8, 28);
+    final dt = g.toUTCDateTime();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+    expect(dt.hour, 0);
+    expect(dt.minute, 0);
+    expect(dt.second, 0);
+    expect(dt.millisecond, 0);
+    expect(dt.microsecond, 0);
+    expect(dt.isUtc, isTrue);
+  });
+
+  test('Gregorian.toUTCDateTime(...)', () {
+    final g = Gregorian(2019, 8, 28);
+    final dt = g.toUTCDateTime(1, 2, 3, 4, 5);
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+    expect(dt.hour, 1);
+    expect(dt.minute, 2);
+    expect(dt.second, 3);
+    expect(dt.millisecond, 4);
+    expect(dt.microsecond, 5);
+    expect(dt.isUtc, isTrue);
+  });
+
   test('Jalali.hashCode', () {
     final j1 = Jalali(1398, 6, 6);
     final j2 = Jalali(1398, 6, 6);

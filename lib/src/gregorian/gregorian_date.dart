@@ -156,6 +156,27 @@ class Gregorian extends Date {
     );
   }
 
+  /// Converts Gregorian date to [DateTime] object
+  @override
+  DateTime toUTCDateTime([
+    int hour = 0,
+    int minute = 0,
+    int second = 0,
+    int millisecond = 0,
+    int microsecond = 0,
+  ]) {
+    return DateTime.utc(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
+  }
+
   /// Converts a Gregorian date to Jalali.
   Jalali toJalali() {
     return Jalali.fromJulianDayNumber(julianDayNumber);
