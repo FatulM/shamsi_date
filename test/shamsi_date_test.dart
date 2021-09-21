@@ -562,6 +562,27 @@ void main() {
     expect(g.year, dt.year);
     expect(g.month, dt.month);
     expect(g.day, dt.day);
+    expect(dt.hour, 0);
+    expect(dt.minute, 0);
+    expect(dt.second, 0);
+    expect(dt.millisecond, 0);
+    expect(dt.microsecond, 0);
+    expect(dt.isUtc, isFalse);
+  });
+
+  test('Jalali.toDateTime(...)', () {
+    final j = Jalali(2019, 8, 28);
+    final dt = j.toDateTime(1, 2, 3, 4, 5);
+    final g = j.toGregorian();
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+    expect(dt.hour, 1);
+    expect(dt.minute, 2);
+    expect(dt.second, 3);
+    expect(dt.millisecond, 4);
+    expect(dt.microsecond, 5);
+    expect(dt.isUtc, isFalse);
   });
 
   test('Gregorian.toDateTime', () {
@@ -570,6 +591,26 @@ void main() {
     expect(g.year, dt.year);
     expect(g.month, dt.month);
     expect(g.day, dt.day);
+    expect(dt.hour, 0);
+    expect(dt.minute, 0);
+    expect(dt.second, 0);
+    expect(dt.millisecond, 0);
+    expect(dt.microsecond, 0);
+    expect(dt.isUtc, isFalse);
+  });
+
+  test('Gregorian.toDateTime(...)', () {
+    final g = Gregorian(2019, 8, 28);
+    final dt = g.toDateTime(1, 2, 3, 4, 5);
+    expect(g.year, dt.year);
+    expect(g.month, dt.month);
+    expect(g.day, dt.day);
+    expect(dt.hour, 1);
+    expect(dt.minute, 2);
+    expect(dt.second, 3);
+    expect(dt.millisecond, 4);
+    expect(dt.microsecond, 5);
+    expect(dt.isUtc, isFalse);
   });
 
   test('Jalali.hashCode', () {
@@ -828,90 +869,13 @@ class _MockGregorian extends Date implements Gregorian {
   @override
   final int day;
 
-  @override
-  int get monthLength {
-    throw UnimplementedError();
-  }
-
-  @override
-  int get julianDayNumber {
-    throw UnimplementedError();
-  }
-
-  @override
-  int get weekDay {
-    throw UnimplementedError();
-  }
-
   const _MockGregorian(this.year, [this.month = 1, this.day = 1]);
-
-  @override
-  Gregorian operator +(int days) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian operator -(int days) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian add({int years = 0, int months = 0, int days = 0}) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian addDays(int days) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian addMonths(int months) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian addYears(int years) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian copy({int? year, int? month, int? day}) {
-    throw UnimplementedError();
-  }
 
   @override
   GregorianFormatter get formatter => GregorianFormatter(this);
 
   @override
-  bool isLeapYear() {
-    throw UnimplementedError();
-  }
-
-  @override
-  DateTime toDateTime() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali toJalali() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian withDay(int day) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian withMonth(int month) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian withYear(int year) {
-    throw UnimplementedError();
-  }
+  dynamic noSuchMethod(Invocation invocation) => throw UnimplementedError();
 }
 
 /// Mock Jalali
@@ -927,88 +891,11 @@ class _MockJalali extends Date implements Jalali {
   @override
   final int day;
 
-  @override
-  int get monthLength {
-    throw UnimplementedError();
-  }
-
-  @override
-  int get julianDayNumber {
-    throw UnimplementedError();
-  }
-
-  @override
-  int get weekDay {
-    throw UnimplementedError();
-  }
-
   const _MockJalali(this.year, [this.month = 1, this.day = 1]);
-
-  @override
-  Jalali operator +(int days) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali operator -(int days) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali add({int years = 0, int months = 0, int days = 0}) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali addDays(int days) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali addMonths(int months) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali addYears(int years) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali copy({int? year, int? month, int? day}) {
-    throw UnimplementedError();
-  }
 
   @override
   JalaliFormatter get formatter => JalaliFormatter(this);
 
   @override
-  bool isLeapYear() {
-    throw UnimplementedError();
-  }
-
-  @override
-  DateTime toDateTime() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Gregorian toGregorian() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali withDay(int day) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali withMonth(int month) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Jalali withYear(int year) {
-    throw UnimplementedError();
-  }
+  dynamic noSuchMethod(Invocation invocation) => throw UnimplementedError();
 }

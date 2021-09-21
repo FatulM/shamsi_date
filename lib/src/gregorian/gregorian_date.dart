@@ -137,8 +137,23 @@ class Gregorian extends Date {
 
   /// Converts Gregorian date to [DateTime] object
   @override
-  DateTime toDateTime() {
-    return DateTime(year, month, day);
+  DateTime toDateTime([
+    int hour = 0,
+    int minute = 0,
+    int second = 0,
+    int millisecond = 0,
+    int microsecond = 0,
+  ]) {
+    return DateTime(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+    );
   }
 
   /// Converts a Gregorian date to Jalali.

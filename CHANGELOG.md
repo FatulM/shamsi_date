@@ -1,3 +1,7 @@
+## 0.16.0
+
+* ADDED hour, ..., microSeconds arguments to toDateTime
+
 ## 0.15.0
 
 * CHANGED all date instances are comparable with each other

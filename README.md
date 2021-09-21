@@ -25,13 +25,7 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
-as of version `0.15.0` a lot of internal changes has occurred but should not affect end user.
-
-As of version `0.14.1`, there are methods and operators to find distance between dates.
-
-As of version `0.14.0`, there are extension methods `toJalali()` and `toGregorian()` for `DateTime` if you import `shamsi_date/extensions.dart`.
-
-**IMPORTANT CHANGE:** As of version `0.13.0`, shamsi_date is a pure Dart package and does not depend on Flutter. 
+as of version `0.16.0` `toDateTime` has more functionality.
 
 ## Issues and feature requests
 

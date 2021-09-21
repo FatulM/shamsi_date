@@ -1,7 +1,13 @@
 include: package:pedantic/analysis_options.yaml
 
+analyzer:
+  strong-mode:
+    implicit-dynamic: false
+    implicit-casts: false
+
 linter:
   rules:
+    avoid_void_async: true
     # since this library is full of math calculations,
     # I think it is better to be strict about types.
     omit_local_variable_types: false
