@@ -158,7 +158,7 @@ class Gregorian extends Date {
 
   /// Converts Gregorian date to [DateTime] object
   @override
-  DateTime toUTCDateTime([
+  DateTime toUtcDateTime([
     int hour = 0,
     int minute = 0,
     int second = 0,

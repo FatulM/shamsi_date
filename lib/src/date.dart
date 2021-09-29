@@ -71,7 +71,7 @@ abstract class Date implements Comparable<Date> {
   ]);
 
   /// Converts date to UTC [DateTime] object
-  DateTime toUTCDateTime([
+  DateTime toUtcDateTime([
     int hour = 0,
     int minute = 0,
     int second = 0,

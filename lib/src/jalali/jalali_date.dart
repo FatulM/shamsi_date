@@ -168,14 +168,14 @@ class Jalali extends Date {
 
   /// Converts Jalali date to [DateTime] object
   @override
-  DateTime toUTCDateTime([
+  DateTime toUtcDateTime([
     int hour = 0,
     int minute = 0,
     int second = 0,
     int millisecond = 0,
     int microsecond = 0,
   ]) {
-    return toGregorian().toUTCDateTime(
+    return toGregorian().toUtcDateTime(
       hour,
       minute,
       second,

@@ -25,7 +25,7 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
-As of version `0.16.0` `toUTCDateTime` method is added and `toDateTime` has more functionality.
+As of version `0.16.0` `toUtcDateTime` method is added and `toDateTime` has more functionality.
 
 ## Issues and feature requests
 
@@ -117,7 +117,7 @@ Jalali g2j1 = g.toJalali(); // -> 1398/8/4
 Jalali g2j2 = Jalali.fromGregorian(g);
 ```
 
-You can convert [DateTime][] objects directly to Jalali or Gregorian dates by using `fromDateTime(dateTime)` static methods. Convert Jalali and Gregorian to DateTime by using `toDateTime()` method. You can pass `hour`, `minute` and other time details to arguments. There is also `toUTCDateTime` for UTC date times. Get Jalali and Gregorian dates for now by using `now()` factory.
+You can convert [DateTime][] objects directly to Jalali or Gregorian dates by using `fromDateTime(dateTime)` static methods. Convert Jalali and Gregorian to DateTime by using `toDateTime()` method. You can pass `hour`, `minute` and other time details to arguments. There is also `toUtcDateTime` for UTC date times. Get Jalali and Gregorian dates for now by using `now()` factory.
 
 ```dart
 // convert from DateTime
@@ -131,7 +131,7 @@ DateTime g2dt = g.toDateTime();
 // you can also add hour, minute, ...
 DateTime j2dt1 = j.toDateTime(13, 25, 48);
 // and also convert to UTC:
-DateTime j2dt2 = j.toUTCDateTime(13, 25, 48);
+DateTime j2dt2 = j.toUtcDateTime(13, 25, 48);
 
 // get now
 Jalali jNow = Jalali.now();

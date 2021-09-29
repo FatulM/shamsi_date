@@ -1,7 +1,7 @@
 ## 0.16.0
 
 * ADDED hour, ..., microSeconds arguments to toDateTime
-* ADDED toUTCDateTime
+* ADDED toUtcDateTime
 
 ## 0.15.0
 
