@@ -1,3 +1,7 @@
+## 1.0.0
+
+* ADDED time information to Jalali and Gregorian
+
 ## 0.16.0
 
 * ADDED hour, ..., microSeconds arguments to toDateTime
