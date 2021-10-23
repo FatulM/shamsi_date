@@ -153,7 +153,13 @@ class Gregorian extends Date {
 
   /// Create a Gregorian date from Jalali date
   factory Gregorian.fromJalali(Jalali date) {
-    return Gregorian.fromJulianDayNumber(date.julianDayNumber);
+    return Gregorian.fromJulianDayNumber(
+      date.julianDayNumber,
+      date.hour,
+      date.minute,
+      date.second,
+      date.millisecond,
+    );
   }
 
   /// Get Gregorian date for now
@@ -236,7 +242,10 @@ class Gregorian extends Date {
 
   /// Converts a Gregorian date to Jalali.
   Jalali toJalali() {
-    return Jalali.fromJulianDayNumber(julianDayNumber);
+    return Jalali.fromJulianDayNumber(julianDayNumber,hour,
+      minute,
+      second,
+      millisecond,);
   }
 
   /// Checks if a year is a leap year or not.
@@ -329,7 +338,15 @@ class Gregorian extends Date {
     if (years == 0) {
       return this;
     } else {
-      return Gregorian(year + years, month, day);
+      return Gregorian(
+        year + years,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -353,7 +370,15 @@ class Gregorian extends Date {
       // can not use "sum ~/ 12" directly
       final int deltaYear = (sum - mod) ~/ 12;
 
-      return Gregorian(year + deltaYear, mod + 1, day);
+      return Gregorian(
+        year + deltaYear,
+        mod + 1,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -368,7 +393,13 @@ class Gregorian extends Date {
     if (days == 0) {
       return this;
     } else {
-      return Gregorian.fromJulianDayNumber(julianDayNumber + days);
+      return Gregorian.fromJulianDayNumber(
+        julianDayNumber + days,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -388,7 +419,15 @@ class Gregorian extends Date {
     if (year == this.year) {
       return this;
     } else {
-      return Gregorian(year, month, day);
+      return Gregorian(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -408,7 +447,15 @@ class Gregorian extends Date {
     if (month == this.month) {
       return this;
     } else {
-      return Gregorian(year, month, day);
+      return Gregorian(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -428,7 +475,15 @@ class Gregorian extends Date {
     if (day == this.day) {
       return this;
     } else {
-      return Gregorian(year, month, day);
+      return Gregorian(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 }

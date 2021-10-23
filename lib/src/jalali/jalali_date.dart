@@ -158,7 +158,13 @@ class Jalali extends Date {
 
   /// Create a Jalali date from Gregorian date
   factory Jalali.fromGregorian(Gregorian date) {
-    return Jalali.fromJulianDayNumber(date.julianDayNumber);
+    return Jalali.fromJulianDayNumber(
+      date.julianDayNumber,
+      date.hour,
+      date.minute,
+      date.second,
+      date.millisecond,
+    );
   }
 
   /// Get Jalali date for now
@@ -225,7 +231,13 @@ class Jalali extends Date {
 
   /// Converts a Jalali date to Gregorian.
   Gregorian toGregorian() {
-    return Gregorian.fromJulianDayNumber(julianDayNumber);
+    return Gregorian.fromJulianDayNumber(
+      julianDayNumber,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 
   /// Checks if a year is a leap year or not
@@ -318,7 +330,15 @@ class Jalali extends Date {
     if (years == 0) {
       return this;
     } else {
-      return Jalali(year + years, month, day);
+      return Jalali(
+        year + years,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -342,7 +362,15 @@ class Jalali extends Date {
       // can not use "sum ~/ 12" directly
       final int deltaYear = (sum - mod) ~/ 12;
 
-      return Jalali(year + deltaYear, mod + 1, day);
+      return Jalali(
+        year + deltaYear,
+        mod + 1,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -357,7 +385,13 @@ class Jalali extends Date {
     if (days == 0) {
       return this;
     } else {
-      return Jalali.fromJulianDayNumber(julianDayNumber + days);
+      return Jalali.fromJulianDayNumber(
+        julianDayNumber + days,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -377,7 +411,15 @@ class Jalali extends Date {
     if (year == this.year) {
       return this;
     } else {
-      return Jalali(year, month, day);
+      return Jalali(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -397,7 +439,15 @@ class Jalali extends Date {
     if (month == this.month) {
       return this;
     } else {
-      return Jalali(year, month, day);
+      return Jalali(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 
@@ -417,7 +467,15 @@ class Jalali extends Date {
     if (day == this.day) {
       return this;
     } else {
-      return Jalali(year, month, day);
+      return Jalali(
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
     }
   }
 }

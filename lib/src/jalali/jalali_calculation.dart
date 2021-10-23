@@ -112,11 +112,25 @@ class _Algo {
     }
 
     // Calculate Gregorian year (gy).
-    final int gy = Gregorian.fromJulianDayNumber(julianDayNumber).year;
+    final int gy = Gregorian.fromJulianDayNumber(
+      julianDayNumber,
+      hour,
+      minute,
+      second,
+      millisecond,
+    ).year;
     int jy = gy - 621;
     final r = calculate(jy);
     bool isLeap = r.leap == 0;
-    final int jdn1f = Gregorian(gy, 3, r.march).julianDayNumber;
+    final int jdn1f = Gregorian(
+      gy,
+      3,
+      r.march,
+      hour,
+      minute,
+      second,
+      millisecond,
+    ).julianDayNumber;
     int k = julianDayNumber - jdn1f;
     // Find number of days that passed since 1 Farvardin.
     if (k >= 0) {
@@ -224,7 +238,15 @@ class _Algo {
     }
 
     // second part of julian day number calculation
-    final julianDayNumber = Gregorian(r.gy, 3, r.march).julianDayNumber +
+    final julianDayNumber = Gregorian(
+          r.gy,
+          3,
+          r.march,
+          hour,
+          minute,
+          second,
+          millisecond,
+        ).julianDayNumber +
         (month - 1) * 31 -
         (month ~/ 7) * (month - 7) +
         day -
