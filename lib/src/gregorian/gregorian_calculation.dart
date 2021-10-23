@@ -51,9 +51,28 @@ class _Algo {
   /// [julianDayNumber] for the period since jdn=-34839655
   /// (i.e. the year -100100 of both calendars)
   /// to some millions years ahead of the present.
-  static Gregorian createFromJulianDayNumber(int julianDayNumber) {
+  static Gregorian createFromJulianDayNumber(
+    int julianDayNumber,
+    int hour,
+    int minute,
+    int second,
+    int millisecond,
+  ) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
       throw DateException('Julian day number is out of computable range.');
+    }
+
+    if (hour < 0 || hour > 23) {
+      throw DateException('Hour is out of bounds. [0..23]');
+    }
+    if (minute < 0 || minute > 59) {
+      throw DateException('Minute is out of bounds. [0..59]');
+    }
+    if (second < 0 || second > 59) {
+      throw DateException('Second is out of bounds. [0..59]');
+    }
+    if (millisecond < 0 || millisecond > 999) {
+      throw DateException('Millisecond is out of bounds. [0..999]');
     }
 
     final int j = 4 * julianDayNumber +
@@ -65,7 +84,16 @@ class _Algo {
     final int gm = (((i) ~/ 153) % 12) + 1;
     final int gy = ((j) ~/ 1461) - 100100 + ((8 - gm) ~/ 6);
 
-    return Gregorian._raw(julianDayNumber, gy, gm, gd);
+    return Gregorian._raw(
+      julianDayNumber,
+      gy,
+      gm,
+      gd,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 
   /// create from year, month and day
@@ -76,7 +104,15 @@ class _Algo {
   ///
   /// The procedure was tested to be good since 1 March, -100100 (of both
   /// calendars) up to a few million years into the future.
-  static Gregorian createFromYearMonthDay(int year, int month, int day) {
+  static Gregorian createFromYearMonthDay(
+    int year,
+    int month,
+    int day,
+    int hour,
+    int minute,
+    int second,
+    int millisecond,
+  ) {
     if (year < 560 || year > 3798) {
       throw DateException('Gregorian date is out of computable range.');
     }
@@ -100,6 +136,19 @@ class _Algo {
       }
     }
 
+    if (hour < 0 || hour > 23) {
+      throw DateException('Hour is out of bounds. [0..23]');
+    }
+    if (minute < 0 || minute > 59) {
+      throw DateException('Minute is out of bounds. [0..59]');
+    }
+    if (second < 0 || second > 59) {
+      throw DateException('Second is out of bounds. [0..59]');
+    }
+    if (millisecond < 0 || millisecond > 999) {
+      throw DateException('Millisecond is out of bounds. [0..999]');
+    }
+
     final julianDayNumber =
         (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) +
             ((153 * ((month + 9) % 12) + 2) ~/ 5) +
@@ -108,6 +157,15 @@ class _Algo {
             ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) +
             752;
 
-    return Gregorian._raw(julianDayNumber, year, month, day);
+    return Gregorian._raw(
+      julianDayNumber,
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 }

@@ -98,16 +98,44 @@ class Gregorian extends Date {
   /// Create a Gregorian date by using [year], [month] and [day]
   ///
   /// year and month default to 1
-  factory Gregorian(final int year, [final int month = 1, final int day = 1]) {
-    return _Algo.createFromYearMonthDay(year, month, day);
+  factory Gregorian(
+    final int year, [
+    final int month = 1,
+    final int day = 1,
+    final int hour = 0,
+    final int minute = 0,
+    final int second = 0,
+    final int millisecond = 0,
+  ]) {
+    return _Algo.createFromYearMonthDay(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 
   /// Calculates Gregorian and Julian calendar dates from the Julian Day number
   /// [julianDayNumber] for the period since jdn=-34839655
   /// (i.e. the year -100100 of both calendars)
   /// to some millions years ahead of the present.
-  factory Gregorian.fromJulianDayNumber(final int julianDayNumber) {
-    return _Algo.createFromJulianDayNumber(julianDayNumber);
+  factory Gregorian.fromJulianDayNumber(
+    final int julianDayNumber, [
+    final int hour = 0,
+    final int minute = 0,
+    final int second = 0,
+    final int millisecond = 0,
+  ]) {
+    return _Algo.createFromJulianDayNumber(
+      julianDayNumber,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 
   /// Create a Gregorian date by using [DateTime] object
