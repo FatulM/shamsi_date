@@ -25,7 +25,7 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
-As of version `1.0.0` Jalali and Gregorian include time information.
+As of version `1.0.0` Jalali and Gregorian include **time information**.
 
 As of version `0.16.0` `toUtcDateTime` method is added and `toDateTime` has more functionality.
 
