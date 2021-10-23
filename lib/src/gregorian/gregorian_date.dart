@@ -26,13 +26,14 @@ class Gregorian extends Date {
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
   /// and julian day number of 1925675
-  static const Gregorian min = Gregorian._raw(1925675, 560, 3, 20);
+  static const Gregorian min = Gregorian._raw(1925675, 560, 3, 20, 0, 0, 0, 0);
 
   /// Maximum computable Gregorian date
   ///
   /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
-  static const Gregorian max = Gregorian._raw(3108616, 3798, 12, 31);
+  static const Gregorian max =
+      Gregorian._raw(3108616, 3798, 12, 31, 23, 59, 59, 999);
 
   /// Internal constructor without any checks whatsoever
   const Gregorian._raw(
@@ -40,6 +41,10 @@ class Gregorian extends Date {
     this.year,
     this.month,
     this.day,
+    this.hour,
+    this.minute,
+    this.second,
+    this.millisecond,
   );
 
   /// Julian Day Number
@@ -57,6 +62,18 @@ class Gregorian extends Date {
   /// Gregorian day of the month (1 to 28/29/30/31)
   @override
   final int day;
+
+  @override
+  final int hour;
+
+  @override
+  final int minute;
+
+  @override
+  final int second;
+
+  @override
+  final int millisecond;
 
   /// Week day number
   /// [monday] = 1

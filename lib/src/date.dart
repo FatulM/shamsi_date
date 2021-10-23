@@ -34,18 +34,30 @@ abstract class Date implements Comparable<Date> {
   /// Year
   int get year;
 
-  /// Month
+  /// Month [1..12]
   int get month;
 
   /// Day
   int get day;
+
+  /// Hour [0..23]
+  int get hour;
+
+  /// Minute [0..59]
+  int get minute;
+
+  /// Second [0..59]
+  int get second;
+
+  /// Milliseconds [0..999]
+  int get millisecond;
 
   /// Julian day number
   ///
   /// subclasses should store this with fast access
   int get julianDayNumber;
 
-  /// Week day number
+  /// Week day number [1..7]
   ///
   /// Starting with 1 and ending in 7
   int get weekDay;

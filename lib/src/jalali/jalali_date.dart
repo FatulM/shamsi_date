@@ -26,13 +26,14 @@ class Jalali extends Date {
   ///
   /// equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
   /// and julian day number of 1925675
-  static const Jalali min = Jalali._raw(1925675, -61, 1, 1, true);
+  static const Jalali min = Jalali._raw(1925675, -61, 1, 1, 0, 0, 0, 0, true);
 
   /// Maximum computable Jalali date
   ///
   /// equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
-  static const Jalali max = Jalali._raw(3108616, 3177, 10, 11, false);
+  static const Jalali max =
+      Jalali._raw(3108616, 3177, 10, 11, 23, 59, 59, 999, false);
 
   /// Internal constructor without any checks whatsoever
   const Jalali._raw(
@@ -40,6 +41,10 @@ class Jalali extends Date {
     this.year,
     this.month,
     this.day,
+    this.hour,
+    this.minute,
+    this.second,
+    this.millisecond,
     this._isLeap,
   );
 
@@ -58,6 +63,18 @@ class Jalali extends Date {
   /// Jalali day (1 to 29/31)
   @override
   final int day;
+
+  @override
+  final int hour;
+
+  @override
+  final int minute;
+
+  @override
+  final int second;
+
+  @override
+  final int millisecond;
 
   /// Whether is leap year.
   ///
