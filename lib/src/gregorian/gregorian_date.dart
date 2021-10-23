@@ -140,7 +140,15 @@ class Gregorian extends Date {
 
   /// Create a Gregorian date by using [DateTime] object
   factory Gregorian.fromDateTime(DateTime dateTime) {
-    return Gregorian(dateTime.year, dateTime.month, dateTime.day);
+    return Gregorian(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      dateTime.hour,
+      dateTime.minute,
+      dateTime.second,
+      dateTime.millisecond,
+    );
   }
 
   /// Create a Gregorian date from Jalali date
@@ -168,14 +176,32 @@ class Gregorian extends Date {
   ///
   /// Note: For ordering use with*() methods
   @override
-  Gregorian copy({int? year, int? month, int? day}) {
-    if (year == null && month == null && day == null) {
+  Gregorian copy({
+    int? year,
+    int? month,
+    int? day,
+    int? hour,
+    int? minute,
+    int? second,
+    int? millisecond,
+  }) {
+    if (year == null &&
+        month == null &&
+        day == null &&
+        hour == null &&
+        minute == null &&
+        second == null &&
+        millisecond == null) {
       return this;
     } else {
       return Gregorian(
         year ?? this.year,
         month ?? this.month,
         day ?? this.day,
+        hour ?? this.hour,
+        minute ?? this.minute,
+        second ?? this.second,
+        millisecond ?? this.millisecond,
       );
     }
   }
@@ -262,14 +288,32 @@ class Gregorian extends Date {
   ///
   /// Recommended: Use separate add*() methods
   @override
-  Gregorian add({int years = 0, int months = 0, int days = 0}) {
-    if (years == 0 && months == 0 && days == 0) {
+  Gregorian add({
+    int years = 0,
+    int months = 0,
+    int days = 0,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
+  }) {
+    if (years == 0 &&
+        months == 0 &&
+        days == 0 &&
+        hours == 0 &&
+        minutes == 0 &&
+        seconds == 0 &&
+        milliseconds == 0) {
       return this;
     } else {
       return Gregorian(
         year + years,
         month + months,
         day + days,
+        hour + hours,
+        minute + minutes,
+        second + seconds,
+        millisecond + milliseconds,
       );
     }
   }

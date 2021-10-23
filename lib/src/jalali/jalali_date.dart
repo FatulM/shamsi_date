@@ -181,14 +181,32 @@ class Jalali extends Date {
   ///
   /// Note: For ordering use with*() methods
   @override
-  Jalali copy({int? year, int? month, int? day}) {
-    if (year == null && month == null && day == null) {
+  Jalali copy({
+    int? year,
+    int? month,
+    int? day,
+    int? hour,
+    int? minute,
+    int? second,
+    int? millisecond,
+  }) {
+    if (year == null &&
+        month == null &&
+        day == null &&
+        hour == null &&
+        minute == null &&
+        second == null &&
+        millisecond == null) {
       return this;
     } else {
       return Jalali(
         year ?? this.year,
         month ?? this.month,
         day ?? this.day,
+        hour ?? this.hour,
+        minute ?? this.minute,
+        second ?? this.second,
+        millisecond ?? this.millisecond,
       );
     }
   }
@@ -259,14 +277,32 @@ class Jalali extends Date {
   ///
   /// Recommended: Use separate add*() methods
   @override
-  Jalali add({int years = 0, int months = 0, int days = 0}) {
-    if (years == 0 && months == 0 && days == 0) {
+  Jalali add({
+    int years = 0,
+    int months = 0,
+    int days = 0,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
+  }) {
+    if (years == 0 &&
+        months == 0 &&
+        days == 0 &&
+        hours == 0 &&
+        minutes == 0 &&
+        seconds == 0 &&
+        milliseconds == 0) {
       return this;
     } else {
       return Jalali(
         year + years,
         month + months,
         day + days,
+        hour + hours,
+        minute + minutes,
+        second + seconds,
+        millisecond + milliseconds,
       );
     }
   }
