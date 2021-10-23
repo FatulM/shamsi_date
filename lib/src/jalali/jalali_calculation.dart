@@ -87,9 +87,28 @@ class _Algo {
   }
 
   /// create from julian day number
-  static Jalali createFromJulianDayNumber(int julianDayNumber) {
+  static Jalali createFromJulianDayNumber(
+    int julianDayNumber,
+    int hour,
+    int minute,
+    int second,
+    int millisecond,
+  ) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
       throw DateException('Julian day number is out of computable range.');
+    }
+
+    if (hour < 0 || hour > 23) {
+      throw DateException('Hour is out of bounds. [0..23]');
+    }
+    if (minute < 0 || minute > 59) {
+      throw DateException('Minute is out of bounds. [0..59]');
+    }
+    if (second < 0 || second > 59) {
+      throw DateException('Second is out of bounds. [0..59]');
+    }
+    if (millisecond < 0 || millisecond > 999) {
+      throw DateException('Millisecond is out of bounds. [0..999]');
     }
 
     // Calculate Gregorian year (gy).
@@ -106,7 +125,17 @@ class _Algo {
         final int jm = 1 + (k ~/ 31);
         final int jd = (k % 31) + 1;
 
-        return Jalali._raw(julianDayNumber, jy, jm, jd, isLeap);
+        return Jalali._raw(
+          julianDayNumber,
+          jy,
+          jm,
+          jd,
+          hour,
+          minute,
+          second,
+          millisecond,
+          isLeap,
+        );
       } else {
         // The remaining months.
         k -= 186;
@@ -124,11 +153,29 @@ class _Algo {
     final int jm = 7 + (k ~/ 30);
     final int jd = (k % 30) + 1;
 
-    return Jalali._raw(julianDayNumber, jy, jm, jd, isLeap);
+    return Jalali._raw(
+      julianDayNumber,
+      jy,
+      jm,
+      jd,
+      hour,
+      minute,
+      second,
+      millisecond,
+      isLeap,
+    );
   }
 
   /// create from year, month and day
-  static Jalali createFromYearMonthDay(int year, int month, int day) {
+  static Jalali createFromYearMonthDay(
+    int year,
+    int month,
+    int day,
+    int hour,
+    int minute,
+    int second,
+    int millisecond,
+  ) {
     // should be between: Jalali(-61, 1, 1) and Jalali(3177, 10, 11)
     if (year < -61 || year > 3177) {
       throw DateException('Jalali date is out of computable range.');
@@ -163,6 +210,19 @@ class _Algo {
       throw DateException('Jalali day is out of valid range.');
     }
 
+    if (hour < 0 || hour > 23) {
+      throw DateException('Hour is out of bounds. [0..23]');
+    }
+    if (minute < 0 || minute > 59) {
+      throw DateException('Minute is out of bounds. [0..59]');
+    }
+    if (second < 0 || second > 59) {
+      throw DateException('Second is out of bounds. [0..59]');
+    }
+    if (millisecond < 0 || millisecond > 999) {
+      throw DateException('Millisecond is out of bounds. [0..999]');
+    }
+
     // second part of julian day number calculation
     final julianDayNumber = Gregorian(r.gy, 3, r.march).julianDayNumber +
         (month - 1) * 31 -
@@ -170,7 +230,17 @@ class _Algo {
         day -
         1;
 
-    return Jalali._raw(julianDayNumber, year, month, day, isLeap);
+    return Jalali._raw(
+      julianDayNumber,
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      isLeap,
+    );
   }
 }
 

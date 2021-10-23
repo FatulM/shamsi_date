@@ -114,13 +114,41 @@ class Jalali extends Date {
   /// Create a Gregorian date by using [year], [month] and [day]
   ///
   /// year and month default to 1
-  factory Jalali(final int year, [final int month = 1, final int day = 1]) {
-    return _Algo.createFromYearMonthDay(year, month, day);
+  factory Jalali(
+    final int year, [
+    final int month = 1,
+    final int day = 1,
+    final int hour = 0,
+    final int minute = 0,
+    final int second = 0,
+    final int millisecond = 0,
+  ]) {
+    return _Algo.createFromYearMonthDay(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 
   /// Converts the Julian Day number to a date in the Jalali calendar.
-  factory Jalali.fromJulianDayNumber(final int julianDayNumber) {
-    return _Algo.createFromJulianDayNumber(julianDayNumber);
+  factory Jalali.fromJulianDayNumber(
+    final int julianDayNumber, [
+    final int hour = 0,
+    final int minute = 0,
+    final int second = 0,
+    final int millisecond = 0,
+  ]) {
+    return _Algo.createFromJulianDayNumber(
+      julianDayNumber,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
   }
 
   /// Create a Jalali date by using [DateTime] object
