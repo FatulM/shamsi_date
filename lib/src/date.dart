@@ -74,22 +74,10 @@ abstract class Date implements Comparable<Date> {
   bool isLeapYear();
 
   /// Converts date to [DateTime] object
-  DateTime toDateTime([
-    int hour = 0,
-    int minute = 0,
-    int second = 0,
-    int millisecond = 0,
-    int microsecond = 0,
-  ]);
+  DateTime toDateTime();
 
   /// Converts date to UTC [DateTime] object
-  DateTime toUtcDateTime([
-    int hour = 0,
-    int minute = 0,
-    int second = 0,
-    int millisecond = 0,
-    int microsecond = 0,
-  ]);
+  DateTime toUtcDateTime();
 
   /// Copy this date object with some fields changed
   ///

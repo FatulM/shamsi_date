@@ -571,8 +571,8 @@ void main() {
   });
 
   test('Jalali.toDateTime(...)', () {
-    final j = Jalali(2019, 8, 28);
-    final dt = j.toDateTime(1, 2, 3, 4, 5);
+    final j = Jalali(2019, 8, 28, 1, 2, 3, 4);
+    final dt = j.toDateTime();
     final g = j.toGregorian();
     expect(g.year, dt.year);
     expect(g.month, dt.month);
@@ -581,7 +581,7 @@ void main() {
     expect(dt.minute, 2);
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
-    expect(dt.microsecond, 5);
+    expect(dt.microsecond, 0);
     expect(dt.isUtc, isFalse);
   });
 
@@ -600,8 +600,8 @@ void main() {
   });
 
   test('Gregorian.toDateTime(...)', () {
-    final g = Gregorian(2019, 8, 28);
-    final dt = g.toDateTime(1, 2, 3, 4, 5);
+    final g = Gregorian(2019, 8, 28, 1, 2, 3, 4);
+    final dt = g.toDateTime();
     expect(g.year, dt.year);
     expect(g.month, dt.month);
     expect(g.day, dt.day);
@@ -609,7 +609,7 @@ void main() {
     expect(dt.minute, 2);
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
-    expect(dt.microsecond, 5);
+    expect(dt.microsecond, 0);
     expect(dt.isUtc, isFalse);
   });
 
@@ -629,8 +629,8 @@ void main() {
   });
 
   test('Jalali.toUtcDateTime(...)', () {
-    final j = Jalali(2019, 8, 28);
-    final dt = j.toUtcDateTime(1, 2, 3, 4, 5);
+    final j = Jalali(2019, 8, 28, 1, 2, 3, 4);
+    final dt = j.toUtcDateTime();
     final g = j.toGregorian();
     expect(g.year, dt.year);
     expect(g.month, dt.month);
@@ -639,7 +639,7 @@ void main() {
     expect(dt.minute, 2);
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
-    expect(dt.microsecond, 5);
+    expect(dt.microsecond, 0);
     expect(dt.isUtc, isTrue);
   });
 
@@ -658,8 +658,8 @@ void main() {
   });
 
   test('Gregorian.toUtcDateTime(...)', () {
-    final g = Gregorian(2019, 8, 28);
-    final dt = g.toUtcDateTime(1, 2, 3, 4, 5);
+    final g = Gregorian(2019, 8, 28, 1, 2, 3, 4);
+    final dt = g.toUtcDateTime();
     expect(g.year, dt.year);
     expect(g.month, dt.month);
     expect(g.day, dt.day);
@@ -667,7 +667,7 @@ void main() {
     expect(dt.minute, 2);
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
-    expect(dt.microsecond, 5);
+    expect(dt.microsecond, 0);
     expect(dt.isUtc, isTrue);
   });
 

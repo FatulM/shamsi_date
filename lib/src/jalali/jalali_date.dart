@@ -195,38 +195,14 @@ class Jalali extends Date {
 
   /// Converts Jalali date to [DateTime] object
   @override
-  DateTime toDateTime([
-    int hour = 0,
-    int minute = 0,
-    int second = 0,
-    int millisecond = 0,
-    int microsecond = 0,
-  ]) {
-    return toGregorian().toDateTime(
-      hour,
-      minute,
-      second,
-      millisecond,
-      microsecond,
-    );
+  DateTime toDateTime() {
+    return toGregorian().toDateTime();
   }
 
   /// Converts Jalali date to [DateTime] object
   @override
-  DateTime toUtcDateTime([
-    int hour = 0,
-    int minute = 0,
-    int second = 0,
-    int millisecond = 0,
-    int microsecond = 0,
-  ]) {
-    return toGregorian().toUtcDateTime(
-      hour,
-      minute,
-      second,
-      millisecond,
-      microsecond,
-    );
+  DateTime toUtcDateTime() {
+    return toGregorian().toUtcDateTime();
   }
 
   /// Converts a Jalali date to Gregorian.

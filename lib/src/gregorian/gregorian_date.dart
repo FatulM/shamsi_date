@@ -182,13 +182,7 @@ class Gregorian extends Date {
 
   /// Converts Gregorian date to [DateTime] object
   @override
-  DateTime toDateTime([
-    int hour = 0,
-    int minute = 0,
-    int second = 0,
-    int millisecond = 0,
-    int microsecond = 0,
-  ]) {
+  DateTime toDateTime() {
     return DateTime(
       year,
       month,
@@ -197,19 +191,12 @@ class Gregorian extends Date {
       minute,
       second,
       millisecond,
-      microsecond,
     );
   }
 
   /// Converts Gregorian date to [DateTime] object
   @override
-  DateTime toUtcDateTime([
-    int hour = 0,
-    int minute = 0,
-    int second = 0,
-    int millisecond = 0,
-    int microsecond = 0,
-  ]) {
+  DateTime toUtcDateTime() {
     return DateTime.utc(
       year,
       month,
@@ -218,7 +205,6 @@ class Gregorian extends Date {
       minute,
       second,
       millisecond,
-      microsecond,
     );
   }
 
