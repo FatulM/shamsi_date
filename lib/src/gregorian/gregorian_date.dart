@@ -242,10 +242,13 @@ class Gregorian extends Date {
 
   /// Converts a Gregorian date to Jalali.
   Jalali toJalali() {
-    return Jalali.fromJulianDayNumber(julianDayNumber,hour,
+    return Jalali.fromJulianDayNumber(
+      julianDayNumber,
+      hour,
       minute,
       second,
-      millisecond,);
+      millisecond,
+    );
   }
 
   /// Checks if a year is a leap year or not.
