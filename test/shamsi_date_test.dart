@@ -135,12 +135,31 @@ void main() {
     );
   });
 
-  // todo ... until here
   test('Date.==', () {
-    expect(Jalali(1400, 2, 30), equals(Gregorian(2021, 5, 20)));
-    expect(Gregorian(2021, 5, 20), equals(Jalali(1400, 2, 30)));
+    expect(Jalali(1400, 2, 30) == Gregorian(2021, 5, 20), true);
+    expect(Jalali(1400, 2, 30) == Gregorian(2021, 5, 5), false);
+    expect(Gregorian(2021, 5, 20) == Jalali(1400, 2, 30), true);
+    expect(Gregorian(2021, 5, 20) == Jalali(1400, 2, 5), false);
+
+    expect(
+      Jalali(1400, 2, 30, 1, 2, 3, 4) == Gregorian(2021, 5, 20, 1, 2, 3, 4),
+      true,
+    );
+    expect(
+      Jalali(1400, 2, 30, 1, 2, 3, 4) == Gregorian(2021, 5, 20, 1, 2, 5, 4),
+      false,
+    );
+    expect(
+      Gregorian(2021, 5, 20, 1, 2, 3, 4) == Jalali(1400, 2, 30, 1, 2, 3, 4),
+      true,
+    );
+    expect(
+      Gregorian(2021, 5, 20, 1, 2, 3, 4) == Jalali(1400, 2, 30, 1, 2, 5, 4),
+      false,
+    );
   });
 
+  // todo ... until here
   test('Jalali.toString', () {
     expect(Jalali(1398, 1, 10).toString(), 'Jalali(1398, 1, 10)');
     expect(Jalali(1398, 11, 1).toString(), 'Jalali(1398, 11, 1)');
@@ -656,7 +675,7 @@ void main() {
     expect(dt.second, 0);
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isFalse);
+    expect(dt.isUtc, false);
   });
 
   test('Jalali.toDateTime(...)', () {
@@ -671,7 +690,7 @@ void main() {
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isFalse);
+    expect(dt.isUtc, false);
   });
 
   test('Gregorian.toDateTime', () {
@@ -685,7 +704,7 @@ void main() {
     expect(dt.second, 0);
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isFalse);
+    expect(dt.isUtc, false);
   });
 
   test('Gregorian.toDateTime(...)', () {
@@ -699,7 +718,7 @@ void main() {
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isFalse);
+    expect(dt.isUtc, false);
   });
 
   test('Jalali.toUtcDateTime', () {
@@ -714,7 +733,7 @@ void main() {
     expect(dt.second, 0);
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isTrue);
+    expect(dt.isUtc, true);
   });
 
   test('Jalali.toUtcDateTime(...)', () {
@@ -729,7 +748,7 @@ void main() {
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isTrue);
+    expect(dt.isUtc, true);
   });
 
   test('Gregorian.toUtcDateTime', () {
@@ -743,7 +762,7 @@ void main() {
     expect(dt.second, 0);
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isTrue);
+    expect(dt.isUtc, true);
   });
 
   test('Gregorian.toUtcDateTime(...)', () {
@@ -757,7 +776,7 @@ void main() {
     expect(dt.second, 3);
     expect(dt.millisecond, 4);
     expect(dt.microsecond, 0);
-    expect(dt.isUtc, isTrue);
+    expect(dt.isUtc, true);
   });
 
   test('Jalali.hashCode', () {
