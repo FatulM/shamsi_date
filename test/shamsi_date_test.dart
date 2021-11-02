@@ -71,7 +71,6 @@ void main() {
     expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), throwsDateException);
   });
 
-  // todo ... until here
   test('Jalali.==', () {
     expect(Jalali(1000, 1, 1) == Jalali(1000, 1, 1), true);
     expect(Jalali(1000, 1, 1) != Jalali(1000, 1, 1), false);
@@ -81,6 +80,27 @@ void main() {
     expect(Jalali(1000, 1, 1) == Jalali(1000, 2, 1), false);
     expect(Jalali(1000, 1, 2) == Jalali(1000, 1, 1), false);
     expect(Jalali(1000, 1, 1) == Jalali(1000, 1, 2), false);
+
+    expect(
+      Jalali(1000, 1, 2, 3, 4, 5, 6) == Jalali(1000, 1, 2, 3, 4, 5, 6),
+      true,
+    );
+    expect(
+      Jalali(1000, 1, 2, 3, 4, 5, 6) == Jalali(1000, 1, 2, 9, 4, 5, 6),
+      false,
+    );
+    expect(
+      Jalali(1000, 1, 2, 3, 4, 5, 6) == Jalali(1000, 1, 2, 3, 9, 5, 6),
+      false,
+    );
+    expect(
+      Jalali(1000, 1, 2, 3, 4, 5, 6) == Jalali(1000, 1, 2, 3, 4, 9, 6),
+      false,
+    );
+    expect(
+      Jalali(1000, 1, 2, 3, 4, 5, 6) == Jalali(1000, 1, 2, 3, 4, 5, 9),
+      false,
+    );
   });
 
   test('Gregorian.==', () {
@@ -92,8 +112,30 @@ void main() {
     expect(Gregorian(1000, 1, 1) == Gregorian(1000, 2, 1), false);
     expect(Gregorian(1000, 1, 2) == Gregorian(1000, 1, 1), false);
     expect(Gregorian(1000, 1, 1) == Gregorian(1000, 1, 2), false);
+
+    expect(
+      Gregorian(1000, 1, 2, 3, 4, 5, 6) == Gregorian(1000, 1, 2, 3, 4, 5, 6),
+      true,
+    );
+    expect(
+      Gregorian(1000, 1, 2, 3, 4, 5, 6) == Gregorian(1000, 1, 2, 9, 4, 5, 6),
+      false,
+    );
+    expect(
+      Gregorian(1000, 1, 2, 3, 4, 5, 6) == Gregorian(1000, 1, 2, 3, 9, 5, 6),
+      false,
+    );
+    expect(
+      Gregorian(1000, 1, 2, 3, 4, 5, 6) == Gregorian(1000, 1, 2, 3, 4, 9, 6),
+      false,
+    );
+    expect(
+      Gregorian(1000, 1, 2, 3, 4, 5, 6) == Gregorian(1000, 1, 2, 3, 4, 5, 9),
+      false,
+    );
   });
 
+  // todo ... until here
   test('Date.==', () {
     expect(Jalali(1400, 2, 30), equals(Gregorian(2021, 5, 20)));
     expect(Gregorian(2021, 5, 20), equals(Jalali(1400, 2, 30)));
@@ -893,7 +935,13 @@ void main() {
     expect(min.monthLength, Jalali.min.monthLength);
     expect(min.isLeapYear(), Jalali.min.isLeapYear());
 
-    final max = Jalali.fromJulianDayNumber(Date.maxJulianDayNumber);
+    final max = Jalali.fromJulianDayNumber(
+      Date.maxJulianDayNumber,
+      23,
+      59,
+      59,
+      999,
+    );
     expect(max, Jalali.max);
     expect(max.year, Jalali.max.year);
     expect(max.month, Jalali.max.month);
@@ -911,7 +959,13 @@ void main() {
     expect(min.monthLength, Gregorian.min.monthLength);
     expect(min.isLeapYear(), Gregorian.min.isLeapYear());
 
-    final max = Gregorian.fromJulianDayNumber(Date.maxJulianDayNumber);
+    final max = Gregorian.fromJulianDayNumber(
+      Date.maxJulianDayNumber,
+      23,
+      59,
+      59,
+      999,
+    );
     expect(max, Gregorian.max);
     expect(max.year, Gregorian.max.year);
     expect(max.month, Gregorian.max.month);

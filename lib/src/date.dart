@@ -227,39 +227,64 @@ abstract class Date implements Comparable<Date> {
   /// equals operator
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        other is Date && julianDayNumber == other.julianDayNumber;
+    return other is Date && compareTo(other) == 0;
   }
 
   /// hashcode operator
   @override
   int get hashCode {
-    return julianDayNumber.hashCode;
+    return julianDayNumber.hashCode ^
+        hour.hashCode ^
+        minute.hashCode ^
+        second.hashCode ^
+        millisecond.hashCode;
   }
 
   /// Compare dates
+  ///
+  /// returns -1,0,+1
   @override
   int compareTo(Date other) {
-    return julianDayNumber.compareTo(other.julianDayNumber);
+    if (identical(this, other)) {
+      return 0;
+    } else {
+      if (julianDayNumber == other.julianDayNumber &&
+          hour == other.hour &&
+          minute == other.minute &&
+          second == other.second &&
+          millisecond == other.millisecond) {
+        return 0;
+      } else {
+        if (julianDayNumber >= other.julianDayNumber &&
+            hour >= other.hour &&
+            minute >= other.minute &&
+            second >= other.second &&
+            millisecond >= other.millisecond) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+    }
   }
 
   /// bigger than operator
   bool operator >(Date other) {
-    return julianDayNumber > other.julianDayNumber;
+    return compareTo(other) > 0;
   }
 
   /// bigger than or equal operator
   bool operator >=(Date other) {
-    return julianDayNumber >= other.julianDayNumber;
+    return compareTo(other) >= 0;
   }
 
   /// less than operator
   bool operator <(Date other) {
-    return julianDayNumber < other.julianDayNumber;
+    return compareTo(other) < 0;
   }
 
   /// less than or equal operator
   bool operator <=(Date other) {
-    return julianDayNumber <= other.julianDayNumber;
+    return compareTo(other) <= 0;
   }
 }
