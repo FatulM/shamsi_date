@@ -6,25 +6,72 @@ import 'package:shamsi_date/extensions.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:test/test.dart';
 
+Matcher get throwsDateException => throwsA(isA<DateException>());
+
 void main() {
-  final Matcher throwsDateException = throwsA(isA<DateException>());
-
   test('Jalali(year, month, day).{year, month, day}', () {
-    final j = Jalali(1300, 1, 2);
+    final j1 = Jalali(1300);
 
-    expect(j.year, 1300);
-    expect(j.month, 1);
-    expect(j.day, 2);
+    expect(j1.year, 1300);
+    expect(j1.month, 1);
+    expect(j1.day, 1);
+    expect(j1.hour, 0);
+    expect(j1.minute, 0);
+    expect(j1.second, 0);
+    expect(j1.millisecond, 0);
+
+    final j2 = Jalali(1300, 2, 3, 4, 5, 6, 7);
+
+    expect(j2.year, 1300);
+    expect(j2.month, 2);
+    expect(j2.day, 3);
+    expect(j2.hour, 4);
+    expect(j2.minute, 5);
+    expect(j2.second, 6);
+    expect(j2.millisecond, 7);
+
+    expect(() => Jalali(1300, 1, 1, -1, 0, 0, 0), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 24, 0, 0, 0), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 0, -1, 0, 0), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 0, 60, 0, 0), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 0, 0, -1, 0), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 60, 0), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 0, -1), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 0, 1000), throwsDateException);
   });
 
   test('Gregorian(year, month, day).{year, month, day}', () {
-    final j = Gregorian(2000, 1, 2);
+    final j1 = Gregorian(2000);
 
-    expect(j.year, 2000);
-    expect(j.month, 1);
-    expect(j.day, 2);
+    expect(j1.year, 2000);
+    expect(j1.month, 1);
+    expect(j1.day, 1);
+    expect(j1.hour, 0);
+    expect(j1.minute, 0);
+    expect(j1.second, 0);
+    expect(j1.millisecond, 0);
+
+    final j2 = Gregorian(2000, 2, 3, 4, 5, 6, 7);
+
+    expect(j2.year, 2000);
+    expect(j2.month, 2);
+    expect(j2.day, 3);
+    expect(j2.hour, 4);
+    expect(j2.minute, 5);
+    expect(j2.second, 6);
+    expect(j2.millisecond, 7);
+
+    expect(() => Gregorian(2000, 1, 1, -1, 0, 0, 0), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 24, 0, 0, 0), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 0, -1, 0, 0), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 0, 60, 0, 0), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, -1, 0), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 60, 0), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, -1), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), throwsDateException);
   });
 
+  // todo ... until here
   test('Jalali.==', () {
     expect(Jalali(1000, 1, 1) == Jalali(1000, 1, 1), true);
     expect(Jalali(1000, 1, 1) != Jalali(1000, 1, 1), false);
@@ -927,13 +974,34 @@ class _MockGregorian extends Date implements Gregorian {
   @override
   final int day;
 
-  const _MockGregorian(this.year, [this.month = 1, this.day = 1]);
+  @override
+  final int hour;
+
+  @override
+  final int minute;
+
+  @override
+  final int second;
+
+  @override
+  final int millisecond;
+
+  const _MockGregorian(
+    this.year, [
+    this.month = 1,
+    this.day = 1,
+    this.hour = 0,
+    this.minute = 0,
+    this.second = 0,
+    this.millisecond = 0,
+  ]);
 
   @override
   GregorianFormatter get formatter => GregorianFormatter(this);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) => throw UnimplementedError();
+  dynamic noSuchMethod(Invocation invocation) =>
+      throw UnimplementedError('mocked');
 }
 
 /// Mock Jalali
@@ -949,11 +1017,32 @@ class _MockJalali extends Date implements Jalali {
   @override
   final int day;
 
-  const _MockJalali(this.year, [this.month = 1, this.day = 1]);
+  @override
+  final int hour;
+
+  @override
+  final int minute;
+
+  @override
+  final int second;
+
+  @override
+  final int millisecond;
+
+  const _MockJalali(
+    this.year, [
+    this.month = 1,
+    this.day = 1,
+    this.hour = 0,
+    this.minute = 0,
+    this.second = 0,
+    this.millisecond = 0,
+  ]);
 
   @override
   JalaliFormatter get formatter => JalaliFormatter(this);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) => throw UnimplementedError();
+  dynamic noSuchMethod(Invocation invocation) =>
+      throw UnimplementedError('mocked');
 }
