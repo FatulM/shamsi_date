@@ -801,7 +801,6 @@ void main() {
     expect(f3.wN, 'Wednesday');
   });
 
-  // todo ... until here
   test('Jalali.copy', () {
     expect(Jalali(1395, 10, 21).copy(), Jalali(1395, 10, 21));
     expect(Jalali(1395, 10, 21).copy(year: 1390), Jalali(1390, 10, 21));
@@ -810,6 +809,19 @@ void main() {
     expect(
       Jalali(1395, 10, 21).copy(year: 1390, month: 5, day: 10),
       Jalali(1390, 5, 10),
+    );
+
+    expect(
+      Jalali(1395, 10, 21, 1, 2, 3, 4).copy(
+        year: 1390,
+        month: 5,
+        day: 10,
+        hour: 5,
+        minute: 6,
+        second: 7,
+        millisecond: 8,
+      ),
+      Jalali(1390, 5, 10, 5, 6, 7, 8),
     );
   });
 
@@ -822,8 +834,22 @@ void main() {
       Gregorian(2010, 10, 21).copy(year: 2000, month: 5, day: 10),
       Gregorian(2000, 5, 10),
     );
+
+    expect(
+      Gregorian(2010, 10, 21, 1, 2, 3, 4).copy(
+        year: 2000,
+        month: 5,
+        day: 10,
+        hour: 5,
+        minute: 6,
+        second: 7,
+        millisecond: 8,
+      ),
+      Gregorian(2000, 5, 10, 5, 6, 7, 8),
+    );
   });
 
+  // todo ... until here
   test('Jalali.fromDateTime', () {
     final dt = DateTime(2019, 12, 25);
     final j1 = Jalali.fromDateTime(dt);
