@@ -22,6 +22,7 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 - Add years, months and days separately or as a combination with methods.
 - High code coverage with a lot of unit tests.
 - Null-Safe API
+- Support time information
 
 ## Recent Changes
 
