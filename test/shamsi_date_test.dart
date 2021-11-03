@@ -927,7 +927,6 @@ void main() {
     // expect(g.millisecond, dt.millisecond);
   });
 
-  // todo ... until here
   test('Jalali.toDateTime', () {
     final j = Jalali(1398, 6, 6);
     final dt = j.toDateTime();
@@ -941,21 +940,19 @@ void main() {
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
     expect(dt.isUtc, false);
-  });
 
-  test('Jalali.toDateTime(...)', () {
-    final j = Jalali(2019, 8, 28, 1, 2, 3, 4);
-    final dt = j.toDateTime();
-    final g = j.toGregorian();
-    expect(g.year, dt.year);
-    expect(g.month, dt.month);
-    expect(g.day, dt.day);
-    expect(dt.hour, 1);
-    expect(dt.minute, 2);
-    expect(dt.second, 3);
-    expect(dt.millisecond, 4);
-    expect(dt.microsecond, 0);
-    expect(dt.isUtc, false);
+    final jt = Jalali(2019, 8, 28, 1, 2, 3, 4);
+    final dtt = jt.toDateTime();
+    final gt = jt.toGregorian();
+    expect(gt.year, dtt.year);
+    expect(gt.month, dtt.month);
+    expect(gt.day, dtt.day);
+    expect(dtt.hour, 1);
+    expect(dtt.minute, 2);
+    expect(dtt.second, 3);
+    expect(dtt.millisecond, 4);
+    expect(dtt.microsecond, 0);
+    expect(dtt.isUtc, false);
   });
 
   test('Gregorian.toDateTime', () {
@@ -970,20 +967,18 @@ void main() {
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
     expect(dt.isUtc, false);
-  });
 
-  test('Gregorian.toDateTime(...)', () {
-    final g = Gregorian(2019, 8, 28, 1, 2, 3, 4);
-    final dt = g.toDateTime();
-    expect(g.year, dt.year);
-    expect(g.month, dt.month);
-    expect(g.day, dt.day);
-    expect(dt.hour, 1);
-    expect(dt.minute, 2);
-    expect(dt.second, 3);
-    expect(dt.millisecond, 4);
-    expect(dt.microsecond, 0);
-    expect(dt.isUtc, false);
+    final gt = Gregorian(2019, 8, 28, 1, 2, 3, 4);
+    final dtt = gt.toDateTime();
+    expect(gt.year, dtt.year);
+    expect(gt.month, dtt.month);
+    expect(gt.day, dtt.day);
+    expect(dtt.hour, 1);
+    expect(dtt.minute, 2);
+    expect(dtt.second, 3);
+    expect(dtt.millisecond, 4);
+    expect(dtt.microsecond, 0);
+    expect(dtt.isUtc, false);
   });
 
   test('Jalali.toUtcDateTime', () {
@@ -999,21 +994,19 @@ void main() {
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
     expect(dt.isUtc, true);
-  });
 
-  test('Jalali.toUtcDateTime(...)', () {
-    final j = Jalali(2019, 8, 28, 1, 2, 3, 4);
-    final dt = j.toUtcDateTime();
-    final g = j.toGregorian();
-    expect(g.year, dt.year);
-    expect(g.month, dt.month);
-    expect(g.day, dt.day);
-    expect(dt.hour, 1);
-    expect(dt.minute, 2);
-    expect(dt.second, 3);
-    expect(dt.millisecond, 4);
-    expect(dt.microsecond, 0);
-    expect(dt.isUtc, true);
+    final jt = Jalali(2019, 8, 28, 1, 2, 3, 4);
+    final dtt = jt.toUtcDateTime();
+    final gt = jt.toGregorian();
+    expect(gt.year, dtt.year);
+    expect(gt.month, dtt.month);
+    expect(gt.day, dtt.day);
+    expect(dtt.hour, 1);
+    expect(dtt.minute, 2);
+    expect(dtt.second, 3);
+    expect(dtt.millisecond, 4);
+    expect(dtt.microsecond, 0);
+    expect(dtt.isUtc, true);
   });
 
   test('Gregorian.toUtcDateTime', () {
@@ -1028,22 +1021,21 @@ void main() {
     expect(dt.millisecond, 0);
     expect(dt.microsecond, 0);
     expect(dt.isUtc, true);
+
+    final gt = Gregorian(2019, 8, 28, 1, 2, 3, 4);
+    final dtt = gt.toUtcDateTime();
+    expect(gt.year, dtt.year);
+    expect(gt.month, dtt.month);
+    expect(gt.day, dtt.day);
+    expect(dtt.hour, 1);
+    expect(dtt.minute, 2);
+    expect(dtt.second, 3);
+    expect(dtt.millisecond, 4);
+    expect(dtt.microsecond, 0);
+    expect(dtt.isUtc, true);
   });
 
-  test('Gregorian.toUtcDateTime(...)', () {
-    final g = Gregorian(2019, 8, 28, 1, 2, 3, 4);
-    final dt = g.toUtcDateTime();
-    expect(g.year, dt.year);
-    expect(g.month, dt.month);
-    expect(g.day, dt.day);
-    expect(dt.hour, 1);
-    expect(dt.minute, 2);
-    expect(dt.second, 3);
-    expect(dt.millisecond, 4);
-    expect(dt.microsecond, 0);
-    expect(dt.isUtc, true);
-  });
-
+  // todo ... until here
   test('Jalali.hashCode', () {
     final j1 = Jalali(1398, 6, 6);
     final j2 = Jalali(1398, 6, 6);
