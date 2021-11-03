@@ -1035,7 +1035,6 @@ void main() {
     expect(dtt.isUtc, true);
   });
 
-  // todo ... until here
   test('Jalali.hashCode', () {
     final j1 = Jalali(1398, 6, 6);
     final j2 = Jalali(1398, 6, 6);
@@ -1043,6 +1042,11 @@ void main() {
     expect(j1.copy(year: 1397).hashCode != j1.hashCode, true);
     expect(j1.copy(month: 5).hashCode != j1.hashCode, true);
     expect(j1.copy(day: 7).hashCode != j1.hashCode, true);
+
+    expect(j1.copy(hour: 7).hashCode != j1.hashCode, true);
+    expect(j1.copy(minute: 7).hashCode != j1.hashCode, true);
+    expect(j1.copy(second: 7).hashCode != j1.hashCode, true);
+    expect(j1.copy(millisecond: 7).hashCode != j1.hashCode, true);
   });
 
   test('Gregorian.hashCode', () {
@@ -1052,6 +1056,11 @@ void main() {
     expect(g1.copy(year: 2018).hashCode != g1.hashCode, true);
     expect(g1.copy(month: 7).hashCode != g1.hashCode, true);
     expect(g1.copy(day: 1).hashCode != g1.hashCode, true);
+
+    expect(g1.copy(hour: 7).hashCode != g1.hashCode, true);
+    expect(g1.copy(minute: 7).hashCode != g1.hashCode, true);
+    expect(g1.copy(second: 7).hashCode != g1.hashCode, true);
+    expect(g1.copy(millisecond: 7).hashCode != g1.hashCode, true);
   });
 
   test('Jalali.+', () {
@@ -1060,6 +1069,11 @@ void main() {
     expect(Jalali(1300, 2, 10) + (-10), Jalali(1300, 1, 31));
     expect(Jalali(1300, 1, 31) + 36, Jalali(1300, 3, 5));
     expect(Jalali(1400, 1, 1) + 365, Jalali(1401, 1, 1));
+
+    expect(
+      Jalali(1400, 1, 1, 1, 2, 3, 4) + 365,
+      Jalali(1401, 1, 1, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.+', () {
@@ -1068,6 +1082,11 @@ void main() {
     expect(Gregorian(2000, 2, 10) + (-10), Gregorian(2000, 1, 31));
     expect(Gregorian(2000, 1, 31) + 34, Gregorian(2000, 3, 5));
     expect(Gregorian(2000, 1, 1) + 366, Gregorian(2001, 1, 1));
+
+    expect(
+      Gregorian(2000, 1, 1, 1, 2, 3, 4) + 366,
+      Gregorian(2001, 1, 1, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.-', () {
@@ -1076,6 +1095,11 @@ void main() {
     expect(Jalali(1300, 2, 15) - 5, Jalali(1300, 2, 10));
     expect(Jalali(1300, 3, 5) - 36, Jalali(1300, 1, 31));
     expect(Jalali(1401, 1, 1) - 365, Jalali(1400, 1, 1));
+
+    expect(
+      Jalali(1401, 1, 1, 1, 2, 3, 4) - 365,
+      Jalali(1400, 1, 1, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.-', () {
@@ -1084,6 +1108,11 @@ void main() {
     expect(Gregorian(2000, 1, 31) - (-10), Gregorian(2000, 2, 10));
     expect(Gregorian(2000, 3, 5) - 34, Gregorian(2000, 1, 31));
     expect(Gregorian(2001, 1, 1) - 366, Gregorian(2000, 1, 1));
+
+    expect(
+      Gregorian(2001, 1, 1, 1, 2, 3, 4) - 366,
+      Gregorian(2000, 1, 1, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.add', () {
@@ -1091,10 +1120,27 @@ void main() {
     expect(Jalali(1300, 2, 10).add(years: 1), Jalali(1301, 2, 10));
     expect(Jalali(1300, 2, 10).add(months: 1), Jalali(1300, 3, 10));
     expect(Jalali(1300, 2, 10).add(days: 1), Jalali(1300, 2, 11));
-    expect(Jalali(1300, 2, 10).add(years: 10, months: 3, days: 8),
-        Jalali(1310, 5, 18));
-    expect(Jalali(1300, 5, 10).add(years: -10, months: -3, days: -8),
-        Jalali(1290, 2, 2));
+    expect(
+      Jalali(1300, 2, 10).add(years: 10, months: 3, days: 8),
+      Jalali(1310, 5, 18),
+    );
+    expect(
+      Jalali(1300, 5, 10).add(years: -10, months: -3, days: -8),
+      Jalali(1290, 2, 2),
+    );
+
+    expect(
+      Jalali(1300, 5, 10, 1, 2, 3, 4).add(
+        years: -10,
+        months: -3,
+        days: -8,
+        hours: 1,
+        minutes: 2,
+        seconds: 3,
+        milliseconds: 4,
+      ),
+      Jalali(1290, 2, 2, 2, 4, 6, 8),
+    );
   });
 
   test('Gregorian.add', () {
@@ -1102,22 +1148,49 @@ void main() {
     expect(Gregorian(2000, 2, 10).add(years: 1), Gregorian(2001, 2, 10));
     expect(Gregorian(2000, 2, 10).add(months: 1), Gregorian(2000, 3, 10));
     expect(Gregorian(2000, 2, 10).add(days: 1), Gregorian(2000, 2, 11));
-    expect(Gregorian(2000, 2, 10).add(years: 10, months: 3, days: 8),
-        Gregorian(2010, 5, 18));
-    expect(Gregorian(2000, 5, 10).add(years: -10, months: -3, days: -8),
-        Gregorian(1990, 2, 2));
+    expect(
+      Gregorian(2000, 2, 10).add(years: 10, months: 3, days: 8),
+      Gregorian(2010, 5, 18),
+    );
+    expect(
+      Gregorian(2000, 5, 10).add(years: -10, months: -3, days: -8),
+      Gregorian(1990, 2, 2),
+    );
+
+    expect(
+      Gregorian(2000, 5, 10, 1, 2, 3, 4).add(
+        years: -10,
+        months: -3,
+        days: -8,
+        hours: 1,
+        minutes: 2,
+        seconds: 3,
+        milliseconds: 4,
+      ),
+      Gregorian(1990, 2, 2, 2, 4, 6, 8),
+    );
   });
 
   test('Jalali.addYears', () {
     expect(Jalali(1300, 2, 10).addYears(0), Jalali(1300, 2, 10));
     expect(Jalali(1300, 2, 10).addYears(10), Jalali(1310, 2, 10));
     expect(Jalali(1300, 2, 10).addYears(-10), Jalali(1290, 2, 10));
+
+    expect(
+      Jalali(1300, 2, 10, 1, 2, 3, 4).addYears(-10),
+      Jalali(1290, 2, 10, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.addYears', () {
     expect(Gregorian(1300, 2, 10).addYears(0), Gregorian(1300, 2, 10));
     expect(Gregorian(1300, 2, 10).addYears(10), Gregorian(1310, 2, 10));
     expect(Gregorian(1300, 2, 10).addYears(-10), Gregorian(1290, 2, 10));
+
+    expect(
+      Gregorian(1300, 2, 10, 1, 2, 3, 4).addYears(-10),
+      Gregorian(1290, 2, 10, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.addMonths', () {
@@ -1129,6 +1202,11 @@ void main() {
     expect(Jalali(1300, 2, 10).addMonths(-1), Jalali(1300, 1, 10));
     expect(Jalali(1300, 2, 10).addMonths(-2), Jalali(1299, 12, 10));
     expect(Jalali(1300, 2, 10).addMonths(-25), Jalali(1298, 1, 10));
+
+    expect(
+      Jalali(1300, 2, 10, 1, 2, 3, 4).addMonths(-25),
+      Jalali(1298, 1, 10, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.addMonths', () {
@@ -1140,8 +1218,14 @@ void main() {
     expect(Gregorian(1300, 2, 10).addMonths(-1), Gregorian(1300, 1, 10));
     expect(Gregorian(1300, 2, 10).addMonths(-2), Gregorian(1299, 12, 10));
     expect(Gregorian(1300, 2, 10).addMonths(-25), Gregorian(1298, 1, 10));
+
+    expect(
+      Gregorian(1300, 2, 10, 1, 2, 3, 4).addMonths(-25),
+      Gregorian(1298, 1, 10, 1, 2, 3, 4),
+    );
   });
 
+  // todo ... until here
   test('Jalali.addDays', () {
     expect(Jalali(1300, 2, 10).addDays(0), Jalali(1300, 2, 10));
     expect(Jalali(1300, 2, 10).addDays(5), Jalali(1300, 2, 15));
