@@ -849,12 +849,16 @@ void main() {
     );
   });
 
-  // todo ... until here
   test('Jalali.fromDateTime', () {
     final dt = DateTime(2019, 12, 25);
     final j1 = Jalali.fromDateTime(dt);
     final j2 = Jalali(1398, 10, 4);
     expect(j1, j2);
+
+    final dtt = DateTime(2019, 12, 25, 1, 2, 3, 4);
+    final j1t = Jalali.fromDateTime(dtt);
+    final j2t = Jalali(1398, 10, 4, 1, 2, 3, 4);
+    expect(j1t, j2t);
   });
 
   test('DateTime.toJalali', () {
@@ -862,6 +866,11 @@ void main() {
     final j1 = dt.toJalali();
     final j2 = Jalali(1398, 10, 4);
     expect(j1, j2);
+
+    final dtt = DateTime(2019, 12, 25, 1, 2, 3, 4);
+    final j1t = dtt.toJalali();
+    final j2t = Jalali(1398, 10, 4, 1, 2, 3, 4);
+    expect(j1t, j2t);
   });
 
   test('Gregorian.fromDateTime', () {
@@ -869,6 +878,11 @@ void main() {
     final g1 = Gregorian.fromDateTime(dt);
     final g2 = Gregorian(2000, 10, 5);
     expect(g1, g2);
+
+    final dtt = DateTime(2000, 10, 5, 1, 2, 3, 4);
+    final g1t = Gregorian.fromDateTime(dtt);
+    final g2t = Gregorian(2000, 10, 5, 1, 2, 3, 4);
+    expect(g1t, g2t);
   });
 
   test('DateTime.toGregorian', () {
@@ -876,24 +890,44 @@ void main() {
     final g1 = dt.toGregorian();
     final g2 = Gregorian(2000, 10, 5);
     expect(g1, g2);
+
+    final dtt = DateTime(2000, 10, 5, 1, 2, 3, 4);
+    final g1t = dtt.toGregorian();
+    final g2t = Gregorian(2000, 10, 5, 1, 2, 3, 4);
+    expect(g1t, g2t);
   });
 
-  test('Jalali.now', () {
+  test('Jalali.now UNRELIABLE_TEST', () {
     final dt = DateTime.now();
     final g = Jalali.now().toGregorian();
     expect(g.year, dt.year);
     expect(g.month, dt.month);
     expect(g.day, dt.day);
+
+    expect(g.hour, dt.hour);
+    expect(g.minute, dt.minute);
+    expect(g.second, dt.second);
+    // todo check difference using duration
+    // can not guarantee !
+    // expect(g.millisecond, dt.millisecond);
   });
 
-  test('Gregorian.now', () {
+  test('Gregorian.now UNRELIABLE_TEST', () {
     final dt = DateTime.now();
     final g = Gregorian.now();
     expect(g.year, dt.year);
     expect(g.month, dt.month);
     expect(g.day, dt.day);
+
+    expect(g.hour, dt.hour);
+    expect(g.minute, dt.minute);
+    expect(g.second, dt.second);
+    // todo check difference using duration
+    // can not guarantee !
+    // expect(g.millisecond, dt.millisecond);
   });
 
+  // todo ... until here
   test('Jalali.toDateTime', () {
     final j = Jalali(1398, 6, 6);
     final dt = j.toDateTime();
