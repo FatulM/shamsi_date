@@ -6,7 +6,7 @@ import 'package:shamsi_date/extensions.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:test/test.dart';
 
-Matcher get throwsDateException => throwsA(isA<DateException>());
+Matcher get tde => throwsA(isA<DateException>());
 
 void main() {
   test('Jalali(year, month, day).{year, month, day}', () {
@@ -30,14 +30,14 @@ void main() {
     expect(j2.second, 6);
     expect(j2.millisecond, 7);
 
-    expect(() => Jalali(1300, 1, 1, -1, 0, 0, 0), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 24, 0, 0, 0), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 0, -1, 0, 0), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 0, 60, 0, 0), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 0, 0, -1, 0), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 0, 0, 60, 0), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 0, 0, 0, -1), throwsDateException);
-    expect(() => Jalali(1300, 1, 1, 0, 0, 0, 1000), throwsDateException);
+    expect(() => Jalali(1300, 1, 1, -1, 0, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 24, 0, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, -1, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 60, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, -1, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 60, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 0, -1), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Gregorian(year, month, day).{year, month, day}', () {
@@ -61,14 +61,14 @@ void main() {
     expect(j2.second, 6);
     expect(j2.millisecond, 7);
 
-    expect(() => Gregorian(2000, 1, 1, -1, 0, 0, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 24, 0, 0, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 0, -1, 0, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 0, 60, 0, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, -1, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, 60, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, -1), throwsDateException);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), throwsDateException);
+    expect(() => Gregorian(2000, 1, 1, -1, 0, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 24, 0, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, -1, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 60, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, -1, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 60, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, -1), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Jalali.==', () {
@@ -207,8 +207,8 @@ void main() {
     expect(Jalali.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
     expect(Jalali.fromJulianDayNumber(3108616).julianDayNumber, 3108616);
 
-    expect(() => Jalali.fromJulianDayNumber(1925674), throwsDateException);
-    expect(() => Jalali.fromJulianDayNumber(3108617), throwsDateException);
+    expect(() => Jalali.fromJulianDayNumber(1925674), tde);
+    expect(() => Jalali.fromJulianDayNumber(3108617), tde);
   });
 
   test('Gregorian.{ fromJulianDayNumber , julianDayNumber }', () {
@@ -218,8 +218,8 @@ void main() {
     expect(Gregorian.fromJulianDayNumber(2500000).julianDayNumber, 2500000);
     expect(Gregorian.fromJulianDayNumber(3108616).julianDayNumber, 3108616);
 
-    expect(() => Gregorian.fromJulianDayNumber(1925674), throwsDateException);
-    expect(() => Gregorian.fromJulianDayNumber(3108617), throwsDateException);
+    expect(() => Gregorian.fromJulianDayNumber(1925674), tde);
+    expect(() => Gregorian.fromJulianDayNumber(3108617), tde);
   });
 
   test('Jalali.fromJulianDayNumber', () {
@@ -279,25 +279,25 @@ void main() {
   });
 
   test('Jalali(year, month, day) validation', () {
-    expect(() => Jalali(-62, 12, 29), throwsDateException);
+    expect(() => Jalali(-62, 12, 29), tde);
     Jalali(-61, 1, 1);
     Jalali(-61, 1, 10);
     Jalali(-61, 10, 1);
-    expect(() => Jalali(3178, 1, 1), throwsDateException);
-    expect(() => Jalali(3177, 10, 12), throwsDateException);
-    expect(() => Jalali(3177, 11, 1), throwsDateException);
-    expect(() => Jalali(3177, 11, 20), throwsDateException);
+    expect(() => Jalali(3178, 1, 1), tde);
+    expect(() => Jalali(3177, 10, 12), tde);
+    expect(() => Jalali(3177, 11, 1), tde);
+    expect(() => Jalali(3177, 11, 20), tde);
     Jalali(3177, 10, 11);
-    expect(() => Jalali(1393, 0, 1), throwsDateException);
-    expect(() => Jalali(1393, -1, 1), throwsDateException);
-    expect(() => Jalali(1393, 13, 1), throwsDateException);
-    expect(() => Jalali(1393, 1, 0), throwsDateException);
-    expect(() => Jalali(1393, 1, -1), throwsDateException);
-    expect(() => Jalali(1393, 1, 32), throwsDateException);
+    expect(() => Jalali(1393, 0, 1), tde);
+    expect(() => Jalali(1393, -1, 1), tde);
+    expect(() => Jalali(1393, 13, 1), tde);
+    expect(() => Jalali(1393, 1, 0), tde);
+    expect(() => Jalali(1393, 1, -1), tde);
+    expect(() => Jalali(1393, 1, 32), tde);
     Jalali(1393, 1, 31);
-    expect(() => Jalali(1393, 11, 31), throwsDateException);
+    expect(() => Jalali(1393, 11, 31), tde);
     Jalali(1393, 11, 30);
-    expect(() => Jalali(1393, 12, 30), throwsDateException);
+    expect(() => Jalali(1393, 12, 30), tde);
     Jalali(1393, 12, 29);
     Jalali(1395, 12, 30);
 
@@ -306,61 +306,61 @@ void main() {
     Jalali(1399, 11, 1);
     Jalali(1399, 11, 29);
     Jalali(1399, 11, 30);
-    expect(() => Jalali(1399, 11, -1), throwsDateException);
-    expect(() => Jalali(1399, 11, 0), throwsDateException);
-    expect(() => Jalali(1399, 11, 31), throwsDateException);
+    expect(() => Jalali(1399, 11, -1), tde);
+    expect(() => Jalali(1399, 11, 0), tde);
+    expect(() => Jalali(1399, 11, 31), tde);
     Jalali(1399, 12, 1);
     Jalali(1399, 12, 10);
     Jalali(1399, 12, 29);
     Jalali(1399, 12, 30);
-    expect(() => Jalali(1399, 12, -1), throwsDateException);
-    expect(() => Jalali(1399, 12, 0), throwsDateException);
-    expect(() => Jalali(1399, 12, 31), throwsDateException);
+    expect(() => Jalali(1399, 12, -1), tde);
+    expect(() => Jalali(1399, 12, 0), tde);
+    expect(() => Jalali(1399, 12, 31), tde);
     // 1398 is not leap
     Jalali(1398, 11, 1);
     Jalali(1398, 11, 29);
     Jalali(1398, 11, 30);
-    expect(() => Jalali(1398, 11, -1), throwsDateException);
-    expect(() => Jalali(1398, 11, 0), throwsDateException);
-    expect(() => Jalali(1398, 11, 31), throwsDateException);
+    expect(() => Jalali(1398, 11, -1), tde);
+    expect(() => Jalali(1398, 11, 0), tde);
+    expect(() => Jalali(1398, 11, 31), tde);
     Jalali(1398, 12, 1);
     Jalali(1398, 12, 10);
     Jalali(1398, 12, 29);
-    expect(() => Jalali(1398, 12, -1), throwsDateException);
-    expect(() => Jalali(1398, 12, 0), throwsDateException);
-    expect(() => Jalali(1398, 12, 30), throwsDateException);
-    expect(() => Jalali(1398, 12, 31), throwsDateException);
+    expect(() => Jalali(1398, 12, -1), tde);
+    expect(() => Jalali(1398, 12, 0), tde);
+    expect(() => Jalali(1398, 12, 30), tde);
+    expect(() => Jalali(1398, 12, 31), tde);
   });
 
   test('Gregorian(year, month, day) validation', () {
-    expect(() => Gregorian(560, 3, 19), throwsDateException);
-    expect(() => Gregorian(560, 2, 22), throwsDateException);
-    expect(() => Gregorian(560, 1, 10), throwsDateException);
-    expect(() => Gregorian(559, 12, 31), throwsDateException);
+    expect(() => Gregorian(560, 3, 19), tde);
+    expect(() => Gregorian(560, 2, 22), tde);
+    expect(() => Gregorian(560, 1, 10), tde);
+    expect(() => Gregorian(559, 12, 31), tde);
     Gregorian(560, 3, 20);
     Gregorian(3798, 10, 20);
     Gregorian(3798, 12, 31);
-    expect(() => Gregorian(3799, 1, 1), throwsDateException);
+    expect(() => Gregorian(3799, 1, 1), tde);
     Gregorian(2000, 1, 1);
-    expect(() => Gregorian(2000, 0, 1), throwsDateException);
-    expect(() => Gregorian(2000, -1, 1), throwsDateException);
-    expect(() => Gregorian(2000, 13, 1), throwsDateException);
+    expect(() => Gregorian(2000, 0, 1), tde);
+    expect(() => Gregorian(2000, -1, 1), tde);
+    expect(() => Gregorian(2000, 13, 1), tde);
     Gregorian(2000, 5, 1);
-    expect(() => Gregorian(2000, 1, 0), throwsDateException);
-    expect(() => Gregorian(2000, 1, -1), throwsDateException);
+    expect(() => Gregorian(2000, 1, 0), tde);
+    expect(() => Gregorian(2000, 1, -1), tde);
     Gregorian(2000, 1, 10);
-    expect(() => Gregorian(2000, 1, 32), throwsDateException);
-    expect(() => Gregorian(2000, 12, 32), throwsDateException);
+    expect(() => Gregorian(2000, 1, 32), tde);
+    expect(() => Gregorian(2000, 12, 32), tde);
     Gregorian(2000, 12, 31);
-    expect(() => Gregorian(2000, 1, 32), throwsDateException);
+    expect(() => Gregorian(2000, 1, 32), tde);
     Gregorian(2004, 1, 29);
     Gregorian(600, 1, 1);
     Gregorian(2000, 2, 29);
-    expect(() => Gregorian(2000, 2, 30), throwsDateException);
+    expect(() => Gregorian(2000, 2, 30), tde);
     Gregorian(2001, 2, 28);
-    expect(() => Gregorian(2001, 2, 29), throwsDateException);
+    expect(() => Gregorian(2001, 2, 29), tde);
     Gregorian(2004, 2, 29);
-    expect(() => Gregorian(2004, 2, 30), throwsDateException);
+    expect(() => Gregorian(2004, 2, 30), tde);
   });
 
   test('Jalali.isLeapYear', () {
@@ -969,7 +969,7 @@ void main() {
     final exception = DateException('I am a message');
 
     expect(exception, isA<DateException>());
-    expect(() => throw exception, throwsDateException);
+    expect(() => throw exception, tde);
     expect(exception.toString(), 'DateException: I am a message');
   });
 
