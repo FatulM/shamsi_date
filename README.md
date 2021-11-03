@@ -27,8 +27,6 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 As of version `1.0.0` Jalali and Gregorian include **time information**.
 
-As of version `0.16.0` `toUtcDateTime` method is added and `toDateTime` has more functionality.
-
 ## Issues and feature requests
 
 If you want a new feature, or you found an issue, please make an issue on GitHub, so I can see your request.
@@ -62,7 +60,15 @@ Jalali and Gregorian can be instantiated with providing `year`, `month` and `day
 Jalali j = Jalali(year, month, day);
 Gregorian g = Gregorian(year, month, day);
 ```
-Month and day has default value of `1` if you don't specify them, so `Jalali(year, month)` is equivalent to `Jalali(year, month, 1)` and `Gregorian(year)` is equivalent to `Gregorian(year, 1, 1)`.
+
+you can also provide time information with `hour`, `minute`, `second` and `millisecond`.
+
+```dart
+Jalali j = Jalali(year, month, day, hour, minute, second, millisecond);
+Gregorian g = Gregorian(year, month, day, hour, minute, second, millisecond);
+```
+
+Month and day has default value of `1` if you don't specify them, so `Jalali(year, month)` is equivalent to `Jalali(year, month, 1)` and `Gregorian(year)` is equivalent to `Gregorian(year, 1, 1)`. And also hour, minute, second and millisecond will default to `0` if not provided.
 
 Constructor arguments should be non-null or exception will be thrown immediately. This ensures objects being in valid state when created. So year, month and day are always non-null. Almost all methods, operators, constructors and factories should have non-null arguments, and they will return non-null objects. For example year, month and day getters will return non-null results. The only exception for methods which can accept null arguments are methods with optional arguments like `add(...)` and `copy(...)`. **in nullsafe version:** nullable and non-nullable argument and return types are checked statically.
 
@@ -81,14 +87,19 @@ void main() {
 
 Jalali and Gregorian objects are immutable. So using operators and methods will give you  new object and does not manipulate the object in place, like String objects. Almost all other objects in shamsi_date library are immutable too.
 
-You can access `year`, `month`, `day` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
+You can access `year`, `month`, `day`, `hour`, `minute`, `second` and `millisecond` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
 
 ```dart
-Jalali j = Jalali(1397, 5, 6);
+Jalali j = Jalali(1397, 5, 6, 12, 56, 34, 585);
 
-int jy = j.year; // jy = 1397
-int jm = j.month; // jm = 5
-int jd = j.day; // jd = 6
+int jy = j.year; // 1397
+int jm = j.month; // 5
+int jd = j.day; // 6
+
+int jh = j.hour; // 12
+int jm = j.minute; // 56
+int js = j.second; // 34
+int jms = j.millisecond; // 585
 
 int wd = j.weekDay; // wd = 1 (Shanbe)
 
@@ -130,10 +141,8 @@ Gregorian g = Gregorian.fromDateTime(dateTime);
 DateTime j2dt = j.toDateTime();
 DateTime g2dt = g.toDateTime();
 
-// you can also add hour, minute, ...
-DateTime j2dt1 = j.toDateTime(13, 25, 48);
 // and also convert to UTC:
-DateTime j2dt2 = j.toUtcDateTime(13, 25, 48);
+DateTime j2dt2 = j.toUtcDateTime();
 
 // get now
 Jalali jNow = Jalali.now();
