@@ -46,12 +46,6 @@ Then depend on it:
 import 'package:shamsi_date/shamsi_date.dart';
 ```
 
-If you want extension methods, also depend on extensions:
-
-```dart
-import 'package:shamsi_date/extensions.dart';
-```
-
 [Jalali][] class is used for **Shamsi (Jalali, Persian, شمسی or خورشیدی)** date and [Gregorian][] class is used for **Gregorian (Miladi or میلادی)** date. Jalali and Gregorian classes are the subclasses of [Date][].
 
 Jalali and Gregorian can be instantiated with providing `year`, `month` and `day` among other ways:

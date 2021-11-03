@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:shamsi_date/extensions.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:test/test.dart';
 

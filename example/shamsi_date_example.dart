@@ -1,5 +1,4 @@
 import 'package:shamsi_date/shamsi_date.dart';
-import 'package:shamsi_date/extensions.dart';
 
 void main() {
   // Gregorian to Jalali conversion
