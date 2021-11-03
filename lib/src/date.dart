@@ -17,8 +17,6 @@ import 'date_formatter.dart';
 /// For example constructing date with day being out of month length
 /// or date being out of computable region throws DateException
 abstract class Date implements Comparable<Date> {
-  const Date();
-
   /// Minimum computable julian day number
   ///
   /// Equivalent to Gregorian(560,3,20) and Jalali(-61,1,1)
@@ -30,6 +28,8 @@ abstract class Date implements Comparable<Date> {
   /// Equivalent to Gregorian(3798,12,31) and Jalali(3177,10,11)
   /// and julian day number of 3108616
   static const int maxJulianDayNumber = 3108616;
+
+  const Date();
 
   /// Year
   int get year;

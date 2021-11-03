@@ -29,15 +29,6 @@ void main() {
     expect(j2.minute, 5);
     expect(j2.second, 6);
     expect(j2.millisecond, 7);
-
-    expect(() => Jalali(1300, 1, 1, -1, 0, 0, 0), tde);
-    expect(() => Jalali(1300, 1, 1, 24, 0, 0, 0), tde);
-    expect(() => Jalali(1300, 1, 1, 0, -1, 0, 0), tde);
-    expect(() => Jalali(1300, 1, 1, 0, 60, 0, 0), tde);
-    expect(() => Jalali(1300, 1, 1, 0, 0, -1, 0), tde);
-    expect(() => Jalali(1300, 1, 1, 0, 0, 60, 0), tde);
-    expect(() => Jalali(1300, 1, 1, 0, 0, 0, -1), tde);
-    expect(() => Jalali(1300, 1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Gregorian(year, month, day).{year, month, day}', () {
@@ -60,15 +51,6 @@ void main() {
     expect(j2.minute, 5);
     expect(j2.second, 6);
     expect(j2.millisecond, 7);
-
-    expect(() => Gregorian(2000, 1, 1, -1, 0, 0, 0), tde);
-    expect(() => Gregorian(2000, 1, 1, 24, 0, 0, 0), tde);
-    expect(() => Gregorian(2000, 1, 1, 0, -1, 0, 0), tde);
-    expect(() => Gregorian(2000, 1, 1, 0, 60, 0, 0), tde);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, -1, 0), tde);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, 60, 0), tde);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, -1), tde);
-    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Jalali.==', () {
@@ -199,7 +181,6 @@ void main() {
     );
   });
 
-  // todo ... until here
   test('Jalali.{ fromJulianDayNumber , julianDayNumber }', () {
     expect(Jalali.fromJulianDayNumber(1925675).julianDayNumber, 1925675);
     expect(Jalali.fromJulianDayNumber(2400000).julianDayNumber, 2400000);
@@ -209,6 +190,24 @@ void main() {
 
     expect(() => Jalali.fromJulianDayNumber(1925674), tde);
     expect(() => Jalali.fromJulianDayNumber(3108617), tde);
+
+    Jalali.fromJulianDayNumber(3108616, 23, 59, 59, 999);
+
+    expect(() => Jalali.fromJulianDayNumber(2400000, -1, 0, 0, 0), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 24, 0, 0, 0), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 0, -1, 0, 0), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 0, 60, 0, 0), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 0, 0, -1, 0), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 0, 0, 60, 0), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 0, 0, 0, -1), tde);
+    expect(() => Jalali.fromJulianDayNumber(2400000, 0, 0, 0, 1000), tde);
+
+    final d = Jalali.fromJulianDayNumber(2400000, 1, 2, 3, 4);
+    expect(d.julianDayNumber, 2400000);
+    expect(d.hour, 1);
+    expect(d.minute, 2);
+    expect(d.second, 3);
+    expect(d.millisecond, 4);
   });
 
   test('Gregorian.{ fromJulianDayNumber , julianDayNumber }', () {
@@ -220,6 +219,24 @@ void main() {
 
     expect(() => Gregorian.fromJulianDayNumber(1925674), tde);
     expect(() => Gregorian.fromJulianDayNumber(3108617), tde);
+
+    Gregorian.fromJulianDayNumber(3108616, 23, 59, 59, 999);
+
+    expect(() => Gregorian.fromJulianDayNumber(2400000, -1, 0, 0, 0), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 24, 0, 0, 0), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 0, -1, 0, 0), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 0, 60, 0, 0), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 0, 0, -1, 0), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 0, 0, 60, 0), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 0, 0, 0, -1), tde);
+    expect(() => Gregorian.fromJulianDayNumber(2400000, 0, 0, 0, 1000), tde);
+
+    final d = Gregorian.fromJulianDayNumber(2400000, 1, 2, 3, 4);
+    expect(d.julianDayNumber, 2400000);
+    expect(d.hour, 1);
+    expect(d.minute, 2);
+    expect(d.second, 3);
+    expect(d.millisecond, 4);
   });
 
   test('Jalali.fromJulianDayNumber', () {
@@ -229,6 +246,11 @@ void main() {
     expect(Jalali.fromJulianDayNumber(1953463), Jalali(15, 1, 30));
     expect(Jalali.fromJulianDayNumber(1942832), Jalali(-15, 12, 20));
     expect(Jalali.fromJulianDayNumber(1925675), Jalali(-61, 1, 1));
+
+    expect(
+      Jalali.fromJulianDayNumber(2458819, 1, 2, 3, 4),
+      Jalali(1398, 9, 10, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.fromJulianDayNumber', () {
@@ -238,6 +260,11 @@ void main() {
     expect(Gregorian.fromJulianDayNumber(1953463), Gregorian(636, 4, 19));
     expect(Gregorian.fromJulianDayNumber(1942832), Gregorian(607, 3, 12));
     expect(Gregorian.fromJulianDayNumber(3108616), Gregorian(3798, 12, 31));
+
+    expect(
+      Gregorian.fromJulianDayNumber(2458820, 1, 2, 3, 4),
+      Gregorian(2019, 12, 2, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.julianDayNumber', () {
@@ -247,6 +274,8 @@ void main() {
     expect(Jalali(15, 1, 30).julianDayNumber, 1953463);
     expect(Jalali(-15, 12, 20).julianDayNumber, 1942832);
     expect(Jalali(-61, 1, 1).julianDayNumber, 1925675);
+
+    expect(Jalali(1398, 9, 10, 1, 2, 3, 4).julianDayNumber, 2458819);
   });
 
   test('Gregorian.julianDayNumber', () {
@@ -256,26 +285,48 @@ void main() {
     expect(Gregorian(636, 4, 19).julianDayNumber, 1953463);
     expect(Gregorian(607, 3, 12).julianDayNumber, 1942832);
     expect(Gregorian(3798, 12, 31).julianDayNumber, 3108616);
+
+    expect(Gregorian(2019, 12, 2, 1, 2, 3, 4).julianDayNumber, 2458820);
   });
 
   test('Jalali.toGregorian', () {
     expect(Jalali(1360, 5, 26).toGregorian(), Gregorian(1981, 8, 17));
     expect(Jalali(1391, 10, 21).toGregorian(), Gregorian(2013, 1, 10));
     expect(Jalali(1393, 5, 13).toGregorian(), Gregorian(2014, 8, 4));
+
+    expect(
+      Jalali(1360, 5, 26, 1, 2, 3, 4).toGregorian(),
+      Gregorian(1981, 8, 17, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.toJalali', () {
     expect(Gregorian(1981, 8, 17).toJalali(), Jalali(1360, 5, 26));
     expect(Gregorian(2013, 1, 10).toJalali(), Jalali(1391, 10, 21));
     expect(Gregorian(2014, 8, 4).toJalali(), Jalali(1393, 5, 13));
+
+    expect(
+      Gregorian(2013, 1, 10, 1, 2, 3, 4).toJalali(),
+      Jalali(1391, 10, 21, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.fromGregorian', () {
     expect(Jalali.fromGregorian(Gregorian(1981, 8, 17)), Jalali(1360, 5, 26));
+
+    expect(
+      Jalali.fromGregorian(Gregorian(1981, 8, 17, 1, 2, 3, 4)),
+      Jalali(1360, 5, 26, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.fromJalali', () {
     expect(Gregorian.fromJalali(Jalali(1360, 5, 26)), Gregorian(1981, 8, 17));
+
+    expect(
+      Gregorian.fromJalali(Jalali(1360, 5, 26, 1, 2, 3, 4)),
+      Gregorian(1981, 8, 17, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali(year, month, day) validation', () {
@@ -330,6 +381,19 @@ void main() {
     expect(() => Jalali(1398, 12, 0), tde);
     expect(() => Jalali(1398, 12, 30), tde);
     expect(() => Jalali(1398, 12, 31), tde);
+
+    expect(() => Jalali(1300, 1, 1, -1, 0, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 24, 0, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, -1, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 60, 0, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, -1, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 60, 0), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 0, -1), tde);
+    expect(() => Jalali(1300, 1, 1, 0, 0, 0, 1000), tde);
+
+    expect(() => Jalali(1300, -1, 1, 0, 0, 0, 0), tde);
+    expect(() => Jalali(1300, -1, 1, 0, -1, 0, 0), tde);
+    expect(() => Jalali(1300, -1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Gregorian(year, month, day) validation', () {
@@ -361,8 +425,22 @@ void main() {
     expect(() => Gregorian(2001, 2, 29), tde);
     Gregorian(2004, 2, 29);
     expect(() => Gregorian(2004, 2, 30), tde);
+
+    expect(() => Gregorian(2000, 1, 1, -1, 0, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 24, 0, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, -1, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 60, 0, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, -1, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 60, 0), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, -1), tde);
+    expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), tde);
+
+    expect(() => Gregorian(2000, -1, 1, 0, 0, 0, 0), tde);
+    expect(() => Gregorian(2000, -1, 1, 0, -1, 0, 0), tde);
+    expect(() => Gregorian(2000, -1, 1, 0, 0, 0, 1000), tde);
   });
 
+  // todo ... until here
   test('Jalali.isLeapYear', () {
     expect(Jalali(-12).isLeapYear(), true);
     expect(Jalali(12).isLeapYear(), false);
