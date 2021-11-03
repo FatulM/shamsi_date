@@ -1,6 +1,8 @@
 ## 1.0.0
 
 * ADDED time information to Jalali and Gregorian
+* CHANGED toDateTime and toUtcDateTime implementation according to time information
+* CHANGED toString implementation according to time information
 
 ## 0.16.0
 

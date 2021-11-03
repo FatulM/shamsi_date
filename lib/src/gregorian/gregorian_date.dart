@@ -257,11 +257,12 @@ class Gregorian extends Date {
     return _Algo.isLeapYear(year);
   }
 
-  /// Default string representation: `Gregorian(YYYY, MM, DD)`.
+  /// Default string representation: `Gregorian(year, month, ...)`.
   /// use formatter for custom formatting.
   @override
   String toString() {
-    return 'Gregorian($year, $month, $day)';
+    return 'Gregorian($year, $month, $day, $hour, '
+        '$minute, $second, $millisecond)';
   }
 
   /// Add [days]

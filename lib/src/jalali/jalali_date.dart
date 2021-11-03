@@ -246,11 +246,12 @@ class Jalali extends Date {
     return _isLeap;
   }
 
-  /// Default string representation: `Jalali(YYYY, MM, DD)`.
+  /// Default string representation: `Jalali(year, month, ...)`.
   /// use formatter for custom formatting.
   @override
   String toString() {
-    return 'Jalali($year, $month, $day)';
+    return 'Jalali($year, $month, $day, $hour, '
+        '$minute, $second, $millisecond)';
   }
 
   /// Add [days]
