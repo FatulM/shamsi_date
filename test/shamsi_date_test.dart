@@ -1225,13 +1225,17 @@ void main() {
     );
   });
 
-  // todo ... until here
   test('Jalali.addDays', () {
     expect(Jalali(1300, 2, 10).addDays(0), Jalali(1300, 2, 10));
     expect(Jalali(1300, 2, 10).addDays(5), Jalali(1300, 2, 15));
     expect(Jalali(1300, 2, 10).addDays(-10), Jalali(1300, 1, 31));
     expect(Jalali(1300, 1, 31).addDays(36), Jalali(1300, 3, 5));
     expect(Jalali(1400, 1, 1).addDays(365), Jalali(1401, 1, 1));
+
+    expect(
+      Jalali(1400, 1, 1, 1, 2, 3, 4).addDays(365),
+      Jalali(1401, 1, 1, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.addDays', () {
@@ -1240,42 +1244,76 @@ void main() {
     expect(Gregorian(2000, 2, 10).addDays(-10), Gregorian(2000, 1, 31));
     expect(Gregorian(2000, 1, 31).addDays(34), Gregorian(2000, 3, 5));
     expect(Gregorian(2000, 1, 1).addDays(366), Gregorian(2001, 1, 1));
+
+    expect(
+      Gregorian(2000, 1, 1, 1, 2, 3, 4).addDays(366),
+      Gregorian(2001, 1, 1, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.withYear', () {
     expect(Jalali(1398, 10, 20).withYear(1398), Jalali(1398, 10, 20));
     expect(Jalali(1398, 10, 20).withYear(1300), Jalali(1300, 10, 20));
-    expect(Jalali(1398, 10, 20).withYear(1400), Jalali(1400, 10, 20));
+
+    expect(
+      Jalali(1398, 10, 20, 1, 2, 3, 4).withYear(1400),
+      Jalali(1400, 10, 20, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.withYear', () {
     expect(Gregorian(2020, 10, 20).withYear(2020), Gregorian(2020, 10, 20));
     expect(Gregorian(2020, 10, 20).withYear(2010), Gregorian(2010, 10, 20));
     expect(Gregorian(2030, 10, 20).withYear(2030), Gregorian(2030, 10, 20));
+
+    expect(
+      Gregorian(2030, 10, 20, 1, 2, 3, 4).withYear(2030),
+      Gregorian(2030, 10, 20, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.withMonth', () {
     expect(Jalali(1398, 10, 20).withMonth(10), Jalali(1398, 10, 20));
     expect(Jalali(1398, 10, 20).withMonth(1), Jalali(1398, 1, 20));
     expect(Jalali(1398, 10, 20).withMonth(12), Jalali(1398, 12, 20));
+
+    expect(
+      Jalali(1398, 10, 20, 1, 2, 3, 4).withMonth(12),
+      Jalali(1398, 12, 20, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.withMonth', () {
     expect(Gregorian(2020, 10, 20).withMonth(10), Gregorian(2020, 10, 20));
     expect(Gregorian(2020, 10, 20).withMonth(1), Gregorian(2020, 1, 20));
     expect(Gregorian(2020, 10, 20).withMonth(12), Gregorian(2020, 12, 20));
+
+    expect(
+      Gregorian(2020, 10, 20, 1, 2, 3, 4).withMonth(12),
+      Gregorian(2020, 12, 20, 1, 2, 3, 4),
+    );
   });
 
   test('Jalali.withDay', () {
     expect(Jalali(1398, 10, 20).withDay(20), Jalali(1398, 10, 20));
     expect(Jalali(1398, 10, 20).withDay(15), Jalali(1398, 10, 15));
     expect(Jalali(1398, 10, 20).withDay(25), Jalali(1398, 10, 25));
+
+    expect(
+      Jalali(1398, 10, 20, 1, 2, 3, 4).withDay(25),
+      Jalali(1398, 10, 25, 1, 2, 3, 4),
+    );
   });
 
   test('Gregorian.withDay', () {
     expect(Gregorian(2020, 10, 20).withDay(20), Gregorian(2020, 10, 20));
     expect(Gregorian(2020, 10, 20).withDay(15), Gregorian(2020, 10, 15));
     expect(Gregorian(2020, 10, 20).withDay(25), Gregorian(2020, 10, 25));
+
+    expect(
+      Gregorian(2020, 10, 20, 1, 2, 3, 4).withDay(25),
+      Gregorian(2020, 10, 25, 1, 2, 3, 4),
+    );
   });
 
   test('DateException(message)', () {
@@ -1287,13 +1325,23 @@ void main() {
   });
 
   test('Jalali.{MIN, MAX}', () {
-    final min = Jalali.fromJulianDayNumber(Date.minJulianDayNumber);
+    final min = Jalali.fromJulianDayNumber(
+      Date.minJulianDayNumber,
+      0,
+      0,
+      0,
+      0,
+    );
     expect(min, Jalali.min);
     expect(min.year, Jalali.min.year);
     expect(min.month, Jalali.min.month);
     expect(min.day, Jalali.min.day);
     expect(min.monthLength, Jalali.min.monthLength);
     expect(min.isLeapYear(), Jalali.min.isLeapYear());
+    expect(min.hour, Jalali.min.hour);
+    expect(min.minute, Jalali.min.minute);
+    expect(min.second, Jalali.min.second);
+    expect(min.millisecond, Jalali.min.millisecond);
 
     final max = Jalali.fromJulianDayNumber(
       Date.maxJulianDayNumber,
@@ -1308,16 +1356,30 @@ void main() {
     expect(max.day, Jalali.max.day);
     expect(max.monthLength, Jalali.max.monthLength);
     expect(max.isLeapYear(), Jalali.max.isLeapYear());
+    expect(max.hour, Jalali.max.hour);
+    expect(max.minute, Jalali.max.minute);
+    expect(max.second, Jalali.max.second);
+    expect(max.millisecond, Jalali.max.millisecond);
   });
 
   test('Gregorian.{MIN, MAX}', () {
-    final min = Gregorian.fromJulianDayNumber(Date.minJulianDayNumber);
+    final min = Gregorian.fromJulianDayNumber(
+      Date.minJulianDayNumber,
+      0,
+      0,
+      0,
+      0,
+    );
     expect(min, Gregorian.min);
     expect(min.year, Gregorian.min.year);
     expect(min.month, Gregorian.min.month);
     expect(min.day, Gregorian.min.day);
     expect(min.monthLength, Gregorian.min.monthLength);
     expect(min.isLeapYear(), Gregorian.min.isLeapYear());
+    expect(min.hour, Gregorian.min.hour);
+    expect(min.minute, Gregorian.min.minute);
+    expect(min.second, Gregorian.min.second);
+    expect(min.millisecond, Gregorian.min.millisecond);
 
     final max = Gregorian.fromJulianDayNumber(
       Date.maxJulianDayNumber,
@@ -1332,6 +1394,10 @@ void main() {
     expect(max.day, Gregorian.max.day);
     expect(max.monthLength, Gregorian.max.monthLength);
     expect(max.isLeapYear(), Gregorian.max.isLeapYear());
+    expect(max.hour, Gregorian.max.hour);
+    expect(max.minute, Gregorian.max.minute);
+    expect(max.second, Gregorian.max.second);
+    expect(max.millisecond, Gregorian.max.millisecond);
   });
 
   test('_JalaliCalculation.calculate', () {
@@ -1347,31 +1413,74 @@ void main() {
 
   test('Jalali.^', () {
     expect(Jalali(1400, 2, 30) ^ Jalali(1375, 8, 3), 8974);
+
+    expect(
+      Jalali(1400, 2, 30, 1, 2, 3, 4) ^ Jalali(1375, 8, 3, 1, 2, 3, 4),
+      8974,
+    );
   });
 
   test('Gregorian.^', () {
     expect(Gregorian(2021, 5, 20) ^ Gregorian(1996, 10, 24), 8974);
+
+    expect(
+      Gregorian(2021, 5, 20, 1, 2, 3, 4) ^ Gregorian(1996, 10, 24, 1, 2, 3, 4),
+      8974,
+    );
   });
 
   test('Date.^', () {
     expect(Jalali(1400, 2, 30) ^ Gregorian(1996, 10, 24), 8974);
     expect(Gregorian(2021, 5, 20) ^ Jalali(1375, 8, 3), 8974);
+
+    expect(
+      Jalali(1400, 2, 30, 1, 2, 3, 4) ^ Gregorian(1996, 10, 24, 1, 2, 3, 4),
+      8974,
+    );
   });
 
   test('Jalali.distanceFrom', () {
     expect(Jalali(1400, 2, 30).distanceFrom(Jalali(1375, 8, 3)), 8974);
+
+    expect(
+      Jalali(1400, 2, 30, 1, 2, 3, 4).distanceFrom(
+        Jalali(1375, 8, 3, 1, 2, 3, 4),
+      ),
+      8974,
+    );
   });
 
   test('Gregorian.distanceFrom', () {
     expect(Gregorian(2021, 5, 20).distanceFrom(Gregorian(1996, 10, 24)), 8974);
+
+    expect(
+      Gregorian(2021, 5, 20, 1, 2, 3, 4).distanceFrom(
+        Gregorian(1996, 10, 24, 1, 2, 3, 4),
+      ),
+      8974,
+    );
   });
 
   test('Jalali.distanceFrom', () {
     expect(Jalali(1400, 2, 30).distanceTo(Jalali(1375, 8, 3)), -8974);
+
+    expect(
+      Jalali(1400, 2, 30, 1, 2, 3, 4).distanceTo(
+        Jalali(1375, 8, 3, 1, 2, 3, 4),
+      ),
+      -8974,
+    );
   });
 
   test('Gregorian.distanceFrom', () {
     expect(Gregorian(2021, 5, 20).distanceTo(Gregorian(1996, 10, 24)), -8974);
+
+    expect(
+      Gregorian(2021, 5, 20, 1, 2, 3, 4).distanceTo(
+        Gregorian(1996, 10, 24, 1, 2, 3, 4),
+      ),
+      -8974,
+    );
   });
 }
 
