@@ -3,7 +3,7 @@ import 'package:shamsi_date/extensions.dart';
 
 void main() {
   // Gregorian to Jalali conversion
-  Gregorian g1 = Gregorian(2013, 1, 10);
+  Gregorian g1 = Gregorian(2013, 1, 10, 12, 56, 34, 585);
   Jalali j1 = g1.toJalali();
   print('$g1 == $j1');
   // prints: Gregorian(2013,1,10) == Jalali(1391,10,21)
@@ -14,7 +14,12 @@ void main() {
   int j1y = j1.year; // j1y = 1391
   int j1m = j1.month; // j1m = 10
   int j1d = j1.day; // j1d = 21
-  print('j1 is $j1y-$j1m-$j1d'); // prints: j1 is 1397-10-21
+  int j1th = j1.hour; // j1th = 12
+  int j1tm = j1.minute; // j1tm = 56
+  int j1ts = j1.second; // j1ts = 34
+  int j1tms = j1.millisecond; // j1tms = 585
+  print('j1 is $j1y-$j1m-$j1d:$j1th-$j1tm-$j1ts-$j1tms');
+  // prints: j1 is 1397-10-21:12-56-34-585
   // NOTE: use formatters for formatting dates
   // and for Gregorian:
   int g1y = g1.year; // g1y = 2013
@@ -85,6 +90,7 @@ void main() {
 
   // copy method
   print('$j1 with year = 1300 is ${j1.copy(year: 1300)}');
+  print('$j1 with hour = 23 is ${j1.copy(hour: 23)}');
   // prints: 1391/10/21 with year = 1300 is 1300/10/21
   print('$g1 with month = 1 and day = 2 is ${g1.copy(month: 1, day: 2)}');
   // prints: 2013/1/10 with month = 1 and day = 2 is 2013/1/2
@@ -124,6 +130,8 @@ void main() {
   print(d1.add(years: 1, days: 3)); // 1399/8/7
   // add months only:
   print(d1.add(months: 2)); // 1398/10/3
+  // add hours and minutes:
+  print(d1.add(hours: 1, minutes: 30)); // 1398/10/3
   // if you want to subtract you can add negative value:
   print(d1.add(years: -1)); // 1397/8/3
   // and also for Gregorian
