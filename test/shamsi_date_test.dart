@@ -440,7 +440,6 @@ void main() {
     expect(() => Gregorian(2000, -1, 1, 0, 0, 0, 1000), tde);
   });
 
-  // todo ... until here
   test('Jalali.isLeapYear', () {
     expect(Jalali(-12).isLeapYear(), true);
     expect(Jalali(12).isLeapYear(), false);
@@ -451,17 +450,23 @@ void main() {
     expect(Jalali(1394).isLeapYear(), false);
     expect(Jalali(1395).isLeapYear(), true);
     expect(Jalali(1396).isLeapYear(), false);
+
+    expect(Jalali(1395, 1, 2, 3, 4, 5, 6).isLeapYear(), true);
+    expect(Jalali(1396, 1, 2, 3, 4, 5, 6).isLeapYear(), false);
   });
 
   test('Gregorian.isLeapYear', () {
-    expect(Gregorian(801, 1, 1).isLeapYear(), false);
-    expect(Gregorian(804, 1, 1).isLeapYear(), true);
-    expect(Gregorian(840, 1, 1).isLeapYear(), true);
-    expect(Gregorian(900, 1, 1).isLeapYear(), false);
-    expect(Gregorian(1000, 1, 1).isLeapYear(), false);
-    expect(Gregorian(1100, 1, 1).isLeapYear(), false);
-    expect(Gregorian(1004, 1, 1).isLeapYear(), true);
-    expect(Gregorian(1200, 1, 1).isLeapYear(), true);
+    expect(Gregorian(801).isLeapYear(), false);
+    expect(Gregorian(804).isLeapYear(), true);
+    expect(Gregorian(840).isLeapYear(), true);
+    expect(Gregorian(900).isLeapYear(), false);
+    expect(Gregorian(1000).isLeapYear(), false);
+    expect(Gregorian(1100).isLeapYear(), false);
+    expect(Gregorian(1004).isLeapYear(), true);
+    expect(Gregorian(1200).isLeapYear(), true);
+
+    expect(Gregorian(801, 1, 2, 3, 4, 5, 6).isLeapYear(), false);
+    expect(Gregorian(804, 1, 2, 3, 4, 5, 6).isLeapYear(), true);
   });
 
   test('Jalali.monthLength', () {
@@ -473,23 +478,29 @@ void main() {
     expect(Jalali(1393, 12).monthLength, 29);
     expect(Jalali(1394, 12).monthLength, 29);
     expect(Jalali(1395, 12).monthLength, 30);
+
+    expect(Jalali(1393, 1, 7, 2, 3, 4, 5).monthLength, 31);
+    expect(Jalali(1394, 12, 7, 2, 3, 4, 5).monthLength, 29);
   });
 
   test('Gregorian.monthLength', () {
-    expect(Gregorian(801, 1, 1).monthLength, 31);
-    expect(Gregorian(801, 2, 1).monthLength, 28);
-    expect(Gregorian(2001, 2, 1).monthLength, 28);
-    expect(Gregorian(804, 2, 1).monthLength, 29);
-    expect(Gregorian(801, 3, 1).monthLength, 31);
-    expect(Gregorian(801, 4, 1).monthLength, 30);
-    expect(Gregorian(801, 5, 1).monthLength, 31);
-    expect(Gregorian(801, 6, 1).monthLength, 30);
-    expect(Gregorian(801, 7, 1).monthLength, 31);
-    expect(Gregorian(801, 8, 1).monthLength, 31);
-    expect(Gregorian(801, 9, 1).monthLength, 30);
-    expect(Gregorian(801, 10, 1).monthLength, 31);
-    expect(Gregorian(801, 11, 1).monthLength, 30);
-    expect(Gregorian(801, 12, 1).monthLength, 31);
+    expect(Gregorian(801, 1).monthLength, 31);
+    expect(Gregorian(801, 2).monthLength, 28);
+    expect(Gregorian(2001, 2).monthLength, 28);
+    expect(Gregorian(804, 2).monthLength, 29);
+    expect(Gregorian(801, 3).monthLength, 31);
+    expect(Gregorian(801, 4).monthLength, 30);
+    expect(Gregorian(801, 5).monthLength, 31);
+    expect(Gregorian(801, 6).monthLength, 30);
+    expect(Gregorian(801, 7).monthLength, 31);
+    expect(Gregorian(801, 8).monthLength, 31);
+    expect(Gregorian(801, 9).monthLength, 30);
+    expect(Gregorian(801, 10).monthLength, 31);
+    expect(Gregorian(801, 11).monthLength, 30);
+    expect(Gregorian(801, 12).monthLength, 31);
+
+    expect(Gregorian(804, 2, 7, 2, 3, 4, 5).monthLength, 29);
+    expect(Gregorian(801, 5, 7, 2, 3, 4, 5).monthLength, 31);
   });
 
   test('Jalali.weekDay', () {
@@ -497,14 +508,19 @@ void main() {
     expect(Jalali(1397, 10, 11).weekDay, 4);
     expect(Jalali(1305, 1, 5).weekDay, 7);
     expect(Jalali(1305, 1, 6).weekDay, 1);
+
+    expect(Jalali(1305, 1, 6, 1, 2, 3, 4).weekDay, 1);
   });
 
   test('Gregorian.weekDay', () {
     expect(Gregorian(1969, 7, 20).weekDay, 7);
     expect(Gregorian(2019, 1, 14).weekDay, 1);
     expect(Gregorian(2019, 1, 10).weekDay, 4);
+
+    expect(Gregorian(2019, 1, 10, 1, 2, 3, 4).weekDay, 4);
   });
 
+  // todo ... until here
   test('Jalali.{ compareTo , > , >= , == ,  <= , < }', () {
     final j1 = Jalali(1397, 10, 24);
     final j2 = Jalali(1397, 10, 25);
