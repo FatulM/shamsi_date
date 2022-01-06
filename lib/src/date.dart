@@ -52,6 +52,16 @@ abstract class Date implements Comparable<Date> {
   /// Milliseconds [0..999]
   int get millisecond;
 
+  /// Returns the time part as [Duration].
+  Duration get time {
+    return Duration(
+      hours: hour,
+      minutes: minute,
+      seconds: second,
+      milliseconds: millisecond,
+    );
+  }
+
   /// Julian day number
   ///
   /// subclasses should store this with fast access
@@ -233,11 +243,7 @@ abstract class Date implements Comparable<Date> {
   /// hashcode operator
   @override
   int get hashCode {
-    return julianDayNumber.hashCode ^
-        hour.hashCode ^
-        minute.hashCode ^
-        second.hashCode ^
-        millisecond.hashCode;
+    return julianDayNumber.hashCode ^ time.hashCode;
   }
 
   /// Compare dates
@@ -247,25 +253,14 @@ abstract class Date implements Comparable<Date> {
   int compareTo(Date other) {
     if (identical(this, other)) {
       return 0;
-    } else {
-      if (julianDayNumber == other.julianDayNumber &&
-          hour == other.hour &&
-          minute == other.minute &&
-          second == other.second &&
-          millisecond == other.millisecond) {
-        return 0;
-      } else {
-        if (julianDayNumber >= other.julianDayNumber &&
-            hour >= other.hour &&
-            minute >= other.minute &&
-            second >= other.second &&
-            millisecond >= other.millisecond) {
-          return 1;
-        } else {
-          return -1;
-        }
-      }
     }
+    if (julianDayNumber == other.julianDayNumber) {
+      return time.compareTo(other.time);
+    }
+    if (julianDayNumber > other.julianDayNumber) {
+      return 1;
+    }
+    return -1;
   }
 
   /// bigger than operator
