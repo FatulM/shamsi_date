@@ -548,20 +548,30 @@ void main() {
     final j5 = Jalali(1000, 1, 2, 3, 4, 5, 6);
 
     expect(j5.compareTo(j5) == 0, true);
-    expect(Jalali(1000, 1, 2, 3, 4, 5, 7).compareTo(j5) > 0, true);
+    expect(Jalali(1000, 1, 1, 3, 4, 5, 6).compareTo(j5) < 0, true);
     expect(Jalali(1000, 1, 2, 1, 4, 5, 6).compareTo(j5) < 0, true);
     expect(Jalali(1000, 1, 2, 3, 1, 5, 6).compareTo(j5) < 0, true);
     expect(Jalali(1000, 1, 2, 3, 4, 1, 6).compareTo(j5) < 0, true);
     expect(Jalali(1000, 1, 2, 3, 4, 5, 1).compareTo(j5) < 0, true);
+    expect(Jalali(1000, 1, 3, 2, 4, 5, 6).compareTo(j5) > 0, true);
+    expect(Jalali(1000, 1, 2, 4, 3, 5, 6).compareTo(j5) > 0, true);
+    expect(Jalali(1000, 1, 2, 3, 5, 4, 6).compareTo(j5) > 0, true);
+    expect(Jalali(1000, 1, 2, 3, 4, 6, 5).compareTo(j5) > 0, true);
+    expect(Jalali(1000, 1, 2, 3, 4, 5, 7).compareTo(j5) > 0, true);
 
     expect(j5 == j5, true);
     expect(j5 >= j5, true);
     expect(j5 <= j5, true);
-    expect(Jalali(1000, 1, 2, 3, 4, 5, 7) > j5, true);
+    expect(Jalali(1000, 1, 1, 3, 4, 5, 6) < j5, true);
     expect(Jalali(1000, 1, 2, 1, 4, 5, 6) < j5, true);
     expect(Jalali(1000, 1, 2, 3, 1, 5, 6) < j5, true);
     expect(Jalali(1000, 1, 2, 3, 4, 1, 6) < j5, true);
     expect(Jalali(1000, 1, 2, 3, 4, 5, 1) < j5, true);
+    expect(Jalali(1000, 1, 3, 2, 4, 5, 6) > j5, true);
+    expect(Jalali(1000, 1, 2, 4, 3, 5, 6) > j5, true);
+    expect(Jalali(1000, 1, 2, 3, 5, 4, 6) > j5, true);
+    expect(Jalali(1000, 1, 2, 3, 4, 6, 5) > j5, true);
+    expect(Jalali(1000, 1, 2, 3, 4, 5, 7) > j5, true);
   });
 
   test('Gregorian.{ compareTo , > , >= , == ,  <= , < }', () {
@@ -593,20 +603,30 @@ void main() {
     final g5 = Gregorian(1000, 1, 2, 3, 4, 5, 6);
 
     expect(g5.compareTo(g5) == 0, true);
-    expect(Gregorian(1000, 1, 2, 3, 4, 5, 7).compareTo(g5) > 0, true);
+    expect(Gregorian(1000, 1, 1, 3, 4, 5, 6).compareTo(g5) < 0, true);
     expect(Gregorian(1000, 1, 2, 1, 4, 5, 6).compareTo(g5) < 0, true);
     expect(Gregorian(1000, 1, 2, 3, 1, 5, 6).compareTo(g5) < 0, true);
     expect(Gregorian(1000, 1, 2, 3, 4, 1, 6).compareTo(g5) < 0, true);
     expect(Gregorian(1000, 1, 2, 3, 4, 5, 1).compareTo(g5) < 0, true);
+    expect(Gregorian(1000, 1, 3, 2, 4, 5, 6).compareTo(g5) > 0, true);
+    expect(Gregorian(1000, 1, 2, 4, 3, 5, 6).compareTo(g5) > 0, true);
+    expect(Gregorian(1000, 1, 2, 3, 5, 4, 6).compareTo(g5) > 0, true);
+    expect(Gregorian(1000, 1, 2, 3, 4, 6, 5).compareTo(g5) > 0, true);
+    expect(Gregorian(1000, 1, 2, 3, 4, 5, 7).compareTo(g5) > 0, true);
 
     expect(g5 == g5, true);
     expect(g5 >= g5, true);
     expect(g5 <= g5, true);
-    expect(Gregorian(1000, 1, 2, 3, 4, 5, 7) > g5, true);
+    expect(Gregorian(1000, 1, 1, 3, 4, 5, 6) < g5, true);
     expect(Gregorian(1000, 1, 2, 1, 4, 5, 6) < g5, true);
     expect(Gregorian(1000, 1, 2, 3, 1, 5, 6) < g5, true);
     expect(Gregorian(1000, 1, 2, 3, 4, 1, 6) < g5, true);
     expect(Gregorian(1000, 1, 2, 3, 4, 5, 1) < g5, true);
+    expect(Gregorian(1000, 1, 3, 2, 4, 5, 6) > g5, true);
+    expect(Gregorian(1000, 1, 2, 4, 3, 5, 6) > g5, true);
+    expect(Gregorian(1000, 1, 2, 3, 5, 4, 6) > g5, true);
+    expect(Gregorian(1000, 1, 2, 3, 4, 6, 5) > g5, true);
+    expect(Gregorian(1000, 1, 2, 3, 4, 5, 7) > g5, true);
   });
 
   test('JalaliFormatter(date).{date}', () {
