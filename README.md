@@ -26,6 +26,8 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
+As of version `1.0.1` there is `time` getter for Jalali and Gregorian to acquire time information in Duration.
+
 As of version `1.0.0` Jalali and Gregorian include **time information**.
 
 ## Issues and feature requests
