@@ -1501,6 +1501,20 @@ void main() {
       -8974,
     );
   });
+
+  test('Jalali.time', () {
+    final date = Jalali(1400, 2, 30, 1, 2, 3, 4);
+    final time = date.time;
+
+    expect(time.inMilliseconds, 1 * 60 * 60 * 1000 + 2 * 60 * 1000 + 3 * 1000 + 4);
+  });
+
+  test('Gregorian.time', () {
+    final date = Gregorian(2000, 5, 5, 1, 2, 3, 4);
+    final time = date.time;
+
+    expect(time.inMilliseconds, 1 * 60 * 60 * 1000 + 2 * 60 * 1000 + 3 * 1000 + 4);
+  });
 }
 
 /// Mock Gregorian
@@ -1542,8 +1556,7 @@ class _MockGregorian extends Date implements Gregorian {
   GregorianFormatter get formatter => GregorianFormatter(this);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) =>
-      throw UnimplementedError('mocked');
+  dynamic noSuchMethod(Invocation invocation) => throw UnimplementedError('mocked');
 }
 
 /// Mock Jalali
@@ -1585,6 +1598,5 @@ class _MockJalali extends Date implements Jalali {
   JalaliFormatter get formatter => JalaliFormatter(this);
 
   @override
-  dynamic noSuchMethod(Invocation invocation) =>
-      throw UnimplementedError('mocked');
+  dynamic noSuchMethod(Invocation invocation) => throw UnimplementedError('mocked');
 }
