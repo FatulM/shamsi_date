@@ -253,14 +253,13 @@ abstract class Date implements Comparable<Date> {
   int compareTo(Date other) {
     if (identical(this, other)) {
       return 0;
-    }
-    if (julianDayNumber == other.julianDayNumber) {
+    } else if (julianDayNumber == other.julianDayNumber) {
       return time.compareTo(other.time);
-    }
-    if (julianDayNumber > other.julianDayNumber) {
+    } else if (julianDayNumber > other.julianDayNumber) {
       return 1;
+    } else {
+      return -1;
     }
-    return -1;
   }
 
   /// bigger than operator
