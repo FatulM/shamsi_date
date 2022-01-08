@@ -1,3 +1,8 @@
+## 1.0.1
+
+* FIXED compareTo bugs about time data (#14)
+* ADDED time getter for Date to acquire time data in Duration
+
 ## 1.0.0
 
 * ADDED time information to Jalali and Gregorian
