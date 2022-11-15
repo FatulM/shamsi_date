@@ -224,7 +224,7 @@ class _Algo {
     final int ml = month == 12 ? (isLeap ? 30 : 29) : (month > 6 ? 30 : 31);
 
     // check upper bound of day
-    if (day > ml) {
+    if (day >= ml) {
       throw DateException('Jalali day is out of valid range.');
     }
 
