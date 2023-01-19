@@ -1,7 +1,7 @@
 # A Flutter package for using Jalali (Shamsi, Solar, Persian, شمسی or خورشیدی) date. You can convert, format and manipulate Jalali and Georgian dates.
 
 [![pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue&label=shamsi_date)](https://pub.dev/packages/shamsi_date)
-[![build](https://img.shields.io/github/workflow/status/FatulM/shamsi_date/build?label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/FatulM/shamsi_date/.github/workflows/build.yml?branch=master&label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
 [![coverage](https://img.shields.io/codecov/c/gh/FatulM/shamsi_date?label=coverage)](https://codecov.io/gh/FatulM/shamsi_date)
 
 This is a pure dart package and Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
