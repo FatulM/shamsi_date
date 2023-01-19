@@ -30,7 +30,7 @@ jobs:
       - name: get test coverage
         run: dart test test/shamsi_date_test.dart --coverage dart_coverage
       - name: format test coverage
-        run: dart pub global run coverage:format_coverage -i dart_coverage -o coverage/lcov.info --lcov --packages .packages --report-on lib
+        run: dart pub global run coverage:format_coverage -i dart_coverage -o coverage/lcov.info --lcov --packages=.dart_tool/package_config.json --report-on lib
       - name: upload coverage to codecov
         uses: codecov/codecov-action@v1
         with:
