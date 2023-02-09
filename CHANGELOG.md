@@ -1,3 +1,6 @@
+## 1.0.2
+* UPDATED copyright
+
 ## 1.0.1
 
 * FIXED compareTo bugs about time data (#14)
