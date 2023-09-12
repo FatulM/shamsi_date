@@ -8,6 +8,50 @@ import 'package:test/test.dart';
 Matcher get tde => throwsA(isA<DateException>());
 
 void main() {
+  test('_MockJalali(year, month, day).{year, month, day}', () {
+    final d1 = _MockJalali(1300);
+
+    expect(d1.year, 1300);
+    expect(d1.month, 1);
+    expect(d1.day, 1);
+    expect(d1.hour, 0);
+    expect(d1.minute, 0);
+    expect(d1.second, 0);
+    expect(d1.millisecond, 0);
+
+    final d2 = _MockJalali(1300, 2, 3, 4, 5, 6, 7);
+
+    expect(d2.year, 1300);
+    expect(d2.month, 2);
+    expect(d2.day, 3);
+    expect(d2.hour, 4);
+    expect(d2.minute, 5);
+    expect(d2.second, 6);
+    expect(d2.millisecond, 7);
+  });
+
+  test('_MockGregorian(year, month, day).{year, month, day}', () {
+    final d1 = _MockGregorian(2000);
+
+    expect(d1.year, 2000);
+    expect(d1.month, 1);
+    expect(d1.day, 1);
+    expect(d1.hour, 0);
+    expect(d1.minute, 0);
+    expect(d1.second, 0);
+    expect(d1.millisecond, 0);
+
+    final d2 = _MockGregorian(2000, 2, 3, 4, 5, 6, 7);
+
+    expect(d2.year, 2000);
+    expect(d2.month, 2);
+    expect(d2.day, 3);
+    expect(d2.hour, 4);
+    expect(d2.minute, 5);
+    expect(d2.second, 6);
+    expect(d2.millisecond, 7);
+  });
+
   test('Jalali(year, month, day).{year, month, day}', () {
     final j1 = Jalali(1300);
 
