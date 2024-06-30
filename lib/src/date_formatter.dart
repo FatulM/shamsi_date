@@ -45,11 +45,11 @@ abstract class DateFormatter {
       case 4:
         return str;
       case 3:
-        return '0' + str;
+        return '0$str';
       case 2:
-        return '00' + str;
+        return '00$str';
       case 1:
-        return '000' + str;
+        return '000$str';
       default: // case: 0
         return '0000';
     }
@@ -70,7 +70,7 @@ abstract class DateFormatter {
     }
 
     final String str = (year % 100).toString();
-    return str.length == 1 ? '0' + str : str;
+    return str.length == 1 ? '0$str' : str;
   }
 
   /// month number string whatever length it has
@@ -81,7 +81,7 @@ abstract class DateFormatter {
   /// month number string ensured to have length of 2
   String get mm {
     final String str = m;
-    return str.length == 1 ? '0' + str : str;
+    return str.length == 1 ? '0$str' : str;
   }
 
   /// month name
@@ -95,7 +95,7 @@ abstract class DateFormatter {
   /// day number string ensured to have length of 2
   String get dd {
     final String str = d;
-    return str.length == 1 ? '0' + str : str;
+    return str.length == 1 ? '0$str' : str;
   }
 
   /// week day name
