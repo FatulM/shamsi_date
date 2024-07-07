@@ -1,7 +1,10 @@
 ## 1.0.3
+
 * ADDED test cases from Iranian Calendar Authority
+* UPDATED copyright
 
 ## 1.0.2
+
 * UPDATED copyright
 
 ## 1.0.1
