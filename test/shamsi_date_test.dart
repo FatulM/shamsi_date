@@ -2449,6 +2449,26 @@ void main() {
     expect(Gregorian(2119, 3, 21), Jalali(1498));
     expect(true, Jalali(1498).isLeapYear());
   });
+
+  test('Gregorian FromMilliseconds Test Cases', () {
+    const millis = 1722319497219;
+    var gdt = Gregorian.fromMillisecondsSinceEpoch(millis);
+    expect(gdt.year, 2024);
+    expect(gdt.month, 7);
+    expect(gdt.day, 30);
+    expect(gdt.hour, 9);
+    expect(gdt.minute, 34);
+  });
+
+  test('Jalali FromMilliseconds Test Cases', () {
+    const millis = 1722319497219;
+    var jdt = Jalali.fromMillisecondsSinceEpoch(millis);
+    expect(jdt.year, 1403);
+    expect(jdt.month, 5);
+    expect(jdt.day, 9);
+    expect(jdt.hour, 9);
+    expect(jdt.minute, 34);
+  });
 }
 
 /// Mock Gregorian
