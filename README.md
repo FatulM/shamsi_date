@@ -303,7 +303,7 @@ Use toString() of Jalali and Georgian dates only for development purpose, like f
 
 You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a Jalali value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
 
-Jalali and Gregorian classes are [Comparable][] so you can compare them using `compareTo` method. You can also use comparison operators to compare them. They also support `equals` and `hashCode` functions. So you can safely use Sets and Maps of Jalali and Gregorian dates.
+Jalali and Gregorian classes are [Comparable][], so you can compare them using `compareTo` method. You can also use comparison operators to compare them. They also support `equals` and `hashCode` functions. So you can safely use Sets and Maps of Jalali and Gregorian dates.
 
 ```dart
 Jalali j1 = Jalali(1397, 1, 1);
