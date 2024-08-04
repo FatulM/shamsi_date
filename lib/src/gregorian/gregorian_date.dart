@@ -162,6 +162,12 @@ class Gregorian extends Date {
     );
   }
 
+  /// Create a Gregorian date from milliseconds since epoch
+  factory Gregorian.fromMillisecondsSinceEpoch(int milliseconds) {
+    return Gregorian.fromDateTime(
+        DateTime.fromMillisecondsSinceEpoch(milliseconds));
+  }
+
   /// Get Gregorian date for now
   factory Gregorian.now() {
     return Gregorian.fromDateTime(DateTime.now());

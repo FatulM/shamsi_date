@@ -167,6 +167,12 @@ class Jalali extends Date {
     );
   }
 
+  /// Create a Jalali date from milliseconds since epoch
+  factory Jalali.fromMillisecondsSinceEpoch(int milliseconds) {
+    return Jalali.fromDateTime(
+        DateTime.fromMillisecondsSinceEpoch(milliseconds));
+  }
+
   /// Get Jalali date for now
   factory Jalali.now() {
     return Gregorian.now().toJalali();
