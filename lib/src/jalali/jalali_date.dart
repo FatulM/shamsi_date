@@ -168,9 +168,18 @@ class Jalali extends Date {
   }
 
   /// Create a Jalali date from milliseconds since epoch
-  factory Jalali.fromMillisecondsSinceEpoch(int milliseconds) {
+  ///
+  /// If [isUtc] is false then the date is in the local time zone
+  factory Jalali.fromMillisecondsSinceEpoch(
+    int milliseconds, {
+    bool isUtc = false,
+  }) {
     return Jalali.fromDateTime(
-        DateTime.fromMillisecondsSinceEpoch(milliseconds));
+      DateTime.fromMillisecondsSinceEpoch(
+        milliseconds,
+        isUtc: isUtc,
+      ),
+    );
   }
 
   /// Get Jalali date for now

@@ -1566,6 +1566,66 @@ void main() {
     );
   });
 
+  test('Jalali.fromMilliseconds', () {
+    const int millis = 1722319497219;
+    final timezone = DateTime.now().timeZoneOffset;
+    final jdt = Jalali.fromMillisecondsSinceEpoch(
+      millis - timezone.inMilliseconds, // defusing timezone.
+    );
+    expect(jdt.year, 1403);
+    expect(jdt.month, 5);
+    expect(jdt.day, 9);
+    expect(jdt.hour, 6);
+    expect(jdt.minute, 4);
+    expect(jdt.second, 57);
+    expect(jdt.millisecond, 219);
+  });
+
+  test('Gregorian.fromMilliseconds', () {
+    const int millis = 1722319497219;
+    final timezone = DateTime.now().timeZoneOffset;
+    final gdt = Gregorian.fromMillisecondsSinceEpoch(
+      millis - timezone.inMilliseconds, // defusing timezone.
+    );
+    expect(gdt.year, 2024);
+    expect(gdt.month, 7);
+    expect(gdt.day, 30);
+    expect(gdt.hour, 6);
+    expect(gdt.minute, 4);
+    expect(gdt.second, 57);
+    expect(gdt.millisecond, 219);
+  });
+
+  test('Jalali.fromMilliseconds( isUtc = true )', () {
+    const int millis = 1722319497219;
+    final jdt = Jalali.fromMillisecondsSinceEpoch(
+      millis,
+      isUtc: true,
+    );
+    expect(jdt.year, 1403);
+    expect(jdt.month, 5);
+    expect(jdt.day, 9);
+    expect(jdt.hour, 6);
+    expect(jdt.minute, 4);
+    expect(jdt.second, 57);
+    expect(jdt.millisecond, 219);
+  });
+
+  test('Gregorian.fromMilliseconds( isUtc = true )', () {
+    const int millis = 1722319497219;
+    final gdt = Gregorian.fromMillisecondsSinceEpoch(
+      millis,
+      isUtc: true,
+    );
+    expect(gdt.year, 2024);
+    expect(gdt.month, 7);
+    expect(gdt.day, 30);
+    expect(gdt.hour, 6);
+    expect(gdt.minute, 4);
+    expect(gdt.second, 57);
+    expect(gdt.millisecond, 219);
+  });
+
   test('Iranian Calendar Authority Test Cases', () {
     // Persian leap year data provided by the Iranian calendar authority at:
     // https://calendar.ut.ac.ir/Fa/News/Data/Doc/KabiseShamsi1206-1498-new.pdf
@@ -2448,34 +2508,6 @@ void main() {
 
     expect(Gregorian(2119, 3, 21), Jalali(1498));
     expect(true, Jalali(1498).isLeapYear());
-  });
-
-  test('Gregorian FromMilliseconds Test Cases', () {
-    const millis = 1722319497219;
-    final timezone = DateTime.now().timeZoneOffset;
-    final gdt = Gregorian.fromMillisecondsSinceEpoch(
-        millis - timezone.inMilliseconds); // defusing timezone
-    expect(gdt.year, 2024);
-    expect(gdt.month, 7);
-    expect(gdt.day, 30);
-    expect(gdt.hour, 6);
-    expect(gdt.minute, 4);
-    expect(gdt.second, 57);
-    expect(gdt.millisecond, 219);
-  });
-
-  test('Jalali FromMilliseconds Test Cases', () {
-    const millis = 1722319497219;
-    final timezone = DateTime.now().timeZoneOffset;
-    final jdt = Jalali.fromMillisecondsSinceEpoch(
-        millis - timezone.inMilliseconds); // defusing timezone
-    expect(jdt.year, 1403);
-    expect(jdt.month, 5);
-    expect(jdt.day, 9);
-    expect(jdt.hour, 6);
-    expect(jdt.minute, 4);
-    expect(jdt.second, 57);
-    expect(jdt.millisecond, 219);
   });
 }
 

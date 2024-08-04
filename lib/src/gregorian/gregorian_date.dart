@@ -163,9 +163,18 @@ class Gregorian extends Date {
   }
 
   /// Create a Gregorian date from milliseconds since epoch
-  factory Gregorian.fromMillisecondsSinceEpoch(int milliseconds) {
+  ///
+  /// If [isUtc] is false then the date is in the local time zone
+  factory Gregorian.fromMillisecondsSinceEpoch(
+    int milliseconds, {
+    bool isUtc = false,
+  }) {
     return Gregorian.fromDateTime(
-        DateTime.fromMillisecondsSinceEpoch(milliseconds));
+      DateTime.fromMillisecondsSinceEpoch(
+        milliseconds,
+        isUtc: isUtc,
+      ),
+    );
   }
 
   /// Get Gregorian date for now
