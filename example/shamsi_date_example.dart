@@ -213,4 +213,12 @@ void main() {
   print(jn);
   final gn = dtn.toGregorian();
   print(gn);
+
+  // also you can create a Jalali or Gregorian date from
+  // milliseconds since epoch
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520));
+  print(Gregorian.fromMillisecondsSinceEpoch(1722782031520));
+  // also there is a isUtc argument to control timezone
+  // which is false by default
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520, isUtc: true));
 }
