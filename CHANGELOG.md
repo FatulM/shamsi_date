@@ -1,6 +1,7 @@
 ## 1.0.3
 
-* ADDED test cases from Iranian Calendar Authority
+* ADDED fromMillisecondsSinceEpoch factory methods for Jalali and Gregorian (#24)
+* ADDED test cases from Iranian Calendar Authority (#23)
 * UPDATED copyright
 
 ## 1.0.2
