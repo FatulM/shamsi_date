@@ -21,10 +21,12 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 - Find distance between dates by methods and `^` operator.
 - Add years, months and days separately or as a combination with methods.
 - High code coverage with a lot of unit tests.
-- Null-Safe API
-- Support time information
+- Null-Safe API.
+- Support time information.
 
 ## Recent Changes
+
+As of version `1.0.3` there is a `fromMillisecondsSinceEpoch` factory method for Jalali and Gregorian.
 
 As of version `1.0.1` there is `time` getter for Jalali and Gregorian to acquire time information in Duration.
 
