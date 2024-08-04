@@ -161,6 +161,8 @@ Also you can create Jalali and Gregorian dates using millisecondsSinceEpoch fact
 Jalali j = Jalali.fromMillisecondsSinceEpoch(1722782031520);
 ```
 
+But keep in mind that Jalali and Gregorian dates do not store timezone information, So they won't store millisecondsSinceEpoch property internally.
+
 Jalali and Georgian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
 
 For example for getting date at start of this month in Jalali: (copy method makes another object instance and leaves the original one unchanged)
