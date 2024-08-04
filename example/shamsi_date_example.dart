@@ -213,4 +213,26 @@ void main() {
   print(jn);
   final gn = dtn.toGregorian();
   print(gn);
+
+  // also you can create a Jalali or Gregorian date from
+  // milliseconds since epoch
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520));
+  print(Gregorian.fromMillisecondsSinceEpoch(1722782031520));
+  // also there is a isUtc argument to control timezone
+  // which is false by default
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520, isUtc: true));
+
+  // you can create dates using julian day number using factory method
+  print(Jalali.fromJulianDayNumber(2460527));
+  // or also provide time information
+  print(Jalali.fromJulianDayNumber(2460527, 15, 36, 12, 156));
+  // or get julian day number thr
+  print(Jalali.now().julianDayNumber);
+
+  // also you can get time information using time getter
+  // this will result in a time duration from start of the day
+  print(Jalali.now().time);
+  // or get it in seconds or milliseconds
+  print(Jalali.now().time.inSeconds);
+  print(Jalali.now().time.inMicroseconds);
 }

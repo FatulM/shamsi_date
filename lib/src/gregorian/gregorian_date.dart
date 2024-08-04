@@ -1,4 +1,4 @@
-// Copyright 2018 - 2021, Amirreza Madani. All rights reserved.
+// Copyright 2018 - 2024, Amirreza Madani. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -159,6 +159,21 @@ class Gregorian extends Date {
       date.minute,
       date.second,
       date.millisecond,
+    );
+  }
+
+  /// Create a Gregorian date from milliseconds since epoch
+  ///
+  /// If [isUtc] is false then the date is in the local time zone
+  factory Gregorian.fromMillisecondsSinceEpoch(
+    int milliseconds, {
+    bool isUtc = false,
+  }) {
+    return Gregorian.fromDateTime(
+      DateTime.fromMillisecondsSinceEpoch(
+        milliseconds,
+        isUtc: isUtc,
+      ),
     );
   }
 

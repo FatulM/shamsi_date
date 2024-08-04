@@ -1,7 +1,7 @@
 # A Flutter package for using Jalali (Shamsi, Solar, Persian, شمسی or خورشیدی) date. You can convert, format and manipulate Jalali and Georgian dates.
 
 [![pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue&label=shamsi_date)](https://pub.dev/packages/shamsi_date)
-[![build](https://img.shields.io/github/workflow/status/FatulM/shamsi_date/build?label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/FatulM/shamsi_date/.github/workflows/build.yml?branch=master&label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
 [![coverage](https://img.shields.io/codecov/c/gh/FatulM/shamsi_date?label=coverage)](https://codecov.io/gh/FatulM/shamsi_date)
 
 This is a pure dart package and Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
@@ -21,10 +21,12 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 - Find distance between dates by methods and `^` operator.
 - Add years, months and days separately or as a combination with methods.
 - High code coverage with a lot of unit tests.
-- Null-Safe API
-- Support time information
+- Null-Safe API.
+- Support time information.
 
 ## Recent Changes
+
+As of version `1.0.3` there is a `fromMillisecondsSinceEpoch` factory method for Jalali and Gregorian.
 
 As of version `1.0.1` there is `time` getter for Jalali and Gregorian to acquire time information in Duration.
 
@@ -152,6 +154,14 @@ DateTime dt = DateTime.now();
 Jalali j = dt.toJalali();
 Gregorian g = dt.toGregorian();
 ```
+
+Also you can create Jalali and Gregorian dates using millisecondsSinceEpoch factory method, which supports making dates in UTC timezone.
+
+```dart
+Jalali j = Jalali.fromMillisecondsSinceEpoch(1722782031520);
+```
+
+But keep in mind that Jalali and Gregorian dates do not store timezone information, So they won't store millisecondsSinceEpoch property internally.
 
 Jalali and Georgian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
 
@@ -301,7 +311,7 @@ Use toString() of Jalali and Georgian dates only for development purpose, like f
 
 You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a Jalali value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
 
-Jalali and Gregorian classes are [Comparable][] so you can compare them using `compareTo` method. You can also use comparison operators to compare them. They also support `equals` and `hashCode` functions. So you can safely use Sets and Maps of Jalali and Gregorian dates.
+Jalali and Gregorian classes are [Comparable][], so you can compare them using `compareTo` method. You can also use comparison operators to compare them. They also support `equals` and `hashCode` functions. So you can safely use Sets and Maps of Jalali and Gregorian dates.
 
 ```dart
 Jalali j1 = Jalali(1397, 1, 1);
@@ -322,7 +332,6 @@ Here is a complete example. If you did not find what you are looking for, you ca
 
 ```dart
 import 'package:shamsi_date/shamsi_date.dart';
-import 'package:shamsi_date/extensions.dart';
 
 void main() {
   // Gregorian to Jalali conversion
@@ -537,6 +546,28 @@ void main() {
   print(jn);
   final gn = dtn.toGregorian();
   print(gn);
+
+  // also you can create a Jalali or Gregorian date from
+  // milliseconds since epoch
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520));
+  print(Gregorian.fromMillisecondsSinceEpoch(1722782031520));
+  // also there is a isUtc argument to control timezone
+  // which is false by default
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520, isUtc: true));
+
+  // you can create dates using julian day number using factory method
+  print(Jalali.fromJulianDayNumber(2460527));
+  // or also provide time information
+  print(Jalali.fromJulianDayNumber(2460527, 15, 36, 12, 156));
+  // or get julian day number thr
+  print(Jalali.now().julianDayNumber);
+
+  // also you can get time information using time getter
+  // this will result in a time duration from start of the day
+  print(Jalali.now().time);
+  // or get it in seconds or milliseconds
+  print(Jalali.now().time.inSeconds);
+  print(Jalali.now().time.inMicroseconds);
 }
 ```
 
