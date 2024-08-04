@@ -324,7 +324,6 @@ Here is a complete example. If you did not find what you are looking for, you ca
 
 ```dart
 import 'package:shamsi_date/shamsi_date.dart';
-import 'package:shamsi_date/extensions.dart';
 
 void main() {
   // Gregorian to Jalali conversion
@@ -539,6 +538,14 @@ void main() {
   print(jn);
   final gn = dtn.toGregorian();
   print(gn);
+
+  // also you can create a Jalali or Gregorian date from
+  // milliseconds since epoch
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520));
+  print(Gregorian.fromMillisecondsSinceEpoch(1722782031520));
+  // also there is a isUtc argument to control timezone
+  // which is false by default
+  print(Jalali.fromMillisecondsSinceEpoch(1722782031520, isUtc: true));
 }
 ```
 
