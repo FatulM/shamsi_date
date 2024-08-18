@@ -26,6 +26,8 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
+As of version `1.0.4` there is a `mNAf` getter on `JalaliFormatter` to get month names in **Afghanistan**.
+
 As of version `1.0.3` there is a `fromMillisecondsSinceEpoch` factory method for Jalali and Gregorian.
 
 As of version `1.0.1` there is `time` getter for Jalali and Gregorian to acquire time information in Duration.
@@ -262,6 +264,19 @@ String format1(Date d) {
 // example output for Jalali: "پنج شنبه 21 دی 91"
 // example output for Gregorian: "Thursday 10 January 13"
 ```
+
+Or if you are living in **Afghanistan** you can use:
+
+```dart
+String format1Af(Jalali d) {
+  final f = d.formatter;
+
+  return '${f.wN} ${f.d} ${f.mNAf} ${f.yy}';
+}
+
+// example output: "پنج شنبه 21 جدی 91"
+```
+
 Or if you want to format as `FourDigitYear/TwoDigitMonth/TwoDigitDay` or `YYYY/MM/DD`, you make a function for it:
 
 ```dart
@@ -305,6 +320,7 @@ Use toString() of Jalali and Georgian dates only for development purpose, like f
 - m: month (whatever length it has).
 - mm: two-digit month.
 - mN: month name.
+- mNAf: month name in **Afghanistan**. (**ONLY** for `JalaliFormatter`.)
 - d: day (whatever length it has).
 - dd: two digit day.
 - wN: week day name.
