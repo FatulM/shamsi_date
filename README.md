@@ -1,4 +1,4 @@
-# A Flutter package for using Jalali (Shamsi, Solar, Persian, شمسی or خورشیدی) date. You can convert, format and manipulate Jalali and Georgian dates.
+# A Flutter and Dart package for using Jalali (Shamsi, Solar, Persian, Jalaali, شمسی or خورشیدی) calendar. You can convert, format and manipulate Jalali and Gregorian (Miladi or میلادی) date and times.
 
 [![pub](https://img.shields.io/pub/v/shamsi_date.svg?color=blue&label=shamsi_date)](https://pub.dev/packages/shamsi_date)
 [![build](https://img.shields.io/github/actions/workflow/status/FatulM/shamsi_date/.github/workflows/build.yml?branch=master&label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
