@@ -1,3 +1,7 @@
+## 1.0.4
+
+* ADDED month names for Afghanistan (#25)
+
 ## 1.0.3
 
 * ADDED fromMillisecondsSinceEpoch factory methods for Jalali and Gregorian (#24)
