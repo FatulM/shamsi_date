@@ -828,6 +828,18 @@ void main() {
     expect(f3.wN, 'جمعه');
   });
 
+  test('Jalali.formatter.mNAf', () {
+    final j1 = Jalali(1397, 1, 3);
+    final f1 = j1.formatter;
+
+    expect(f1.mNAf, 'حمل');
+
+    final j2 = Jalali(1397, 4, 3, 1, 2, 3, 4);
+    final f2 = j2.formatter;
+
+    expect(f2.mNAf, 'سرطان');
+  });
+
   test('Gregorian.formatter', () {
     final g1 = Gregorian(2007, 1, 3);
     final f1 = g1.formatter;

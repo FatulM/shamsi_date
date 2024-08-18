@@ -26,6 +26,22 @@ class JalaliFormatter extends DateFormatter {
     'اسفند',
   ];
 
+  /// Jalali Month Names in Afghanistan
+  static const List<String> _monthNamesAfghanistan = [
+    'حمل',
+    'ثور',
+    'جوزا',
+    'سرطان',
+    'اسد',
+    'سنبله',
+    'میزان',
+    'عقرب',
+    'قوس',
+    'جدی',
+    'دلو',
+    'حوت',
+  ];
+
   /// Jalali week day names
   static const List<String> _weekDayNames = [
     'شنبه',
@@ -41,6 +57,11 @@ class JalaliFormatter extends DateFormatter {
   @override
   String get mN {
     return _monthNames[date.month - 1];
+  }
+
+  /// Jalali month name in Afghanistan
+  String get mNAf {
+    return _monthNamesAfghanistan[date.month - 1];
   }
 
   /// Jalali week day name
