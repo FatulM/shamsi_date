@@ -514,7 +514,16 @@ void main() {
   print(format1(j1)); // prints: پنج شنبه 21 دی 91
   print(format1(g1)); // prints: Thursday 10 January 13
 
-  // example one:
+  // for Afghani people:
+  String format1Af(Jalali d) {
+    final f = d.formatter;
+
+    return '${f.wN} ${f.d} ${f.mNAf} ${f.yy}';
+  }
+
+  print(format1Af(j1)); // prints: پنج شنبه 21 جدی 91
+
+  // example two:
   String format2(Date d) {
     final f = d.formatter;
 
