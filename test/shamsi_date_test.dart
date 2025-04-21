@@ -840,6 +840,35 @@ void main() {
     expect(f2.mNAf, 'سرطان');
   });
 
+  test('Jalali.formatter.{ t* }', () {
+    final j1 = Jalali(1397, 1, 3, 8, 37, 12, 25);
+    final j2 = Jalali(1397, 1, 3, 16, 3, 4, 2);
+    final j3 = Jalali(1397, 1, 3, 16, 3, 4, 256);
+
+    final f1 = j1.formatter;
+    final f2 = j2.formatter;
+    final f3 = j3.formatter;
+
+    expect(f1.tH, '8');
+    expect(f2.tH, '16');
+    expect(f1.tHH, '08');
+    expect(f2.tHH, '16');
+    expect(f1.tM, '37');
+    expect(f2.tM, '3');
+    expect(f1.tMM, '37');
+    expect(f2.tMM, '03');
+    expect(f1.tS, '12');
+    expect(f2.tS, '4');
+    expect(f1.tSS, '12');
+    expect(f2.tSS, '04');
+    expect(f1.tMS, '25');
+    expect(f2.tMS, '2');
+    expect(f3.tMS, '256');
+    expect(f1.tMS3, '025');
+    expect(f2.tMS3, '002');
+    expect(f3.tMS3, '256');
+  });
+
   test('Gregorian.formatter', () {
     final g1 = Gregorian(2007, 1, 3);
     final f1 = g1.formatter;
@@ -874,6 +903,35 @@ void main() {
     expect(f3.d, '3');
     expect(f3.mN, 'January');
     expect(f3.wN, 'Wednesday');
+  });
+
+  test('Gregorian.formatter.{ t* }', () {
+    final j1 = Gregorian(2015, 1, 3, 8, 37, 12, 25);
+    final j2 = Gregorian(2015, 1, 3, 16, 3, 4, 2);
+    final j3 = Gregorian(2015, 1, 3, 16, 3, 4, 256);
+
+    final f1 = j1.formatter;
+    final f2 = j2.formatter;
+    final f3 = j3.formatter;
+
+    expect(f1.tH, '8');
+    expect(f2.tH, '16');
+    expect(f1.tHH, '08');
+    expect(f2.tHH, '16');
+    expect(f1.tM, '37');
+    expect(f2.tM, '3');
+    expect(f1.tMM, '37');
+    expect(f2.tMM, '03');
+    expect(f1.tS, '12');
+    expect(f2.tS, '4');
+    expect(f1.tSS, '12');
+    expect(f2.tSS, '04');
+    expect(f1.tMS, '25');
+    expect(f2.tMS, '2');
+    expect(f3.tMS, '256');
+    expect(f1.tMS3, '025');
+    expect(f2.tMS3, '002');
+    expect(f3.tMS3, '256');
   });
 
   test('Jalali.copy', () {

@@ -84,4 +84,44 @@ abstract class DateFormatter {
 
   /// week day name
   String get wN;
+
+  /// hour
+  String get tH {
+    return date.hour.toString();
+  }
+
+  /// hour - 2 digit
+  String get tHH {
+    return date.hour.toString().padLeft(2, '0');
+  }
+
+  /// minute
+  String get tM {
+    return date.minute.toString();
+  }
+
+  /// minute - 2 digit
+  String get tMM {
+    return date.minute.toString().padLeft(2, '0');
+  }
+
+  /// second
+  String get tS {
+    return date.second.toString();
+  }
+
+  /// second - 2 digit
+  String get tSS {
+    return date.second.toString().padLeft(2, '0');
+  }
+
+  /// Milliseconds
+  String get tMS {
+    return date.millisecond.toString();
+  }
+
+  /// Milliseconds - 3 digit
+  String get tMS3 {
+    return date.millisecond.toString().padLeft(3, '0');
+  }
 }
