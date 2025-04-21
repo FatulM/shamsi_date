@@ -864,9 +864,9 @@ void main() {
     expect(f1.tMS, '25');
     expect(f2.tMS, '2');
     expect(f3.tMS, '256');
-    expect(f1.tMS3, '025');
-    expect(f2.tMS3, '002');
-    expect(f3.tMS3, '256');
+    expect(f1.tMSSS, '025');
+    expect(f2.tMSSS, '002');
+    expect(f3.tMSSS, '256');
   });
 
   test('Gregorian.formatter', () {
@@ -929,9 +929,9 @@ void main() {
     expect(f1.tMS, '25');
     expect(f2.tMS, '2');
     expect(f3.tMS, '256');
-    expect(f1.tMS3, '025');
-    expect(f2.tMS3, '002');
-    expect(f3.tMS3, '256');
+    expect(f1.tMSSS, '025');
+    expect(f2.tMSSS, '002');
+    expect(f3.tMSSS, '256');
   });
 
   test('Jalali.copy', () {

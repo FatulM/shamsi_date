@@ -121,7 +121,7 @@ abstract class DateFormatter {
   }
 
   /// Milliseconds - 3 digit
-  String get tMS3 {
+  String get tMSSS {
     return date.millisecond.toString().padLeft(3, '0');
   }
 }
