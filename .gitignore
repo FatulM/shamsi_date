@@ -26,3 +26,6 @@ html
 
 # output files
 out
+
+# DS_Store
+**/.DS_Store
