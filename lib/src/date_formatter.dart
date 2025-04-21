@@ -39,20 +39,7 @@ abstract class DateFormatter {
       throw StateError('date.year = $year > 9999');
     }
 
-    final String str = year.toString();
-
-    switch (str.length) {
-      case 4:
-        return str;
-      case 3:
-        return '0$str';
-      case 2:
-        return '00$str';
-      case 1:
-        return '000$str';
-      default: // case: 0
-        return '0000';
-    }
+    return year.toString().padLeft(4, '0');
   }
 
   /// year number string ensured to have length of 2
@@ -69,8 +56,7 @@ abstract class DateFormatter {
       throw StateError('date.year = $year > 9999');
     }
 
-    final String str = (year % 100).toString();
-    return str.length == 1 ? '0$str' : str;
+    return (year % 100).toString().padLeft(2, '0');
   }
 
   /// month number string whatever length it has
@@ -80,8 +66,7 @@ abstract class DateFormatter {
 
   /// month number string ensured to have length of 2
   String get mm {
-    final String str = m;
-    return str.length == 1 ? '0$str' : str;
+    return date.month.toString().padLeft(2, '0');
   }
 
   /// month name
@@ -94,8 +79,7 @@ abstract class DateFormatter {
 
   /// day number string ensured to have length of 2
   String get dd {
-    final String str = d;
-    return str.length == 1 ? '0$str' : str;
+    return date.day.toString().padLeft(2, '0');
   }
 
   /// week day name
