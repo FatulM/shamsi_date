@@ -76,6 +76,11 @@ class Jalali extends Date {
   @override
   final int millisecond;
 
+  @override
+  int get dayOfYear {
+    return _Algo.getDayOfYear(isLeapYear(), month, day);
+  }
+
   /// Whether is leap year.
   ///
   /// It is cached since we always calculate it

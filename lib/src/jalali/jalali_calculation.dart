@@ -268,6 +268,16 @@ class _Algo {
       isLeap,
     );
   }
+
+  /// get day of year
+  static int getDayOfYear(bool isLeap, int month, int day) {
+    // day accumulation in regular years:
+    const r = [0, 31, 62, 93, 124, 155, 186, 216, 246, 276, 306, 336, 365];
+    // day accumulation in leap years:
+    // no need, since the last day is the leap day.
+    // const l = [0, 31, 62, 93, 124, 155, 186, 216, 246, 276, 306, 336, 366];
+    return r[month - 1] + day;
+  }
 }
 
 /// Internal used for Jalali calculation

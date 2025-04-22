@@ -52,6 +52,11 @@ abstract class Date implements Comparable<Date> {
   /// Milliseconds [0..999]
   int get millisecond;
 
+  /// day of year.
+  ///
+  /// calculated, not stored.
+  int get dayOfYear;
+
   /// Returns the time part as [Duration].
   Duration get time {
     return Duration(

@@ -1696,6 +1696,34 @@ void main() {
     expect(gdt.millisecond, 219);
   });
 
+  test('Jalali.dayOfYear', () {
+    expect(Jalali(1404).isLeapYear(), false);
+    expect(Jalali(1404, 1, 1).dayOfYear, 1);
+    expect(Jalali(1404, 12, 29).dayOfYear, 365);
+
+    expect(Jalali(1403).isLeapYear(), true);
+    expect(Jalali(1403, 1, 1).dayOfYear, 1);
+    expect(Jalali(1403, 12, 30).dayOfYear, 366);
+
+    expect(Jalali(1404, 2, 2).dayOfYear, 33);
+    expect(Jalali(1404, 4, 16).dayOfYear, 109);
+    expect(Jalali(1404, 12, 25).dayOfYear, 361);
+  });
+
+  test('Gregorian.dayOfYear', () {
+    expect(Gregorian(2025).isLeapYear(), false);
+    expect(Gregorian(2025, 1, 1).dayOfYear, 1);
+    expect(Gregorian(2025, 12, 31).dayOfYear, 365);
+
+    expect(Gregorian(2028).isLeapYear(), true);
+    expect(Gregorian(2028, 1, 1).dayOfYear, 1);
+    expect(Gregorian(2028, 12, 31).dayOfYear, 366);
+
+    expect(Gregorian(2025, 10, 31).dayOfYear, 304);
+    expect(Gregorian(2025, 4, 22).dayOfYear, 112);
+    expect(Gregorian(2028, 4, 22).dayOfYear, 113);
+  });
+
   test('Iranian Calendar Authority Test Cases', () {
     // Persian leap year data provided by the Iranian calendar authority at:
     // https://calendar.ut.ac.ir/Fa/News/Data/Doc/KabiseShamsi1206-1498-new.pdf

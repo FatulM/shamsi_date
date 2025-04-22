@@ -75,6 +75,11 @@ class Gregorian extends Date {
   @override
   final int millisecond;
 
+  @override
+  int get dayOfYear {
+    return _Algo.getDayOfYear(isLeapYear(), month, day);
+  }
+
   /// Week day number
   /// [monday] = 1
   /// [sunday] = 7
