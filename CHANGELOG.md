@@ -1,5 +1,6 @@
 ## 1.1.0
 
+* ADDED day of year
 * ADDED time formatters
 * REFACTOR string manipulations
 * UPDATED copyright
