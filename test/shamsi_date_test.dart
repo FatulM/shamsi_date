@@ -903,6 +903,9 @@ void main() {
     expect(f3.d, '3');
     expect(f3.mN, 'January');
     expect(f3.wN, 'Wednesday');
+
+    expect(f3.doy, '3');
+    expect(f3.dddoy, '003');
   });
 
   test('Gregorian.formatter.{ t* }', () {
@@ -932,6 +935,9 @@ void main() {
     expect(f1.tMSSS, '025');
     expect(f2.tMSSS, '002');
     expect(f3.tMSSS, '256');
+
+    expect(f3.doy, '3');
+    expect(f3.dddoy, '003');
   });
 
   test('Jalali.copy', () {

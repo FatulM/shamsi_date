@@ -82,6 +82,16 @@ abstract class DateFormatter {
     return date.day.toString().padLeft(2, '0');
   }
 
+  /// day of year
+  String get doy {
+    return date.dayOfYear.toString();
+  }
+
+  /// day of year - 3 digits
+  String get dddoy {
+    return date.dayOfYear.toString().padLeft(3, '0');
+  }
+
   /// week day name
   String get wN;
 
