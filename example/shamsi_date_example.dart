@@ -244,4 +244,16 @@ void main() {
   // or get it in seconds or milliseconds
   print(Jalali.now().time.inSeconds);
   print(Jalali.now().time.inMicroseconds);
+
+  // example two:
+  String format3(Date d) {
+    final f = d.formatter;
+
+    return '${f.yyyy}-${f.mm}-${f.dd} ${f.tHH}:${f.tMM}:${f.tSS}.${f.tMSSS}';
+  }
+
+  print(format3(Jalali.now()));
+  // prints for ex. 1404-02-12 14:44:13.879
+  print(format3(Gregorian.now()));
+  // prints for ex. 2025-05-02 14:44:13.879
 }
