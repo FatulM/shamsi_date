@@ -31,3 +31,6 @@ out
 
 # tmp files
 **/*tmp*
+
+# Idx files
+**/.idx/
