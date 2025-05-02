@@ -48,4 +48,8 @@ class GregorianFormatter extends DateFormatter {
   String get wN {
     return _weekDayNames[date.weekDay - 1];
   }
+
+  /// Default date Seperator = `-`
+  @override
+  String get ds => '-';
 }

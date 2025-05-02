@@ -134,4 +134,7 @@ abstract class DateFormatter {
   String get tMSSS {
     return date.millisecond.toString().padLeft(3, '0');
   }
+
+  /// Default date Seperator
+  String get ds;
 }
