@@ -72,5 +72,5 @@ class JalaliFormatter extends DateFormatter {
 
   /// Default date Seperator = `/`
   @override
-  String get ds => '/';
+  String get sep => '/';
 }

@@ -327,7 +327,7 @@ String format3(Date d) {
 }
 ```
 
-If you want to use `/` instead of `-` for date separation use `formatter.ds` which changes based on date type.
+If you want to use `/` instead of `-` for date separation use `formatter.sep` which changes based on date type.
 
 **Note** also that you do not need for example to use `int.parse()` on formatter output of `Jalali.now().formatter.m` for accessing its month, simply use `Jalali.now().month`.
 
@@ -352,7 +352,7 @@ If you want to use `/` instead of `-` for date separation use `formatter.ds` whi
 - tSS: two-digit seconds.
 - tMS: milliseconds.
 - tMSSS: three-digit milliseconds.
-- ds: date seperator. `-` for Gregorian and `/` for Jalali.
+- sep: date seperator. `-` for Gregorian and `/` for Jalali.
 
 You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a Jalali value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
 

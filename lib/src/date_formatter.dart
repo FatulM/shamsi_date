@@ -136,5 +136,5 @@ abstract class DateFormatter {
   }
 
   /// Default date Seperator
-  String get ds;
+  String get sep;
 }

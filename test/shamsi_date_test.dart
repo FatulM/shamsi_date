@@ -868,7 +868,7 @@ void main() {
     expect(f2.tMSSS, '002');
     expect(f3.tMSSS, '256');
 
-    expect(f1.ds, '/');
+    expect(f1.sep, '/');
   });
 
   test('Gregorian.formatter', () {
@@ -909,7 +909,7 @@ void main() {
     expect(f3.doy, '3');
     expect(f3.dddoy, '003');
 
-    expect(f1.ds, '-');
+    expect(f1.sep, '-');
   });
 
   test('Gregorian.formatter.{ t* }', () {
