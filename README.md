@@ -88,7 +88,7 @@ void main() {
 
 Jalali and Gregorian objects are immutable. So using operators and methods will give you  new object and does not manipulate the object in place, like String objects. Almost all other objects in shamsi_date library are immutable too.
 
-You can access `year`, `month`, `day`, `hour`, `minute`, `second` and `millisecond` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. for example:
+You can access `year`, `month`, `day`, `hour`, `minute`, `second` and `millisecond` through getters on Jalali or Gregorian dates. You can get week day number of Jalali and Gregorian by using `weekDay` getter. Week days range from 1 to 7. Jalali week starts with `Shanbe` and Gregorian week starts with `Monday`. Month length can be accessed using `monthLength` getter. Month length is sensitive to leap years. you can check if the year is a leap year by `isLeapYear()` method. Julian day number is also accessible through `julianDayNumber` getter. You can get day of year using `dayOfYear` getter. for example:
 
 ```dart
 Jalali j = Jalali(1397, 5, 6, 12, 56, 34, 585);
@@ -110,6 +110,8 @@ int ml = j.monthLength; // ml = 31
 // check if 1397 is a leap year
 // note: month and day values are not important for isLeapYear() method
 bool ly = j.isLeapYear(); // ly = false (1397 is not leap year)
+
+int doy = j.dayOfYear;
 
 // and equivalently for Gregorian date objects ...
 ```
@@ -323,7 +325,18 @@ Use toString() of Jalali and Georgian dates only for development purpose, like f
 - mNAf: month name in **Afghanistan**. (**ONLY** for `JalaliFormatter`.)
 - d: day (whatever length it has).
 - dd: two digit day.
+- doy: day of year.
+- dddoy: three-digit day of year.
 - wN: week day name.
+- tH: hour.
+- tHH: 2-digit hour.
+- tM: minute.
+- tMM: 2-digit minute.
+- tS: seconds.
+- tSS: two-digit seconds.
+- tMS: milliseconds.
+- tMSSS: three-digit milliseconds.
+- ds: date seperator. `-` for Gregorian and `/` for Jalali.
 
 You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a Jalali value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
 
