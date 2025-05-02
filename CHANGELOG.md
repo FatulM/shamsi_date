@@ -1,5 +1,9 @@
 ## 1.1.0
 
+* ADDED docs
+* ADDED default date seperator to formatter
+* ADDED formatting for time information
+* ADDED formatter for day of year
 * ADDED day of year
 * ADDED time formatters
 * REFACTOR string manipulations
