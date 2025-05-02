@@ -4,7 +4,7 @@
 [![build](https://img.shields.io/github/actions/workflow/status/FatulM/shamsi_date/.github/workflows/build.yml?branch=master&label=build)](https://github.com/FatulM/shamsi_date/actions/workflows/build.yml)
 [![coverage](https://img.shields.io/codecov/c/gh/FatulM/shamsi_date?label=coverage)](https://codecov.io/gh/FatulM/shamsi_date)
 
-This is a pure dart package and Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with more than 20k monthly downloads.
+This is a pure dart package and Algorithm is based on popular JavaScript library [jalaali-js](https://github.com/jalaali/jalaali-js) with about 1M monthly downloads.
 
 This package has a lot of unit tests with high test coverage for ensuring its correctness.
 
