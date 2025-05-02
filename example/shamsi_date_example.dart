@@ -245,7 +245,7 @@ void main() {
   print(Jalali.now().time.inSeconds);
   print(Jalali.now().time.inMicroseconds);
 
-  // example two:
+  // example three:
   String format3(Date d) {
     final f = d.formatter;
 

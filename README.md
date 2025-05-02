@@ -26,6 +26,10 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
+As of version `1.1.0` there are time information formatters, like: `tH`, `tMM` and `tMSSS`. And a formatter for date seperator.
+
+As of version `1.1.0` there is day of year getter on dates (`dayOfYear`) and formatter on formatters (`doy` and `dddoy`).
+
 As of version `1.0.4` there is a `mNAf` getter on `JalaliFormatter` to get month names in **Afghanistan**.
 
 As of version `1.0.3` there is a `fromMillisecondsSinceEpoch` factory method for Jalali and Gregorian.
@@ -298,10 +302,10 @@ Jalali and Georgian dates support `toString()` method. For Jalali, it is semanti
 String toStringFormatter(Jalali d) {
   final f = d.formatter;
 
-  return 'Jalali(${f.y},${f.m},${f.d})';
+  return 'Jalali(${f.y},${f.m},${f.d}),${f.tH},${f.tM},${f.tS},${f.tMS}';
 }
 ```
-For Georgian, toString() is equivalent to using a formatter as `Georgian(Y,M,D)`.
+For Georgian, toString() is equivalent to using a formatter as `Georgian(Y,M,D,h,m,s,ms)`.
 
 Note: in the following code toString() is called implicitly:
 
@@ -312,6 +316,18 @@ void main() {
 }
 ```
 Use toString() of Jalali and Georgian dates only for development purpose, like for debugging, logging or ... **You should** use formatters for showing dates on the UI.
+
+If you want to format like `ISO8601` you can do the following:
+
+```dart
+String format3(Date d) {
+  final f = d.formatter;
+
+  return '${f.yyyy}-${f.mm}-${f.dd}T${f.tHH}:${f.tMM}:${f.tSS}.${f.tMSSS}';
+}
+```
+
+If you want to use `/` instead of `-` for date separation use `formatter.ds` which changes based on date type.
 
 **Note** also that you do not need for example to use `int.parse()` on formatter output of `Jalali.now().formatter.m` for accessing its month, simply use `Jalali.now().month`.
 
@@ -607,7 +623,7 @@ void main() {
   print(Jalali.now().time.inSeconds);
   print(Jalali.now().time.inMicroseconds);
 
-  // example two:
+  // example three:
   String format3(Date d) {
     final f = d.formatter;
 
