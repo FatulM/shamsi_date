@@ -26,6 +26,22 @@ class JalaliFormatter extends DateFormatter {
     'اسفند',
   ];
 
+  /// Jalali month names in Finglish
+  static const List<String> monthNamesFinglish = [
+    'Farvardin',
+    'Ordibehesht',
+    'Khordad',
+    'Tir',
+    'Mordad',
+    'Shahrivar',
+    'Mehr',
+    'Aban',
+    'Azar',
+    'Dey',
+    'Bahman',
+    'Esfand',
+  ];
+
   /// Jalali Month Names in Afghanistan
   static const List<String> _monthNamesAfghanistan = [
     'حمل',
@@ -57,6 +73,11 @@ class JalaliFormatter extends DateFormatter {
   @override
   String get mN {
     return _monthNames[date.month - 1];
+  }
+
+  /// Jalali month names in Finglish
+  String get mNF {
+    return monthNamesFinglish[date.month - 1];
   }
 
   /// Jalali month name in Afghanistan
