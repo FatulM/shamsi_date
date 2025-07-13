@@ -27,7 +27,7 @@ class JalaliFormatter extends DateFormatter {
   ];
 
   /// Jalali month names in Finglish
-  static const List<String> monthNamesFinglish = [
+  static const List<String> _monthNamesFinglish = [
     'Farvardin',
     'Ordibehesht',
     'Khordad',
@@ -69,6 +69,17 @@ class JalaliFormatter extends DateFormatter {
     'جمعه',
   ];
 
+  /// Jalali week day names in Finglish
+  static const List<String> _weekDayNamesFinglish = [
+    'Shanbeh',
+    'Yekshanbeh',
+    'Doshanbeh',
+    'Seshanbeh',
+    'Chaharshanbeh',
+    'Panjshanbeh',
+    'Jomeh',
+  ];
+
   /// Jalali month name
   @override
   String get mN {
@@ -76,8 +87,8 @@ class JalaliFormatter extends DateFormatter {
   }
 
   /// Jalali month names in Finglish
-  String get mNF {
-    return monthNamesFinglish[date.month - 1];
+  String get mNFn {
+    return _monthNamesFinglish[date.month - 1];
   }
 
   /// Jalali month name in Afghanistan
@@ -89,6 +100,11 @@ class JalaliFormatter extends DateFormatter {
   @override
   String get wN {
     return _weekDayNames[date.weekDay - 1];
+  }
+
+  /// Jalali week day name in Finglish
+  String get wNFn {
+    return _weekDayNamesFinglish[date.weekDay - 1];
   }
 
   /// Default date Seperator = `/`

@@ -828,6 +828,23 @@ void main() {
     expect(f3.wN, 'جمعه');
   });
 
+  test('Jalali.formatter.mNFn', () {
+    final d1 = Jalali(1404, 4, 22);
+    final f1 = d1.formatter;
+    expect(f1.mNFn, 'Tir');
+    expect(f1.wNFn, 'Yekshanbeh');
+
+    final d2 = Jalali(1404, 6, 21);
+    final f2 = d2.formatter;
+    expect(f2.mNFn, 'Shahrivar');
+    expect(f2.wNFn, 'Jomeh');
+
+    final d3 = Jalali(1404, 12, 2);
+    final f3 = d3.formatter;
+    expect(f3.mNFn, 'Esfand');
+    expect(f3.wNFn, 'Shanbeh');
+  });
+
   test('Jalali.formatter.mNAf', () {
     final j1 = Jalali(1397, 1, 3);
     final f1 = j1.formatter;

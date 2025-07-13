@@ -174,6 +174,15 @@ void main() {
 
   print(format1Af(j1)); // prints: پنج شنبه 21 جدی 91
 
+  // Finglish example:
+  String format1Fn(Jalali d) {
+    final f = d.formatter;
+
+    return '${f.wNFn} ${f.d} ${f.mNFn} ${f.yy}';
+  }
+
+  print(format1Fn(j1)); // print: Panjshanbeh 21 Dey 91
+
   // example two:
   String format2(Date d) {
     final f = d.formatter;
