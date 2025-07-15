@@ -51,5 +51,7 @@ class GregorianFormatter extends DateFormatter {
 
   /// Default date Seperator = `-`
   @override
-  String get sep => '-';
+  String get sep {
+    return '-';
+  }
 }

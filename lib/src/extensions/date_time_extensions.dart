@@ -4,8 +4,12 @@ import '../jalali/jalali_date.dart';
 /// extension methods to easily convert [DateTime] to [Jalali] and [Gregorian]
 extension DateTimeExtensions on DateTime {
   /// convert [DateTime] to [Jalali]
-  Jalali toJalali() => Jalali.fromDateTime(this);
+  Jalali toJalali() {
+    return Jalali.fromDateTime(this);
+  }
 
   /// convert [DateTime] to [Gregorian]
-  Gregorian toGregorian() => Gregorian.fromDateTime(this);
+  Gregorian toGregorian() {
+    return Gregorian.fromDateTime(this);
+  }
 }
