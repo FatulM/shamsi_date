@@ -26,6 +26,8 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
+As of version `1.1.1` there are `mNFn` and `wNFn` getters on `JalaliFormatter` to get month names and weekday names in **Fingilish**.
+
 As of version `1.1.0` there are time information formatters, like: `tH`, `tMM` and `tMSSS`. And a formatter for date seperator.
 
 As of version `1.1.0` there is day of year getter on dates (`dayOfYear`) and formatter on formatters (`doy` and `dddoy`).
@@ -283,6 +285,18 @@ String format1Af(Jalali d) {
 // example output: "پنج شنبه 21 جدی 91"
 ```
 
+Or if you want to get Jalali formatting in Fingilish use:
+
+```dart
+String format1Fn(Jalali d) {
+  final f = d.formatter;
+
+  return '${f.wNFn} ${f.d} ${f.mNFn} ${f.yy}';
+}
+
+// example output: "Panjshanbeh 21 Dey 91"
+```
+
 Or if you want to format as `FourDigitYear/TwoDigitMonth/TwoDigitDay` or `YYYY/MM/DD`, you make a function for it:
 
 ```dart
@@ -339,11 +353,13 @@ If you want to use `/` instead of `-` for date separation use `formatter.sep` wh
 - mm: two-digit month.
 - mN: month name.
 - mNAf: month name in **Afghanistan**. (**ONLY** for `JalaliFormatter`.)
+- mNFn: month name in **Fingilish**. (**ONLY** for `JalaliFormatter`.)
 - d: day (whatever length it has).
 - dd: two digit day.
 - doy: day of year.
 - dddoy: three-digit day of year.
 - wN: week day name.
+- wNFn: week day name in **Fingilish**. (**ONLY** for `JalaliFormatter`.)
 - tH: hour.
 - tHH: 2-digit hour.
 - tM: minute.
@@ -551,6 +567,15 @@ void main() {
   }
 
   print(format1Af(j1)); // prints: پنج شنبه 21 جدی 91
+
+  // Finglish example:
+  String format1Fn(Jalali d) {
+    final f = d.formatter;
+
+    return '${f.wNFn} ${f.d} ${f.mNFn} ${f.yy}';
+  }
+
+  print(format1Fn(j1)); // print: Panjshanbeh 21 Dey 91
 
   // example two:
   String format2(Date d) {
