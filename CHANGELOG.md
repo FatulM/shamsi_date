@@ -1,3 +1,7 @@
+## 1.1.1
+
+* ADDED month names and weekday names in Fingilish for Jalali
+
 ## 1.1.0
 
 * ADDED docs
