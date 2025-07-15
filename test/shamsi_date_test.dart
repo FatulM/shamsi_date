@@ -828,7 +828,7 @@ void main() {
     expect(f3.wN, 'جمعه');
   });
 
-  test('Jalali.formatter.mNFn', () {
+  test('Jalali.formatter.{ mNFn, wNFn }', () {
     final d1 = Jalali(1404, 4, 22);
     final f1 = d1.formatter;
     expect(f1.mNFn, 'Tir');
