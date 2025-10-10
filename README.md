@@ -269,7 +269,7 @@ String format1(Date d) {
   return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
 }
 
-// example output for Jalali: "پنج شنبه 21 دی 91"
+// example output for Jalali: "پنجشنبه 21 دی 91"
 // example output for Gregorian: "Thursday 10 January 13"
 ```
 
@@ -282,7 +282,7 @@ String format1Af(Jalali d) {
   return '${f.wN} ${f.d} ${f.mNAf} ${f.yy}';
 }
 
-// example output: "پنج شنبه 21 جدی 91"
+// example output: "پنجشنبه 21 جدی 91"
 ```
 
 Or if you want to get Jalali formatting in Fingilish use:
@@ -556,7 +556,7 @@ void main() {
     return '${f.wN} ${f.d} ${f.mN} ${f.yy}';
   }
 
-  print(format1(j1)); // prints: پنج شنبه 21 دی 91
+  print(format1(j1)); // prints: پنجشنبه 21 دی 91
   print(format1(g1)); // prints: Thursday 10 January 13
 
   // for Afghani people:
@@ -566,7 +566,7 @@ void main() {
     return '${f.wN} ${f.d} ${f.mNAf} ${f.yy}';
   }
 
-  print(format1Af(j1)); // prints: پنج شنبه 21 جدی 91
+  print(format1Af(j1)); // prints: پنجشنبه 21 جدی 91
 
   // Finglish example:
   String format1Fn(Jalali d) {

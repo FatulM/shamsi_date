@@ -61,11 +61,11 @@ class JalaliFormatter extends DateFormatter {
   /// Jalali week day names
   static const List<String> _weekDayNames = [
     'شنبه',
-    'یک شنبه',
-    'دو شنبه',
-    'سه شنبه',
-    'چهار شنبه',
-    'پنج شنبه',
+    'یکشنبه',
+    'دوشنبه',
+    'سه‌شنبه',
+    'چهارشنبه',
+    'پنجشنبه',
     'جمعه',
   ];
 
