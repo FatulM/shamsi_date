@@ -1,3 +1,7 @@
+## 1.2.0
+
+* FIXED persian weekday names (#30)
+
 ## 1.1.1
 
 * ADDED month names and weekday names in Fingilish for Jalali
