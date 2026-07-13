@@ -432,7 +432,7 @@ void main() {
 
   // find weekDay
   print('$j1 has weekDay ${j1.weekDay}'); // -> 6
-  // 6 means "پنج شنیه"
+  // 6 means "پنجشنبه"
   print('$g1 has weekDay ${g1.weekDay}'); // -> 4
   // 4 means "Thursday"
 
