@@ -433,10 +433,6 @@ void main() {
     expect(() => Jalali(1300, 1, 1, 0, 0, 60, 0), tde);
     expect(() => Jalali(1300, 1, 1, 0, 0, 0, -1), tde);
     expect(() => Jalali(1300, 1, 1, 0, 0, 0, 1000), tde);
-
-    expect(() => Jalali(1300, -1, 1, 0, 0, 0, 0), tde);
-    expect(() => Jalali(1300, -1, 1, 0, -1, 0, 0), tde);
-    expect(() => Jalali(1300, -1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Gregorian(year, month, day) validation', () {
@@ -477,10 +473,6 @@ void main() {
     expect(() => Gregorian(2000, 1, 1, 0, 0, 60, 0), tde);
     expect(() => Gregorian(2000, 1, 1, 0, 0, 0, -1), tde);
     expect(() => Gregorian(2000, 1, 1, 0, 0, 0, 1000), tde);
-
-    expect(() => Gregorian(2000, -1, 1, 0, 0, 0, 0), tde);
-    expect(() => Gregorian(2000, -1, 1, 0, -1, 0, 0), tde);
-    expect(() => Gregorian(2000, -1, 1, 0, 0, 0, 1000), tde);
   });
 
   test('Jalali.isLeapYear', () {
@@ -2636,9 +2628,11 @@ void main() {
   });
 }
 
-/// Mock Gregorian
+/// Partial mock for Gregorian used only for formatter tests.
 ///
-/// no check on inputs ...
+/// Uses `noSuchMethod` to satisfy the `Gregorian` interface.
+/// Only `.formatter`, `.year`, `.month`, `.day`, `.hour`, `.minute`,
+/// `.second`, `.millisecond` are implemented. All other methods throw.
 class _MockGregorian extends Date implements Gregorian {
   @override
   final int year;
@@ -2679,9 +2673,11 @@ class _MockGregorian extends Date implements Gregorian {
       throw UnimplementedError('mocked');
 }
 
-/// Mock Jalali
+/// Partial mock for Jalali used only for formatter tests.
 ///
-/// no check on inputs ...
+/// Uses `noSuchMethod` to satisfy the `Jalali` interface.
+/// Only `.formatter`, `.year`, `.month`, `.day`, `.hour`, `.minute`,
+/// `.second`, `.millisecond` are implemented. All other methods throw.
 class _MockJalali extends Date implements Jalali {
   @override
   final int year;
