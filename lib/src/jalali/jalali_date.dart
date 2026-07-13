@@ -78,7 +78,7 @@ class Jalali extends Date {
 
   @override
   int get dayOfYear {
-    return _Algo.getDayOfYear(isLeapYear(), month, day);
+    return _Algo.getDayOfYear(month, day);
   }
 
   /// Whether is leap year.
@@ -116,7 +116,7 @@ class Jalali extends Date {
     return JalaliFormatter(this);
   }
 
-  /// Create a Gregorian date by using [year], [month] and [day]
+  /// Create a Jalali date by using [year], [month] and [day]
   ///
   /// year and month default to 1
   factory Jalali(
