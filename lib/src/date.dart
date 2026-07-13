@@ -74,7 +74,8 @@ abstract class Date implements Comparable<Date> {
 
   /// Week day number [1..7]
   ///
-  /// Starting with 1 and ending in 7
+  /// [Jalali]: Shanbe = 1, Jomee = 7
+  /// [Gregorian]: monday = 1, sunday = 7
   int get weekDay;
 
   /// Month length

@@ -14,7 +14,8 @@ abstract class DateFormatter {
 
   /// year number string whatever length it has
   ///
-  /// [date.year] should be greater or equal 0 or exception will be thrown
+  /// Note: The formatter requires [date.year] >= 0.
+  /// Negative years are valid dates (e.g. Jalali) but cannot be formatted.
   String get y {
     final int year = date.year;
 
