@@ -818,6 +818,9 @@ void main() {
     expect(f3.d, '3');
     expect(f3.mN, 'فروردین');
     expect(f3.wN, 'جمعه');
+
+    expect(f3.doy, '3');
+    expect(f3.dddoy, '003');
   });
 
   test('Jalali.formatter.{ mNFn, wNFn }', () {
