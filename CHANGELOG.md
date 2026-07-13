@@ -1,6 +1,12 @@
 ## 1.2.0
 
 * FIXED persian weekday names (#30)
+* FIXED typos in code and documentation
+* FIXED some issues with example code
+* FIXED some issues with test code
+* FIXED some code documentations about safe and unsafe methods
+* FIXED Date.copy method to include hour, minute, seconds and milliseconds
+* FIXED Date.add method to include hour, minute, seconds and milliseconds
 
 ## 1.1.1
 
