@@ -7,6 +7,7 @@
 * FIXED some code documentations about safe and unsafe methods
 * FIXED Date.copy method to include hour, minute, seconds and milliseconds
 * FIXED Date.add method to include hour, minute, seconds and milliseconds
+* UPDATED github ci to use latest versions of actions
 
 ## 1.1.1
 
