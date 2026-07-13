@@ -1613,7 +1613,7 @@ void main() {
     );
   });
 
-  test('Jalali.distanceFrom', () {
+  test('Jalali.distanceTo', () {
     expect(Jalali(1400, 2, 30).distanceTo(Jalali(1375, 8, 3)), -8974);
 
     expect(
@@ -1624,7 +1624,7 @@ void main() {
     );
   });
 
-  test('Gregorian.distanceFrom', () {
+  test('Gregorian.distanceTo', () {
     expect(Gregorian(2021, 5, 20).distanceTo(Gregorian(1996, 10, 24)), -8974);
 
     expect(
