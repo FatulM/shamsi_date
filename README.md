@@ -414,7 +414,7 @@ void main() {
   int j1ts = j1.second; // j1ts = 34
   int j1tms = j1.millisecond; // j1tms = 585
   print('j1 is $j1y-$j1m-$j1d:$j1th-$j1tm-$j1ts-$j1tms');
-  // prints: j1 is 1397-10-21:12-56-34-585
+  // prints: j1 is 1391-10-21:12-56-34-585
   // NOTE: use formatters for formatting dates
   // and for Gregorian:
   int g1y = g1.year; // g1y = 2013
