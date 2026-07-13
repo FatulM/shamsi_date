@@ -4,7 +4,7 @@
 
 /// shamsi_date library.
 ///
-/// A package for using Jalali (Shamsi, Solar, Persian or Jalaali) calendar.
+/// A package for using Jalali (Shamsi, Solar, Persian, Iranian, Jalaali or شمسی) calendar.
 /// It can convert, format and manipulate Jalali and Gregorian (Miladi) dates.
 library shamsi_date;
 

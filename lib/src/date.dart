@@ -103,7 +103,7 @@ abstract class Date implements Comparable<Date> {
   /// This method is NOT safe
   ///
   /// This method does change all fields at once,
-  /// Not individually in a order
+  /// Not individually in any particular order
   ///
   /// Throws DateException on problems
   ///
@@ -172,8 +172,9 @@ abstract class Date implements Comparable<Date> {
   /// it simply adds to each field value and changes ALL at once
   ///
   /// This Method is NOT safe for month and day bounds
+  /// (e.g., adding 1 month to January 31 produces February 31)
   ///
-  /// Recommended: Use separate add*() methods
+  /// Recommended: Use separate add*() methods which validate correctly
   Date add({
     int years = 0,
     int months = 0,

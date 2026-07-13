@@ -123,10 +123,11 @@ class Gregorian extends Date {
     );
   }
 
-  /// Calculates Gregorian and Julian calendar dates from the Julian Day number
-  /// [julianDayNumber] for the period since jdn=-34839655
-  /// (i.e. the year -100100 of both calendars)
-  /// to some millions years ahead of the present.
+  /// Calculates Gregorian calendar date from the Julian Day number
+  /// [julianDayNumber].
+  ///
+  /// Supported range: JDN 1925675 (year 560) to 3108616 (year 3798).
+  /// Throws [DateException] for out-of-range values.
   factory Gregorian.fromJulianDayNumber(
     final int julianDayNumber, [
     final int hour = 0,
@@ -193,16 +194,9 @@ class Gregorian extends Date {
   ///
   /// You can leave out items for not changing them
   ///
-  /// This method is NOT safe for chaining with other with*() methods
-  /// (e.g., changing day to 31 then month to February crashes)
-  /// Use copy() to change multiple fields at once
+  /// Changes all provided fields at once and validates the result.
   ///
-  /// This method does change all fields at once,
-  /// Not individually in a order
-  ///
-  /// Throws DateException on problems
-  ///
-  /// Note: For ordering use with*() methods
+  /// Throws [DateException] on problems.
   @override
   Gregorian copy({
     int? year,

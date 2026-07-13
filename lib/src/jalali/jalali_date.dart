@@ -198,16 +198,9 @@ class Jalali extends Date {
   ///
   /// You can leave out items for not changing them
   ///
-  /// This method is NOT safe for chaining with other with*() methods
-  /// (e.g., changing day to 31 then month to February crashes)
-  /// Use copy() to change multiple fields at once
+  /// Changes all provided fields at once and validates the result.
   ///
-  /// This method does change all fields at once,
-  /// Not individually in a order
-  ///
-  /// Throws DateException on problems
-  ///
-  /// Note: For ordering use with*() methods
+  /// Throws [DateException] on problems.
   @override
   Jalali copy({
     int? year,
