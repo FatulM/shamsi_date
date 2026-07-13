@@ -198,7 +198,9 @@ class Jalali extends Date {
   ///
   /// You can leave out items for not changing them
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// This method does change all fields at once,
   /// Not individually in a order
@@ -345,7 +347,8 @@ class Jalali extends Date {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is safe
+  /// This method is safe from leap-year related errors
+  /// but can throw DateException if the result is out of computable range
   @override
   Jalali addYears(int years) {
     if (years == 0) {
@@ -368,7 +371,9 @@ class Jalali extends Date {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe for day being out of month length,
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once for day being out of month length,
   /// But is safe for month overflow
   ///
   /// Throws DateException on problems
@@ -420,7 +425,9 @@ class Jalali extends Date {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// Throws DateException on problems
   ///
@@ -448,7 +455,9 @@ class Jalali extends Date {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// Throws DateException on problems
   ///
@@ -476,7 +485,9 @@ class Jalali extends Date {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// Throws DateException on problems
   ///

@@ -108,13 +108,23 @@ abstract class Date implements Comparable<Date> {
   /// Throws DateException on problems
   ///
   /// Note: For ordering use with*() methods
-  Date copy({int? year, int? month, int? day});
+  Date copy({
+    int? year,
+    int? month,
+    int? day,
+    int? hour,
+    int? minute,
+    int? second,
+    int? millisecond,
+  });
 
   /// Make a new date object with changed [year]
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// Throws DateException on problems
   ///
@@ -127,7 +137,9 @@ abstract class Date implements Comparable<Date> {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// Throws DateException on problems
   ///
@@ -140,7 +152,9 @@ abstract class Date implements Comparable<Date> {
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is NOT safe
+  /// This method is NOT safe for chaining with other with*() methods
+  /// (e.g., changing day to 31 then month to February crashes)
+  /// Use copy() to change multiple fields at once
   ///
   /// Throws DateException on problems
   ///
@@ -160,14 +174,23 @@ abstract class Date implements Comparable<Date> {
   /// This Method is NOT safe for month and day bounds
   ///
   /// Recommended: Use separate add*() methods
-  Date add({int years = 0, int months = 0, int days = 0});
+  Date add({
+    int years = 0,
+    int months = 0,
+    int days = 0,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
+  });
 
   /// Makes a new date object with
   /// added [years] to this date
   ///
   /// Original date object remains unchanged
   ///
-  /// This method is safe
+  /// This method is safe from leap-year related errors
+  /// but can throw DateException if the result is out of computable range
   Date addYears(int years);
 
   /// Makes a new date object with
