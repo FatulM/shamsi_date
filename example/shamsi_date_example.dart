@@ -106,7 +106,7 @@ void main() {
   print(Jalali.now().copy(day: 1));
   // for example to find 3rd day of 2nd month of this year:
   print(Jalali.now().copy(month: 2, day: 3));
-  // DON NOT do it like this:
+  // DO NOT do it like this:
   print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT
   // for example if you want to get
   // the last day of the last month of this Jalali year:
@@ -214,7 +214,7 @@ void main() {
   print(g1 == g2); // -> true
   print(g1 != g1); // -> false
 
-  // if you want to compare Jalali with Georgian
+  // if you want to compare Jalali with Gregorian
   // you can convert one type to another,
   // for example:
   print(j1.toGregorian() == g1); // -> true
@@ -244,7 +244,7 @@ void main() {
   print(Jalali.fromJulianDayNumber(2460527));
   // or also provide time information
   print(Jalali.fromJulianDayNumber(2460527, 15, 36, 12, 156));
-  // or get julian day number thr
+  // or get julian day number through
   print(Jalali.now().julianDayNumber);
 
   // also you can get time information using time getter

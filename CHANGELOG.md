@@ -9,7 +9,7 @@
 ## 1.1.0
 
 * ADDED docs
-* ADDED default date seperator to formatter
+* ADDED default date separator to formatter
 * ADDED formatting for time information
 * ADDED formatter for day of year
 * ADDED day of year
@@ -103,8 +103,8 @@
 
 * ADDED null checking for constructors and factories
 * ADDED null checking for most of the methods
-* ADDED addYears, addMonths and addDays methods for Jalali and Georgian
-* ADDED withYear, withMonth and withDay methods for Jalali and Georgian
+* ADDED addYears, addMonths and addDays methods for Jalali and Gregorian
+* ADDED withYear, withMonth and withDay methods for Jalali and Gregorian
 * ADDED more tests
 * IMPROVED date formatter
 * UPDATED documentation

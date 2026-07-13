@@ -12,8 +12,8 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 - Convert between [Jalali][], [Gregorian][] and Flutter's [DateTime][] objects.
 - Access year, month, day, weekday, Julian day number, month length and ... through getters.
-- Format Jalali and Georgian dates with an easy and powerful syntax using [DateFormatter][].
-- Ensure Jalali and Georgian dates validity.
+- Format Jalali and Gregorian dates with an easy and powerful syntax using [DateFormatter][].
+- Ensure Jalali and Gregorian dates validity.
 - Check if a Jalali or Gregorian year is leap.
 - Immutable date objects with copy methods for easy manipulation.
 - Compare Dates easily with comparison operators or by using [Comparable][].
@@ -30,7 +30,7 @@ As of version `1.2.0` persian weekday names are fixed. Now all the weekday names
 
 As of version `1.1.1` there are `mNFn` and `wNFn` getters on `JalaliFormatter` to get month names and weekday names in **Fingilish**.
 
-As of version `1.1.0` there are time information formatters, like: `tH`, `tMM` and `tMSSS`. And a formatter for date seperator.
+As of version `1.1.0` there are time information formatters, like: `tH`, `tMM` and `tMSSS`. And a formatter for date separator.
 
 As of version `1.1.0` there is day of year getter on dates (`dayOfYear`) and formatter on formatters (`doy` and `dddoy`).
 
@@ -175,7 +175,7 @@ Jalali j = Jalali.fromMillisecondsSinceEpoch(1722782031520);
 
 But keep in mind that Jalali and Gregorian dates do not store timezone information, So they won't store millisecondsSinceEpoch property internally.
 
-Jalali and Georgian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
+Jalali and Gregorian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
 
 For example for getting date at start of this month in Jalali: (copy method makes another object instance and leaves the original one unchanged)
 
@@ -184,7 +184,7 @@ Jalali j1 = Jalali.now().withDay(1); // correct way
 // or by using copy method:
 Jalali j2 = Jalali.now().copy(day: 1); // also correct
 
-// DON NOT do it like this:
+// DO NOT do it like this:
 Jalali j3 = Jalali(Jalali.now().year, Jalali.now().month, 1); // INCORRECT
 ```
 Or if you want to get last day of the last month of this Jalali year:
@@ -312,7 +312,7 @@ Then use it like before.
 
 **Note** that formatter formats digits in English so if you want Persian digits you can use fonts with Persian digits or apply a simple mapping to formatter output to change English digits to Persian.
 
-Jalali and Georgian dates support `toString()` method. For Jalali, it is semantically equivalent to use a formatter as `Jalali(Y,M,D)` which means:
+Jalali and Gregorian dates support `toString()` method. For Jalali, it is semantically equivalent to use a formatter as `Jalali(Y,M,D)` which means:
 
 ```dart
 String toStringFormatter(Jalali d) {
@@ -321,17 +321,17 @@ String toStringFormatter(Jalali d) {
   return 'Jalali(${f.y},${f.m},${f.d}),${f.tH},${f.tM},${f.tS},${f.tMS}';
 }
 ```
-For Georgian, toString() is equivalent to using a formatter as `Georgian(Y,M,D,h,m,s,ms)`.
+For Gregorian, toString() is equivalent to using a formatter as `Gregorian(Y,M,D,h,m,s,ms)`.
 
 Note: in the following code toString() is called implicitly:
 
 ```dart
 void main() {
     print(Jalali.now());
-    final str = 'today is: ${Georgian.now()}';
+    final str = 'today is: ${Gregorian.now()}';
 }
 ```
-Use toString() of Jalali and Georgian dates only for development purpose, like for debugging, logging or ... **You should** use formatters for showing dates on the UI.
+Use toString() of Jalali and Gregorian dates only for development purpose, like for debugging, logging or ... **You should** use formatters for showing dates on the UI.
 
 If you want to format like `ISO8601` you can do the following:
 
@@ -370,7 +370,7 @@ If you want to use `/` instead of `-` for date separation use `formatter.sep` wh
 - tSS: two-digit seconds.
 - tMS: milliseconds.
 - tMSSS: three-digit milliseconds.
-- sep: date seperator. `-` for Gregorian and `/` for Jalali.
+- sep: date separator. `-` for Gregorian and `/` for Jalali.
 
 You can get date formatter by using `formatter` getter on Jalali and Gregorian date objects. Simply cash this formatter in a Jalali value and then use string interpolation (as we have shown in examples) for making your desired output. This way of formatting is more powerful (and arguably easier) than using templates.
 
@@ -502,7 +502,7 @@ void main() {
   print(Jalali.now().copy(day: 1));
   // for example to find 3rd day of 2nd month of this year:
   print(Jalali.now().copy(month: 2, day: 3));
-  // DON NOT do it like this:
+  // DO NOT do it like this:
   print(Jalali(Jalali.now().year, Jalali.now().month, 1)); // INCORRECT
   // for example if you want to get
   // the last day of the last month of this Jalali year:
@@ -610,7 +610,7 @@ void main() {
   print(g1 == g2); // -> true
   print(g1 != g1); // -> false
 
-  // if you want to compare Jalali with Georgian
+  // if you want to compare Jalali with Gregorian
   // you can convert one type to another,
   // for example:
   print(j1.toGregorian() == g1); // -> true
@@ -640,7 +640,7 @@ void main() {
   print(Jalali.fromJulianDayNumber(2460527));
   // or also provide time information
   print(Jalali.fromJulianDayNumber(2460527, 15, 36, 12, 156));
-  // or get julian day number thr
+  // or get julian day number through
   print(Jalali.now().julianDayNumber);
 
   // also you can get time information using time getter

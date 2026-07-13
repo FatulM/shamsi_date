@@ -4,7 +4,7 @@
 
 import 'date_formatter.dart';
 
-/// Super class of Jalali and Georgian classes
+/// Super class of Jalali and Gregorian classes
 ///
 /// Date objects are required to be immutable
 ///
