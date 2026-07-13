@@ -5,7 +5,7 @@ void main() {
   Gregorian g1 = Gregorian(2013, 1, 10, 12, 56, 34, 585);
   Jalali j1 = g1.toJalali();
   print('$g1 == $j1');
-  // prints: Gregorian(2013,1,10) == Jalali(1391,10,21)
+  // prints: Gregorian(2013, 1, 10, 12, 56, 34, 585) == Jalali(1391, 10, 21, 12, 56, 34, 585)
   // you can write Jalali.fromGregorian(g1) instead of g1.toJalali()
 
   // access year, month and day through getters
