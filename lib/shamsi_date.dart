@@ -2,10 +2,34 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-/// shamsi_date library.
+/// A package for Jalali (Shamsi, Solar, Persian, Iranian, Jalaali or شمسی) calendar.
+/// Convert, format and manipulate Jalali and Gregorian (Miladi) dates.
 ///
-/// A package for using Jalali (Shamsi, Solar, Persian, Iranian, Jalaali or شمسی) calendar.
-/// It can convert, format and manipulate Jalali and Gregorian (Miladi) dates.
+/// ## Quick Start
+///
+/// ```dart
+/// import 'package:shamsi_date/shamsi_date.dart';
+///
+/// // Create dates
+/// Jalali j = Jalali(1403, 5, 15);
+/// Gregorian g = Gregorian(2024, 8, 5);
+///
+/// // Convert between calendars
+/// Gregorian j2g = j.toGregorian();
+/// Jalali g2j = g.toJalali();
+///
+/// // Format dates
+/// String formatted = '${j.formatter.yyyy}/${j.formatter.mm}/${j.formatter.dd}';
+/// ```
+///
+/// ## Features
+///
+/// - Jalali and Gregorian calendar support
+/// - Calendar conversion and date arithmetic
+/// - Powerful date formatting
+/// - Time information support
+/// - Immutable date objects
+/// - Null-safe API
 library shamsi_date;
 
 export 'src/date.dart';
