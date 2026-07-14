@@ -79,13 +79,26 @@ class _Algo {
       throw DateException('Millisecond is out of bounds. [0..999]');
     }
 
+    // Algorithm from Fliegel & van Flandern (1968) to convert
+    // Julian Day Number to Gregorian year, month, day.
+    // See: https://en.wikipedia.org/wiki/Julian_day
+
+    // j: adjusted Julian day count relative to Gregorian epoch
     final int j = 4 * julianDayNumber +
         139361631 +
         ((((4 * julianDayNumber + 183187720) ~/ 146097) * 3) ~/ 4) * 4 -
         3908;
+
+    // i: encodes month and day within the 4-year leap cycle
     final int i = (((j % 1461)) ~/ 4) * 5 + 308;
+
+    // gd: day of month (1-31)
     final int gd = (((i % 153)) ~/ 5) + 1;
+
+    // gm: month (1-12)
     final int gm = (((i) ~/ 153) % 12) + 1;
+
+    // gy: Gregorian year (offset from epoch -100100)
     final int gy = ((j) ~/ 1461) - 100100 + ((8 - gm) ~/ 6);
 
     return Gregorian._raw(
