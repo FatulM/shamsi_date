@@ -1,5 +1,5 @@
 # Files and directories created by pub
-.dart_tool/
+.dart_tool
 .packages
 
 # pubspec.lock
@@ -27,10 +27,10 @@ html
 out
 
 # DS_Store
-**/.DS_Store
+.DS_Store
 
 # tmp files
-**/*tmp*
+*tmp*
 
 # Idx files
-**/.idx/
+.idx
