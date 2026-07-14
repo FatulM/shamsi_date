@@ -11,7 +11,7 @@
 
 ## 1.1.1
 
-* ADDED month names and weekday names in Fingilish for Jalali
+* ADDED month names and weekday names in Finglish for Jalali
 
 ## 1.1.0
 

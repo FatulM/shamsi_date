@@ -107,7 +107,7 @@ class JalaliFormatter extends DateFormatter {
     return _weekDayNamesFinglish[date.weekDay - 1];
   }
 
-  /// Default date Seperator = `/`
+  /// Default date Separator = `/`
   @override
   String get sep {
     return '/';

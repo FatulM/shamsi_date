@@ -28,7 +28,7 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 As of version `1.2.0` persian weekday names are fixed. Now all the weekday names are without any spaces or half-spaces, except `سه‌شنبه` which contains a half-space.
 
-As of version `1.1.1` there are `mNFn` and `wNFn` getters on `JalaliFormatter` to get month names and weekday names in **Fingilish**.
+As of version `1.1.1` there are `mNFn` and `wNFn` getters on `JalaliFormatter` to get month names and weekday names in **Finglish**.
 
 As of version `1.1.0` there are time information formatters, like: `tH`, `tMM` and `tMSSS`. And a formatter for date separator.
 
@@ -287,7 +287,7 @@ String format1Af(Jalali d) {
 // example output: "پنجشنبه 21 جدی 91"
 ```
 
-Or if you want to get Jalali formatting in Fingilish use:
+Or if you want to get Jalali formatting in Finglish use:
 
 ```dart
 String format1Fn(Jalali d) {
@@ -355,13 +355,13 @@ If you want to use `/` instead of `-` for date separation use `formatter.sep` wh
 - mm: two-digit month.
 - mN: month name.
 - mNAf: month name in **Afghanistan**. (**ONLY** for `JalaliFormatter`.)
-- mNFn: month name in **Fingilish**. (**ONLY** for `JalaliFormatter`.)
+- mNFn: month name in **Finglish**. (**ONLY** for `JalaliFormatter`.)
 - d: day (whatever length it has).
 - dd: two digit day.
 - doy: day of year.
 - dddoy: three-digit day of year.
 - wN: week day name.
-- wNFn: week day name in **Fingilish**. (**ONLY** for `JalaliFormatter`.)
+- wNFn: week day name in **Finglish**. (**ONLY** for `JalaliFormatter`.)
 - tH: hour.
 - tHH: 2-digit hour.
 - tM: minute.

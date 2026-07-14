@@ -49,7 +49,7 @@ class GregorianFormatter extends DateFormatter {
     return _weekDayNames[date.weekDay - 1];
   }
 
-  /// Default date Seperator = `-`
+  /// Default date Separator = `-`
   @override
   String get sep {
     return '-';

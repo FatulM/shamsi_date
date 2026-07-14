@@ -136,6 +136,6 @@ abstract class DateFormatter {
     return date.millisecond.toString().padLeft(3, '0');
   }
 
-  /// Default date Seperator
+  /// Default date Separator
   String get sep;
 }
