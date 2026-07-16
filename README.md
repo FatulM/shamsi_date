@@ -170,10 +170,18 @@ Gregorian g = dt.toGregorian();
 Also you can create Jalali and Gregorian dates using millisecondsSinceEpoch factory method, which supports making dates in UTC timezone.
 
 ```dart
-Jalali j = Jalali.fromMillisecondsSinceEpoch(1722782031520);
+// Local timezone (default, isUtc: false):
+// Interprets milliseconds as local device time
+Jalali j1 = Jalali.fromMillisecondsSinceEpoch(1722782031520);
+Gregorian g1 = Gregorian.fromMillisecondsSinceEpoch(1722782031520);
+
+// UTC timezone (isUtc: true):
+// Interprets milliseconds as UTC time
+Jalali j2 = Jalali.fromMillisecondsSinceEpoch(1722782031520, isUtc: true);
+Gregorian g2 = Gregorian.fromMillisecondsSinceEpoch(1722782031520, isUtc: true);
 ```
 
-But keep in mind that Jalali and Gregorian dates do not store timezone information, So they won't store millisecondsSinceEpoch property internally.
+But keep in mind that Jalali and Gregorian dates do not store timezone information, So they won't store millisecondsSinceEpoch property internally. Once created, the date object is timezone-agnostic.
 
 Jalali and Gregorian dates are immutable, so you can not change their properties in place. if you want only to change some fields of a Jalali or Gregorian date you can use `copy(...)` method or `withYear`, `withMonth` and `withDay` methods on an existing object. These methods can be chained. copy method changes all fields at one. **note** that copy and with*() methods are not safe, and it is your responsibility to avoid problems like month length bound (for example changing month of `31 Farvardin 1390` to `Esfand`) or leap crash (for example being in last day of year in a leap year and changing year to a non-leap one) in intermediate steps. order of operations is important.
 
