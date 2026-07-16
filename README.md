@@ -186,6 +186,7 @@ Jalali j2 = Jalali.now().copy(day: 1); // also correct
 
 // DO NOT do it like this:
 Jalali j3 = Jalali(Jalali.now().year, Jalali.now().month, 1); // INCORRECT
+// This is too verbose. Use `withDay()` instead: Jalali.now().withDay(1)
 ```
 Or if you want to get last day of the last month of this Jalali year:
 ```dart
