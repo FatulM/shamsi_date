@@ -471,10 +471,15 @@ void main() {
     // prints: DateException: Jalali month is out of valid range.
     print(e);
   }
-  // making leap crash will also throw exception:
-  // for ex: Jalali(1394, 12, 30) will crash, since
-  //  1394 is not leap year
-  // creating dates out of computable range also throws DateException.
+  // Common validation scenarios:
+  // 1. Month out of range
+  // 2. Leap year validation - day 30 only exists in leap years
+  // 3. Regular month day limits - months 1-11 have max 31 days, month 12 has 29/30
+  // 4. Creating dates out of computable range
+  // Some best practices:
+  // - Always wrap user input in try-catch
+  // - Use isLeapYear() to validate day 30 before creating dates
+  // - Use addDays(), addMonths(), addYears() for safe arithmetic
 
   // convert DateTime object to Jalali and Gregorian
   DateTime dateTime = DateTime.now();
