@@ -26,7 +26,7 @@ This package has a lot of unit tests with high test coverage for ensuring its co
 
 ## Recent Changes
 
-As of version `1.2.0` persian weekday names are fixed. Now all the weekday names are without any spaces or half-spaces, except `سه‌شنبه` which contains a half-space.
+As of version `2.0.0` persian weekday names are fixed. Now all the weekday names are without any spaces or half-spaces, except `سه‌شنبه` which contains a half-space.
 
 As of version `1.1.1` there are `mNFn` and `wNFn` getters on `JalaliFormatter` to get month names and weekday names in **Finglish**.
 
