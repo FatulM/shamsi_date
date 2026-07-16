@@ -1,4 +1,4 @@
-## 1.2.0
+## 2.0.0
 
 * FIXED persian weekday names (#30)
 * FIXED typos in code and documentation
@@ -8,6 +8,9 @@
 * FIXED Date.copy method to include hour, minute, seconds and milliseconds
 * FIXED Date.add method to include hour, minute, seconds and milliseconds
 * UPDATED github ci to use latest versions of actions
+* ADD more claifications about timezone and distances in readme
+* ADD more clarifications about validation scenarios in example code
+* ADD some tests for edge cases
 
 ## 1.1.1
 
