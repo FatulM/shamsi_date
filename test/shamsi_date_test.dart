@@ -2629,6 +2629,26 @@ void main() {
     expect(Gregorian(2119, 3, 21), Jalali(1498));
     expect(true, Jalali(1498).isLeapYear());
   });
+
+  test('Jalali - boundary edge cases', () {
+    expect(Jalali.max, greaterThan(Jalali.min));
+
+    expect(() => Jalali.max.addYears(1), tde);
+    expect(() => Jalali.min.addYears(-1), tde);
+
+    expect(Jalali.min, equals(Gregorian.min));
+    expect(Jalali.max, equals(Gregorian.max));
+  });
+
+  test('Gregorian - boundary edge cases', () {
+    expect(Gregorian.max, greaterThan(Gregorian.min));
+
+    expect(() => Gregorian.max.addYears(1), tde);
+    expect(() => Gregorian.min.addYears(-1), tde);
+
+    expect(Gregorian.min, equals(Jalali.min));
+    expect(Gregorian.max, equals(Jalali.max));
+  });
 }
 
 /// Partial mock for Gregorian used only for formatter tests.
